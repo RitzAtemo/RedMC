@@ -1,7 +1,7 @@
 name: RedMC-API
 description: RedMC - API
 version: '1.0'
-api-version: '1.21.8'
+api-version: '1.21.11'
 prefix: RedMC
 folia-supported: true
 main: red.aviora.redmc.api.ApiPlugin

@@ -2,7 +2,7 @@
 Plugin infrastructure for Minecraft servers in the Vanilla Survival Multiplayer (SMP) category, with a focus on the Folia core.
 
 ![Java 21](https://img.shields.io/badge/Java-21-blue.svg)
-![Folia 1.21.8](https://img.shields.io/badge/Folia-1.21.8-yellow.svg)
+![Folia 1.21.11](https://img.shields.io/badge/Folia-1.21.11-yellow.svg)
 ![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-green.svg)
 
 ## Features

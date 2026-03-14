@@ -1,11 +1,10 @@
 name: RedMC-Placeholders
 description: RedMC - Placeholders
 version: '1.0'
-api-version: '1.21.8'
+api-version: '1.21.11'
 prefix: RedMC
 folia-supported: true
 main: red.aviora.redmc.placeholders.PlaceholdersPlugin
-bootstrapper: red.aviora.redmc.placeholders.PlaceholdersBootstrap
 dependencies:
   server:
     RedMC-API:

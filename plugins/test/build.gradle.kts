@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-	compileOnly("dev.folia:folia-api:1.21.8-R0.1-SNAPSHOT")
+	compileOnly("dev.folia:folia-api:1.21.11-R0.1-SNAPSHOT")
 	implementation(project(":plugins:api"))
 }
 
@@ -22,7 +22,7 @@ java {
 }
 
 val runFolia = runPaper.folia.registerTask {
-	version("1.21.8")
+	version("1.21.11")
 	dependsOn(
 		project(":plugins:api").tasks.named("reobfJar"),
 		project(":plugins:permissions").tasks.named("jar"),

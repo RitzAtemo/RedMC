@@ -1,5 +1,5 @@
 name: test
 version: '1.0'
-api-version: '1.21.8'
+api-version: '1.21.11'
 main: red.aviora.redmc.test.TestPlugin
 folia-supported: true
