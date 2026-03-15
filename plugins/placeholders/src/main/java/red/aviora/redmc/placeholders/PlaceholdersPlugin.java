@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class PlaceholdersPlugin extends JavaPlugin {
 
-	public static final String NULL_VALUE = "null";
+	public static final String NULL_VALUE = "";
 
 	private static PlaceholdersPlugin instance;
 

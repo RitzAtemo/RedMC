@@ -1,0 +1,26 @@
+prefix: "<#1E90FF>[<#FF1493>Профиль<#1E90FF>]<#F0F8FF> "
+
+success: "%prefix%<#3DDC97>Операция успешно выполнена!"
+not-found: "%prefix%<#FF4D6D>Элемент <#9b94a6>%name% <#FF4D6D>не найден."
+player-not-found: "%prefix%<#FF4D6D>Игрок <#9b94a6>%name% <#FF4D6D>не найден."
+player-only: "%prefix%<#FF4D6D>Эта команда может использоваться только игроками."
+insufficient-funds: "%prefix%<#FF4D6D>Недостаточно средств. Ваш баланс: <#9b94a6>%balance%<#FF4D6D>."
+
+group-prefix-value: "%prefix%<#9b94a6>Префикс группы: <#F0F8FF>%value%"
+group-suffix-value: "%prefix%<#9b94a6>Суффикс группы: <#F0F8FF>%value%"
+
+player-prefix-value: "%prefix%<#9b94a6>Префикс игрока: <#F0F8FF>%value%"
+player-suffix-value: "%prefix%<#9b94a6>Суффикс игрока: <#F0F8FF>%value%"
+player-altname-value: "%prefix%<#9b94a6>Альт имя: <#F0F8FF>%value%"
+
+economy-balance: "%prefix%<#9b94a6>Баланс <#F0F8FF>%name%<#9b94a6>: <#FFB800>%balance% %symbol%"
+economy-set: "%prefix%<#3DDC97>Баланс <#F0F8FF>%name% <#3DDC97>установлен на <#FFB800>%amount% %symbol%<#3DDC97>."
+economy-add: "%prefix%<#3DDC97>Добавлено <#FFB800>%amount% %symbol% <#3DDC97>к <#F0F8FF>%name%<#3DDC97>."
+economy-subtract: "%prefix%<#3DDC97>Вычтено <#FFB800>%amount% %symbol% <#3DDC97>из <#F0F8FF>%name%<#3DDC97>."
+
+pay-success: "%prefix%<#3DDC97>Отправлено <#FFB800>%amount% %symbol% <#3DDC97>игроку <#F0F8FF>%target%<#3DDC97>."
+pay-received: "%prefix%<#3DDC97>Получено <#FFB800>%amount% %symbol% <#3DDC97>от игрока <#F0F8FF>%sender%<#3DDC97>."
+
+my-balance: "%prefix%<#9b94a6>Ваш баланс: <#FFB800>%balance% %symbol%%rank%"
+baltop-header: "%prefix%<#9b94a6>===== <#F0F8FF>Топ 10 богатых<#9b94a6> ====="
+baltop-entry: "%prefix%<#9b94a6>#<#FFB800>%rank% <#F0F8FF>%name%<#9b94a6>: <#FFB800>%balance% %symbol%"

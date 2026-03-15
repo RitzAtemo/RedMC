@@ -1,0 +1,35 @@
+name: RedMC-NPC
+description: RedMC - NPC Management
+version: '0.1.0-beta'
+api-version: '1.21.11'
+prefix: RedMC
+folia-supported: true
+main: red.aviora.redmc.npc.NpcPlugin
+bootstrapper: red.aviora.redmc.npc.NpcBootstrap
+dependencies:
+  server:
+    RedMC-API:
+      load: BEFORE
+      required: true
+      join-classpath: true
+permissions:
+  redmc.npc:
+    default: op
+  redmc.npc.create:
+    default: op
+  redmc.npc.delete:
+    default: op
+  redmc.npc.setname:
+    default: op
+  redmc.npc.setskin:
+    default: op
+  redmc.npc.teleport:
+    default: op
+  redmc.npc.list:
+    default: op
+  redmc.npc.reload:
+    default: op
+  redmc.npc.addcommand:
+    default: op
+  redmc.npc.setequipment:
+    default: op

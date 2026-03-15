@@ -1,0 +1,83 @@
+chat:
+  no-permission: "<red>У вас нет прав использовать это."
+  no-target: "<red>Игрок не найден."
+  no-reply-target: "<red>Некому ответить."
+  reload-success: "<green>Конфигурация чата перезагружена."
+  only-players: "<red>Только игроки могут использовать эту команду."
+  msg-sent: "<gray>[<white>→ %target%</white>]</gray> <white>%message%</white>"
+  msg-received: "<gray>[<white>%sender% →</white>]</gray> <white>%message%</white>"
+  reply-sent: "<gray>[<white>→ %target%</white>]</gray> <white>%message%</white> <dark_gray>(↩ \"%quoted%\")</dark_gray>"
+  reply-received: "<gray>[<white>%sender% →</white>]</gray> <white>%message%</white> <dark_gray>(↩ \"%quoted%\")</dark_gray>"
+
+join-leave:
+  join: "<green>+</green> <white>%player%</white> <gray>зашёл на сервер</gray>"
+  leave: "<red>-</red> <white>%player%</white> <gray>вышел с сервера</gray>"
+
+death:
+  groups:
+    default:
+      messages:
+        - "<gray>%player% умер"
+        - "<gray>%player% пал"
+        - "<gray>%player% встретил свою судьбу"
+    by_player:
+      messages:
+        - "<red>%player%</red> <gray>был убит игроком</gray> <gold>%killer%</gold>"
+        - "<gold>%killer%</gold> <gray>победил</gray> <red>%player%</red>"
+        - "<red>%player%</red> <gray>не выжил против</gray> <gold>%killer%</gold>"
+    by_fall:
+      messages:
+        - "<gray>%player% упал с высоты"
+        - "<gray>%player% не выдержал урона от падения"
+        - "<gray>%player% забыл, что не умеет летать"
+    by_fire:
+      messages:
+        - "<red>%player%</red> <gray>сгорел заживо"
+        - "<gray>%player% был поглощён пламенем"
+        - "<red>%player%</red> <gray>почувствовал жар"
+    by_lava:
+      messages:
+        - "<red>%player%</red> <gray>попытался поплавать в лаве"
+        - "<gray>%player% узнал, что лава — это не вода"
+        - "<red>%player%</red> <gray>принял лавовую ванну"
+    by_drowning:
+      messages:
+        - "<aqua>%player%</aqua> <gray>утонул"
+        - "<gray>%player% забыл, как дышать"
+        - "<aqua>%player%</aqua> <gray>закончился воздух"
+    by_explosion:
+      messages:
+        - "<gray>%player% взорвался"
+        - "<gray>%player% был разнесён на куски"
+        - "<gray>%player% не оценил радиус взрыва"
+    by_void:
+      messages:
+        - "<gray>%player% упал в пустоту"
+        - "<dark_gray>%player% исчез в бездне"
+        - "<gray>%player% попрощался с миром"
+    by_entity:
+      messages:
+        - "<gray>%player% был убит <red>%killer%</red>"
+        - "<red>%killer%</red> <gray>прервал путь %player%"
+        - "<gray>%player% был не готов к <red>%killer%</red>"
+    by_magic:
+      messages:
+        - "<light_purple>%player%</light_purple> <gray>был убит магией"
+        - "<gray>%player% стал жертвой колдовства"
+    by_wither:
+      messages:
+        - "<gray>%player% иссох"
+        - "<dark_gray>%player%</dark_gray> <gray>поддался иссушению"
+    by_starve:
+      messages:
+        - "<gray>%player% умер от голода"
+        - "<gray>%player% забыл поесть"
+    by_lightning:
+      messages:
+        - "<yellow>%player%</yellow> <gray>был поражён молнией"
+        - "<gray>%player% получил незабываемый опыт"
+
+advancement:
+  task: "<gray>[</gray><green>Достижение</green><gray>]</gray> <white>%player%</white> <gray>получил достижение</gray> <white>[</white>%title%<white>]</white>"
+  goal: "<gray>[</gray><aqua>Достижение</aqua><gray>]</gray> <white>%player%</white> <gray>достиг цели</gray> <aqua>[</aqua>%title%<aqua>]</aqua>"
+  challenge: "<gray>[</gray><gold>Достижение</gold><gray>]</gray> <white>%player%</white> <gray>выполнил испытание</gray> <gold>[</gold>%title%<gold>]</gold>"

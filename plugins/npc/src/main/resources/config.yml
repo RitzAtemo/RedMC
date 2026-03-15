@@ -1,0 +1,7 @@
+look-at-player:
+  enabled: true
+  range: 16.0
+  interval-ms: 500
+
+interaction:
+  cooldown-ms: 500

@@ -1,0 +1,27 @@
+name: RedMC-Chat
+description: RedMC - Chat
+version: '1.0'
+api-version: '1.21.11'
+prefix: RedMC
+folia-supported: true
+main: red.aviora.redmc.chat.ChatPlugin
+bootstrapper: red.aviora.redmc.chat.ChatBootstrap
+dependencies:
+  server:
+    RedMC-API:
+      load: BEFORE
+      required: true
+      join-classpath: true
+    RedMC-Placeholders:
+      load: BEFORE
+      required: true
+      join-classpath: true
+permissions:
+  redmc.chat:
+    default: true
+  redmc.chat.global:
+    default: true
+  redmc.chat.msg:
+    default: true
+  redmc.chat.reload:
+    default: op

@@ -11,12 +11,28 @@ Plugin infrastructure for Minecraft servers in the Vanilla Survival Multiplayer 
   - Text utilities
   - Configuration manager
   - Localization manager
+- Placeholders system
 - Permissions
   - Group permissions
   - Player permissions
   - Weights
   - Inheritance
-- Placeholders system
+- Vault
+  - Prefixes
+  - Postfixes
+  - Alt names
+  - Economics
+- Tab
+- Scoreboard
+- Chat events
+  - Joins, disconnects
+  - Local and global chat
+  - Whispers
+  - Replies
+  - Deaths
+  - Cycle alerts
+  - Advancements
+- NPC (BETA!)
 
 ## Installation
 
@@ -54,25 +70,12 @@ This will start a local Folia server instance with your plugins loaded, allowing
 ## Roadmap
 
 - Backup
-- Vault
-  - Prefixes
-  - Postfixes
-  - Alt names
-  - Economics
-- Chat events
-  - Joins, disconnects
-  - Local and global chat
-  - Whispers
-  - Replies
-  - Deaths
 - Teleport events
   - Random Teleport
   - Spawns
   - Respawns
   - Warps
   - Homes
-- Tab
-- Scoreboard
 - MOTD
 - Holograms
 - Menus

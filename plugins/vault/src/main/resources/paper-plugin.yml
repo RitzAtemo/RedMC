@@ -1,0 +1,71 @@
+name: RedMC-Vault
+description: RedMC - Vault
+version: '1.0'
+api-version: '1.21.11'
+prefix: RedMC
+folia-supported: true
+main: red.aviora.redmc.vault.VaultPlugin
+bootstrapper: red.aviora.redmc.vault.VaultBootstrap
+dependencies:
+  server:
+    RedMC-API:
+      load: BEFORE
+      required: true
+      join-classpath: true
+    RedMC-Permissions:
+      load: BEFORE
+      required: true
+      join-classpath: true
+    RedMC-Placeholders:
+      load: BEFORE
+      required: true
+      join-classpath: true
+permissions:
+  redmc.vault:
+    default: op
+  redmc.vault.reload:
+    default: op
+  redmc.vault.group.prefix.set:
+    default: op
+  redmc.vault.group.prefix.get:
+    default: op
+  redmc.vault.group.prefix.remove:
+    default: op
+  redmc.vault.group.suffix.set:
+    default: op
+  redmc.vault.group.suffix.get:
+    default: op
+  redmc.vault.group.suffix.remove:
+    default: op
+  redmc.vault.player.prefix.set:
+    default: op
+  redmc.vault.player.prefix.get:
+    default: op
+  redmc.vault.player.prefix.remove:
+    default: op
+  redmc.vault.player.suffix.set:
+    default: op
+  redmc.vault.player.suffix.get:
+    default: op
+  redmc.vault.player.suffix.remove:
+    default: op
+  redmc.vault.player.altname.set:
+    default: op
+  redmc.vault.player.altname.get:
+    default: op
+  redmc.vault.player.altname.remove:
+    default: op
+  redmc.vault.player.economy.balance:
+    default: op
+  redmc.vault.player.economy.set:
+    default: op
+  redmc.vault.player.economy.add:
+    default: op
+  redmc.vault.player.economy.subtract:
+    default: op
+  redmc.vault.balance:
+    default: true
+  redmc.vault.baltop:
+    default: true
+  redmc.vault.pay:
+    default: true

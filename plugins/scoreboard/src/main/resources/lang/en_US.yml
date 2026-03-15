@@ -1,0 +1,7 @@
+prefix: "<#1E90FF>[<#FF1493>Scoreboard<#1E90FF>]<#F0F8FF> "
+
+success: "%prefix%<#3DDC97>Operation completed successfully!"
+reload-all: "%prefix%<#3DDC97>Scoreboard configuration reloaded and animations restarted."
+toggle-shown: "%prefix%<#3DDC97>Scoreboard is now visible."
+toggle-hidden: "%prefix%<#FF6B6B>Scoreboard is now hidden."
+players-only: "%prefix%<#FF6B6B>This command can only be used by players."

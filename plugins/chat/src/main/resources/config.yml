@@ -1,0 +1,40 @@
+chat:
+  global:
+    enabled: true
+    prefix: "!"
+    format: "<aqua>[G]</aqua> ##PlayerPrefix## <white>%player%</white> <gray>»</gray> <white>%message%</white>"
+  local:
+    enabled: true
+    format: "##PlayerPrefix## <white>%player%</white> <gray>»</gray> <white>%message%</white>"
+    default-radius: 100
+    worlds:
+      world:
+        radius: 100
+      world_nether:
+        radius: 50
+      world_the_end:
+        radius: -1
+  private:
+    enabled: true
+
+join-leave:
+  join:
+    enabled: true
+  leave:
+    enabled: true
+
+death:
+  enabled: true
+
+advancement:
+  enabled: true
+  disable-vanilla: true
+
+alerts:
+  enabled: true
+  interval: 300
+  no-repeat-count: 3
+  messages:
+    - "<gold>[!]</gold> <white>Welcome to the server! Use <yellow>/help</yellow> for commands."
+    - "<gold>[!]</gold> <white>Enjoy your stay and follow the rules!"
+    - "<gold>[!]</gold> <white>Have fun and play fair!"

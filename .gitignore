@@ -234,3 +234,5 @@ gradle-app.setting
 plugins/test/run
 
 .idea/
+CLAUDE.md
+.vs/

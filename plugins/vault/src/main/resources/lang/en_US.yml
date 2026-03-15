@@ -1,0 +1,26 @@
+prefix: "<#1E90FF>[<#FF1493>Vault<#1E90FF>]<#F0F8FF> "
+
+success: "%prefix%<#3DDC97>Operation completed successfully!"
+not-found: "%prefix%<#FF4D6D>Element <#9b94a6>%name% <#FF4D6D>not found."
+player-not-found: "%prefix%<#FF4D6D>Player <#9b94a6>%name% <#FF4D6D>not found."
+player-only: "%prefix%<#FF4D6D>This command can only be used by players."
+insufficient-funds: "%prefix%<#FF4D6D>Insufficient funds. Your balance: <#9b94a6>%balance%<#FF4D6D>."
+
+group-prefix-value: "%prefix%<#9b94a6>Group prefix: <#F0F8FF>%value%"
+group-suffix-value: "%prefix%<#9b94a6>Group suffix: <#F0F8FF>%value%"
+
+player-prefix-value: "%prefix%<#9b94a6>Player prefix: <#F0F8FF>%value%"
+player-suffix-value: "%prefix%<#9b94a6>Player suffix: <#F0F8FF>%value%"
+player-altname-value: "%prefix%<#9b94a6>Alt name: <#F0F8FF>%value%"
+
+economy-balance: "%prefix%<#9b94a6>Balance of <#F0F8FF>%name%<#9b94a6>: <#FFB800>%balance% %symbol%"
+economy-set: "%prefix%<#3DDC97>Balance of <#F0F8FF>%name% <#3DDC97>set to <#FFB800>%amount% %symbol%<#3DDC97>."
+economy-add: "%prefix%<#3DDC97>Added <#FFB800>%amount% %symbol% <#3DDC97>to <#F0F8FF>%name%<#3DDC97>."
+economy-subtract: "%prefix%<#3DDC97>Subtracted <#FFB800>%amount% %symbol% <#3DDC97>from <#F0F8FF>%name%<#3DDC97>."
+
+pay-success: "%prefix%<#3DDC97>Sent <#FFB800>%amount% %symbol% <#3DDC97>to <#F0F8FF>%target%<#3DDC97>."
+pay-received: "%prefix%<#3DDC97>Received <#FFB800>%amount% %symbol% <#3DDC97>from <#F0F8FF>%sender%<#3DDC97>."
+
+my-balance: "%prefix%<#9b94a6>Your balance: <#FFB800>%balance% %symbol%%rank%"
+baltop-header: "%prefix%<#9b94a6>===== <#F0F8FF>Top 10 Richest<#9b94a6> ====="
+baltop-entry: "%prefix%<#9b94a6>#<#FFB800>%rank% <#F0F8FF>%name%<#9b94a6>: <#FFB800>%balance% %symbol%"

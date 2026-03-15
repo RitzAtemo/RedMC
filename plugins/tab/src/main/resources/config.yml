@@ -1,0 +1,16 @@
+header:
+  animation: true
+  interval: 100
+  frames:
+    - "<#1E90FF>═══ RedMC SMP ═══\n<#F0F8FF>Players: ##CurrentServerOnline##/##ServerOnlineMaximum##"
+    - "<#FF1493>═══ RedMC SMP ═══\n<#F0F8FF>Players: ##CurrentServerOnline##/##ServerOnlineMaximum##"
+
+footer:
+  animation: false
+  interval: 20
+  frames:
+    - "<#9b94a6>play.redmc.example.com"
+
+player-row:
+  format: "<#1E90FF>##PlayerPrefix## ##PlayerName##"
+  interval: 20

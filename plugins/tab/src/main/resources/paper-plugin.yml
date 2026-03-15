@@ -1,0 +1,23 @@
+name: RedMC-Tab
+description: RedMC - Tab List Customization
+version: '1.0'
+api-version: '1.21.11'
+prefix: RedMC
+folia-supported: true
+main: red.aviora.redmc.tab.TabPlugin
+bootstrapper: red.aviora.redmc.tab.TabBootstrap
+dependencies:
+  server:
+    RedMC-API:
+      load: BEFORE
+      required: true
+      join-classpath: true
+    RedMC-Placeholders:
+      load: BEFORE
+      required: true
+      join-classpath: true
+permissions:
+  redmc.tab:
+    default: op
+  redmc.tab.reload:
+    default: op
