@@ -40,23 +40,24 @@ Format strings support `##Placeholder##` tokens and `%player%` / `%message%` var
 
 ## Death Messages
 
-`ChatManager` loads death message groups from config. Each group has a list of `messages` (chosen randomly). Groups:
+`ChatManager` loads death message groups from locale files. Each group has a list of `messages` (chosen randomly). The group is determined in `DeathListener` and passed to `ChatManager.broadcastDeathMessage()`.
 
-| Group | Trigger |
-|---|---|
-| `default` | Generic death |
-| `by_player` | Killed by a player |
-| `by_fall` | Fall damage |
-| `by_fire` | Fire/burning |
-| `by_lava` | Lava |
-| `by_drowning` | Drowning |
-| `by_explosion` | Explosion |
-| `by_void` | Void |
-| `by_entity` | Killed by a mob |
-| `by_magic` | Magic damage |
-| `by_wither` | Wither effect |
-| `by_starve` | Starvation |
-| `by_lightning` | Lightning strike |
+| Group | Trigger | Placeholders |
+|---|---|---|
+| `default` | Generic death | `%player%` |
+| `by_player` | Killed by a player (bare hands) | `%player%`, `%killer%` |
+| `by_player_weapon` | Killed by a player holding an item | `%player%`, `%killer%`, `%weapon%` |
+| `by_fall` | Fall damage | `%player%` |
+| `by_fire` | Fire/burning | `%player%` |
+| `by_lava` | Lava | `%player%` |
+| `by_drowning` | Drowning | `%player%` |
+| `by_explosion` | Explosion | `%player%` |
+| `by_void` | Void | `%player%` |
+| `by_entity` | Killed by a mob | `%player%`, `%killer%` |
+| `by_magic` | Magic damage | `%player%` |
+| `by_wither` | Wither effect | `%player%` |
+| `by_starve` | Starvation | `%player%` |
+| `by_lightning` | Lightning strike | `%player%` |
 
 ## Advancement Announcements
 

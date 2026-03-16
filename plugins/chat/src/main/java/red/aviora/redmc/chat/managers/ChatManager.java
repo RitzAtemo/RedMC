@@ -2,16 +2,20 @@ package red.aviora.redmc.chat.managers;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.chat.ChatPlugin;
 import red.aviora.redmc.placeholders.PlaceholdersPlugin;
+
+import java.util.LinkedHashMap;
+import java.util.regex.Pattern;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -129,30 +133,65 @@ public class ChatManager {
 		ChatPlugin.getInstance().getSessionManager().recordReceived(receiver.getUniqueId(), sender.getUniqueId(), message);
 	}
 
-	public void broadcastDeathMessage(Player victim, Player killer, Entity lastDamager, String groupId) {
+	public void broadcastDeathMessage(Player victim, Player killer, Entity lastDamager, String groupId, ItemStack weapon) {
 		if (!deathEnabled) return;
 
-		String killerName;
+		Component killerComponent;
 		if (killer != null) {
-			killerName = killer.getName();
+			killerComponent = Component.text(killer.getName());
 		} else if (lastDamager instanceof LivingEntity le) {
 			Component customName = le.customName();
-			killerName = customName != null
-				? PlainTextComponentSerializer.plainText().serialize(customName)
-				: formatEntityName(le.getType().name());
+			killerComponent = customName != null ? customName : Component.translatable(le.getType().translationKey());
 		} else {
-			killerName = "???";
+			killerComponent = Component.text("???");
+		}
+
+		Component weaponComponent = Component.empty();
+		if (weapon != null && !weapon.getType().isAir()) {
+			ItemMeta meta = weapon.getItemMeta();
+			weaponComponent = (meta != null && meta.hasDisplayName())
+				? meta.displayName()
+				: Component.translatable(weapon.getType().translationKey());
 		}
 
 		for (Player receiver : getLocalReceivers(victim)) {
 			String template = getLocalizedDeathMessage(receiver, groupId);
 			if (template == null) continue;
-			String formatted = template
-				.replace("%player%", victim.getName())
-				.replace("%killer%", killerName);
-			formatted = resolvePlaceholders(formatted, victim);
-			receiver.sendMessage(ApiUtils.formatText(formatted));
+			String withPlayer = template.replace("%player%", MiniMessage.miniMessage().escapeTags(victim.getName()));
+			withPlayer = resolvePlaceholders(withPlayer, victim);
+
+			var replacements = new LinkedHashMap<String, Component>();
+			replacements.put("%killer%", killerComponent);
+			replacements.put("%weapon%", weaponComponent);
+
+			receiver.sendMessage(buildTemplateComponent(withPlayer, replacements));
 		}
+	}
+
+	private Component buildTemplateComponent(String template, LinkedHashMap<String, Component> replacements) {
+		List<Object> parts = new ArrayList<>();
+		parts.add(template);
+		for (var entry : replacements.entrySet()) {
+			List<Object> next = new ArrayList<>();
+			for (Object part : parts) {
+				if (part instanceof String s) {
+					String[] split = s.split(Pattern.quote(entry.getKey()), -1);
+					for (int i = 0; i < split.length; i++) {
+						next.add(split[i]);
+						if (i < split.length - 1) next.add(entry.getValue());
+					}
+				} else {
+					next.add(part);
+				}
+			}
+			parts = next;
+		}
+		Component result = Component.empty();
+		for (Object part : parts) {
+			if (part instanceof String s) result = result.append(MiniMessage.miniMessage().deserialize(s));
+			else if (part instanceof Component c) result = result.append(c);
+		}
+		return result;
 	}
 
 	private List<Player> getLocalReceivers(Player origin) {
@@ -217,16 +256,6 @@ public class ChatManager {
 		} catch (Exception ignored) {
 		}
 		return text;
-	}
-
-	private String formatEntityName(String rawName) {
-		String[] parts = rawName.toLowerCase().split("_");
-		StringBuilder sb = new StringBuilder();
-		for (String part : parts) {
-			if (!sb.isEmpty()) sb.append(" ");
-			if (!part.isEmpty()) sb.append(Character.toUpperCase(part.charAt(0))).append(part.substring(1));
-		}
-		return sb.toString();
 	}
 
 	private String truncate(String text, int maxLen) {

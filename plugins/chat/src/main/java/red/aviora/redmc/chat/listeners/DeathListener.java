@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.inventory.ItemStack;
 import red.aviora.redmc.chat.ChatPlugin;
 
 public class DeathListener implements Listener {
@@ -26,12 +27,20 @@ public class DeathListener implements Listener {
 			lastDamager = entityEvent.getDamager();
 		}
 
-		String group = determineGroup(victim, killer, lastDamager);
-		ChatPlugin.getInstance().getChatManager().broadcastDeathMessage(victim, killer, lastDamager, group);
+		ItemStack weapon = null;
+		if (killer != null) {
+			ItemStack held = killer.getInventory().getItemInMainHand();
+			if (!held.getType().isAir()) {
+				weapon = held;
+			}
+		}
+
+		String group = determineGroup(victim, killer, lastDamager, weapon);
+		ChatPlugin.getInstance().getChatManager().broadcastDeathMessage(victim, killer, lastDamager, group, weapon);
 	}
 
-	private String determineGroup(Player victim, Player killer, Entity lastDamager) {
-		if (killer != null) return "by_player";
+	private String determineGroup(Player victim, Player killer, Entity lastDamager, ItemStack weapon) {
+		if (killer != null) return weapon != null ? "by_player_weapon" : "by_player";
 		if (victim.getLastDamageCause() == null) return "default";
 
 		EntityDamageEvent.DamageCause cause = victim.getLastDamageCause().getCause();

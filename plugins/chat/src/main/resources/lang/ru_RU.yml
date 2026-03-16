@@ -29,6 +29,11 @@ death:
         - "<#FF6B6B>%player%<#9b94a6> был убит игроком <#FFB800>%killer%"
         - "<#FFB800>%killer%<#9b94a6> победил <#FF6B6B>%player%"
         - "<#FF6B6B>%player%<#9b94a6> не выжил против <#FFB800>%killer%"
+    by_player_weapon:
+      messages:
+        - "<#FF6B6B>%player%<#9b94a6> был убит игроком <#FFB800>%killer%<#9b94a6> с помощью <#F0F8FF>%weapon%"
+        - "<#FFB800>%killer%<#9b94a6> победил <#FF6B6B>%player%<#9b94a6>, используя <#F0F8FF>%weapon%"
+        - "<#FF6B6B>%player%<#9b94a6> не выжил против <#FFB800>%killer%<#9b94a6> с <#F0F8FF>%weapon%"
     by_fall:
       messages:
         - "<#9b94a6>%player% упал с высоты"
