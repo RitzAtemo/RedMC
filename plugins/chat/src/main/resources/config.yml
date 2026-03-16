@@ -1,11 +1,13 @@
+config-version: "0.0.1-alpha"
+
 chat:
   global:
     enabled: true
     prefix: "!"
-    format: "<aqua>[G]</aqua> ##PlayerPrefix## <white>%player%</white> <gray>»</gray> <white>%message%</white>"
+    format: "##PlayerPrefix## <#1E90FF>[G]<#F0F8FF> %player% <#9b94a6>»<#F0F8FF> %message%"
   local:
     enabled: true
-    format: "##PlayerPrefix## <white>%player%</white> <gray>»</gray> <white>%message%</white>"
+    format: "##PlayerPrefix## <#F0F8FF>%player% <#9b94a6>»<#F0F8FF> %message%"
     default-radius: 100
     worlds:
       world:
@@ -35,6 +37,6 @@ alerts:
   interval: 300
   no-repeat-count: 3
   messages:
-    - "<gold>[!]</gold> <white>Welcome to the server! Use <yellow>/help</yellow> for commands."
-    - "<gold>[!]</gold> <white>Enjoy your stay and follow the rules!"
-    - "<gold>[!]</gold> <white>Have fun and play fair!"
+    - "<#FFB800>[!]<#F0F8FF> Welcome to the server! Use <#3DDC97>/help<#F0F8FF> for commands."
+    - "<#FFB800>[!]<#F0F8FF> Enjoy your stay and follow the rules!"
+    - "<#FFB800>[!]<#F0F8FF> Have fun and play fair!"

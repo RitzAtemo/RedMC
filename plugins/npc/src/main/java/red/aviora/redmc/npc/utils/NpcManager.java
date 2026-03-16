@@ -66,7 +66,6 @@ public class NpcManager {
 			f.setAccessible(true);
 			return (EntityDataAccessor<T>) f.get(null);
 		} catch (ReflectiveOperationException e) {
-			// Fallback: use Unsafe to bypass module restrictions
 			try {
 				Field f = cls.getDeclaredField(fieldName);
 				return (EntityDataAccessor<T>) UNSAFE.getObject(
@@ -128,7 +127,6 @@ public class NpcManager {
 
 		GameProfile profile = buildProfile(uuid, data);
 
-		// 1. Register profile for skin loading (not listed — hidden from tab)
 		var entry = new ClientboundPlayerInfoUpdatePacket.Entry(
 			uuid, profile, false, 0, GameType.SURVIVAL, null, false, 0, null
 		);
@@ -136,7 +134,6 @@ public class NpcManager {
 			EnumSet.of(ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER), List.of(entry)
 		));
 
-		// 2. Spawn player entity
 		sendPacket(player, new ClientboundAddEntityPacket(
 			entityId, uuid,
 			data.getX(), data.getY(), data.getZ(),
@@ -146,13 +143,10 @@ public class NpcManager {
 			data.getYaw()
 		));
 
-		// 3. Initial head rotation
 		sendHeadRotation(player, entityId, data.getYaw());
 
-		// 4. Entity metadata: custom name + all skin layers visible
 		sendMetadata(player, entityId, data);
 
-		// 5. Equipment
 		sendEquipment(player, entityId, data);
 	}
 

@@ -1,6 +1,6 @@
 name: RedMC-Tab
 description: RedMC - Tab List Customization
-version: '1.0'
+version: '0.0.1-alpha'
 api-version: '1.21.11'
 prefix: RedMC
 folia-supported: true
@@ -20,4 +20,8 @@ permissions:
   redmc.tab:
     default: op
   redmc.tab.reload:
+    default: op
+  redmc.tab.reload.config:
+    default: op
+  redmc.tab.reload.all:
     default: op

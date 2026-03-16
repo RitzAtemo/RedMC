@@ -17,7 +17,6 @@ dependencyResolutionManagement {
 }
 
 include(
-	"plugins:test",
 	"plugins:api",
 	"plugins:permissions",
 	"plugins:placeholders",

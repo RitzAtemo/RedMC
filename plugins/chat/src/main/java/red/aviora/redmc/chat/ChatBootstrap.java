@@ -1,15 +1,20 @@
 package red.aviora.redmc.chat;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.plugin.bootstrap.BootstrapContext;
 import io.papermc.paper.plugin.bootstrap.PluginBootstrap;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import org.bukkit.Bukkit;
-import red.aviora.redmc.chat.commands.ChatReloadCommand;
 import red.aviora.redmc.chat.commands.MsgCommand;
+import red.aviora.redmc.chat.commands.ReloadAllCommand;
+import red.aviora.redmc.chat.commands.ReloadAlertsCommand;
+import red.aviora.redmc.chat.commands.ReloadConfigCommand;
 import red.aviora.redmc.chat.commands.ReplyCommand;
+import red.aviora.redmc.chat.commands.SayCommand;
 
 public class ChatBootstrap implements PluginBootstrap {
 
@@ -20,37 +25,49 @@ public class ChatBootstrap implements PluginBootstrap {
 			event -> {
 				var commands = event.registrar();
 
-				commands.register(
-					Commands.literal("chat")
-						.requires(ctx -> ctx.getSender().hasPermission("redmc.chat.reload"))
-						.then(Commands.literal("reload")
-							.executes(new ChatReloadCommand()))
-						.build()
-				);
-
+				commands.register(makeChatCommand().build());
+				commands.register(buildSayCommand("say"));
 				commands.register(buildMsgCommand("msg"));
 				commands.register(buildMsgCommand("tell"));
-
-				commands.register(
-					Commands.literal("reply")
-						.requires(ctx -> ctx.getSender().hasPermission("redmc.chat.msg"))
-						.then(Commands.argument("message", StringArgumentType.greedyString())
-							.executes(new ReplyCommand()))
-						.build()
-				);
-
-				commands.register(
-					Commands.literal("r")
-						.requires(ctx -> ctx.getSender().hasPermission("redmc.chat.msg"))
-						.then(Commands.argument("message", StringArgumentType.greedyString())
-							.executes(new ReplyCommand()))
-						.build()
-				);
+				commands.register(buildMsgCommand("w"));
+				commands.register(buildMsgCommand("whisper"));
+				commands.register(buildMsgCommand("pm"));
+				commands.register(buildReplyCommand("reply"));
+				commands.register(buildReplyCommand("r"));
+				commands.register(buildReplyCommand("re"));
 			}
 		);
 	}
 
-	private com.mojang.brigadier.tree.LiteralCommandNode<CommandSourceStack> buildMsgCommand(String label) {
+	private LiteralArgumentBuilder<CommandSourceStack> makeChatCommand() {
+		return Commands.literal("chat")
+			.requires(ctx -> ctx.getSender().hasPermission("redmc.chat"))
+			.then(makeReloadNode());
+	}
+
+	private LiteralArgumentBuilder<CommandSourceStack> makeReloadNode() {
+		return Commands.literal("reload")
+			.requires(ctx -> ctx.getSender().hasPermission("redmc.chat.reload"))
+			.then(Commands.literal("config")
+				.requires(ctx -> ctx.getSender().hasPermission("redmc.chat.reload.config"))
+				.executes(new ReloadConfigCommand()))
+			.then(Commands.literal("alerts")
+				.requires(ctx -> ctx.getSender().hasPermission("redmc.chat.reload.alerts"))
+				.executes(new ReloadAlertsCommand()))
+			.then(Commands.literal("all")
+				.requires(ctx -> ctx.getSender().hasPermission("redmc.chat.reload.all"))
+				.executes(new ReloadAllCommand()));
+	}
+
+	private LiteralCommandNode<CommandSourceStack> buildSayCommand(String label) {
+		return Commands.literal(label)
+			.requires(ctx -> ctx.getSender().hasPermission("redmc.chat.global"))
+			.then(Commands.argument("message", StringArgumentType.greedyString())
+				.executes(new SayCommand()))
+			.build();
+	}
+
+	private LiteralCommandNode<CommandSourceStack> buildMsgCommand(String label) {
 		return Commands.literal(label)
 			.requires(ctx -> ctx.getSender().hasPermission("redmc.chat.msg"))
 			.then(Commands.argument("player", StringArgumentType.word())
@@ -65,6 +82,14 @@ public class ChatBootstrap implements PluginBootstrap {
 				})
 				.then(Commands.argument("message", StringArgumentType.greedyString())
 					.executes(new MsgCommand())))
+			.build();
+	}
+
+	private LiteralCommandNode<CommandSourceStack> buildReplyCommand(String label) {
+		return Commands.literal(label)
+			.requires(ctx -> ctx.getSender().hasPermission("redmc.chat.msg"))
+			.then(Commands.argument("message", StringArgumentType.greedyString())
+				.executes(new ReplyCommand()))
 			.build();
 	}
 }

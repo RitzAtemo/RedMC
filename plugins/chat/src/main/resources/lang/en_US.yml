@@ -1,83 +1,87 @@
+prefix: "<#1E90FF>[<#FF4500>Chat<#1E90FF>]<#F0F8FF> "
+
 chat:
-  no-permission: "<red>You don't have permission to use this."
-  no-target: "<red>Player not found."
-  no-reply-target: "<red>No one to reply to."
-  reload-success: "<green>Chat configuration reloaded."
-  only-players: "<red>Only players can use this command."
-  msg-sent: "<gray>[<white>→ %target%</white>]</gray> <white>%message%</white>"
-  msg-received: "<gray>[<white>%sender% →</white>]</gray> <white>%message%</white>"
-  reply-sent: "<gray>[<white>→ %target%</white>]</gray> <white>%message%</white> <dark_gray>(↩ \"%quoted%\")</dark_gray>"
-  reply-received: "<gray>[<white>%sender% →</white>]</gray> <white>%message%</white> <dark_gray>(↩ \"%quoted%\")</dark_gray>"
+  no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+  no-target: "%prefix%<#FF6B6B>Player not found."
+  no-reply-target: "%prefix%<#FF6B6B>No one to reply to."
+  only-players: "%prefix%<#FF6B6B>Only players can use this command."
+  reload-config-success: "%prefix%<#3DDC97>Chat configuration reloaded."
+  reload-alerts-success: "%prefix%<#3DDC97>Chat alerts reloaded."
+  reload-all-success: "%prefix%<#3DDC97>Chat configuration and alerts reloaded."
+  msg-sent: "<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message%"
+  msg-received: "<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message%"
+  reply-sent: "<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ \"%quoted%\")"
+  reply-received: "<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ \"%quoted%\")"
 
 join-leave:
-  join: "<green>+</green> <white>%player%</white> <gray>joined the server</gray>"
-  leave: "<red>-</red> <white>%player%</white> <gray>left the server</gray>"
+  join: "<#3DDC97>+<#F0F8FF> %player% <#9b94a6>joined the server"
+  leave: "<#FF6B6B>-<#F0F8FF> %player% <#9b94a6>left the server"
 
 death:
   groups:
     default:
       messages:
-        - "<gray>%player% died"
-        - "<gray>%player% has fallen"
-        - "<gray>%player% met their fate"
+        - "<#9b94a6>%player% died"
+        - "<#9b94a6>%player% has fallen"
+        - "<#9b94a6>%player% met their fate"
     by_player:
       messages:
-        - "<red>%player%</red> <gray>was slain by</gray> <gold>%killer%</gold>"
-        - "<gold>%killer%</gold> <gray>defeated</gray> <red>%player%</red>"
-        - "<red>%player%</red> <gray>couldn't survive</gray> <gold>%killer%</gold>"
+        - "<#FF6B6B>%player%<#9b94a6> was slain by <#FFB800>%killer%"
+        - "<#FFB800>%killer%<#9b94a6> defeated <#FF6B6B>%player%"
+        - "<#FF6B6B>%player%<#9b94a6> couldn't survive <#FFB800>%killer%"
     by_fall:
       messages:
-        - "<gray>%player% fell from a high place"
-        - "<gray>%player% couldn't handle the fall damage"
-        - "<gray>%player% forgot they couldn't fly"
+        - "<#9b94a6>%player% fell from a high place"
+        - "<#9b94a6>%player% couldn't handle the fall damage"
+        - "<#9b94a6>%player% forgot they couldn't fly"
     by_fire:
       messages:
-        - "<red>%player%</red> <gray>burned to death"
-        - "<gray>%player% was consumed by flames"
-        - "<red>%player%</red> <gray>felt the heat"
+        - "<#FF6B6B>%player%<#9b94a6> burned to death"
+        - "<#9b94a6>%player% was consumed by flames"
+        - "<#FF6B6B>%player%<#9b94a6> felt the heat"
     by_lava:
       messages:
-        - "<red>%player%</red> <gray>tried to swim in lava"
-        - "<gray>%player% discovered lava is not water"
-        - "<red>%player%</red> <gray>took a lava bath"
+        - "<#FF6B6B>%player%<#9b94a6> tried to swim in lava"
+        - "<#9b94a6>%player% discovered lava is not water"
+        - "<#FF6B6B>%player%<#9b94a6> took a lava bath"
     by_drowning:
       messages:
-        - "<aqua>%player%</aqua> <gray>drowned"
-        - "<gray>%player% forgot to breathe"
-        - "<aqua>%player%</aqua> <gray>ran out of air"
+        - "<#1E90FF>%player%<#9b94a6> drowned"
+        - "<#9b94a6>%player% forgot to breathe"
+        - "<#1E90FF>%player%<#9b94a6> ran out of air"
     by_explosion:
       messages:
-        - "<gray>%player% blew up"
-        - "<gray>%player% was blown to pieces"
-        - "<gray>%player% didn't respect the blast radius"
+        - "<#9b94a6>%player% blew up"
+        - "<#9b94a6>%player% was blown to pieces"
+        - "<#9b94a6>%player% didn't respect the blast radius"
     by_void:
       messages:
-        - "<gray>%player% fell into the void"
-        - "<dark_gray>%player% disappeared into the abyss"
-        - "<gray>%player% said goodbye to the world"
+        - "<#9b94a6>%player% fell into the void"
+        - "<#888888>%player% disappeared into the abyss"
+        - "<#9b94a6>%player% said goodbye to the world"
     by_entity:
       messages:
-        - "<gray>%player% was killed by a <red>%killer%</red>"
-        - "<red>%killer%</red> <gray>ended %player%'s journey"
-        - "<gray>%player% was no match for <red>%killer%</red>"
+        - "<#9b94a6>%player% was killed by a <#FF6B6B>%killer%"
+        - "<#FF6B6B>%killer%<#9b94a6> ended %player%'s journey"
+        - "<#9b94a6>%player% was no match for <#FF6B6B>%killer%"
     by_magic:
       messages:
-        - "<light_purple>%player%</light_purple> <gray>was killed by magic"
-        - "<gray>%player% was victim of sorcery"
+        - "<#C780FA>%player%<#9b94a6> was killed by magic"
+        - "<#9b94a6>%player% was victim of sorcery"
     by_wither:
       messages:
-        - "<gray>%player% withered away"
-        - "<dark_gray>%player%</dark_gray> <gray>succumbed to wither"
+        - "<#9b94a6>%player% withered away"
+        - "<#888888>%player%<#9b94a6> succumbed to wither"
     by_starve:
       messages:
-        - "<gray>%player% starved to death"
-        - "<gray>%player% forgot to eat"
+        - "<#9b94a6>%player% starved to death"
+        - "<#9b94a6>%player% forgot to eat"
     by_lightning:
       messages:
-        - "<yellow>%player%</yellow> <gray>was struck by lightning"
-        - "<gray>%player% had a shocking experience"
+        - "<#FFB800>%player%<#9b94a6> was struck by lightning"
+        - "<#9b94a6>%player% had a shocking experience"
 
 advancement:
-  task: "<gray>[</gray><green>Advancement</green><gray>]</gray> <white>%player%</white> <gray>has made the advancement</gray> <white>[</white>%title%<white>]</white>"
-  goal: "<gray>[</gray><aqua>Advancement</aqua><gray>]</gray> <white>%player%</white> <gray>has reached the goal</gray> <aqua>[</aqua>%title%<aqua>]</aqua>"
-  challenge: "<gray>[</gray><gold>Advancement</gold><gray>]</gray> <white>%player%</white> <gray>has completed the challenge</gray> <gold>[</gold>%title%<gold>]</gold>"
+  task: "<#9b94a6>[<#3DDC97>Advancement<#9b94a6>]<#F0F8FF> %player%<#9b94a6> has made the advancement <#F0F8FF>[<#3DDC97>%title%<#F0F8FF>]"
+  goal: "<#9b94a6>[<#1E90FF>Advancement<#9b94a6>]<#F0F8FF> %player%<#9b94a6> has reached the goal <#1E90FF>[<#F0F8FF>%title%<#1E90FF>]"
+  challenge: "<#9b94a6>[<#FFB800>Advancement<#9b94a6>]<#F0F8FF> %player%<#9b94a6> has completed the challenge <#FFB800>[<#F0F8FF>%title%<#FFB800>]"

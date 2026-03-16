@@ -1,4 +1,5 @@
 prefix: "<#1E90FF>[<#FF1493>Tab<#1E90FF>]<#F0F8FF> "
 
 success: "%prefix%<#3DDC97>Operation completed successfully!"
+reload-config: "%prefix%<#3DDC97>Tab configuration reloaded."
 reload-all: "%prefix%<#3DDC97>Tab configuration reloaded and animations restarted."

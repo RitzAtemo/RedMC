@@ -5,6 +5,7 @@ not-found: "%prefix%<#FF4D6D>Элемент <#9b94a6>%name% <#FF4D6D>не най
 player-not-found: "%prefix%<#FF4D6D>Игрок <#9b94a6>%name% <#FF4D6D>не найден."
 player-only: "%prefix%<#FF4D6D>Эта команда может использоваться только игроками."
 insufficient-funds: "%prefix%<#FF4D6D>Недостаточно средств. Ваш баланс: <#9b94a6>%balance%<#FF4D6D>."
+error: "%prefix%<#FF4D6D>Произошла ошибка. Попробуйте снова."
 
 group-prefix-value: "%prefix%<#9b94a6>Префикс группы: <#F0F8FF>%value%"
 group-suffix-value: "%prefix%<#9b94a6>Суффикс группы: <#F0F8FF>%value%"

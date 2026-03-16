@@ -30,34 +30,28 @@ public class VaultPlayerData {
 		this.name = name;
 	}
 
-	// Get balance for a specific currency
 	public double getBalance(String currencyId) {
 		return balances.getOrDefault(currencyId, 0.0);
 	}
 
-	// Set balance for a specific currency
 	public void setBalance(String currencyId, double balance) {
 		balances.put(currencyId, balance);
 	}
 
-	// Add to balance for a specific currency
 	public void addBalance(String currencyId, double amount) {
 		double current = getBalance(currencyId);
 		balances.put(currencyId, current + amount);
 	}
 
-	// Subtract from balance for a specific currency
 	public void subtractBalance(String currencyId, double amount) {
 		double current = getBalance(currencyId);
 		balances.put(currencyId, Math.max(0, current - amount));
 	}
 
-	// Get all balances
 	public Map<String, Double> getBalances() {
 		return new HashMap<>(balances);
 	}
 
-	// Set all balances (for loading from storage)
 	public void setBalances(Map<String, Double> balances) {
 		this.balances = new HashMap<>(balances);
 	}

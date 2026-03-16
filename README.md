@@ -1,9 +1,14 @@
 # RedMC Infrastructure
 Plugin infrastructure for Minecraft servers in the Vanilla Survival Multiplayer (SMP) category, with a focus on the Folia core.
 
-![Java 21](https://img.shields.io/badge/Java-21-blue.svg)
-![Folia 1.21.11](https://img.shields.io/badge/Folia-1.21.11-yellow.svg)
-![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-green.svg)
+![Java 21](https://img.shields.io/badge/Java-21-1E90FF.svg)
+![Folia 1.21.11](https://img.shields.io/badge/Folia-1.21.11-FF1493.svg)
+![RedMC: 0.0.1-alpha](https://img.shields.io/badge/RedMC-0.0.1--alpha-C780FA.svg)
+![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-3DDC97.svg)
+
+## Documentation
+
+Full documentation is available in the [Wiki](wiki/README.md), including plugin descriptions, command trees, and permission tables.
 
 ## Features
 
@@ -11,6 +16,7 @@ Plugin infrastructure for Minecraft servers in the Vanilla Survival Multiplayer 
   - Text utilities
   - Configuration manager
   - Localization manager
+  - Update protection
 - Placeholders system
 - Permissions
   - Group permissions
@@ -32,7 +38,7 @@ Plugin infrastructure for Minecraft servers in the Vanilla Survival Multiplayer 
   - Deaths
   - Cycle alerts
   - Advancements
-- NPC (BETA!)
+- NPC
 
 ## Installation
 

@@ -1,3 +1,5 @@
+config-version: "0.0.1-alpha"
+
 look-at-player:
   enabled: true
   range: 16.0

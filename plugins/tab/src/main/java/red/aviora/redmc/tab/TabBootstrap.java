@@ -1,6 +1,7 @@
 package red.aviora.redmc.tab;
 
 import red.aviora.redmc.tab.commands.ReloadAllCommand;
+import red.aviora.redmc.tab.commands.ReloadConfigCommand;
 import io.papermc.paper.plugin.bootstrap.BootstrapContext;
 import io.papermc.paper.plugin.bootstrap.PluginBootstrap;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
@@ -26,6 +27,11 @@ public class TabBootstrap implements PluginBootstrap {
 			.requires(ctx -> ctx.getSender().hasPermission("redmc.tab"))
 			.then(Commands.literal("reload")
 				.requires(ctx -> ctx.getSender().hasPermission("redmc.tab.reload"))
-				.then(Commands.literal("all").executes(new ReloadAllCommand())));
+				.then(Commands.literal("config")
+					.requires(ctx -> ctx.getSender().hasPermission("redmc.tab.reload.config"))
+					.executes(new ReloadConfigCommand()))
+				.then(Commands.literal("all")
+					.requires(ctx -> ctx.getSender().hasPermission("redmc.tab.reload.all"))
+					.executes(new ReloadAllCommand())));
 	}
 }

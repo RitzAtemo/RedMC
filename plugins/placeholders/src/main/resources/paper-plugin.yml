@@ -1,6 +1,6 @@
 name: RedMC-Placeholders
 description: RedMC - Placeholders
-version: '1.0'
+version: '0.0.1-alpha'
 api-version: '1.21.11'
 prefix: RedMC
 folia-supported: true

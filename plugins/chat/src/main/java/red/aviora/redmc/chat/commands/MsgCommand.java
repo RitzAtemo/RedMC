@@ -7,10 +7,12 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.MessageComponentSerializer;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+import red.aviora.redmc.api.utils.ApiUtils;
+import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.chat.ChatPlugin;
 
 public class MsgCommand implements Command<CommandSourceStack> {
@@ -18,12 +20,14 @@ public class MsgCommand implements Command<CommandSourceStack> {
 	@Override
 	public int run(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
 		CommandSender sender = context.getSource().getSender();
-		ChatPlugin plugin = ChatPlugin.getInstance();
+		ChatPlugin plugin = JavaPlugin.getPlugin(ChatPlugin.class);
+		LocaleManager locale = plugin.getLocaleManager();
 
 		if (!(sender instanceof Player player)) {
 			throw new SimpleCommandExceptionType(
 				MessageComponentSerializer.message().serialize(
-					MiniMessage.miniMessage().deserialize(plugin.getLocaleManager().getMessage(sender, "chat.only-players"))
+					ApiUtils.formatText(locale.getMessage(sender, "chat.only-players"),
+						"%prefix%", locale.getMessage(sender, "prefix"))
 				)
 			).create();
 		}
@@ -35,7 +39,8 @@ public class MsgCommand implements Command<CommandSourceStack> {
 		if (target == null) {
 			throw new SimpleCommandExceptionType(
 				MessageComponentSerializer.message().serialize(
-					MiniMessage.miniMessage().deserialize(plugin.getLocaleManager().getMessage(player, "chat.no-target"))
+					ApiUtils.formatText(locale.getMessage(player, "chat.no-target"),
+						"%prefix%", locale.getMessage(player, "prefix"))
 				)
 			).create();
 		}

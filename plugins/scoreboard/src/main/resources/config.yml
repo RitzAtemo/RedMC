@@ -1,3 +1,5 @@
+config-version: "0.0.1-alpha"
+
 title:
   animation: true
   interval: 100

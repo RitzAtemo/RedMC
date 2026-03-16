@@ -84,6 +84,14 @@ public class ChatManager {
 		}
 	}
 
+	public void broadcastGlobal(Player player, String message) {
+		String formatted = formatChatMessage(globalFormat, player, message);
+		Component component = ApiUtils.formatText(formatted);
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			p.sendMessage(component);
+		}
+	}
+
 	private void sendToLocal(Player player, String message) {
 		String formatted = formatChatMessage(localFormat, player, message);
 		Component component = ApiUtils.formatText(formatted);

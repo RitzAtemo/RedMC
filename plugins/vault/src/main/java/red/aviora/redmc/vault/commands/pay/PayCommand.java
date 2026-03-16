@@ -72,7 +72,6 @@ public class PayCommand implements Command<CommandSourceStack> {
 		var currencyManager = vaultManager.getCurrencyManager();
 		var currency = currencyManager.getDefaultCurrency();
 
-		// Try to get currency from argument if provided
 		try {
 			String currencyId = StringArgumentType.getString(context, "currency");
 			var customCurrency = currencyManager.getCurrency(currencyId);
@@ -80,7 +79,6 @@ public class PayCommand implements Command<CommandSourceStack> {
 				currency = customCurrency;
 			}
 		} catch (IllegalArgumentException ignored) {
-			// Currency argument not provided, use default
 		}
 
 		if (senderData.getBalance(currency.getId()) < amount) {
@@ -106,7 +104,6 @@ public class PayCommand implements Command<CommandSourceStack> {
 			"%amount%", String.valueOf(amount),
 			"%symbol%", currency.getSymbol());
 
-		// Send notification to recipient if online
 		Player targetPlayer = Bukkit.getPlayerExact(targetName);
 		if (targetPlayer != null && targetPlayer.isOnline()) {
 			ApiUtils.sendCommandSenderMessageArgs(targetPlayer,

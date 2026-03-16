@@ -1,2 +1,4 @@
+config-version: "0.0.1-alpha"
+
 pattern: "##(.*?)##"
 general-registry-weight: 0

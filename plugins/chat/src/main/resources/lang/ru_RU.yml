@@ -1,83 +1,87 @@
+prefix: "<#1E90FF>[<#FF4500>Чат<#1E90FF>]<#F0F8FF> "
+
 chat:
-  no-permission: "<red>У вас нет прав использовать это."
-  no-target: "<red>Игрок не найден."
-  no-reply-target: "<red>Некому ответить."
-  reload-success: "<green>Конфигурация чата перезагружена."
-  only-players: "<red>Только игроки могут использовать эту команду."
-  msg-sent: "<gray>[<white>→ %target%</white>]</gray> <white>%message%</white>"
-  msg-received: "<gray>[<white>%sender% →</white>]</gray> <white>%message%</white>"
-  reply-sent: "<gray>[<white>→ %target%</white>]</gray> <white>%message%</white> <dark_gray>(↩ \"%quoted%\")</dark_gray>"
-  reply-received: "<gray>[<white>%sender% →</white>]</gray> <white>%message%</white> <dark_gray>(↩ \"%quoted%\")</dark_gray>"
+  no-permission: "%prefix%<#FF6B6B>У вас нет прав использовать это."
+  no-target: "%prefix%<#FF6B6B>Игрок не найден."
+  no-reply-target: "%prefix%<#FF6B6B>Некому ответить."
+  only-players: "%prefix%<#FF6B6B>Только игроки могут использовать эту команду."
+  reload-config-success: "%prefix%<#3DDC97>Конфигурация чата перезагружена."
+  reload-alerts-success: "%prefix%<#3DDC97>Оповещения чата перезагружены."
+  reload-all-success: "%prefix%<#3DDC97>Конфигурация и оповещения чата перезагружены."
+  msg-sent: "<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message%"
+  msg-received: "<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message%"
+  reply-sent: "<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ \"%quoted%\")"
+  reply-received: "<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ \"%quoted%\")"
 
 join-leave:
-  join: "<green>+</green> <white>%player%</white> <gray>зашёл на сервер</gray>"
-  leave: "<red>-</red> <white>%player%</white> <gray>вышел с сервера</gray>"
+  join: "<#3DDC97>+<#F0F8FF> %player% <#9b94a6>зашёл на сервер"
+  leave: "<#FF6B6B>-<#F0F8FF> %player% <#9b94a6>вышел с сервера"
 
 death:
   groups:
     default:
       messages:
-        - "<gray>%player% умер"
-        - "<gray>%player% пал"
-        - "<gray>%player% встретил свою судьбу"
+        - "<#9b94a6>%player% умер"
+        - "<#9b94a6>%player% пал"
+        - "<#9b94a6>%player% встретил свою судьбу"
     by_player:
       messages:
-        - "<red>%player%</red> <gray>был убит игроком</gray> <gold>%killer%</gold>"
-        - "<gold>%killer%</gold> <gray>победил</gray> <red>%player%</red>"
-        - "<red>%player%</red> <gray>не выжил против</gray> <gold>%killer%</gold>"
+        - "<#FF6B6B>%player%<#9b94a6> был убит игроком <#FFB800>%killer%"
+        - "<#FFB800>%killer%<#9b94a6> победил <#FF6B6B>%player%"
+        - "<#FF6B6B>%player%<#9b94a6> не выжил против <#FFB800>%killer%"
     by_fall:
       messages:
-        - "<gray>%player% упал с высоты"
-        - "<gray>%player% не выдержал урона от падения"
-        - "<gray>%player% забыл, что не умеет летать"
+        - "<#9b94a6>%player% упал с высоты"
+        - "<#9b94a6>%player% не выдержал урона от падения"
+        - "<#9b94a6>%player% забыл, что не умеет летать"
     by_fire:
       messages:
-        - "<red>%player%</red> <gray>сгорел заживо"
-        - "<gray>%player% был поглощён пламенем"
-        - "<red>%player%</red> <gray>почувствовал жар"
+        - "<#FF6B6B>%player%<#9b94a6> сгорел заживо"
+        - "<#9b94a6>%player% был поглощён пламенем"
+        - "<#FF6B6B>%player%<#9b94a6> почувствовал жар"
     by_lava:
       messages:
-        - "<red>%player%</red> <gray>попытался поплавать в лаве"
-        - "<gray>%player% узнал, что лава — это не вода"
-        - "<red>%player%</red> <gray>принял лавовую ванну"
+        - "<#FF6B6B>%player%<#9b94a6> попытался поплавать в лаве"
+        - "<#9b94a6>%player% узнал, что лава — это не вода"
+        - "<#FF6B6B>%player%<#9b94a6> принял лавовую ванну"
     by_drowning:
       messages:
-        - "<aqua>%player%</aqua> <gray>утонул"
-        - "<gray>%player% забыл, как дышать"
-        - "<aqua>%player%</aqua> <gray>закончился воздух"
+        - "<#1E90FF>%player%<#9b94a6> утонул"
+        - "<#9b94a6>%player% забыл, как дышать"
+        - "<#1E90FF>%player%<#9b94a6> закончился воздух"
     by_explosion:
       messages:
-        - "<gray>%player% взорвался"
-        - "<gray>%player% был разнесён на куски"
-        - "<gray>%player% не оценил радиус взрыва"
+        - "<#9b94a6>%player% взорвался"
+        - "<#9b94a6>%player% был разнесён на куски"
+        - "<#9b94a6>%player% не оценил радиус взрыва"
     by_void:
       messages:
-        - "<gray>%player% упал в пустоту"
-        - "<dark_gray>%player% исчез в бездне"
-        - "<gray>%player% попрощался с миром"
+        - "<#9b94a6>%player% упал в пустоту"
+        - "<#888888>%player% исчез в бездне"
+        - "<#9b94a6>%player% попрощался с миром"
     by_entity:
       messages:
-        - "<gray>%player% был убит <red>%killer%</red>"
-        - "<red>%killer%</red> <gray>прервал путь %player%"
-        - "<gray>%player% был не готов к <red>%killer%</red>"
+        - "<#9b94a6>%player% был убит <#FF6B6B>%killer%"
+        - "<#FF6B6B>%killer%<#9b94a6> прервал путь %player%"
+        - "<#9b94a6>%player% был не готов к <#FF6B6B>%killer%"
     by_magic:
       messages:
-        - "<light_purple>%player%</light_purple> <gray>был убит магией"
-        - "<gray>%player% стал жертвой колдовства"
+        - "<#C780FA>%player%<#9b94a6> был убит магией"
+        - "<#9b94a6>%player% стал жертвой колдовства"
     by_wither:
       messages:
-        - "<gray>%player% иссох"
-        - "<dark_gray>%player%</dark_gray> <gray>поддался иссушению"
+        - "<#9b94a6>%player% иссох"
+        - "<#888888>%player%<#9b94a6> поддался иссушению"
     by_starve:
       messages:
-        - "<gray>%player% умер от голода"
-        - "<gray>%player% забыл поесть"
+        - "<#9b94a6>%player% умер от голода"
+        - "<#9b94a6>%player% забыл поесть"
     by_lightning:
       messages:
-        - "<yellow>%player%</yellow> <gray>был поражён молнией"
-        - "<gray>%player% получил незабываемый опыт"
+        - "<#FFB800>%player%<#9b94a6> был поражён молнией"
+        - "<#9b94a6>%player% получил незабываемый опыт"
 
 advancement:
-  task: "<gray>[</gray><green>Достижение</green><gray>]</gray> <white>%player%</white> <gray>получил достижение</gray> <white>[</white>%title%<white>]</white>"
-  goal: "<gray>[</gray><aqua>Достижение</aqua><gray>]</gray> <white>%player%</white> <gray>достиг цели</gray> <aqua>[</aqua>%title%<aqua>]</aqua>"
-  challenge: "<gray>[</gray><gold>Достижение</gold><gray>]</gray> <white>%player%</white> <gray>выполнил испытание</gray> <gold>[</gold>%title%<gold>]</gold>"
+  task: "<#9b94a6>[<#3DDC97>Достижение<#9b94a6>]<#F0F8FF> %player%<#9b94a6> получил достижение <#F0F8FF>[<#3DDC97>%title%<#F0F8FF>]"
+  goal: "<#9b94a6>[<#1E90FF>Достижение<#9b94a6>]<#F0F8FF> %player%<#9b94a6> достиг цели <#1E90FF>[<#F0F8FF>%title%<#1E90FF>]"
+  challenge: "<#9b94a6>[<#FFB800>Достижение<#9b94a6>]<#F0F8FF> %player%<#9b94a6> выполнил испытание <#FFB800>[<#F0F8FF>%title%<#FFB800>]"

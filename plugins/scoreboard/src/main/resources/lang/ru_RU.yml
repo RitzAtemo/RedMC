@@ -1,6 +1,7 @@
 prefix: "<#1E90FF>[<#FF1493>Счет<#1E90FF>]<#F0F8FF> "
 
 success: "%prefix%<#3DDC97>Операция выполнена успешно!"
+reload-config: "%prefix%<#3DDC97>Конфигурация скорборда перезагружена."
 reload-all: "%prefix%<#3DDC97>Конфигурация скорборда перезагружена, анимации перезапущены."
 toggle-shown: "%prefix%<#3DDC97>Скорборд теперь отображается."
 toggle-hidden: "%prefix%<#FF6B6B>Скорборд теперь скрыт."

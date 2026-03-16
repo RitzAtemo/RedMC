@@ -43,7 +43,6 @@ public class PlayerEconomyAddCommand implements Command<CommandSourceStack> {
 		var currencyManager = vaultManager.getCurrencyManager();
 		var currency = currencyManager.getDefaultCurrency();
 
-		// Try to get currency from argument if provided
 		try {
 			String currencyId = StringArgumentType.getString(context, "currency");
 			var customCurrency = currencyManager.getCurrency(currencyId);
@@ -51,7 +50,6 @@ public class PlayerEconomyAddCommand implements Command<CommandSourceStack> {
 				currency = customCurrency;
 			}
 		} catch (IllegalArgumentException ignored) {
-			// Currency argument not provided, use default
 		}
 
 		playerData.addBalance(currency.getId(), amount);

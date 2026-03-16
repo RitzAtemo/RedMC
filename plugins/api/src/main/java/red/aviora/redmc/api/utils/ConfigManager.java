@@ -4,7 +4,15 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class ConfigManager {
 
@@ -27,6 +35,7 @@ public class ConfigManager {
 	}
 
 	public void load() {
+		checkAndBackupIfVersionMismatch();
 		saveDefaults();
 		loadAll();
 	}
@@ -92,6 +101,67 @@ public class ConfigManager {
 	public boolean getBoolean(String fileName, String path, boolean def) {
 		YamlConfiguration config = getConfig(fileName);
 		return (config != null) ? config.getBoolean(path, def) : def;
+	}
+
+	private void checkAndBackupIfVersionMismatch() {
+		File dataFolder = plugin.getDataFolder();
+		if (!dataFolder.exists()) return;
+
+		File configFile = new File(dataFolder, "config.yml");
+		if (!configFile.exists()) return;
+
+		YamlConfiguration diskConfig = YamlConfiguration.loadConfiguration(configFile);
+		String diskVersion = diskConfig.getString("config-version", null);
+		if (diskVersion == null) return;
+
+		String pluginVersion = plugin.getDescription().getVersion();
+		if (diskVersion.equals(pluginVersion)) return;
+
+		ApiUtils.logArgs(
+			"Config version mismatch for %plugin% (disk: %disk%, plugin: %current%). Backing up and recreating defaults.",
+			"%plugin%", plugin.getName(),
+			"%disk%", diskVersion,
+			"%current%", pluginVersion
+		);
+
+		String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+		String zipName = "backup_" + diskVersion + "_" + timestamp + ".zip";
+		File zipFile = new File(dataFolder, zipName);
+
+		try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipFile))) {
+			File[] files = dataFolder.listFiles();
+			if (files != null) {
+				for (File file : files) {
+					if (!file.isFile()) continue;
+					try (InputStream is = new FileInputStream(file)) {
+						zos.putNextEntry(new ZipEntry(file.getName()));
+						byte[] buf = new byte[4096];
+						int len;
+						while ((len = is.read(buf)) > 0) zos.write(buf, 0, len);
+						zos.closeEntry();
+					}
+				}
+			}
+		} catch (IOException e) {
+			ApiUtils.logArgs("Failed to create config backup for %plugin%: %error%",
+				"%plugin%", plugin.getName(), "%error%", e.getMessage());
+			return;
+		}
+
+		File[] files = dataFolder.listFiles();
+		if (files != null) {
+			for (File file : files) {
+				if (file.isFile() && !file.getName().equals(zipName)) {
+					file.delete();
+				}
+			}
+		}
+
+		ApiUtils.logArgs(
+			"Config backup created for %plugin%: %zip%",
+			"%plugin%", plugin.getName(),
+			"%zip%", zipName
+		);
 	}
 
 	private void saveDefaults() {

@@ -2,24 +2,28 @@ package red.aviora.redmc.chat.commands;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
+import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.chat.ChatPlugin;
 
-public class ChatReloadCommand implements Command<CommandSourceStack> {
+public class ReloadAllCommand implements Command<CommandSourceStack> {
 
 	@Override
-	public int run(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+	public int run(CommandContext<CommandSourceStack> context) {
 		CommandSender sender = context.getSource().getSender();
-		ChatPlugin plugin = ChatPlugin.getInstance();
+		LocaleManager locale = JavaPlugin.getPlugin(ChatPlugin.class).getLocaleManager();
+		ChatPlugin plugin = JavaPlugin.getPlugin(ChatPlugin.class);
 
 		plugin.getConfigManager().reload();
 		plugin.getChatManager().loadAll();
 		plugin.getAlertManager().reload();
 
-		ApiUtils.sendCommandSenderMessage(sender, plugin.getLocaleManager().getMessage(sender, "chat.reload-success"));
+		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "chat.reload-all-success"),
+			"%prefix%", locale.getMessage(sender, "prefix"));
+
 		return Command.SINGLE_SUCCESS;
 	}
 }

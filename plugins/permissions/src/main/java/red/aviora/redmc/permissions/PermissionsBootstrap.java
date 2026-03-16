@@ -36,7 +36,6 @@ public class PermissionsBootstrap implements PluginBootstrap {
 	public void bootstrap(@NotNull BootstrapContext context) {
 		context.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
 			commands.registrar().register(makePermissionCommands("permissions"));
-			commands.registrar().register(makePermissionCommands("pm"));
 		});
 	}
 

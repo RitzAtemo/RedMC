@@ -24,10 +24,8 @@ public class CurrencyManager {
 	private void loadCurrencies() {
 		ConfigManager configManager = VaultPlugin.getInstance().getConfigManager();
 
-		// Get default currency
 		defaultCurrency = configManager.getString("config.yml", "currencies.default", "credits");
 
-		// Load currency definitions
 		ConfigurationSection currenciesSection = configManager.getConfig("config.yml")
 			.getConfigurationSection("currencies.definitions");
 
@@ -39,7 +37,6 @@ public class CurrencyManager {
 					String symbol = currencySec.getString("symbol", "$");
 					double startingBalance = currencySec.getDouble("starting-balance", 0.0);
 
-					// Load rank configuration
 					boolean ranksEnabled = false;
 					Map<Double, String> rankTiers = new HashMap<>();
 
@@ -54,7 +51,6 @@ public class CurrencyManager {
 									String rankName = tiersSection.getString(tierKey, "");
 									rankTiers.put(threshold, rankName);
 								} catch (NumberFormatException ignored) {
-									// Skip invalid tier keys
 								}
 							}
 						}
@@ -66,7 +62,6 @@ public class CurrencyManager {
 			}
 		}
 
-		// Ensure default currency exists
 		if (!currencies.containsKey(defaultCurrency)) {
 			Currency defaultCurr = new Currency(defaultCurrency, "Default", "$", 0.0, false, new HashMap<>());
 			currencies.put(defaultCurrency, defaultCurr);

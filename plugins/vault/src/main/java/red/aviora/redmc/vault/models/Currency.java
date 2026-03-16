@@ -45,7 +45,6 @@ public class Currency {
 			return null;
 		}
 
-		// Find the highest tier that the balance qualifies for
 		Double tierThreshold = null;
 		for (Double threshold : rankTiers.descendingKeySet()) {
 			if (balance >= threshold) {

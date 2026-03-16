@@ -1,6 +1,6 @@
 name: RedMC-Scoreboard
 description: RedMC - Sidebar Scoreboard Customization
-version: '1.0'
+version: '0.0.1-alpha'
 api-version: '1.21.11'
 prefix: RedMC
 folia-supported: true
@@ -20,6 +20,10 @@ permissions:
   redmc.scoreboard:
     default: true
   redmc.scoreboard.reload:
+    default: op
+  redmc.scoreboard.reload.config:
+    default: op
+  redmc.scoreboard.reload.all:
     default: op
   redmc.scoreboard.toggle:
     default: true

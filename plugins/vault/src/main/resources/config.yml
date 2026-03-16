@@ -1,26 +1,17 @@
-# Default starting balance for new players
-# Can be specified per currency
+config-version: "0.0.1-alpha"
+
 starting-balance: 0.0
 
-# Currency system configuration
 currencies:
-  # Default currency (used when no currency is specified)
   default: "credits"
 
-  # Currency definitions
   definitions:
     credits:
-      # Display name for the currency
       display-name: "Credits"
-      # Symbol to show ($ for dollars, etc.)
       symbol: "$"
-      # Starting balance for new players
       starting-balance: 0.0
-      # Balance ranks configuration
       ranks:
         enabled: true
-        # List of ranks by balance thresholds (ascending order)
-        # Format: amount: "rank name" or amount: {name: "rank name", display: "display text"}
         tiers:
           0: "<#FF6B6B>Unemployed"
           500: "<#FFD93D>Worker"

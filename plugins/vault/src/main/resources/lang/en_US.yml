@@ -5,6 +5,7 @@ not-found: "%prefix%<#FF4D6D>Element <#9b94a6>%name% <#FF4D6D>not found."
 player-not-found: "%prefix%<#FF4D6D>Player <#9b94a6>%name% <#FF4D6D>not found."
 player-only: "%prefix%<#FF4D6D>This command can only be used by players."
 insufficient-funds: "%prefix%<#FF4D6D>Insufficient funds. Your balance: <#9b94a6>%balance%<#FF4D6D>."
+error: "%prefix%<#FF4D6D>An error occurred. Please try again."
 
 group-prefix-value: "%prefix%<#9b94a6>Group prefix: <#F0F8FF>%value%"
 group-suffix-value: "%prefix%<#9b94a6>Group suffix: <#F0F8FF>%value%"

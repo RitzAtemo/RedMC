@@ -1,6 +1,6 @@
 name: RedMC-NPC
 description: RedMC - NPC Management
-version: '0.1.0-beta'
+version: '0.0.1-alpha'
 api-version: '1.21.11'
 prefix: RedMC
 folia-supported: true

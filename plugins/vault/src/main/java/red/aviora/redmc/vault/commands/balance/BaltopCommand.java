@@ -26,7 +26,6 @@ public class BaltopCommand implements Command<CommandSourceStack> {
 		var currencyManager = vaultManager.getCurrencyManager();
 		var currency = currencyManager.getDefaultCurrency();
 
-		// Try to get currency from argument if provided
 		try {
 			String currencyId = StringArgumentType.getString(context, "currency");
 			var customCurrency = currencyManager.getCurrency(currencyId);
@@ -34,10 +33,8 @@ public class BaltopCommand implements Command<CommandSourceStack> {
 				currency = customCurrency;
 			}
 		} catch (IllegalArgumentException ignored) {
-			// Currency argument not provided, use default
 		}
 
-		// Get all players sorted by balance in specified currency
 		final var finalCurrency = currency;
 		List<VaultPlayerData> players = new ArrayList<>(vaultManager.getPlayers().values());
 		players.sort((a, b) -> Double.compare(
@@ -45,7 +42,6 @@ public class BaltopCommand implements Command<CommandSourceStack> {
 			a.getBalance(finalCurrency.getId())
 		));
 
-		// Show top 10
 		ApiUtils.sendCommandSenderMessageArgs(sender,
 			localeManager.getMessage(sender, "baltop-header"),
 			"%prefix%", localeManager.getMessage(sender, "prefix"),

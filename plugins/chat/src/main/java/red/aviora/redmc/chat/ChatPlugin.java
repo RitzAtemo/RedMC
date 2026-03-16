@@ -8,7 +8,6 @@ import red.aviora.redmc.chat.listeners.AdvancementListener;
 import red.aviora.redmc.chat.listeners.ChatListener;
 import red.aviora.redmc.chat.listeners.DeathListener;
 import red.aviora.redmc.chat.listeners.JoinLeaveListener;
-import red.aviora.redmc.chat.listeners.SayCommandListener;
 import red.aviora.redmc.chat.managers.AlertManager;
 import red.aviora.redmc.chat.managers.ChatManager;
 import red.aviora.redmc.chat.managers.SessionManager;
@@ -42,14 +41,12 @@ public class ChatPlugin extends JavaPlugin {
 		if (configManager.getBoolean("config.yml", "advancement.disable-vanilla", true)) {
 			getServer().getGlobalRegionScheduler().run(this, task -> {
 				for (var world : getServer().getWorlds()) {
-					//noinspection removal
 					world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 				}
 			});
 		}
 
 		getServer().getPluginManager().registerEvents(new ChatListener(), this);
-		getServer().getPluginManager().registerEvents(new SayCommandListener(), this);
 		getServer().getPluginManager().registerEvents(new DeathListener(), this);
 		getServer().getPluginManager().registerEvents(new JoinLeaveListener(), this);
 		getServer().getPluginManager().registerEvents(new AdvancementListener(), this);
