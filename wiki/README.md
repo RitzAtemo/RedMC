@@ -13,3 +13,4 @@ Documentation for the RedMC plugin infrastructure.
 - [Scoreboard Plugin](plugins/scoreboard.md) — sidebar scoreboard with animations
 - [Chat Plugin](plugins/chat.md) — chat formatting, death/advancement messages, private messaging
 - [NPC Plugin](plugins/npc.md) — NPC management with packet-based rendering
+- [MOTD Plugin](plugins/motd.md) — server list MOTD, favicon, player sample, version string

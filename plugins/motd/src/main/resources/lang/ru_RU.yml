@@ -1,0 +1,4 @@
+prefix: "<#1E90FF>[<#FF4500>MOTD<#1E90FF>]<#F0F8FF> "
+
+reload-config: "%prefix%<#3DDC97>Конфигурация MOTD перезагружена."
+reload-all: "%prefix%<#3DDC97>Конфигурация и иконки MOTD перезагружены."

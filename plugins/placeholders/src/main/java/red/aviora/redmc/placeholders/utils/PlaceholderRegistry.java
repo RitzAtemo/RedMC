@@ -23,11 +23,19 @@ public class PlaceholderRegistry {
 	public String get(String key, Player player) {
 		PlaceholderContext context = placeholders.get(key);
 		if (context != null) {
-			return context.getValue(player);
+			try {
+				return context.getValue(player);
+			} catch (NullPointerException ignored) {
+				return null;
+			}
 		}
 
 		if (patternHandler != null) {
-			return patternHandler.apply(key, player);
+			try {
+				return patternHandler.apply(key, player);
+			} catch (NullPointerException ignored) {
+				return null;
+			}
 		}
 
 		return null;

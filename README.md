@@ -39,6 +39,12 @@ Full documentation is available in the [Wiki](wiki/README.md), including plugin 
   - Cycle alerts
   - Advancements
 - NPC
+- MOTD
+  - Random or sequential templates
+  - Favicon rotation
+  - Player sample customization
+  - Version string override
+  - Ping logging
 
 ## Installation
 
@@ -82,7 +88,6 @@ This will start a local Folia server instance with your plugins loaded, allowing
   - Respawns
   - Warps
   - Homes
-- MOTD
 - Holograms
 - Menus
 - Friends

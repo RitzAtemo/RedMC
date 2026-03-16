@@ -24,5 +24,6 @@ include(
 	"plugins:tab",
 	"plugins:scoreboard",
 	"plugins:chat",
-	"plugins:npc"
+	"plugins:npc",
+	"plugins:motd"
 )

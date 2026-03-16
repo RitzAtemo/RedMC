@@ -1,0 +1,25 @@
+name: RedMC-MOTD
+description: RedMC - Server List MOTD Customization
+version: '0.0.1-alpha'
+api-version: '1.21.11'
+prefix: RedMC
+folia-supported: true
+main: red.aviora.redmc.motd.MotdPlugin
+bootstrapper: red.aviora.redmc.motd.MotdBootstrap
+dependencies:
+  server:
+    RedMC-API:
+      load: BEFORE
+      required: true
+      join-classpath: true
+    RedMC-Placeholders:
+      load: BEFORE
+      required: false
+      join-classpath: true
+permissions:
+  redmc.motd:
+    default: op
+  redmc.motd.reload:
+    default: op
+  redmc.motd.reload.all:
+    default: op
