@@ -3,6 +3,7 @@ package red.aviora.redmc.npc.commands;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.MessageComponentSerializer;
@@ -12,18 +13,24 @@ import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.npc.NpcPlugin;
 
-public class NpcSetEquipmentCommand implements Command<CommandSourceStack> {
+public class NpcCommandsClearCommand implements Command<CommandSourceStack> {
+
+	private final boolean leftClick;
+
+	public NpcCommandsClearCommand(boolean leftClick) {
+		this.leftClick = leftClick;
+	}
 
 	@Override
-	public int run(CommandContext<CommandSourceStack> ctx) throws com.mojang.brigadier.exceptions.CommandSyntaxException {
+	public int run(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
 		CommandSender sender = ctx.getSource().getSender();
 		LocaleManager locale = JavaPlugin.getPlugin(NpcPlugin.class).getLocaleManager();
 
 		String id = StringArgumentType.getString(ctx, "id");
-		String slot = StringArgumentType.getString(ctx, "slot");
-		String item = StringArgumentType.getString(ctx, "item");
 
-		if (!NpcPlugin.getInstance().getNpcManager().setEquipment(id, slot, item)) {
+		boolean cleared = NpcPlugin.getInstance().getNpcManager().clearCommands(id, leftClick);
+
+		if (!cleared) {
 			throw new SimpleCommandExceptionType(MessageComponentSerializer.message().serialize(
 				ApiUtils.formatText(locale.getMessage(sender, "npc-not-found"),
 					"%prefix%", locale.getMessage(sender, "prefix"),
@@ -31,13 +38,11 @@ public class NpcSetEquipmentCommand implements Command<CommandSourceStack> {
 			)).create();
 		}
 
-		String display = item.equalsIgnoreCase("air") || item.equalsIgnoreCase("minecraft:air")
-			? "air" : item;
-		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "npc-equipment-set"),
+		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "npc-commands-cleared"),
 			"%prefix%", locale.getMessage(sender, "prefix"),
 			"%id%", id,
-			"%slot%", slot,
-			"%item%", display);
+			"%click%", leftClick ? "LEFT" : "RIGHT");
+
 		return Command.SINGLE_SUCCESS;
 	}
 }

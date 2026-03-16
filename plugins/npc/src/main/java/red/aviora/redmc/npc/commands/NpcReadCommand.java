@@ -13,7 +13,7 @@ import red.aviora.redmc.npc.utils.NpcManager;
 
 import java.util.Map;
 
-public class NpcListCommand implements Command<CommandSourceStack> {
+public class NpcReadCommand implements Command<CommandSourceStack> {
 
 	@Override
 	public int run(CommandContext<CommandSourceStack> context) {
@@ -23,11 +23,11 @@ public class NpcListCommand implements Command<CommandSourceStack> {
 
 		Map<String, NpcData> all = manager.getAllNpcs();
 
-		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "npc-list-header"),
+		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "npc-read-header"),
 			"%prefix%", locale.getMessage(sender, "prefix"),
 			"%count%", String.valueOf(all.size()));
 
-		String entryTemplate = locale.getMessage(sender, "npc-list-entry");
+		String entryTemplate = locale.getMessage(sender, "npc-read-entry");
 		for (NpcData data : all.values()) {
 			String line = entryTemplate
 				.replace("%id%", data.getId())

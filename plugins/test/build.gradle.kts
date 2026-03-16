@@ -24,7 +24,7 @@ java {
 val runFolia = runPaper.folia.registerTask {
 	version("1.21.11")
 	dependsOn(
-		project(":plugins:api").tasks.named("reobfJar"),
+		project(":plugins:api").tasks.named("jar"),
 		project(":plugins:permissions").tasks.named("jar"),
 		project(":plugins:placeholders").tasks.named("jar"),
 		project(":plugins:vault").tasks.named("jar"),
@@ -34,7 +34,7 @@ val runFolia = runPaper.folia.registerTask {
 		project(":plugins:npc").tasks.named("reobfJar")
 	)
 	pluginJars(
-		project(":plugins:api").tasks.named("reobfJar"),
+		project(":plugins:api").tasks.named("jar"),
 		project(":plugins:permissions").tasks.named("jar"),
 		project(":plugins:placeholders").tasks.named("jar"),
 		project(":plugins:vault").tasks.named("jar"),

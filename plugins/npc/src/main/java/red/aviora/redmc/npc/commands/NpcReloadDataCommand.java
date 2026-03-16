@@ -10,7 +10,7 @@ import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.npc.NpcPlugin;
 import red.aviora.redmc.npc.utils.NpcManager;
 
-public class NpcReloadCommand implements Command<CommandSourceStack> {
+public class NpcReloadDataCommand implements Command<CommandSourceStack> {
 
 	@Override
 	public int run(CommandContext<CommandSourceStack> context) {
@@ -18,14 +18,13 @@ public class NpcReloadCommand implements Command<CommandSourceStack> {
 		LocaleManager locale = JavaPlugin.getPlugin(NpcPlugin.class).getLocaleManager();
 		NpcManager manager = JavaPlugin.getPlugin(NpcPlugin.class).getNpcManager();
 
-		JavaPlugin.getPlugin(NpcPlugin.class).getConfigManager().reload();
 		manager.despawnAll();
 		manager.loadAll();
 		for (var player : org.bukkit.Bukkit.getOnlinePlayers()) {
 			manager.spawnAllForPlayer(player);
 		}
 
-		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload-success"),
+		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload-data-success"),
 			"%prefix%", locale.getMessage(sender, "prefix"));
 
 		return Command.SINGLE_SUCCESS;

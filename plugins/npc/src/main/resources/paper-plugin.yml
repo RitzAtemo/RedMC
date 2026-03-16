@@ -17,19 +17,25 @@ permissions:
     default: op
   redmc.npc.create:
     default: op
+  redmc.npc.read:
+    default: op
   redmc.npc.delete:
-    default: op
-  redmc.npc.setname:
-    default: op
-  redmc.npc.setskin:
-    default: op
-  redmc.npc.teleport:
-    default: op
-  redmc.npc.list:
     default: op
   redmc.npc.reload:
     default: op
-  redmc.npc.addcommand:
+  redmc.npc.reload.config:
     default: op
-  redmc.npc.setequipment:
+  redmc.npc.reload.data:
+    default: op
+  redmc.npc.reload.all:
+    default: op
+  redmc.npc.update.name:
+    default: op
+  redmc.npc.update.skin:
+    default: op
+  redmc.npc.update.teleport:
+    default: op
+  redmc.npc.update.equipment:
+    default: op
+  redmc.npc.update.commands:
     default: op
