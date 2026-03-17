@@ -196,8 +196,8 @@ Messages are stored per player UUID in `perks_players.yml`. The override is appl
 Opens the target player's inventory.
 
 - **Online player** — opens the live `PlayerInventory` directly; changes take effect immediately for the target.
-- **Offline player** — reads `world/playerdata/<uuid>.dat` via NMS NBT, displays a 54-slot snapshot (hotbar rows 0–8, main rows 9–35, armor slots 36–39, offhand slot 40). The snapshot is read-only: changes are not saved back.
-- **`--as-offline` flag** — forces NBT reading even when the target is online. Useful for inspecting the last saved state on disk (e.g. before an unsaved session is flushed). The result is always a read-only snapshot.
+- **Offline player** — reads `world/playerdata/<uuid>.dat` via NMS NBT.
+- **`--as-offline` flag** — forces NBT reading even when the target is online. Useful for inspecting the last saved state on disk (e.g. before an unsaved session is flushed).
 
 Tab-completion includes both online and offline players.
 
@@ -206,8 +206,8 @@ Tab-completion includes both online and offline players.
 Opens the target player's ender chest.
 
 - **Online player** — opens the live ender chest; changes take effect immediately.
-- **Offline player** — reads `EnderItems` from `world/playerdata/<uuid>.dat`, displays a 27-slot snapshot. Read-only; changes are not saved back.
-- **`--as-offline` flag** — forces NBT reading even when the target is online. Always produces a read-only snapshot.
+- **Offline player** — reads `EnderItems` from `world/playerdata/<uuid>.dat`, displays a 27-slot snapshot.
+- **`--as-offline` flag** — forces NBT reading even when the target is online.
 
 Tab-completion includes both online and offline players.
 
