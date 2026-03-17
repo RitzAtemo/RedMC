@@ -14,7 +14,8 @@ val runFolia = runPaper.folia.registerTask {
 		project(":plugins:chat").tasks.named("jar"),
 		project(":plugins:npc").tasks.named("reobfJar"),
 		project(":plugins:motd").tasks.named("jar"),
-		project(":plugins:teleport").tasks.named("jar")
+		project(":plugins:teleport").tasks.named("jar"),
+		project(":plugins:perks").tasks.named("jar")
 	)
 	pluginJars(
 		project(":plugins:api").tasks.named("jar"),
@@ -27,6 +28,7 @@ val runFolia = runPaper.folia.registerTask {
 		project(":plugins:npc").tasks.named("reobfJar"),
 		project(":plugins:motd").tasks.named("jar"),
 		project(":plugins:teleport").tasks.named("jar"),
+		project(":plugins:perks").tasks.named("jar"),
 	)
 	doFirst {
 		val pluginsDir = runDirectory.get().asFile.resolve("plugins")

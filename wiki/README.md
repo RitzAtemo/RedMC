@@ -15,3 +15,4 @@ Documentation for the RedMC plugin infrastructure.
 - [NPC Plugin](plugins/npc.md) — NPC management with packet-based rendering
 - [MOTD Plugin](plugins/motd.md) — server list MOTD, favicon, player sample, version string
 - [Teleport Plugin](plugins/teleport.md) — spawn, warps, homes, back stack, RTP, TPA
+- [Perks Plugin](plugins/perks.md) — virtual blocks, item utilities, movement, broadcast, custom join/quit messages, admin tools

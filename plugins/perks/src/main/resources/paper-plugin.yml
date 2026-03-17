@@ -1,0 +1,83 @@
+name: RedMC-Perks
+description: RedMC - Special Functions
+version: '0.0.1-alpha'
+api-version: '1.21.11'
+prefix: RedMC
+folia-supported: true
+main: red.aviora.redmc.perks.PerksPlugin
+bootstrapper: red.aviora.redmc.perks.PerksBootstrap
+dependencies:
+  server:
+    RedMC-API:
+      load: BEFORE
+      required: true
+      join-classpath: true
+permissions:
+  redmc.perks.workbench:
+    default: op
+  redmc.perks.anvil:
+    default: op
+  redmc.perks.enchant:
+    default: op
+  redmc.perks.grindstone:
+    default: op
+  redmc.perks.stonecutter:
+    default: op
+  redmc.perks.smithing:
+    default: op
+  redmc.perks.loom:
+    default: op
+  redmc.perks.cartography:
+    default: op
+  redmc.perks.enderchest:
+    default: op
+  redmc.perks.dispose:
+    default: op
+  redmc.perks.repair:
+    default: op
+  redmc.perks.repair.all:
+    default: op
+  redmc.perks.hat:
+    default: op
+  redmc.perks.backpack:
+    default: op
+  redmc.perks.rename:
+    default: op
+  redmc.perks.fly:
+    default: op
+  redmc.perks.speed:
+    default: op
+  redmc.perks.feed:
+    default: op
+  redmc.perks.heal:
+    default: op
+  redmc.perks.nofall:
+    default: op
+  redmc.perks.broadcast:
+    default: op
+  redmc.perks.setjoin:
+    default: op
+  redmc.perks.setquit:
+    default: op
+  redmc.perks.reload:
+    default: op
+  redmc.perks.reload.config:
+    default: op
+  redmc.perks.reload.data:
+    default: op
+  redmc.perks.reload.all:
+    default: op
+  redmc.perks.admin.invsee:
+    default: op
+  redmc.perks.admin.vanish:
+    default: op
+  redmc.perks.admin.god:
+    default: op
+  redmc.perks.admin.freeze:
+    default: op
+  redmc.perks.admin.tpo:
+    default: op
+  redmc.perks.admin.tpohere:
+    default: op
+  redmc.perks.admin.sudo:
+    default: op

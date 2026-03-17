@@ -1,0 +1,27 @@
+config-version: "0.0.1-alpha"
+
+cooldowns:
+  workbench: 0
+  anvil: 0
+  enchant: 0
+  grindstone: 0
+  stonecutter: 0
+  smithing: 0
+  loom: 0
+  cartography: 0
+  enderchest: 0
+  dispose: 0
+  repair: 30
+  repair-all: 60
+  hat: 0
+  backpack: 0
+  rename: 10
+  fly: 0
+  speed: 0
+  feed: 60
+  heal: 120
+  nofall: 0
+  broadcast: 300
+
+backpack:
+  size: 54

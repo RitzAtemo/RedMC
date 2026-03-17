@@ -26,5 +26,6 @@ include(
 	"plugins:chat",
 	"plugins:npc",
 	"plugins:motd",
-	"plugins:teleport"
+	"plugins:teleport",
+	"plugins:perks"
 )

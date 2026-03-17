@@ -61,6 +61,18 @@ Full documentation is available in the [Wiki](wiki/README.md), including plugin 
   - Respawns
   - Warps
   - Homes
+- Special Functions
+  - Virtual crafting table, anvil, enchanting table, grindstone, stonecutter, smithing table, loom, cartography table, ender chest, trash bin
+  - Item repair (single / all inventory)
+  - Hat (wear any item as helmet)
+  - Personal backpack (persistent, configurable size)
+  - Item renaming with MiniMessage formatting
+  - Flight toggle
+  - Walk/fly speed levels (1–5)
+  - Feed and heal
+  - Fall damage protection toggle
+  - Server-wide broadcast with cooldown
+  - Custom join/quit messages per player
 
 ## Installation
 
@@ -97,7 +109,7 @@ This will start a local Folia server instance with your plugins loaded, allowing
 
 ## Roadmap
 
-- Special functions (craft or enchantment table for example)
+- Cosmetics (nick, glow, particle trails, balloon)
 - Holograms
 - Custom menus
 - Friends
