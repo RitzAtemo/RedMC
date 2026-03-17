@@ -1,0 +1,41 @@
+config-version: "0.0.1-alpha"
+
+renderer:
+  tick-interval-ms: 50
+  trail-history-size: 12
+  trail-min-distance: 0.25
+
+slots:
+  trail:
+    enabled: true
+  head:
+    enabled: true
+    y-offset: 0.4
+  back:
+    enabled: true
+    distance: 0.5
+  feet:
+    enabled: true
+  orbit:
+    enabled: true
+    y-offset: 1.0
+  aura:
+    enabled: true
+    y-offset: 1.0
+  wings:
+    enabled: true
+    y-offset: 0.8
+  crown:
+    enabled: true
+    y-offset: 0.3
+  halo:
+    enabled: true
+    y-offset: 0.7
+  shoulder-left:
+    enabled: true
+    y-offset: 0.3
+    side-offset: 0.45
+  shoulder-right:
+    enabled: true
+    y-offset: 0.3
+    side-offset: 0.45

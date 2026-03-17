@@ -1,0 +1,27 @@
+name: void_trail
+slot: TRAIL
+description: "Dark void trail"
+author: system
+layers:
+  - particle: PORTAL
+    shape: POINT
+    count: 6
+    speed: 0.05
+    offset-x: 0.2
+    offset-y: 0.3
+    offset-z: 0.2
+    y-offset: 0.1
+    tick-rate: 1
+  - particle: DUST
+    shape: POINT
+    count: 2
+    speed: 0.0
+    offset-x: 0.1
+    offset-y: 0.05
+    offset-z: 0.1
+    y-offset: 0.05
+    tick-rate: 2
+    dust-color-r: 80
+    dust-color-g: 0
+    dust-color-b: 120
+    dust-size: 1.0

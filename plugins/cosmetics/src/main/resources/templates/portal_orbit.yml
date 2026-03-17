@@ -1,0 +1,27 @@
+name: portal_orbit
+slot: ORBIT
+description: "Portal particles orbiting around you"
+author: system
+layers:
+  - particle: PORTAL
+    shape: RING
+    count: 2
+    speed: 0.0
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 1.0
+    tick-rate: 1
+    shape-radius: 1.2
+    shape-points: 24
+  - particle: ENCHANT
+    shape: RING
+    count: 1
+    speed: 0.05
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.5
+    tick-rate: 2
+    shape-radius: 0.8
+    shape-points: 16

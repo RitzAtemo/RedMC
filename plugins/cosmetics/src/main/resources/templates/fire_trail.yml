@@ -1,0 +1,23 @@
+name: fire_trail
+slot: TRAIL
+description: "Blazing fire trail"
+author: system
+layers:
+  - particle: FLAME
+    shape: POINT
+    count: 4
+    speed: 0.05
+    offset-x: 0.15
+    offset-y: 0.1
+    offset-z: 0.15
+    y-offset: 0.05
+    tick-rate: 1
+  - particle: LARGE_SMOKE
+    shape: POINT
+    count: 1
+    speed: 0.02
+    offset-x: 0.1
+    offset-y: 0.05
+    offset-z: 0.1
+    y-offset: 0.1
+    tick-rate: 3

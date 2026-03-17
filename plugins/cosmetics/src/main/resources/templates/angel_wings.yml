@@ -1,0 +1,31 @@
+name: angel_wings
+slot: WINGS
+description: "Angelic white wings"
+author: system
+layers:
+  - particle: END_ROD
+    shape: WINGS_SHAPE
+    count: 1
+    speed: 0.0
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.8
+    tick-rate: 1
+    shape-radius: 1.4
+    shape-points: 30
+  - particle: DUST
+    shape: WINGS_SHAPE
+    count: 1
+    speed: 0.0
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.8
+    tick-rate: 2
+    shape-radius: 1.4
+    shape-points: 20
+    dust-color-r: 240
+    dust-color-g: 248
+    dust-color-b: 255
+    dust-size: 1.0

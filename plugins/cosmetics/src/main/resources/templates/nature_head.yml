@@ -1,0 +1,27 @@
+name: nature_head
+slot: HEAD
+description: "Nature spirits above your head"
+author: system
+layers:
+  - particle: HAPPY_VILLAGER
+    shape: RING
+    count: 1
+    speed: 0.05
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.4
+    tick-rate: 2
+    shape-radius: 0.4
+    shape-points: 10
+  - particle: SPORE_BLOSSOM_AIR
+    shape: SPHERE
+    count: 1
+    speed: 0.02
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.5
+    tick-rate: 3
+    shape-radius: 0.5
+    shape-points: 12

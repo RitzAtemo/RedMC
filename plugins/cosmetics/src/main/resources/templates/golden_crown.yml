@@ -1,0 +1,31 @@
+name: golden_crown
+slot: CROWN
+description: "Golden royal crown"
+author: system
+layers:
+  - particle: DUST
+    shape: CROWN_SHAPE
+    count: 1
+    speed: 0.0
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.3
+    tick-rate: 1
+    shape-radius: 0.4
+    shape-points: 32
+    dust-color-r: 255
+    dust-color-g: 184
+    dust-color-b: 0
+    dust-size: 1.3
+  - particle: ENCHANTED_HIT
+    shape: CROWN_SHAPE
+    count: 1
+    speed: 0.02
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.3
+    tick-rate: 3
+    shape-radius: 0.4
+    shape-points: 16

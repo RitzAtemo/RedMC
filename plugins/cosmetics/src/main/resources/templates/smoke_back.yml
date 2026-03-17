@@ -1,0 +1,27 @@
+name: smoke_back
+slot: BACK
+description: "Dark smoke rising from your back"
+author: system
+layers:
+  - particle: LARGE_SMOKE
+    shape: POINT
+    count: 2
+    speed: 0.02
+    offset-x: 0.1
+    offset-y: 0.05
+    offset-z: 0.1
+    y-offset: 0.8
+    tick-rate: 2
+  - particle: DUST
+    shape: POINT
+    count: 1
+    speed: 0.0
+    offset-x: 0.05
+    offset-y: 0.05
+    offset-z: 0.05
+    y-offset: 0.9
+    tick-rate: 3
+    dust-color-r: 60
+    dust-color-g: 60
+    dust-color-b: 80
+    dust-size: 1.5

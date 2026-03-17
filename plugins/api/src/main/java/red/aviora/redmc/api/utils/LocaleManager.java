@@ -54,7 +54,6 @@ public class LocaleManager {
 
 	public String getMessageArgs(CommandSender sender, String key, String... args) {
 		String msg = getMessage(sender, key);
-		ApiUtils.formatTextString(msg, args);
-		return msg;
+		return ApiUtils.formatTextString(msg, args);
 	}
 }

@@ -1,0 +1,31 @@
+name: devil_wings
+slot: WINGS
+description: "Demonic fire wings"
+author: system
+layers:
+  - particle: FLAME
+    shape: WINGS_SHAPE
+    count: 1
+    speed: 0.02
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.8
+    tick-rate: 1
+    shape-radius: 1.3
+    shape-points: 28
+  - particle: DUST
+    shape: WINGS_SHAPE
+    count: 1
+    speed: 0.0
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.8
+    tick-rate: 2
+    shape-radius: 1.3
+    shape-points: 18
+    dust-color-r: 255
+    dust-color-g: 30
+    dust-color-b: 0
+    dust-size: 1.2

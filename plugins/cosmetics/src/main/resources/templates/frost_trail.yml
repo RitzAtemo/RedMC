@@ -1,0 +1,27 @@
+name: frost_trail
+slot: TRAIL
+description: "Icy frost trail"
+author: system
+layers:
+  - particle: SNOWFLAKE
+    shape: POINT
+    count: 5
+    speed: 0.03
+    offset-x: 0.2
+    offset-y: 0.1
+    offset-z: 0.2
+    y-offset: 0.05
+    tick-rate: 1
+  - particle: DUST
+    shape: POINT
+    count: 2
+    speed: 0.0
+    offset-x: 0.15
+    offset-y: 0.1
+    offset-z: 0.15
+    y-offset: 0.1
+    tick-rate: 2
+    dust-color-r: 150
+    dust-color-g: 220
+    dust-color-b: 255
+    dust-size: 1.2

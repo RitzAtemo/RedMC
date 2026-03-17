@@ -1,0 +1,23 @@
+name: spiral_orbit
+slot: ORBIT
+description: "Double helix spiral orbit"
+author: system
+layers:
+  - particle: DUST_COLOR_TRANSITION
+    shape: DOUBLE_HELIX
+    count: 1
+    speed: 0.0
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.0
+    tick-rate: 1
+    shape-radius: 1.0
+    shape-points: 32
+    dust-color-r: 30
+    dust-color-g: 144
+    dust-color-b: 255
+    dust-color-to-r: 255
+    dust-color-to-g: 20
+    dust-color-to-b: 147
+    dust-size: 1.0

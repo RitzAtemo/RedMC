@@ -1,0 +1,27 @@
+name: soul_halo
+slot: HALO
+description: "Ghostly soul-fire halo"
+author: system
+layers:
+  - particle: SOUL_FIRE_FLAME
+    shape: HALO_SHAPE
+    count: 1
+    speed: 0.0
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.7
+    tick-rate: 1
+    shape-radius: 0.45
+    shape-points: 20
+  - particle: SOUL
+    shape: HALO_SHAPE
+    count: 1
+    speed: 0.02
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.7
+    tick-rate: 2
+    shape-radius: 0.5
+    shape-points: 12

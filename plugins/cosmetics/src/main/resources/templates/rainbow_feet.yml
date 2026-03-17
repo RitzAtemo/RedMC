@@ -1,0 +1,23 @@
+name: rainbow_feet
+slot: FEET
+description: "Rainbow dust ring at feet"
+author: system
+layers:
+  - particle: DUST_COLOR_TRANSITION
+    shape: RING
+    count: 1
+    speed: 0.0
+    offset-x: 0.0
+    offset-y: 0.0
+    offset-z: 0.0
+    y-offset: 0.05
+    tick-rate: 1
+    shape-radius: 0.5
+    shape-points: 18
+    dust-color-r: 255
+    dust-color-g: 0
+    dust-color-b: 128
+    dust-color-to-r: 0
+    dust-color-to-g: 128
+    dust-color-to-b: 255
+    dust-size: 1.1
