@@ -40,7 +40,7 @@ public class AdminGiveCommand implements Command<CommandSourceStack> {
                 "%slots%", CosmeticSlot.allNames());
             return 0;
         }
-        if (!plugin.getTemplateManager().exists(templateName)) {
+        if (!plugin.getTemplateManager().exists(target.getUniqueId(), templateName)) {
             ApiUtils.sendCommandSenderMessageArgs(sender,
                 plugin.getLocaleManager().getMessage(sender, "error.template-not-found"),
                 "%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix"),

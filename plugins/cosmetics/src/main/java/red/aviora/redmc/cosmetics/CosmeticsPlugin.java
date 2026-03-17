@@ -3,6 +3,8 @@ package red.aviora.redmc.cosmetics;
 import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ConfigManager;
 import red.aviora.redmc.api.utils.LocaleManager;
+import red.aviora.redmc.cosmetics.gui.ChatInputListener;
+import red.aviora.redmc.cosmetics.gui.MenuListener;
 import red.aviora.redmc.cosmetics.listener.PlayerConnectionListener;
 import red.aviora.redmc.cosmetics.listener.PlayerMoveListener;
 import red.aviora.redmc.cosmetics.manager.PlayerCosmeticsManager;
@@ -33,7 +35,6 @@ public class CosmeticsPlugin extends JavaPlugin {
 
         templateStorage = new TemplateStorage();
         templateManager = new TemplateManager(templateStorage);
-        templateManager.loadAll();
 
         playerCosmeticsStorage = new PlayerCosmeticsStorage();
         playerCosmeticsManager = new PlayerCosmeticsManager(playerCosmeticsStorage);
@@ -47,8 +48,13 @@ public class CosmeticsPlugin extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new PlayerConnectionListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerMoveListener(), this);
+        getServer().getPluginManager().registerEvents(new MenuListener(), this);
+        getServer().getPluginManager().registerEvents(new ChatInputListener(), this);
 
-        getServer().getOnlinePlayers().forEach(playerCosmeticsManager::onJoin);
+        getServer().getOnlinePlayers().forEach(p -> {
+            templateManager.loadForPlayer(p.getUniqueId());
+            playerCosmeticsManager.onJoin(p);
+        });
     }
 
     @Override

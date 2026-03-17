@@ -6,6 +6,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.Particle;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.cosmetics.CosmeticsPlugin;
@@ -32,11 +33,17 @@ public class SetLayerCommand implements Command<CommandSourceStack> {
     @Override
     public int run(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         CommandSender sender = ctx.getSource().getSender();
+        if (!(sender instanceof Player player)) {
+            ApiUtils.sendCommandSenderMessageArgs(sender,
+                CosmeticsPlugin.getInstance().getLocaleManager().getMessage(sender, "error.only-players"),
+                "%prefix%", CosmeticsPlugin.getInstance().getLocaleManager().getMessage(sender, "prefix"));
+            return 0;
+        }
         CosmeticsPlugin plugin = JavaPlugin.getPlugin(CosmeticsPlugin.class);
         String name = getString(ctx, "name");
         int index = getInteger(ctx, "index");
 
-        CosmeticTemplate template = plugin.getTemplateManager().get(name);
+        CosmeticTemplate template = plugin.getTemplateManager().get(player.getUniqueId(), name);
         if (template == null) {
             ApiUtils.sendCommandSenderMessageArgs(sender,
                 plugin.getLocaleManager().getMessage(sender, "error.template-not-found"),
@@ -65,7 +72,7 @@ public class SetLayerCommand implements Command<CommandSourceStack> {
             return 0;
         }
 
-        plugin.getTemplateManager().save(template);
+        plugin.getTemplateManager().save(player.getUniqueId(), template);
         ApiUtils.sendCommandSenderMessageArgs(sender,
             plugin.getLocaleManager().getMessage(sender, "cosmetics.setlayer-success"),
             "%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix"),
@@ -139,23 +146,15 @@ public class SetLayerCommand implements Command<CommandSourceStack> {
                 yield String.valueOf(val);
             }
             case COLOR -> {
-                int r = getInteger(ctx, "r");
-                int g = getInteger(ctx, "g");
-                int b = getInteger(ctx, "b");
+                int r = getInteger(ctx, "r"); int g = getInteger(ctx, "g"); int b = getInteger(ctx, "b");
                 validateColor(r, g, b);
-                layer.setDustColorR(r);
-                layer.setDustColorG(g);
-                layer.setDustColorB(b);
+                layer.setDustColorR(r); layer.setDustColorG(g); layer.setDustColorB(b);
                 yield r + " " + g + " " + b;
             }
             case COLORTO -> {
-                int r = getInteger(ctx, "r");
-                int g = getInteger(ctx, "g");
-                int b = getInteger(ctx, "b");
+                int r = getInteger(ctx, "r"); int g = getInteger(ctx, "g"); int b = getInteger(ctx, "b");
                 validateColor(r, g, b);
-                layer.setDustColorToR(r);
-                layer.setDustColorToG(g);
-                layer.setDustColorToB(b);
+                layer.setDustColorToR(r); layer.setDustColorToG(g); layer.setDustColorToB(b);
                 yield r + " " + g + " " + b;
             }
             case DUSTSIZE -> {

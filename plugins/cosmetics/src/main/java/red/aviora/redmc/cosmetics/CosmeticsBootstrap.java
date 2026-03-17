@@ -12,6 +12,7 @@ import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import red.aviora.redmc.cosmetics.command.AddLayerCommand;
+import red.aviora.redmc.cosmetics.command.MenuCommand;
 import red.aviora.redmc.cosmetics.command.AdminGiveCommand;
 import red.aviora.redmc.cosmetics.command.AdminResetCommand;
 import red.aviora.redmc.cosmetics.command.CreateCommand;
@@ -45,6 +46,8 @@ public class CosmeticsBootstrap implements PluginBootstrap {
     private LiteralArgumentBuilder<CommandSourceStack> buildCosmeticsCommand(String label) {
         return Commands.literal(label)
             .requires(ctx -> ctx.getSender().hasPermission("redmc.cosmetics"))
+            .executes(new MenuCommand())
+            .then(makeMenuNode())
             .then(makeEquipNode())
             .then(makeUnequipNode())
             .then(makeListNode())
@@ -58,6 +61,12 @@ public class CosmeticsBootstrap implements PluginBootstrap {
             .then(makeImportNode())
             .then(makeAdminNode())
             .then(makeReloadNode());
+    }
+
+    private LiteralArgumentBuilder<CommandSourceStack> makeMenuNode() {
+        return Commands.literal("menu")
+            .requires(ctx -> ctx.getSender().hasPermission("redmc.cosmetics"))
+            .executes(new MenuCommand());
     }
 
     private LiteralArgumentBuilder<CommandSourceStack> makeEquipNode() {
@@ -75,11 +84,11 @@ public class CosmeticsBootstrap implements PluginBootstrap {
                     .suggests((ctx, builder) -> {
                         String slotStr = StringArgumentType.getString(ctx, "slot");
                         CosmeticSlot slot = CosmeticSlot.fromString(slotStr).orElse(null);
-                        if (slot != null) {
+                        if (slot != null && ctx.getSource().getSender() instanceof org.bukkit.entity.Player p) {
                             try {
                                 CosmeticsPlugin plugin = org.bukkit.plugin.java.JavaPlugin.getPlugin(CosmeticsPlugin.class);
                                 if (plugin != null) {
-                                    for (String name : plugin.getTemplateManager().getNamesForSlot(slot)) {
+                                    for (String name : plugin.getTemplateManager().getNamesForSlot(p.getUniqueId(), slot)) {
                                         if (name.startsWith(builder.getRemainingLowerCase()))
                                             builder.suggest(name);
                                     }
@@ -224,7 +233,7 @@ public class CosmeticsBootstrap implements PluginBootstrap {
                         })
                         .executes(new SetLayerCommand(SetLayerCommand.Property.SHAPE))))
                 .then(Commands.literal("count")
-                    .then(Commands.argument("value", IntegerArgumentType.integer(1, 100))
+                    .then(Commands.argument("value", IntegerArgumentType.integer(1, 50))
                         .executes(new SetLayerCommand(SetLayerCommand.Property.COUNT))))
                 .then(Commands.literal("speed")
                     .then(Commands.argument("value", StringArgumentType.word())
@@ -239,7 +248,7 @@ public class CosmeticsBootstrap implements PluginBootstrap {
                     .then(Commands.argument("value", StringArgumentType.word())
                         .executes(new SetLayerCommand(SetLayerCommand.Property.RADIUS))))
                 .then(Commands.literal("points")
-                    .then(Commands.argument("value", IntegerArgumentType.integer(1, 256))
+                    .then(Commands.argument("value", IntegerArgumentType.integer(1, 128))
                         .executes(new SetLayerCommand(SetLayerCommand.Property.POINTS))))
                 .then(Commands.literal("offsetx")
                     .then(Commands.argument("value", StringArgumentType.word())
@@ -304,9 +313,13 @@ public class CosmeticsBootstrap implements PluginBootstrap {
                                 try {
                                     CosmeticsPlugin plugin = org.bukkit.plugin.java.JavaPlugin.getPlugin(CosmeticsPlugin.class);
                                     if (plugin != null) {
-                                        for (String name : plugin.getTemplateManager().getNames()) {
-                                            if (name.startsWith(builder.getRemainingLowerCase()))
-                                                builder.suggest(name);
+                                        String pName = StringArgumentType.getString(ctx, "player");
+                                        org.bukkit.entity.Player target = Bukkit.getPlayerExact(pName);
+                                        if (target != null) {
+                                            for (String name : plugin.getTemplateManager().getNames(target.getUniqueId())) {
+                                                if (name.startsWith(builder.getRemainingLowerCase()))
+                                                    builder.suggest(name);
+                                            }
                                         }
                                     }
                                 } catch (Exception ignored) {}
@@ -342,10 +355,11 @@ public class CosmeticsBootstrap implements PluginBootstrap {
     private RequiredArgumentBuilder<CommandSourceStack, String> templateArgument() {
         return Commands.argument("name", StringArgumentType.word())
             .suggests((ctx, builder) -> {
+                if (!(ctx.getSource().getSender() instanceof org.bukkit.entity.Player p)) return builder.buildFuture();
                 try {
                     CosmeticsPlugin plugin = org.bukkit.plugin.java.JavaPlugin.getPlugin(CosmeticsPlugin.class);
                     if (plugin != null) {
-                        for (String name : plugin.getTemplateManager().getNames()) {
+                        for (String name : plugin.getTemplateManager().getNames(p.getUniqueId())) {
                             if (name.startsWith(builder.getRemainingLowerCase()))
                                 builder.suggest(name);
                         }

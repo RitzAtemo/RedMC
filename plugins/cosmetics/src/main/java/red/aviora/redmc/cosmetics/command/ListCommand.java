@@ -5,6 +5,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.cosmetics.CosmeticsPlugin;
@@ -26,6 +27,12 @@ public class ListCommand implements Command<CommandSourceStack> {
     @Override
     public int run(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         CommandSender sender = ctx.getSource().getSender();
+        if (!(sender instanceof Player player)) {
+            ApiUtils.sendCommandSenderMessageArgs(sender,
+                CosmeticsPlugin.getInstance().getLocaleManager().getMessage(sender, "error.only-players"),
+                "%prefix%", CosmeticsPlugin.getInstance().getLocaleManager().getMessage(sender, "prefix"));
+            return 0;
+        }
         CosmeticsPlugin plugin = JavaPlugin.getPlugin(CosmeticsPlugin.class);
 
         List<CosmeticTemplate> list;
@@ -41,7 +48,7 @@ public class ListCommand implements Command<CommandSourceStack> {
                     "%slots%", CosmeticSlot.allNames());
                 return 0;
             }
-            list = plugin.getTemplateManager().getForSlot(slot);
+            list = plugin.getTemplateManager().getForSlot(player.getUniqueId(), slot);
             filterMsg = plugin.getLocaleManager().getMessage(sender, "cosmetics.list-filter-slot");
             ApiUtils.sendCommandSenderMessageArgs(sender,
                 plugin.getLocaleManager().getMessage(sender, "cosmetics.list-header"),
@@ -49,7 +56,7 @@ public class ListCommand implements Command<CommandSourceStack> {
                 "%filter%", filterMsg,
                 "%slot%", slot.name());
         } else {
-            list = plugin.getTemplateManager().getAll();
+            list = plugin.getTemplateManager().getAll(player.getUniqueId());
             filterMsg = plugin.getLocaleManager().getMessage(sender, "cosmetics.list-filter-none");
             ApiUtils.sendCommandSenderMessageArgs(sender,
                 plugin.getLocaleManager().getMessage(sender, "cosmetics.list-header"),

@@ -5,6 +5,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.cosmetics.CosmeticsPlugin;
@@ -32,14 +33,14 @@ public class ReloadCommand implements Command<CommandSourceStack> {
                     "%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix"));
             }
             case DATA -> {
-                plugin.getTemplateManager().loadAll();
+                plugin.getTemplateManager().reloadAllOnline(plugin.getServer().getOnlinePlayers().stream().map(Player::getUniqueId).toList());
                 ApiUtils.sendCommandSenderMessageArgs(sender,
                     plugin.getLocaleManager().getMessage(sender, "cosmetics.reload-data-success"),
                     "%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix"));
             }
             case ALL -> {
                 plugin.getConfigManager().reload();
-                plugin.getTemplateManager().loadAll();
+                plugin.getTemplateManager().reloadAllOnline(plugin.getServer().getOnlinePlayers().stream().map(Player::getUniqueId).toList());
                 ApiUtils.sendCommandSenderMessageArgs(sender,
                     plugin.getLocaleManager().getMessage(sender, "cosmetics.reload-all-success"),
                     "%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix"));

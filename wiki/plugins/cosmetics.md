@@ -6,6 +6,7 @@ Layered particle cosmetics system with 11 placement slots, 10 shape patterns, fu
 
 ```
 /cosmetics  (alias: /cos)
+├── menu
 ├── equip <slot> <template>
 ├── unequip <slot|all>
 ├── list [slot]
@@ -33,7 +34,7 @@ Layered particle cosmetics system with 11 placement slots, 10 shape patterns, fu
 │       ├── colorto <r> <g> <b>
 │       └── dustsize <n>
 ├── export <name>
-├── import <filename>
+├── import <signature>
 ├── admin
 │   ├── give <player> <slot> <template>
 │   └── reset <player>
@@ -48,6 +49,7 @@ Layered particle cosmetics system with 11 placement slots, 10 shape patterns, fu
 | Node | Default |
 |---|---|
 | `redmc.cosmetics` | true |
+| `redmc.cosmetics.menu` | true |
 | `redmc.cosmetics.equip` | true |
 | `redmc.cosmetics.toggle` | true |
 | `redmc.cosmetics.list` | true |
@@ -208,17 +210,19 @@ Layer indices are 0-based. `removelayer <index>` removes by index; indices above
 
 ## Import / Export
 
-**Export** copies a template file to `plugins/RedMC-Cosmetics/exports/<name>.yml`:
+Templates are transferred via an encrypted **signature string** — no file access required.
+
+**Export** serializes the template to a GZIP-compressed Base64 string and prints it to chat with a clickable **Copy signature** button:
 ```
 /cos export my_orbit
 ```
+Click the button in chat to copy the signature to your clipboard. Signatures start with `COS1:`.
 
-**Import** reads a file from `plugins/RedMC-Cosmetics/imports/<filename>.yml` and registers it:
+**Import** registers a template from a signature pasted directly into the command:
 ```
-/cos import my_orbit
+/cos import COS1:H4sIAAAAA...
 ```
-
-Place template YAML files in the `imports/` folder before running the import command. The template's `name` field inside the YAML determines the registered name.
+The template name is taken from the signature's embedded YAML. If a template with that name already exists it will be overwritten.
 
 ## Renderer
 

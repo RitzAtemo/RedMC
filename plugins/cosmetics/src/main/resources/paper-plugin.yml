@@ -19,6 +19,8 @@ dependencies:
 permissions:
   redmc.cosmetics:
     default: op
+  redmc.cosmetics.menu:
+    default: op
   redmc.cosmetics.equip:
     default: op
   redmc.cosmetics.toggle:

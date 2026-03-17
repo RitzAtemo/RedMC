@@ -18,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
@@ -36,32 +37,30 @@ public class TemplateStorage {
         "magic_shoulders"
     };
 
-    private final File templatesDir;
-
-    public TemplateStorage() {
-        this.templatesDir = new File(CosmeticsPlugin.getInstance().getDataFolder(), "templates");
-        if (!templatesDir.exists()) templatesDir.mkdirs();
-        extractBuiltIn();
-    }
-
-    private void extractBuiltIn() {
+    public void extractBuiltInsForPlayer(UUID uuid) {
+        File dir = playerTemplatesDir(uuid);
+        if (!dir.exists()) dir.mkdirs();
         for (String name : BUILT_IN) {
-            File target = new File(templatesDir, name + ".yml");
+            File target = new File(dir, name + ".yml");
             if (!target.exists()) {
                 String resource = "templates/" + name + ".yml";
                 try (InputStream in = CosmeticsPlugin.getInstance().getResource(resource)) {
                     if (in == null) continue;
-                    CosmeticsPlugin.getInstance().saveResource(resource, false);
+                    CosmeticTemplate template = loadFromStream(in);
+                    if (template != null) save(uuid, template);
                 } catch (Exception e) {
-                    CosmeticsPlugin.getInstance().getLogger().log(Level.WARNING, "Could not extract built-in template: " + name, e);
+                    CosmeticsPlugin.getInstance().getLogger().log(Level.WARNING,
+                        "Could not extract built-in template: " + name, e);
                 }
             }
         }
     }
 
-    public List<CosmeticTemplate> loadAll() {
+    public List<CosmeticTemplate> loadAllForPlayer(UUID uuid) {
         List<CosmeticTemplate> templates = new ArrayList<>();
-        File[] files = templatesDir.listFiles((dir, name) -> name.endsWith(".yml"));
+        File dir = playerTemplatesDir(uuid);
+        if (!dir.exists()) return templates;
+        File[] files = dir.listFiles((d, n) -> n.endsWith(".yml"));
         if (files == null) return templates;
         for (File file : files) {
             CosmeticTemplate template = load(file);
@@ -70,22 +69,54 @@ public class TemplateStorage {
         return templates;
     }
 
-    public CosmeticTemplate load(File file) {
+    public void save(UUID uuid, CosmeticTemplate template) {
+        File dir = playerTemplatesDir(uuid);
+        if (!dir.exists()) dir.mkdirs();
+        File file = new File(dir, template.getName() + ".yml");
+        YamlConfiguration yaml = new YamlConfiguration();
+        yaml.set("name", template.getName());
+        yaml.set("slot", template.getSlot().name());
+        yaml.set("description", template.getDescription());
+        yaml.set("author", template.getAuthor());
+        List<java.util.Map<String, Object>> layers = new ArrayList<>();
+        for (ParticleLayer layer : template.getLayers()) {
+            layers.add(layerToMap(layer));
+        }
+        yaml.set("layers", layers);
+        try {
+            yaml.save(file);
+        } catch (IOException e) {
+            CosmeticsPlugin.getInstance().getLogger().log(Level.SEVERE,
+                "Could not save template: " + template.getName(), e);
+        }
+    }
+
+    public boolean delete(UUID uuid, String name) {
+        File file = new File(playerTemplatesDir(uuid), name + ".yml");
+        return file.exists() && file.delete();
+    }
+
+    private File playerTemplatesDir(UUID uuid) {
+        File playerdata = new File(CosmeticsPlugin.getInstance().getDataFolder(), "playerdata");
+        return new File(new File(playerdata, uuid.toString()), "templates");
+    }
+
+    private CosmeticTemplate load(File file) {
         YamlConfiguration yaml = YamlConfiguration.loadConfiguration(file);
         return fromYaml(yaml);
     }
 
-    public CosmeticTemplate loadFromResource(String resourcePath) {
-        try (InputStream in = CosmeticsPlugin.getInstance().getResource(resourcePath)) {
-            if (in == null) return null;
-            YamlConfiguration yaml = YamlConfiguration.loadConfiguration(new InputStreamReader(in, StandardCharsets.UTF_8));
+    private CosmeticTemplate loadFromStream(InputStream in) {
+        try {
+            YamlConfiguration yaml = YamlConfiguration.loadConfiguration(
+                new InputStreamReader(in, StandardCharsets.UTF_8));
             return fromYaml(yaml);
         } catch (Exception e) {
             return null;
         }
     }
 
-    private CosmeticTemplate fromYaml(YamlConfiguration yaml) {
+    CosmeticTemplate fromYaml(YamlConfiguration yaml) {
         String name = yaml.getString("name");
         String slotStr = yaml.getString("slot");
         if (name == null || slotStr == null) return null;
@@ -109,10 +140,8 @@ public class TemplateStorage {
 
     private ParticleLayer layerFromMap(java.util.Map<?, ?> map) {
         ParticleLayer layer = new ParticleLayer();
-        String particle = getString(map, "particle", "FLAME");
-        layer.setParticle(particle.toUpperCase());
-        String shapeStr = getString(map, "shape", "POINT");
-        ParticleShape.fromString(shapeStr).ifPresent(layer::setShape);
+        layer.setParticle(getString(map, "particle", "FLAME").toUpperCase());
+        ParticleShape.fromString(getString(map, "shape", "POINT")).ifPresent(layer::setShape);
         layer.setCount(getInt(map, "count", 3));
         layer.setSpeed(getDouble(map, "speed", 0.05));
         layer.setOffsetX(getDouble(map, "offset-x", 0.1));
@@ -132,63 +161,27 @@ public class TemplateStorage {
         return layer;
     }
 
-    public void save(CosmeticTemplate template) {
-        File file = new File(templatesDir, template.getName() + ".yml");
-        YamlConfiguration yaml = new YamlConfiguration();
-        yaml.set("name", template.getName());
-        yaml.set("slot", template.getSlot().name());
-        yaml.set("description", template.getDescription());
-        yaml.set("author", template.getAuthor());
-
-        List<java.util.Map<String, Object>> layers = new ArrayList<>();
-        for (ParticleLayer layer : template.getLayers()) {
-            java.util.Map<String, Object> map = new java.util.LinkedHashMap<>();
-            map.put("particle", layer.getParticle());
-            map.put("shape", layer.getShape().name());
-            map.put("count", layer.getCount());
-            map.put("speed", layer.getSpeed());
-            map.put("offset-x", layer.getOffsetX());
-            map.put("offset-y", layer.getOffsetY());
-            map.put("offset-z", layer.getOffsetZ());
-            map.put("y-offset", layer.getYOffset());
-            map.put("tick-rate", layer.getTickRate());
-            map.put("shape-radius", layer.getShapeRadius());
-            map.put("shape-points", layer.getShapePoints());
-            map.put("dust-color-r", layer.getDustColorR());
-            map.put("dust-color-g", layer.getDustColorG());
-            map.put("dust-color-b", layer.getDustColorB());
-            map.put("dust-color-to-r", layer.getDustColorToR());
-            map.put("dust-color-to-g", layer.getDustColorToG());
-            map.put("dust-color-to-b", layer.getDustColorToB());
-            map.put("dust-size", layer.getDustSize());
-            layers.add(map);
-        }
-        yaml.set("layers", layers);
-
-        try {
-            yaml.save(file);
-        } catch (IOException e) {
-            CosmeticsPlugin.getInstance().getLogger().log(Level.SEVERE, "Could not save template: " + template.getName(), e);
-        }
-    }
-
-    public boolean delete(String name) {
-        File file = new File(templatesDir, name + ".yml");
-        return file.exists() && file.delete();
-    }
-
-    public File getTemplatesDir() { return templatesDir; }
-
-    public File getExportsDir() {
-        File dir = new File(CosmeticsPlugin.getInstance().getDataFolder(), "exports");
-        if (!dir.exists()) dir.mkdirs();
-        return dir;
-    }
-
-    public File getImportsDir() {
-        File dir = new File(CosmeticsPlugin.getInstance().getDataFolder(), "imports");
-        if (!dir.exists()) dir.mkdirs();
-        return dir;
+    private java.util.Map<String, Object> layerToMap(ParticleLayer layer) {
+        java.util.Map<String, Object> map = new java.util.LinkedHashMap<>();
+        map.put("particle", layer.getParticle());
+        map.put("shape", layer.getShape().name());
+        map.put("count", layer.getCount());
+        map.put("speed", layer.getSpeed());
+        map.put("offset-x", layer.getOffsetX());
+        map.put("offset-y", layer.getOffsetY());
+        map.put("offset-z", layer.getOffsetZ());
+        map.put("y-offset", layer.getYOffset());
+        map.put("tick-rate", layer.getTickRate());
+        map.put("shape-radius", layer.getShapeRadius());
+        map.put("shape-points", layer.getShapePoints());
+        map.put("dust-color-r", layer.getDustColorR());
+        map.put("dust-color-g", layer.getDustColorG());
+        map.put("dust-color-b", layer.getDustColorB());
+        map.put("dust-color-to-r", layer.getDustColorToR());
+        map.put("dust-color-to-g", layer.getDustColorToG());
+        map.put("dust-color-to-b", layer.getDustColorToB());
+        map.put("dust-size", layer.getDustSize());
+        return map;
     }
 
     public static final String SIGNATURE_PREFIX = "COS1:";
@@ -201,26 +194,7 @@ public class TemplateStorage {
         yaml.set("author", template.getAuthor());
         List<java.util.Map<String, Object>> layers = new ArrayList<>();
         for (ParticleLayer layer : template.getLayers()) {
-            java.util.Map<String, Object> map = new java.util.LinkedHashMap<>();
-            map.put("particle", layer.getParticle());
-            map.put("shape", layer.getShape().name());
-            map.put("count", layer.getCount());
-            map.put("speed", layer.getSpeed());
-            map.put("offset-x", layer.getOffsetX());
-            map.put("offset-y", layer.getOffsetY());
-            map.put("offset-z", layer.getOffsetZ());
-            map.put("y-offset", layer.getYOffset());
-            map.put("tick-rate", layer.getTickRate());
-            map.put("shape-radius", layer.getShapeRadius());
-            map.put("shape-points", layer.getShapePoints());
-            map.put("dust-color-r", layer.getDustColorR());
-            map.put("dust-color-g", layer.getDustColorG());
-            map.put("dust-color-b", layer.getDustColorB());
-            map.put("dust-color-to-r", layer.getDustColorToR());
-            map.put("dust-color-to-g", layer.getDustColorToG());
-            map.put("dust-color-to-b", layer.getDustColorToB());
-            map.put("dust-size", layer.getDustSize());
-            layers.add(map);
+            layers.add(layerToMap(layer));
         }
         yaml.set("layers", layers);
         byte[] raw = yaml.saveToString().getBytes(StandardCharsets.UTF_8);
@@ -240,10 +214,9 @@ public class TemplateStorage {
         try (GZIPInputStream gz = new GZIPInputStream(new ByteArrayInputStream(compressed))) {
             gz.transferTo(bos);
         }
-        String yamlStr = bos.toString(StandardCharsets.UTF_8);
         YamlConfiguration yaml = new YamlConfiguration();
         try {
-            yaml.load(new StringReader(yamlStr));
+            yaml.load(new StringReader(bos.toString(StandardCharsets.UTF_8)));
         } catch (Exception e) {
             throw new IOException("Failed to parse template YAML", e);
         }

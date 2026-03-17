@@ -64,7 +64,7 @@ public class CosmeticRenderer {
             player.getScheduler().run(plugin, scheduledTask -> {
                 for (var entry : cosmetics.getEquippedMap().entrySet()) {
                     CosmeticSlot slot = entry.getKey();
-                    CosmeticTemplate template = templateManager.get(entry.getValue());
+                    CosmeticTemplate template = templateManager.get(player.getUniqueId(), entry.getValue());
                     if (template == null) continue;
                     renderSlot(player, slot, template, tick);
                 }

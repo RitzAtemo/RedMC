@@ -5,6 +5,7 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.cosmetics.CosmeticsPlugin;
@@ -18,6 +19,12 @@ public class CreateCommand implements Command<CommandSourceStack> {
     @Override
     public int run(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         CommandSender sender = ctx.getSource().getSender();
+        if (!(sender instanceof Player player)) {
+            ApiUtils.sendCommandSenderMessageArgs(sender,
+                CosmeticsPlugin.getInstance().getLocaleManager().getMessage(sender, "error.only-players"),
+                "%prefix%", CosmeticsPlugin.getInstance().getLocaleManager().getMessage(sender, "prefix"));
+            return 0;
+        }
         CosmeticsPlugin plugin = JavaPlugin.getPlugin(CosmeticsPlugin.class);
 
         String name = getString(ctx, "name").toLowerCase();
@@ -31,7 +38,7 @@ public class CreateCommand implements Command<CommandSourceStack> {
                 "%slots%", CosmeticSlot.allNames());
             return 0;
         }
-        if (plugin.getTemplateManager().exists(name)) {
+        if (plugin.getTemplateManager().exists(player.getUniqueId(), name)) {
             ApiUtils.sendCommandSenderMessageArgs(sender,
                 plugin.getLocaleManager().getMessage(sender, "error.template-exists"),
                 "%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix"),
@@ -39,10 +46,8 @@ public class CreateCommand implements Command<CommandSourceStack> {
             return 0;
         }
         CosmeticTemplate template = new CosmeticTemplate(name, slot);
-        if (sender instanceof org.bukkit.entity.Player p) {
-            template.setAuthor(p.getName());
-        }
-        plugin.getTemplateManager().save(template);
+        template.setAuthor(player.getName());
+        plugin.getTemplateManager().save(player.getUniqueId(), template);
         ApiUtils.sendCommandSenderMessageArgs(sender,
             plugin.getLocaleManager().getMessage(sender, "cosmetics.create-success"),
             "%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix"),
