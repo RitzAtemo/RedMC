@@ -16,7 +16,8 @@ RedMC/
 │   ├── tab/                  # Tab list header/footer animations
 │   ├── scoreboard/           # Sidebar scoreboard animations
 │   ├── chat/                 # Chat, death, advancement, private messages
-│   └── npc/                  # NPC rendering via NMS packets
+│   ├── npc/                  # NPC rendering via NMS packets
+│   └── teleport/             # Spawn, warps, homes, back, RTP, TPA
 └── Wiki/                     # This documentation
 ```
 
@@ -30,7 +31,8 @@ api
  │    ├── tab
  │    ├── scoreboard
  │    └── chat
- └── npc
+ ├── npc
+ └── teleport
 ```
 
 `vault` also depends on `permissions` for group resolution.

@@ -17,7 +17,9 @@ Full documentation is available in the [Wiki](wiki/README.md), including plugin 
   - Configuration manager
   - Localization manager
   - Update protection
-- Placeholders system
+- Placeholders
+  - Default values
+  - Registry API
 - Permissions
   - Group permissions
   - Player permissions
@@ -28,8 +30,18 @@ Full documentation is available in the [Wiki](wiki/README.md), including plugin 
   - Postfixes
   - Alt names
   - Economics
+- MOTD
+  - Random or sequential templates
+  - Favicon rotation
+  - Player sample customization
+  - Version string override
+  - Ping logging
 - Tab
+  - Placeholders
+  - Animations
 - Scoreboard
+  - Placeholders
+  - Animations
 - Chat events
   - Joins, disconnects
   - Local and global chat
@@ -39,12 +51,16 @@ Full documentation is available in the [Wiki](wiki/README.md), including plugin 
   - Cycle alerts
   - Advancements
 - NPC
-- MOTD
-  - Random or sequential templates
-  - Favicon rotation
-  - Player sample customization
-  - Version string override
-  - Ping logging
+  - Names
+  - Skins
+  - Commands
+  - Equipment
+- Teleport events
+  - Random Teleport
+  - Spawns
+  - Respawns
+  - Warps
+  - Homes
 
 ## Installation
 
@@ -81,21 +97,26 @@ This will start a local Folia server instance with your plugins loaded, allowing
 
 ## Roadmap
 
-- Backup
-- Teleport events
-  - Random Teleport
-  - Spawns
-  - Respawns
-  - Warps
-  - Homes
+- Special functions (craft or enchantment table for example)
 - Holograms
-- Menus
+- Custom menus
 - Friends
-- Clans
-- Jobs
 - Auctions
-- Shops
+- Shops (dynamic price, stock auction slots)
 - Regions (rent chunk)
+- Custom enchants
+- Entity frames
+- Custom mobs (entity frames integration)
+- Custom difficulty (entity frames integration)
+- Custom items
+- Event system (run console commands on event invoking, give item for example)
+- Jobs
+- Clans
+- Season system (with battlepass and roadmap system)
+- Quests (with npc, events and season linking)
+- Skills
+
+And of course - CI/CD.
 
 ## Contributing
 

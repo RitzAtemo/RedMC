@@ -1,0 +1,66 @@
+prefix: "<#1E90FF>[<#FF4500>Телепорт<#1E90FF>]<#F0F8FF> "
+
+spawn:
+  set-success: "%prefix%<#3DDC97>Спавн установлен."
+  set-newbie-success: "%prefix%<#3DDC97>Спавн для новичков установлен."
+  not-set: "%prefix%<#FF6B6B>Спавн ещё не установлен."
+  teleport-success: "%prefix%<#3DDC97>Вы телепортированы на спавн."
+
+warp:
+  create-success: "%prefix%<#3DDC97>Варп <#F0F8FF>%warp%<#3DDC97> создан."
+  create-exists: "%prefix%<#FF6B6B>Варп с таким именем уже существует."
+  delete-success: "%prefix%<#3DDC97>Варп удалён."
+  delete-not-found: "%prefix%<#FF6B6B>Варп не найден."
+  teleport-success: "%prefix%<#3DDC97>Вы телепортированы на варп."
+  teleport-not-found: "%prefix%<#FF6B6B>Варп не найден."
+  list-header: "%prefix%<#1E90FF>Доступные варпы:"
+  list-entry: "<#9b94a6> - <#F0F8FF>%warp%"
+  list-empty: "%prefix%<#9b94a6>Варпы ещё не созданы."
+
+home:
+  set-success: "%prefix%<#3DDC97>Дом <#F0F8FF>%home%<#3DDC97> установлен."
+  set-limit: "%prefix%<#FF6B6B>Вы достигли лимита домов: <#F0F8FF>%limit%<#FF6B6B>."
+  delete-success: "%prefix%<#3DDC97>Дом удалён."
+  delete-not-found: "%prefix%<#FF6B6B>Дом не найден."
+  teleport-success: "%prefix%<#3DDC97>Вы телепортированы домой."
+  teleport-not-found: "%prefix%<#FF6B6B>Дом не найден."
+  list-header: "%prefix%<#1E90FF>Ваши дома:"
+  list-entry: "<#9b94a6> - <#F0F8FF>%home%"
+  list-empty: "%prefix%<#9b94a6>У вас нет установленных домов."
+
+back:
+  success: "%prefix%<#3DDC97>Вы возвращены на предыдущее местоположение."
+  no-location: "%prefix%<#FF6B6B>Нет предыдущего местоположения для возврата."
+  limit-reached: "%prefix%<#FF6B6B>Вы достигли лимита использования /back за этот период."
+
+rtp:
+  searching: "%prefix%<#FFB800>Поиск безопасного места..."
+  success: "%prefix%<#3DDC97>Вы телепортированы в случайное место."
+  failed: "%prefix%<#FF6B6B>Не удалось найти безопасное место. Попробуйте ещё раз."
+  limit-reached: "%prefix%<#FF6B6B>Вы достигли лимита случайных телепортаций за эту сессию."
+
+tpa:
+  request-sent: "%prefix%<#3DDC97>Запрос на телепортацию отправлен игроку <#F0F8FF>%player%<#3DDC97>."
+  request-received: "%prefix%<#FFB800>%player%<#F0F8FF> отправил вам запрос на телепортацию. Введите <#3DDC97>/tpaccept<#F0F8FF> или <#FF6B6B>/tpdeny<#F0F8FF>."
+  request-here-sent: "%prefix%<#3DDC97>Запрос на телепортацию отправлен игроку <#F0F8FF>%player%<#3DDC97>."
+  request-here-received: "%prefix%<#FFB800>%player%<#F0F8FF> хочет, чтобы вы телепортировались к нему. Введите <#3DDC97>/tpaccept<#F0F8FF> или <#FF6B6B>/tpdeny<#F0F8FF>."
+  accept-success: "%prefix%<#3DDC97>Запрос на телепортацию принят."
+  deny-success: "%prefix%<#3DDC97>Запрос на телепортацию отклонён."
+  cancel-success: "%prefix%<#3DDC97>Запрос на телепортацию отменён."
+  no-request: "%prefix%<#FF6B6B>У вас нет входящих запросов на телепортацию."
+  request-expired: "%prefix%<#FF6B6B>Ваш запрос на телепортацию истёк."
+  request-accepted: "%prefix%<#3DDC97>%player%<#3DDC97> принял ваш запрос на телепортацию."
+  request-denied: "%prefix%<#FF6B6B>%player%<#FF6B6B> отклонил ваш запрос на телепортацию."
+  cooldown: "%prefix%<#FF6B6B>Подождите перед отправкой следующего запроса на телепортацию."
+  cannot-self: "%prefix%<#FF6B6B>Нельзя отправить запрос на телепортацию самому себе."
+  teleport-success: "%prefix%<#3DDC97>Вы телепортированы к <#F0F8FF>%player%<#3DDC97>."
+
+error:
+  no-permission: "%prefix%<#FF6B6B>У вас нет прав использовать это."
+  only-players: "%prefix%<#FF6B6B>Только игроки могут использовать эту команду."
+  player-not-found: "%prefix%<#FF6B6B>Игрок не найден."
+
+reload:
+  config-success: "%prefix%<#3DDC97>Конфигурация телепортации перезагружена."
+  data-success: "%prefix%<#3DDC97>Данные телепортации перезагружены."
+  all-success: "%prefix%<#3DDC97>Конфигурация и данные телепортации перезагружены."

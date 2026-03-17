@@ -1,0 +1,66 @@
+prefix: "<#1E90FF>[<#FF4500>Teleport<#1E90FF>]<#F0F8FF> "
+
+spawn:
+  set-success: "%prefix%<#3DDC97>Spawn has been set."
+  set-newbie-success: "%prefix%<#3DDC97>Newbie spawn has been set."
+  not-set: "%prefix%<#FF6B6B>Spawn has not been set yet."
+  teleport-success: "%prefix%<#3DDC97>Teleported to spawn."
+
+warp:
+  create-success: "%prefix%<#3DDC97>Warp <#F0F8FF>%warp%<#3DDC97> has been created."
+  create-exists: "%prefix%<#FF6B6B>A warp with that name already exists."
+  delete-success: "%prefix%<#3DDC97>Warp has been deleted."
+  delete-not-found: "%prefix%<#FF6B6B>Warp not found."
+  teleport-success: "%prefix%<#3DDC97>Teleported to warp."
+  teleport-not-found: "%prefix%<#FF6B6B>Warp not found."
+  list-header: "%prefix%<#1E90FF>Available warps:"
+  list-entry: "<#9b94a6> - <#F0F8FF>%warp%"
+  list-empty: "%prefix%<#9b94a6>No warps have been created yet."
+
+home:
+  set-success: "%prefix%<#3DDC97>Home <#F0F8FF>%home%<#3DDC97> has been set."
+  set-limit: "%prefix%<#FF6B6B>You have reached your home limit of <#F0F8FF>%limit%<#FF6B6B>."
+  delete-success: "%prefix%<#3DDC97>Home has been deleted."
+  delete-not-found: "%prefix%<#FF6B6B>Home not found."
+  teleport-success: "%prefix%<#3DDC97>Teleported to home."
+  teleport-not-found: "%prefix%<#FF6B6B>Home not found."
+  list-header: "%prefix%<#1E90FF>Your homes:"
+  list-entry: "<#9b94a6> - <#F0F8FF>%home%"
+  list-empty: "%prefix%<#9b94a6>You have no homes set."
+
+back:
+  success: "%prefix%<#3DDC97>Teleported back to your previous location."
+  no-location: "%prefix%<#FF6B6B>No previous location to return to."
+  limit-reached: "%prefix%<#FF6B6B>You have reached your /back usage limit for this period."
+
+rtp:
+  searching: "%prefix%<#FFB800>Searching for a safe location..."
+  success: "%prefix%<#3DDC97>Teleported to a random location."
+  failed: "%prefix%<#FF6B6B>Could not find a safe location. Please try again."
+  limit-reached: "%prefix%<#FF6B6B>You have reached your random teleport limit for this session."
+
+tpa:
+  request-sent: "%prefix%<#3DDC97>Teleport request sent to <#F0F8FF>%player%<#3DDC97>."
+  request-received: "%prefix%<#FFB800>%player%<#F0F8FF> has sent you a teleport request. Use <#3DDC97>/tpaccept<#F0F8FF> or <#FF6B6B>/tpdeny<#F0F8FF>."
+  request-here-sent: "%prefix%<#3DDC97>Teleport request sent to <#F0F8FF>%player%<#3DDC97>."
+  request-here-received: "%prefix%<#FFB800>%player%<#F0F8FF> wants you to teleport to them. Use <#3DDC97>/tpaccept<#F0F8FF> or <#FF6B6B>/tpdeny<#F0F8FF>."
+  accept-success: "%prefix%<#3DDC97>Teleport request accepted."
+  deny-success: "%prefix%<#3DDC97>Teleport request denied."
+  cancel-success: "%prefix%<#3DDC97>Teleport request cancelled."
+  no-request: "%prefix%<#FF6B6B>You have no pending teleport request."
+  request-expired: "%prefix%<#FF6B6B>Your teleport request has expired."
+  request-accepted: "%prefix%<#3DDC97>%player%<#3DDC97> accepted your teleport request."
+  request-denied: "%prefix%<#FF6B6B>%player%<#FF6B6B> denied your teleport request."
+  cooldown: "%prefix%<#FF6B6B>You must wait before sending another teleport request."
+  cannot-self: "%prefix%<#FF6B6B>You cannot send a teleport request to yourself."
+  teleport-success: "%prefix%<#3DDC97>Teleported to <#F0F8FF>%player%<#3DDC97>."
+
+error:
+  no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+  only-players: "%prefix%<#FF6B6B>Only players can use this command."
+  player-not-found: "%prefix%<#FF6B6B>Player not found."
+
+reload:
+  config-success: "%prefix%<#3DDC97>Teleport configuration reloaded."
+  data-success: "%prefix%<#3DDC97>Teleport data reloaded."
+  all-success: "%prefix%<#3DDC97>Teleport configuration and data reloaded."

@@ -14,3 +14,4 @@ Documentation for the RedMC plugin infrastructure.
 - [Chat Plugin](plugins/chat.md) — chat formatting, death/advancement messages, private messaging
 - [NPC Plugin](plugins/npc.md) — NPC management with packet-based rendering
 - [MOTD Plugin](plugins/motd.md) — server list MOTD, favicon, player sample, version string
+- [Teleport Plugin](plugins/teleport.md) — spawn, warps, homes, back stack, RTP, TPA

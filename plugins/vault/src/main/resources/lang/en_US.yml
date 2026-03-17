@@ -1,5 +1,7 @@
 prefix: "<#1E90FF>[<#FF1493>Vault<#1E90FF>]<#F0F8FF> "
 
+error.no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+
 success: "%prefix%<#3DDC97>Operation completed successfully!"
 not-found: "%prefix%<#FF4D6D>Element <#9b94a6>%name% <#FF4D6D>not found."
 player-not-found: "%prefix%<#FF4D6D>Player <#9b94a6>%name% <#FF4D6D>not found."

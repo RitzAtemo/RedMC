@@ -1,0 +1,22 @@
+config-version: "0.0.1-alpha"
+
+spawn:
+  override-original: true
+  newbie-spawn-enabled: true
+
+back:
+  cooldown-interval: 3600
+  stack-size: 10
+  include-death: true
+
+rtp:
+  cooldown-interval: 3600
+  min-distance: 500
+  max-distance: 5000
+  max-attempts: 30
+  worlds:
+    - world
+
+tpa:
+  timeout: 60
+  cooldown: 30

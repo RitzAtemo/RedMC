@@ -1,0 +1,65 @@
+name: RedMC-Teleport
+description: RedMC - Teleport
+version: '0.0.1-alpha'
+api-version: '1.21.11'
+prefix: RedMC
+folia-supported: true
+main: red.aviora.redmc.teleport.TeleportPlugin
+bootstrapper: red.aviora.redmc.teleport.TeleportBootstrap
+dependencies:
+  server:
+    RedMC-API:
+      load: BEFORE
+      required: true
+      join-classpath: true
+permissions:
+  redmc.teleport.spawn:
+    default: op
+  redmc.teleport.spawn.set:
+    default: op
+  redmc.teleport.spawn.set.newbie:
+    default: op
+  redmc.teleport.warp:
+    default: op
+  redmc.teleport.warp.create:
+    default: op
+  redmc.teleport.warp.delete:
+    default: op
+  redmc.teleport.home:
+    default: op
+  redmc.teleport.home.set:
+    default: op
+  redmc.teleport.home.delete:
+    default: op
+  redmc.teleport.back:
+    default: op
+  redmc.teleport.rtp:
+    default: op
+  redmc.teleport.tpa:
+    default: op
+  redmc.teleport.tpa.here:
+    default: op
+  redmc.teleport.tpa.accept:
+    default: op
+  redmc.teleport.tpa.deny:
+    default: op
+  redmc.teleport.tpa.cancel:
+    default: op
+  redmc.teleport.reload:
+    default: op
+  redmc.teleport.reload.config:
+    default: op
+  redmc.teleport.reload.data:
+    default: op
+  redmc.teleport.reload.all:
+    default: op
+  redmc.teleport.homes.bypass.limit:
+    default: op
+  redmc.teleport.back.bypass.limit:
+    default: op
+  redmc.teleport.back.bypass.cooldown:
+    default: op
+  redmc.teleport.rtp.bypass.limit:
+    default: op
+  redmc.teleport.rtp.bypass.cooldown:
+    default: op

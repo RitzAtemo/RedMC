@@ -1,5 +1,8 @@
 package red.aviora.redmc.api.utils;
 
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
+import io.papermc.paper.command.brigadier.MessageComponentSerializer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -59,5 +62,14 @@ public class ApiUtils {
 	public static Component formatText(String raw, String... args) {
 		String formatted = formatTextString(raw, args);
 		return getMM().deserialize(formatted);
+	}
+
+	public static CommandSyntaxException noPermissionException(LocaleManager locale, CommandSender sender) {
+		return new SimpleCommandExceptionType(
+			MessageComponentSerializer.message().serialize(
+				formatText(locale.getMessage(sender, "error.no-permission"),
+					"%prefix%", locale.getMessage(sender, "prefix"))
+			)
+		).create();
 	}
 }

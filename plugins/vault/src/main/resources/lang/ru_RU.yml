@@ -1,5 +1,7 @@
 prefix: "<#1E90FF>[<#FF1493>Профиль<#1E90FF>]<#F0F8FF> "
 
+error.no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
+
 success: "%prefix%<#3DDC97>Операция успешно выполнена!"
 not-found: "%prefix%<#FF4D6D>Элемент <#9b94a6>%name% <#FF4D6D>не найден."
 player-not-found: "%prefix%<#FF4D6D>Игрок <#9b94a6>%name% <#FF4D6D>не найден."

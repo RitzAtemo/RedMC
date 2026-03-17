@@ -1,5 +1,7 @@
 prefix: "<#1E90FF>[<#FF4500>NPC<#1E90FF>]<#F0F8FF> "
 
+error.no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
+
 success: "%prefix%<#3DDC97>Операция выполнена успешно."
 players-only: "%prefix%<#FF6B6B>Эта команда доступна только игрокам."
 npc-not-found: "%prefix%<#FF6B6B>NPC с id '<#FFFFFF>%id%<#FF6B6B>' не найден."

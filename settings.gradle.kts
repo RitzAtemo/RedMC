@@ -25,5 +25,6 @@ include(
 	"plugins:scoreboard",
 	"plugins:chat",
 	"plugins:npc",
-	"plugins:motd"
+	"plugins:motd",
+	"plugins:teleport"
 )

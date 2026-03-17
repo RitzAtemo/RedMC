@@ -1,7 +1,8 @@
 prefix: "<#1E90FF>[<#FF4500>Chat<#1E90FF>]<#F0F8FF> "
 
+error.no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+
 chat:
-  no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
   no-target: "%prefix%<#FF6B6B>Player not found."
   no-reply-target: "%prefix%<#FF6B6B>No one to reply to."
   only-players: "%prefix%<#FF6B6B>Only players can use this command."
