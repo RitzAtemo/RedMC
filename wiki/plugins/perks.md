@@ -42,7 +42,8 @@ Virtual block access, item utilities, movement, broadcast, custom join/quit mess
 
 /broadcast <message>            (alias: /bc)
 
-/invsee <player>
+/invsee <player> [--as-offline]
+/ecsee <player> [--as-offline]
 /vanish                         (alias: /v)
 /god
 /freeze <player>
@@ -90,6 +91,7 @@ Virtual block access, item utilities, movement, broadcast, custom join/quit mess
 | Node | Default |
 |---|---|
 | `redmc.perks.admin.invsee` | op |
+| `redmc.perks.admin.ecsee` | op |
 | `redmc.perks.admin.vanish` | op |
 | `redmc.perks.admin.god` | op |
 | `redmc.perks.admin.freeze` | op |
@@ -189,9 +191,25 @@ Messages are stored per player UUID in `perks_players.yml`. The override is appl
 
 ## Admin Tools
 
-### `/invsee <player>`
+### `/invsee <player> [--as-offline]`
 
-Opens the target player's live inventory. Any changes made by the admin take effect immediately for the target. Uses the target's actual `PlayerInventory` — no snapshot is taken.
+Opens the target player's inventory.
+
+- **Online player** — opens the live `PlayerInventory` directly; changes take effect immediately for the target.
+- **Offline player** — reads `world/playerdata/<uuid>.dat` via NMS NBT, displays a 54-slot snapshot (hotbar rows 0–8, main rows 9–35, armor slots 36–39, offhand slot 40). The snapshot is read-only: changes are not saved back.
+- **`--as-offline` flag** — forces NBT reading even when the target is online. Useful for inspecting the last saved state on disk (e.g. before an unsaved session is flushed). The result is always a read-only snapshot.
+
+Tab-completion includes both online and offline players.
+
+### `/ecsee <player> [--as-offline]`
+
+Opens the target player's ender chest.
+
+- **Online player** — opens the live ender chest; changes take effect immediately.
+- **Offline player** — reads `EnderItems` from `world/playerdata/<uuid>.dat`, displays a 27-slot snapshot. Read-only; changes are not saved back.
+- **`--as-offline` flag** — forces NBT reading even when the target is online. Always produces a read-only snapshot.
+
+Tab-completion includes both online and offline players.
 
 ### `/vanish`
 

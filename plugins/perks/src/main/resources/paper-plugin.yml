@@ -69,6 +69,8 @@ permissions:
     default: op
   redmc.perks.admin.invsee:
     default: op
+  redmc.perks.admin.ecsee:
+    default: op
   redmc.perks.admin.vanish:
     default: op
   redmc.perks.admin.god:

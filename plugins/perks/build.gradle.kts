@@ -1,5 +1,6 @@
 plugins {
 	id("java")
+	id("io.papermc.paperweight.userdev") version "2.0.0-beta.19"
 }
 
 group = "red.aviora.redmc"
@@ -11,10 +12,21 @@ repositories {
 }
 
 dependencies {
-	compileOnly("dev.folia:folia-api:1.21.11-R0.1-SNAPSHOT")
+	paperweight.foliaDevBundle("1.21.11-R0.1-SNAPSHOT")
 	implementation(project(":plugins:api"))
 }
 
 java {
 	toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+}
+
+tasks {
+	val reobfJar by named("reobfJar")
+	assemble {
+		dependsOn(reobfJar)
+	}
+}
+
+paperweight {
+	reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 }

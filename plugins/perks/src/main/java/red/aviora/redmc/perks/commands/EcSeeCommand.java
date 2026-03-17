@@ -13,10 +13,10 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.perks.PerksPlugin;
-import red.aviora.redmc.perks.inventory.InvseeHolder;
+import red.aviora.redmc.perks.inventory.EcSeeHolder;
 import red.aviora.redmc.perks.util.OfflinePlayerDataUtil;
 
-public class InvseeCommand implements Command<CommandSourceStack> {
+public class EcSeeCommand implements Command<CommandSourceStack> {
 
 	@Override
 	public int run(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
@@ -28,9 +28,9 @@ public class InvseeCommand implements Command<CommandSourceStack> {
 		Player onlineTarget = Bukkit.getPlayerExact(targetName);
 
 		if (onlineTarget != null) {
-			player.openInventory(onlineTarget.getInventory());
+			player.openInventory(onlineTarget.getEnderChest());
 			ApiUtils.sendCommandSenderMessageArgs(player,
-				plugin.getLocaleManager().getMessage(player, "admin.invsee.opened"),
+				plugin.getLocaleManager().getMessage(player, "admin.ecsee.opened"),
 				"%prefix%", prefix,
 				"%player%", onlineTarget.getName()
 			);
@@ -40,37 +40,33 @@ public class InvseeCommand implements Command<CommandSourceStack> {
 		OfflinePlayer offlineTarget = Bukkit.getOfflinePlayerIfCached(targetName);
 		if (offlineTarget == null || !offlineTarget.hasPlayedBefore()) {
 			ApiUtils.sendCommandSenderMessageArgs(player,
-				plugin.getLocaleManager().getMessage(player, "admin.invsee.not-found"),
+				plugin.getLocaleManager().getMessage(player, "admin.ecsee.not-found"),
 				"%prefix%", prefix
 			);
 			return SINGLE_SUCCESS;
 		}
 
-		ItemStack[] contents = OfflinePlayerDataUtil.loadInventory(offlineTarget.getUniqueId());
+		ItemStack[] contents = OfflinePlayerDataUtil.loadEnderChest(offlineTarget.getUniqueId());
 		if (contents == null) {
 			ApiUtils.sendCommandSenderMessageArgs(player,
-				plugin.getLocaleManager().getMessage(player, "admin.invsee.no-data"),
+				plugin.getLocaleManager().getMessage(player, "admin.ecsee.no-data"),
 				"%prefix%", prefix
 			);
 			return SINGLE_SUCCESS;
 		}
 
 		String displayName = offlineTarget.getName() != null ? offlineTarget.getName() : targetName;
-		String titleRaw = plugin.getLocaleManager().getMessage(player, "admin.invsee.title")
+		String titleRaw = plugin.getLocaleManager().getMessage(player, "admin.ecsee.title")
 			.replace("%player%", displayName);
 
-		InvseeHolder holder = new InvseeHolder(offlineTarget.getUniqueId());
-		Inventory inv = Bukkit.createInventory(holder, 36, MiniMessage.miniMessage().deserialize(titleRaw));
+		EcSeeHolder holder = new EcSeeHolder(offlineTarget.getUniqueId());
+		Inventory inv = Bukkit.createInventory(holder, 27, MiniMessage.miniMessage().deserialize(titleRaw));
 		holder.setInventory(inv);
-
-		for (int i = 0; i < contents.length; i++) {
-			if (contents[i] != null) inv.setItem(i, contents[i]);
-		}
-
+		inv.setContents(contents);
 		player.openInventory(inv);
 
 		ApiUtils.sendCommandSenderMessageArgs(player,
-			plugin.getLocaleManager().getMessage(player, "admin.invsee.opened"),
+			plugin.getLocaleManager().getMessage(player, "admin.ecsee.opened"),
 			"%prefix%", prefix,
 			"%player%", displayName
 		);

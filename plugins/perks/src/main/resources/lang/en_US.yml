@@ -43,8 +43,15 @@ perks.reload.config: "%prefix%<#3DDC97>Configuration reloaded."
 perks.reload.data: "%prefix%<#3DDC97>Player data reloaded."
 perks.reload.all: "%prefix%<#3DDC97>Configuration and player data reloaded."
 
+admin.invsee.title: "<#1E90FF>Inventory of <#F0F8FF>%player%"
 admin.invsee.opened: "%prefix%<#3DDC97>Viewing inventory of <#F0F8FF>%player%<#3DDC97>."
 admin.invsee.not-found: "%prefix%<#FF6B6B>Player not found."
+admin.invsee.no-data: "%prefix%<#FF6B6B>No player data found."
+
+admin.ecsee.title: "<#1E90FF>Ender Chest of <#F0F8FF>%player%"
+admin.ecsee.opened: "%prefix%<#3DDC97>Viewing ender chest of <#F0F8FF>%player%<#3DDC97>."
+admin.ecsee.not-found: "%prefix%<#FF6B6B>Player not found."
+admin.ecsee.no-data: "%prefix%<#FF6B6B>No player data found."
 
 admin.vanish.enabled: "%prefix%<#3DDC97>You are now invisible."
 admin.vanish.disabled: "%prefix%<#FF6B6B>You are now visible."

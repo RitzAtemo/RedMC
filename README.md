@@ -61,7 +61,7 @@ Full documentation is available in the [Wiki](wiki/README.md), including plugin 
   - Respawns
   - Warps
   - Homes
-- Special Functions
+- Perks
   - Virtual crafting table, anvil, enchanting table, grindstone, stonecutter, smithing table, loom, cartography table, ender chest, trash bin
   - Item repair (single / all inventory)
   - Hat (wear any item as helmet)
@@ -117,7 +117,6 @@ This will start a local Folia server instance with your plugins loaded, allowing
 
 ## Roadmap
 
-- Cosmetics: nick, glow, balloons
 - Holograms
 - Custom menus
 - Friends

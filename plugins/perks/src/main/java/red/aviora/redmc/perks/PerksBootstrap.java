@@ -40,6 +40,7 @@ public class PerksBootstrap implements PluginBootstrap {
 			commands.register(buildBroadcastCommand().build(), java.util.List.of("bc"));
 			commands.register(buildPerksCommand().build());
 			commands.register(buildInvseeCommand().build());
+			commands.register(buildEcSeeCommand().build());
 			commands.register(simplePlayerCommand("vanish", "redmc.perks.admin.vanish", new VanishCommand()).build(), java.util.List.of("v"));
 			commands.register(simplePlayerCommand("god", "redmc.perks.admin.god", new GodCommand()).build());
 			commands.register(buildFreezeCommand().build());
@@ -85,13 +86,39 @@ public class PerksBootstrap implements PluginBootstrap {
 			.requires(ctx -> ctx.getSender() instanceof Player && ctx.getSender().hasPermission("redmc.perks.admin.invsee"))
 			.then(Commands.argument("player", StringArgumentType.word())
 				.suggests((ctx, builder) -> {
+					String lower = builder.getRemainingLowerCase();
 					for (var p : org.bukkit.Bukkit.getOnlinePlayers()) {
-						if (p.getName().toLowerCase().startsWith(builder.getRemainingLowerCase()))
+						if (p.getName().toLowerCase().startsWith(lower)) builder.suggest(p.getName());
+					}
+					for (var p : org.bukkit.Bukkit.getOfflinePlayers()) {
+						if (p.getName() != null && p.getName().toLowerCase().startsWith(lower) && !p.isOnline())
 							builder.suggest(p.getName());
 					}
 					return builder.buildFuture();
 				})
-				.executes(new InvseeCommand()));
+				.executes(new InvseeCommand())
+				.then(Commands.literal("--as-offline")
+					.executes(new InvseeAsOfflineCommand())));
+	}
+
+	private LiteralArgumentBuilder<CommandSourceStack> buildEcSeeCommand() {
+		return Commands.literal("ecsee")
+			.requires(ctx -> ctx.getSender() instanceof Player && ctx.getSender().hasPermission("redmc.perks.admin.ecsee"))
+			.then(Commands.argument("player", StringArgumentType.word())
+				.suggests((ctx, builder) -> {
+					String lower = builder.getRemainingLowerCase();
+					for (var p : org.bukkit.Bukkit.getOnlinePlayers()) {
+						if (p.getName().toLowerCase().startsWith(lower)) builder.suggest(p.getName());
+					}
+					for (var p : org.bukkit.Bukkit.getOfflinePlayers()) {
+						if (p.getName() != null && p.getName().toLowerCase().startsWith(lower) && !p.isOnline())
+							builder.suggest(p.getName());
+					}
+					return builder.buildFuture();
+				})
+				.executes(new EcSeeCommand())
+				.then(Commands.literal("--as-offline")
+					.executes(new EcSeeAsOfflineCommand())));
 	}
 
 	private LiteralArgumentBuilder<CommandSourceStack> buildFreezeCommand() {

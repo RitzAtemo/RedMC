@@ -16,7 +16,9 @@ import red.aviora.redmc.perks.PerksPlugin;
 import red.aviora.redmc.perks.inventory.InvseeHolder;
 import red.aviora.redmc.perks.util.OfflinePlayerDataUtil;
 
-public class InvseeCommand implements Command<CommandSourceStack> {
+import java.util.UUID;
+
+public class InvseeAsOfflineCommand implements Command<CommandSourceStack> {
 
 	@Override
 	public int run(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
@@ -25,28 +27,28 @@ public class InvseeCommand implements Command<CommandSourceStack> {
 		String prefix = plugin.getLocaleManager().getMessage(player, "prefix");
 
 		String targetName = StringArgumentType.getString(ctx, "player");
+
+		UUID targetUuid;
+		String displayName;
+
 		Player onlineTarget = Bukkit.getPlayerExact(targetName);
-
 		if (onlineTarget != null) {
-			player.openInventory(onlineTarget.getInventory());
-			ApiUtils.sendCommandSenderMessageArgs(player,
-				plugin.getLocaleManager().getMessage(player, "admin.invsee.opened"),
-				"%prefix%", prefix,
-				"%player%", onlineTarget.getName()
-			);
-			return SINGLE_SUCCESS;
+			targetUuid = onlineTarget.getUniqueId();
+			displayName = onlineTarget.getName();
+		} else {
+			OfflinePlayer offlineTarget = Bukkit.getOfflinePlayerIfCached(targetName);
+			if (offlineTarget == null || !offlineTarget.hasPlayedBefore()) {
+				ApiUtils.sendCommandSenderMessageArgs(player,
+					plugin.getLocaleManager().getMessage(player, "admin.invsee.not-found"),
+					"%prefix%", prefix
+				);
+				return SINGLE_SUCCESS;
+			}
+			targetUuid = offlineTarget.getUniqueId();
+			displayName = offlineTarget.getName() != null ? offlineTarget.getName() : targetName;
 		}
 
-		OfflinePlayer offlineTarget = Bukkit.getOfflinePlayerIfCached(targetName);
-		if (offlineTarget == null || !offlineTarget.hasPlayedBefore()) {
-			ApiUtils.sendCommandSenderMessageArgs(player,
-				plugin.getLocaleManager().getMessage(player, "admin.invsee.not-found"),
-				"%prefix%", prefix
-			);
-			return SINGLE_SUCCESS;
-		}
-
-		ItemStack[] contents = OfflinePlayerDataUtil.loadInventory(offlineTarget.getUniqueId());
+		ItemStack[] contents = OfflinePlayerDataUtil.loadInventory(targetUuid);
 		if (contents == null) {
 			ApiUtils.sendCommandSenderMessageArgs(player,
 				plugin.getLocaleManager().getMessage(player, "admin.invsee.no-data"),
@@ -55,11 +57,10 @@ public class InvseeCommand implements Command<CommandSourceStack> {
 			return SINGLE_SUCCESS;
 		}
 
-		String displayName = offlineTarget.getName() != null ? offlineTarget.getName() : targetName;
 		String titleRaw = plugin.getLocaleManager().getMessage(player, "admin.invsee.title")
 			.replace("%player%", displayName);
 
-		InvseeHolder holder = new InvseeHolder(offlineTarget.getUniqueId());
+		InvseeHolder holder = new InvseeHolder(targetUuid);
 		Inventory inv = Bukkit.createInventory(holder, 36, MiniMessage.miniMessage().deserialize(titleRaw));
 		holder.setInventory(inv);
 

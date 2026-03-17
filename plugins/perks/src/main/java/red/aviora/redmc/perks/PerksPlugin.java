@@ -13,6 +13,7 @@ import red.aviora.redmc.perks.manager.GodManager;
 import red.aviora.redmc.perks.manager.NoFallManager;
 import red.aviora.redmc.perks.manager.VanishManager;
 import red.aviora.redmc.perks.storage.PerksDataStorage;
+import red.aviora.redmc.perks.util.OfflinePlayerDataUtil;
 
 public class PerksPlugin extends JavaPlugin {
 
@@ -69,4 +70,5 @@ public class PerksPlugin extends JavaPlugin {
 	public VanishManager getVanishManager() { return vanishManager; }
 	public GodManager getGodManager() { return godManager; }
 	public FreezeManager getFreezeManager() { return freezeManager; }
+	public OfflinePlayerDataUtil getOfflinePlayerInventoryUtil() { return new OfflinePlayerDataUtil(); }
 }

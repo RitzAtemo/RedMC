@@ -43,8 +43,15 @@ perks.reload.config: "%prefix%<#3DDC97>Конфигурация перезагр
 perks.reload.data: "%prefix%<#3DDC97>Данные игроков перезагружены."
 perks.reload.all: "%prefix%<#3DDC97>Конфигурация и данные игроков перезагружены."
 
+admin.invsee.title: "<#1E90FF>Инвентарь <#F0F8FF>%player%"
 admin.invsee.opened: "%prefix%<#3DDC97>Просмотр инвентаря <#F0F8FF>%player%<#3DDC97>."
 admin.invsee.not-found: "%prefix%<#FF6B6B>Игрок не найден."
+admin.invsee.no-data: "%prefix%<#FF6B6B>Данные игрока не найдены."
+
+admin.ecsee.title: "<#1E90FF>Эндер сундук <#F0F8FF>%player%"
+admin.ecsee.opened: "%prefix%<#3DDC97>Просмотр эндер сундука <#F0F8FF>%player%<#3DDC97>."
+admin.ecsee.not-found: "%prefix%<#FF6B6B>Игрок не найден."
+admin.ecsee.no-data: "%prefix%<#FF6B6B>Данные игрока не найдены."
 
 admin.vanish.enabled: "%prefix%<#3DDC97>Вы стали невидимы."
 admin.vanish.disabled: "%prefix%<#FF6B6B>Вы снова видимы."
