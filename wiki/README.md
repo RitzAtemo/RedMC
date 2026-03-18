@@ -17,3 +17,4 @@ Documentation for the RedMC plugin infrastructure.
 - [Teleport Plugin](plugins/teleport.md) — spawn, warps, homes, back stack, RTP, TPA
 - [Perks Plugin](plugins/perks.md) — virtual blocks, item utilities, movement, broadcast, custom join/quit messages, admin tools
 - [Cosmetics Plugin](plugins/cosmetics.md) — layered particle cosmetics with 11 slots, 10 shapes, template system, import/export
+- [Holograms Plugin](plugins/holograms.md) — multi-line text display holograms with placeholder support

@@ -81,6 +81,11 @@ Full documentation is available in the [Wiki](wiki/README.md), including plugin 
   - 13 built-in premade templates
   - Template editor via commands with live tab-completion
   - Import / export via encrypted chat signature (GZIP + Base64)
+- Holograms ([wiki](wiki/plugins/holograms.md))
+  - Multi-line text display entities
+  - MiniMessage formatting per line
+  - Placeholder registry support with configurable refresh rate
+  - CRUD management via commands
 
 ## Installation
 
@@ -117,7 +122,6 @@ This will start a local Folia server instance with your plugins loaded, allowing
 
 ## Roadmap
 
-- Holograms
 - Custom menus
 - Friends
 - Auctions

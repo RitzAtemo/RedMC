@@ -1,0 +1,53 @@
+package red.aviora.redmc.holograms.commands;
+
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
+import io.papermc.paper.command.brigadier.CommandSourceStack;
+import io.papermc.paper.command.brigadier.MessageComponentSerializer;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+import red.aviora.redmc.api.utils.ApiUtils;
+import red.aviora.redmc.api.utils.LocaleManager;
+import red.aviora.redmc.holograms.HologramsPlugin;
+import red.aviora.redmc.holograms.utils.HologramManager;
+
+public class HologramCreateCommand implements Command<CommandSourceStack> {
+
+	@Override
+	public int run(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+		CommandSender sender = context.getSource().getSender();
+		LocaleManager locale = JavaPlugin.getPlugin(HologramsPlugin.class).getLocaleManager();
+		HologramManager manager = JavaPlugin.getPlugin(HologramsPlugin.class).getHologramManager();
+
+		if (!(sender instanceof Player player)) {
+			throw new SimpleCommandExceptionType(MessageComponentSerializer.message().serialize(
+				ApiUtils.formatText(locale.getMessage(sender, "players-only"),
+					"%prefix%", locale.getMessage(sender, "prefix"))
+			)).create();
+		}
+
+		String id = StringArgumentType.getString(context, "id");
+
+		if (manager.getHologram(id) != null) {
+			throw new SimpleCommandExceptionType(MessageComponentSerializer.message().serialize(
+				ApiUtils.formatText(locale.getMessage(sender, "hologram-already-exists"),
+					"%prefix%", locale.getMessage(sender, "prefix"),
+					"%id%", id)
+			)).create();
+		}
+
+		manager.createHologram(id, id,
+			player.getWorld().getName(),
+			player.getX(), player.getEyeLocation().getY(), player.getZ());
+
+		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "hologram-created"),
+			"%prefix%", locale.getMessage(sender, "prefix"),
+			"%id%", id);
+
+		return Command.SINGLE_SUCCESS;
+	}
+}

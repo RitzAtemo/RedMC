@@ -1,0 +1,41 @@
+name: RedMC-Holograms
+description: RedMC - Hologram Management
+version: '0.0.1-alpha'
+api-version: '1.21.11'
+prefix: RedMC
+folia-supported: true
+main: red.aviora.redmc.holograms.HologramsPlugin
+bootstrapper: red.aviora.redmc.holograms.HologramsBootstrap
+dependencies:
+  server:
+    RedMC-API:
+      load: BEFORE
+      required: true
+      join-classpath: true
+    RedMC-Placeholders:
+      load: BEFORE
+      required: true
+      join-classpath: true
+permissions:
+  redmc.holograms:
+    default: op
+  redmc.holograms.create:
+    default: op
+  redmc.holograms.read:
+    default: op
+  redmc.holograms.delete:
+    default: op
+  redmc.holograms.reload:
+    default: op
+  redmc.holograms.reload.config:
+    default: op
+  redmc.holograms.reload.data:
+    default: op
+  redmc.holograms.reload.all:
+    default: op
+  redmc.holograms.update.location:
+    default: op
+  redmc.holograms.update.name:
+    default: op
+  redmc.holograms.update.lines:
+    default: op

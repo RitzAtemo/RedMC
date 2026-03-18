@@ -25,6 +25,7 @@ include(
 	"plugins:scoreboard",
 	"plugins:chat",
 	"plugins:npc",
+	"plugins:holograms",
 	"plugins:motd",
 	"plugins:teleport",
 	"plugins:perks",

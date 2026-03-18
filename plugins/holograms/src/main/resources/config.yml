@@ -1,0 +1,5 @@
+config-version: "0.0.1-alpha"
+
+refresh-interval-ticks: 20
+
+line-spacing: 0.3
