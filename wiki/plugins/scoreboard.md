@@ -22,10 +22,6 @@ Per-player sidebar scoreboard with frame-based title animations and placeholder 
 | `redmc.scoreboard.reload.all` | op |
 | `redmc.scoreboard.toggle` | true |
 
-## Animation System
-
-Same pattern as Tab: `ScoreboardManager.tick()` every 50ms, frame advances at its configured interval. The title animates across frames; lines are static text with placeholder support.
-
 ## Config Example
 
 ```yaml

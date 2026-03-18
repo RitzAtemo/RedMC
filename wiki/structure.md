@@ -8,34 +8,9 @@ RedMC is a Gradle multi-module project targeting **Folia 1.21.11** with **Java 2
 RedMC/
 ├── build.gradle.kts          # Root build: runFolia task
 ├── settings.gradle.kts       # Module declarations
-├── plugins/
-│   ├── api/                  # Core utilities (no commands)
-│   ├── permissions/          # Group and player permission management
-│   ├── placeholders/         # Placeholder registry
-│   ├── vault/                # Economy, prefixes, suffixes, alt names
-│   ├── tab/                  # Tab list header/footer animations
-│   ├── scoreboard/           # Sidebar scoreboard animations
-│   ├── chat/                 # Chat, death, advancement, private messages
-│   ├── npc/                  # NPC rendering via NMS packets
-│   └── teleport/             # Spawn, warps, homes, back, RTP, TPA
-└── Wiki/                     # This documentation
+├── plugins/                  # Supported plugins
+└── wiki/                     # This documentation
 ```
-
-## Module Dependency Graph
-
-```
-api
- ├── permissions
- ├── placeholders
- │    ├── vault
- │    ├── tab
- │    ├── scoreboard
- │    └── chat
- ├── npc
- └── teleport
-```
-
-`vault` also depends on `permissions` for group resolution.
 
 ## Build Commands
 

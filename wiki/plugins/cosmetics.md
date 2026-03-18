@@ -84,8 +84,6 @@ Each player can equip one template per slot independently. Slots define **where*
 
 Slots marked **Rotates with player** apply a Y-axis rotation equal to the player's yaw to all shape vectors, so the effect stays oriented relative to the direction the player is facing.
 
-Trail tracks the last N positions from `PlayerMoveEvent` (configurable via `renderer.trail-history-size`). New positions are only recorded if the player has moved at least `renderer.trail-min-distance` blocks from the previous recorded point.
-
 ## Shapes
 
 Shapes define the spatial arrangement of spawn points for each layer. All shapes are generated as a list of relative `Vector` offsets from the slot anchor point.
@@ -156,8 +154,6 @@ Example: `angel_wings` uses two layers:
 
 ## Premade Templates
 
-All built-in templates are extracted from the JAR into `plugins/RedMC-Cosmetics/templates/` on first startup. They can be edited like any user template.
-
 | Name | Slot | Effect |
 |---|---|---|
 | `fire_trail` | TRAIL | Flame + smoke trail |
@@ -223,17 +219,6 @@ Click the button in chat to copy the signature to your clipboard. Signatures sta
 /cos import COS1:H4sIAAAAA...
 ```
 The template name is taken from the signature's embedded YAML. If a template with that name already exists it will be overwritten.
-
-## Renderer
-
-The renderer runs as an async fixed-rate task via `AsyncScheduler` (default 50 ms per tick). For each online player with cosmetics:
-
-1. The async tick iterates equipped slots
-2. Per player, a task is dispatched via `player.getScheduler().run()` to run on the correct Folia region thread
-3. For each layer, shape vectors are computed, optionally rotated by player yaw, and translated to world coordinates
-4. `World.spawnParticle()` is called with `force=true` to bypass visibility distance limits
-
-Trail positions are collected synchronously in `PlayerMoveListener` (on the correct region thread) and stored in `TrailTracker` per player UUID.
 
 ## Config
 

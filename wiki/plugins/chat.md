@@ -40,7 +40,7 @@ Format strings support `##Placeholder##` tokens and `%player%` / `%message%` var
 
 ## Death Messages
 
-`ChatManager` loads death message groups from locale files. Each group has a list of `messages` (chosen randomly). The group is determined in `DeathListener` and passed to `ChatManager.broadcastDeathMessage()`.
+`ChatManager` loads death message groups from locale files. Each group has a list of `messages` (chosen randomly).
 
 | Group | Trigger | Placeholders |
 |---|---|---|
@@ -66,4 +66,4 @@ Vanilla announcements can be disabled with `advancement.disable-vanilla: true` i
 
 ## Alerts
 
-Scheduled rotating broadcasts loaded from `config.yml`. `AlertManager` picks messages in order, skipping the last `no-repeat-count` messages to avoid repetition. Starts/stops with the plugin lifecycle.
+Scheduled rotating broadcasts loaded from `config.yml`. `AlertManager` picks messages in order, skipping the last `no-repeat-count` messages to avoid repetition.

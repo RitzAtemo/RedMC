@@ -39,15 +39,6 @@ Text-display entity holograms with placeholder support. Holograms are stored in 
 | `redmc.holograms.update.name` | op |
 | `redmc.holograms.update.lines` | op |
 
-## Rendering
-
-Each hologram is a vertical stack of `TextDisplay` entities:
-
-- Lines are ordered top-to-bottom; index `0` is the topmost line.
-- Vertical spacing between lines is configured via `line-spacing` (in blocks).
-- All entities use `Billboard.CENTER` so they always face the viewer.
-- Entities are marked non-persistent (`setPersistent(false)`) — they are respawned on every load.
-
 ## Placeholder Support
 
 Line text supports `##Key##` placeholder tokens resolved by the RedMC-Placeholders registry.
