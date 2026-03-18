@@ -13,54 +13,64 @@ Full documentation is available in the [Wiki](wiki/README.md), including plugin 
 ## Features
 
 - API
-  - Text utilities
-  - Configuration manager
-  - Localization manager
-  - Update protection
+  - MiniMessage text formatting with hex color and placeholder substitution
+  - Configuration manager with YAML wrapping and automatic config-version backup (ZIP old files, recreate defaults)
+  - Localization manager with per-player locale detection and configurable fallback language
+  - Broadcast, player message, command sender, and console send utilities
 - Placeholders
-  - Default values
-  - Registry API
+  - Priority-sorted registry: multiple plugins register their own `PlaceholderRegistry` with a numeric priority; higher wins on key conflict
+  - Token parsing via configurable regex pattern (default `##Key##`) with per-player context resolution
+  - Built-in general placeholders: player name, world, coordinates
 - Permissions
-  - Group permissions
-  - Player permissions
-  - Weights
-  - Inheritance
+  - Named permission groups with display names and weighted `PermissionEntry` lists
+  - Per-player group membership and player-specific permission overrides
+  - Weight-based conflict resolution: higher weight wins; player-level entries always take precedence
+  - Permissions applied via `PermissionAttachment` on join and reloaded on demand
 - Vault
-  - Prefixes
-  - Postfixes
-  - Alt names
-  - Economics
+  - Multi-currency economy: up to any number of currencies, each with display name, symbol, and starting balance
+  - Optional rank tiers per currency (e.g., "Unemployed" at 0, "Millionaire" at 1 000 000)
+  - Per-player balance storage in YAML; balance transfer between players
+  - Leaderboard (`/baltop`) and personal balance check (`/mybalance`)
+  - Prefix, suffix, and alt name management per group and per player
 - MOTD
-  - Random or sequential templates
-  - Favicon rotation
-  - Player sample customization
-  - Version string override
-  - Ping logging
+  - Random or sequential MOTD templates with MiniMessage formatting
+  - Favicon rotation from a configurable images folder
+  - Player sample list customization (names shown on server hover)
+  - Version string override (protocol version label)
+  - Ping logging to console
 - Tab
-  - Placeholders
-  - Animations
+  - Header and footer rendered with full placeholder support
+  - Frame-based animations: each frame has its own text and dwell interval in ticks
+  - Async scheduler ticking every 50 ms; frames advance when their interval is reached
+  - Player row display name formatting with placeholders
 - Scoreboard
-  - Placeholders
-  - Animations
+  - Per-player FastBoard sidebar with configurable static lines and placeholder tokens
+  - Animated title: frame-based with per-frame dwell intervals, same 50 ms async tick loop as tab
+  - Per-player visibility toggle (`/scoreboard toggle`) persisted to YAML across reconnects
 - Chat events
-  - Joins, disconnects
-  - Local and global chat
-  - Whispers
-  - Replies
-  - Deaths
-  - Cycle alerts
-  - Advancements
+  - Join and leave messages with configurable locale templates
+  - Local chat: message delivered only within a configurable radius (per-world, disable with `-1`)
+  - Global chat: optional prefix (default `!`) broadcasts to all players regardless of distance
+  - Private messages with `/msg`; `/reply` replies to the last player who messaged you
+  - Death messages split into 14 cause groups; entity and weapon names translated per receiver's locale
+  - Advancement announcements with configurable disable flag; custom announcement templates
+  - Scheduled broadcast alerts: configurable interval, random selection with a no-repeat buffer
 - NPC
-  - Names
-  - Skins
-  - Commands
-  - Equipment
+  - Packet-based rendering via NMS — no actual entity spawned on the server
+  - Custom display names with full MiniMessage formatting
+  - Skin applied from any online player name (texture + signature fetched and stored)
+  - All 6 equipment slots (helmet, chestplate, leggings, boots, main hand, off hand) configurable per NPC
+  - Left-click and right-click command lists per NPC; commands run as CONSOLE or as the clicking PLAYER; supports `{player}`, `{uuid}`, `{world}`, `{x}`, `{y}`, `{z}` tokens
+  - Optional look-at-player task: rotates NPC head toward the nearest player within a configurable range on a configurable interval
+  - 500 ms interaction cooldown to prevent command spam
 - Teleport events
-  - Random Teleport
-  - Spawns
-  - Respawns
-  - Warps
-  - Homes
+  - Random Teleport — async safe-location finder: configurable min/max radius per world, up to 30 attempts, validates solid ground and non-suffocating space; per-interval use limit and cooldown
+  - Spawns — separate main spawn and newbie spawn locations; optional vanilla respawn override; newbie spawn applied on first join or when configured
+  - Respawns — on death, player can be sent to main spawn or newbie spawn based on config
+  - Warps — admin-managed global destinations; CRUD commands (`create`, `delete`, `list`, `go`); stored in YAML
+  - Homes — per-player named home list with configurable limit; `set`, `delete`, `list`, `go` commands; loaded on join, saved on quit
+  - TPA — `/tpa <player>` and `/tpa here <player>` send teleport requests; `/tpaccept`, `/tpdeny`, `/tpcancel` to respond; configurable request timeout and cooldown
+  - Back — returns to the last location before a teleport or death; configurable history stack depth and per-interval use limit
 - Perks
   - Virtual crafting table, anvil, enchanting table, grindstone, stonecutter, smithing table, loom, cartography table, ender chest, trash bin
   - Item repair (single / all inventory)
