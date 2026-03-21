@@ -14,5 +14,5 @@ footer:
     - "<#9b94a6>play.redmc.example.com"
 
 player-row:
-  format: "<#1E90FF>##PlayerPrefix## ##PlayerName##"
+  format: "<#1E90FF>%player_prefix%%player_altname%%player_suffix%"
   interval: 20

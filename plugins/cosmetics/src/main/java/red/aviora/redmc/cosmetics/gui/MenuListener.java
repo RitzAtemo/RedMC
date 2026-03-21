@@ -2,7 +2,6 @@ package red.aviora.redmc.cosmetics.gui;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
@@ -344,7 +343,7 @@ public class MenuListener implements Listener {
                     "%prefix%", plugin.getLocaleManager().getMessage(player, "prefix"),
                     "%name%", templateName);
                 String buttonText = plugin.getLocaleManager().getMessage(player, "cosmetics.export-copy-button");
-                Component button = MiniMessage.miniMessage().deserialize(buttonText)
+                Component button = ApiUtils.getMM().deserialize(buttonText)
                     .clickEvent(ClickEvent.copyToClipboard(signature));
                 player.sendMessage(button);
             } catch (Exception e) {

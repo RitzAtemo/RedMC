@@ -32,7 +32,7 @@ public class InventoryClickListener implements Listener {
                 int newPage = historyHolder.getPage() - 1;
                 if (newPage >= 0) {
                     player.closeInventory();
-                    HistoryGui.open(player, historyHolder.getTargetUuid(), historyHolder.getTargetName(), newPage);
+                    HistoryGui.open(player, historyHolder.getTargetUuid(), newPage);
                 }
             } else if (slot == 49) {
                 player.closeInventory();
@@ -40,7 +40,7 @@ public class InventoryClickListener implements Listener {
                 // Next page
                 int newPage = historyHolder.getPage() + 1;
                 player.closeInventory();
-                HistoryGui.open(player, historyHolder.getTargetUuid(), historyHolder.getTargetName(), newPage);
+                HistoryGui.open(player, historyHolder.getTargetUuid(), newPage);
             }
 
         } else if (holder instanceof TicketListHolder listHolder) {

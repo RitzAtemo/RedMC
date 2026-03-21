@@ -104,6 +104,17 @@ public class VaultBootstrap implements PluginBootstrap {
 
 	private LiteralArgumentBuilder<CommandSourceStack> makePlayerNode() {
 		return Commands.literal("player")
+			.then(Commands.literal("search")
+				.requires(ctx -> ctx.getSender().hasPermission("redmc.vault.player.search"))
+				.then(Commands.argument("field", StringArgumentType.word())
+					.suggests((context, builder) -> {
+						for (String f : new String[]{"prefix", "altname", "suffix"}) {
+							if (f.startsWith(builder.getRemainingLowerCase())) builder.suggest(f);
+						}
+						return builder.buildFuture();
+					})
+					.then(Commands.argument("query", StringArgumentType.greedyString())
+						.executes(new PlayerSearchCommand()))))
 			.then(Commands.argument("player", StringArgumentType.word())
 				.suggests((context, builder) -> {
 					for (var player : Bukkit.getOnlinePlayers()) {
@@ -125,8 +136,8 @@ public class VaultBootstrap implements PluginBootstrap {
 		return Commands.literal("prefix")
 			.then(Commands.literal("set")
 				.requires(ctx -> ctx.getSender().hasPermission("redmc.vault.player.prefix.set"))
-				.then(Commands.argument("prefix", StringArgumentType.greedyString())
-					.then(Commands.argument("weight", com.mojang.brigadier.arguments.IntegerArgumentType.integer(0))
+				.then(Commands.argument("weight", com.mojang.brigadier.arguments.IntegerArgumentType.integer(0))
+					.then(Commands.argument("prefix", StringArgumentType.greedyString())
 						.executes(new PlayerPrefixSetCommand()))))
 			.then(Commands.literal("get")
 				.requires(ctx -> ctx.getSender().hasPermission("redmc.vault.player.prefix.get"))
@@ -140,8 +151,8 @@ public class VaultBootstrap implements PluginBootstrap {
 		return Commands.literal("suffix")
 			.then(Commands.literal("set")
 				.requires(ctx -> ctx.getSender().hasPermission("redmc.vault.player.suffix.set"))
-				.then(Commands.argument("suffix", StringArgumentType.greedyString())
-					.then(Commands.argument("weight", com.mojang.brigadier.arguments.IntegerArgumentType.integer(0))
+				.then(Commands.argument("weight", com.mojang.brigadier.arguments.IntegerArgumentType.integer(0))
+					.then(Commands.argument("suffix", StringArgumentType.greedyString())
 						.executes(new PlayerSuffixSetCommand()))))
 			.then(Commands.literal("get")
 				.requires(ctx -> ctx.getSender().hasPermission("redmc.vault.player.suffix.get"))
@@ -155,8 +166,8 @@ public class VaultBootstrap implements PluginBootstrap {
 		return Commands.literal("altname")
 			.then(Commands.literal("set")
 				.requires(ctx -> ctx.getSender().hasPermission("redmc.vault.player.altname.set"))
-				.then(Commands.argument("name", StringArgumentType.greedyString())
-					.then(Commands.argument("weight", com.mojang.brigadier.arguments.IntegerArgumentType.integer(0))
+				.then(Commands.argument("weight", com.mojang.brigadier.arguments.IntegerArgumentType.integer(0))
+					.then(Commands.argument("name", StringArgumentType.greedyString())
 						.executes(new PlayerAltnameSetCommand()))))
 			.then(Commands.literal("get")
 				.requires(ctx -> ctx.getSender().hasPermission("redmc.vault.player.altname.get"))

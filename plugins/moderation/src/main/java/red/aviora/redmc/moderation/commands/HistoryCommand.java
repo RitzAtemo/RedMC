@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.moderation.ModerationPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 import red.aviora.redmc.moderation.gui.HistoryGui;
 import red.aviora.redmc.moderation.models.ModerationAction;
 
@@ -51,15 +52,16 @@ public class HistoryCommand implements Command<CommandSourceStack> {
         List<ModerationAction> history = plugin.getWarnManager().getActionsMap()
             .getOrDefault(target.getUniqueId(), java.util.Collections.emptyList());
         if (history.isEmpty()) {
-            ApiUtils.sendCommandSenderMessageArgs(sender,
-                locale.getMessage(sender, "history.no-history"),
-                "%prefix%", locale.getMessage(sender, "prefix"),
-                "%player%", target.getName());
+            String msg = VaultPlugin.resolvePlayer(
+                ApiUtils.formatTextString(locale.getMessage(sender, "history.no-history"),
+                    "%prefix%", locale.getMessage(sender, "prefix")),
+                target);
+            sender.sendMessage(ApiUtils.formatText(msg));
             return Command.SINGLE_SUCCESS;
         }
 
         plugin.getServer().getGlobalRegionScheduler().run(plugin, task ->
-            HistoryGui.open(viewer, target.getUniqueId(), target.getName(), 0)
+            HistoryGui.open(viewer, target.getUniqueId(), 0)
         );
 
         return Command.SINGLE_SUCCESS;

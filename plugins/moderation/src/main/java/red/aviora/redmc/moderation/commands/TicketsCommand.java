@@ -14,6 +14,7 @@ import red.aviora.redmc.moderation.gui.TicketListGui;
 import red.aviora.redmc.moderation.gui.TicketViewGui;
 import red.aviora.redmc.moderation.managers.TicketManager;
 import red.aviora.redmc.moderation.models.Ticket;
+import red.aviora.redmc.vault.VaultPlugin;
 
 import java.util.UUID;
 
@@ -149,6 +150,7 @@ public class TicketsCommand {
 
             UUID staffUuid = sender instanceof Player p ? p.getUniqueId() : new UUID(0, 0);
             String staffName = sender.getName();
+            Player staffPlayer = sender instanceof Player p2 ? p2 : null;
 
             TicketManager ticketManager = plugin.getTicketManager();
             Ticket ticket = ticketManager.getById(id);
@@ -170,11 +172,12 @@ public class TicketsCommand {
             // Notify all online staff
             for (Player online : plugin.getServer().getOnlinePlayers()) {
                 if (online.hasPermission("redmc.tickets") && !online.getUniqueId().equals(staffUuid)) {
-                    ApiUtils.sendPlayerMessageArgs(online,
-                        locale.getMessage(online, "ticket.notify-reply"),
-                        "%staff%", staffName,
-                        "%id%", ticket.getShortId(),
-                        "%message%", message);
+                    String notify = VaultPlugin.resolveTwoPlayers(
+                        ApiUtils.formatTextString(locale.getMessage(online, "ticket.notify-reply"),
+                            "%id%", ticket.getShortId(),
+                            "%message%", message),
+                        staffPlayer, (Player) null);
+                    online.sendMessage(ApiUtils.formatText(notify));
                 }
             }
 

@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.ConfigManager;
 import red.aviora.redmc.tab.TabPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 import red.aviora.redmc.tab.models.TabAnimation;
 
 import java.util.List;
@@ -122,8 +123,7 @@ public class TabManager {
 	public void updatePlayerRow(Player player) {
 		String format = playerRowFormat;
 
-		String resolved = format.replace("##PlayerName##", player.getName());
-		resolved = resolvePlaceholders(resolved, player);
+		String resolved = resolvePlaceholders(VaultPlugin.resolvePlayer(format, player), player);
 
 		player.playerListName(ApiUtils.formatText(resolved));
 	}

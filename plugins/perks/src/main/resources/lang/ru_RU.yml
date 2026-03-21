@@ -45,7 +45,7 @@ nofall:
   disabled: "%prefix%<#FF6B6B>Защита от урона падения выключена."
 
 broadcast:
-  format: "<#FFB800>[!]<#F0F8FF> %player%<#9b94a6>: <#F0F8FF>%message%"
+  format: "<#FFB800>[!]<#F0F8FF> %player_prefix%%player_altname%%player_suffix%<#9b94a6>: <#F0F8FF>%message%"
   sent: "%prefix%<#3DDC97>Сообщение отправлено."
 
 perks:
@@ -63,13 +63,13 @@ reload:
 
 admin:
   invsee:
-    title: "<#1E90FF>Инвентарь <#F0F8FF>%player%"
-    opened: "%prefix%<#3DDC97>Просмотр инвентаря <#F0F8FF>%player%<#3DDC97>."
+    title: "<#1E90FF>Инвентарь <#F0F8FF>%player_prefix%%player_altname%%player_suffix%"
+    opened: "%prefix%<#3DDC97>Просмотр инвентаря <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97>."
     not-found: "%prefix%<#FF6B6B>Игрок не найден."
     no-data: "%prefix%<#FF6B6B>Данные игрока не найдены."
   ecsee:
-    title: "<#1E90FF>Эндер сундук <#F0F8FF>%player%"
-    opened: "%prefix%<#3DDC97>Просмотр эндер сундука <#F0F8FF>%player%<#3DDC97>."
+    title: "<#1E90FF>Эндер сундук <#F0F8FF>%player_prefix%%player_altname%%player_suffix%"
+    opened: "%prefix%<#3DDC97>Просмотр эндер сундука <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97>."
     not-found: "%prefix%<#FF6B6B>Игрок не найден."
     no-data: "%prefix%<#FF6B6B>Данные игрока не найдены."
   vanish:
@@ -79,18 +79,18 @@ admin:
     enabled: "%prefix%<#3DDC97>Режим бога включён."
     disabled: "%prefix%<#FF6B6B>Режим бога выключен."
   freeze:
-    frozen: "%prefix%<#3DDC97>Игрок <#F0F8FF>%player%<#3DDC97> заморожен."
-    unfrozen: "%prefix%<#3DDC97>Игрок <#F0F8FF>%player%<#3DDC97> разморожен."
+    frozen: "%prefix%<#3DDC97>Игрок <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97> заморожен."
+    unfrozen: "%prefix%<#3DDC97>Игрок <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97> разморожен."
     not-found: "%prefix%<#FF6B6B>Игрок не найден."
     message: "%prefix%<#FFB800>Вы были заморожены."
     unmessage: "%prefix%<#3DDC97>Вы были разморожены."
   tpo:
-    teleported: "%prefix%<#3DDC97>Телепортация к <#F0F8FF>%player%<#3DDC97>."
+    teleported: "%prefix%<#3DDC97>Телепортация к <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97>."
     not-found: "%prefix%<#FF6B6B>Игрок не найден."
   tpohere:
-    teleported: "%prefix%<#3DDC97>Игрок <#F0F8FF>%player%<#3DDC97> телепортирован к вам."
+    teleported: "%prefix%<#3DDC97>Игрок <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97> телепортирован к вам."
     not-found: "%prefix%<#FF6B6B>Игрок не найден."
     message: "%prefix%<#FFB800>Вас телепортировали."
   sudo:
-    executed: "%prefix%<#3DDC97>Команда <#F0F8FF>/%command%<#3DDC97> выполнена от имени <#F0F8FF>%player%<#3DDC97>."
+    executed: "%prefix%<#3DDC97>Команда <#F0F8FF>/%command%<#3DDC97> выполнена от имени <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97>."
     not-found: "%prefix%<#FF6B6B>Игрок не найден."

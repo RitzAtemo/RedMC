@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.persistence.PersistentDataType;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.perks.PerksPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 import red.aviora.redmc.perks.storage.PlayerData;
 
 public class PerksPlayerListener implements Listener {
@@ -38,8 +39,9 @@ public class PerksPlayerListener implements Listener {
 		PlayerData data = plugin.getDataStorage().getPlayerData(player.getUniqueId());
 		String customJoin = data.getJoinMessage();
 		if (customJoin != null && !customJoin.isBlank() && player.hasPermission("redmc.perks.setjoin")) {
+			String resolvedJoin = VaultPlugin.resolvePlayer(customJoin, player);
 			for (Player online : player.getServer().getOnlinePlayers()) {
-				online.sendMessage(ApiUtils.formatText(customJoin, "%player%", player.getName()));
+				online.sendMessage(ApiUtils.formatText(resolvedJoin));
 			}
 			event.joinMessage(null);
 			player.getPersistentDataContainer().set(JOIN_OVERRIDE, PersistentDataType.BOOLEAN, true);
@@ -58,9 +60,10 @@ public class PerksPlayerListener implements Listener {
 			PlayerData data = plugin.getDataStorage().getPlayerData(player.getUniqueId());
 			String customQuit = data.getQuitMessage();
 			if (customQuit != null && !customQuit.isBlank() && player.hasPermission("redmc.perks.setquit")) {
+				String resolvedQuit = VaultPlugin.resolvePlayer(customQuit, player);
 				for (Player online : player.getServer().getOnlinePlayers()) {
 					if (online.equals(player)) continue;
-					online.sendMessage(ApiUtils.formatText(customQuit, "%player%", player.getName()));
+					online.sendMessage(ApiUtils.formatText(resolvedQuit));
 				}
 				event.quitMessage(null);
 				player.getPersistentDataContainer().set(QUIT_OVERRIDE, PersistentDataType.BOOLEAN, true);

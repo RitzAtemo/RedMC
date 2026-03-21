@@ -97,21 +97,22 @@ public class PayCommand implements Command<CommandSourceStack> {
 		targetData.addBalance(currency.getId(), amount);
 		vaultManager.reloadAll();
 
-		ApiUtils.sendCommandSenderMessageArgs(sender,
-			localeManager.getMessage(sender, "pay-success"),
+		Player targetPlayer = Bukkit.getPlayerExact(targetName);
+		String successMsg = ApiUtils.formatTextString(localeManager.getMessage(sender, "pay-success"),
 			"%prefix%", localeManager.getMessage(sender, "prefix"),
-			"%target%", targetData.getName(),
 			"%amount%", String.valueOf(amount),
 			"%symbol%", currency.getSymbol());
+		successMsg = targetPlayer != null
+			? VaultPlugin.resolveTwoPlayers(successMsg, player, targetPlayer)
+			: VaultPlugin.resolveTwoPlayers(successMsg, player, targetData.getUuid());
+		sender.sendMessage(ApiUtils.formatText(successMsg));
 
-		Player targetPlayer = Bukkit.getPlayerExact(targetName);
 		if (targetPlayer != null && targetPlayer.isOnline()) {
-			ApiUtils.sendCommandSenderMessageArgs(targetPlayer,
-				localeManager.getMessage(targetPlayer, "pay-received"),
+			String receivedMsg = ApiUtils.formatTextString(localeManager.getMessage(targetPlayer, "pay-received"),
 				"%prefix%", localeManager.getMessage(targetPlayer, "prefix"),
-				"%sender%", player.getName(),
 				"%amount%", String.valueOf(amount),
 				"%symbol%", currency.getSymbol());
+			targetPlayer.sendMessage(ApiUtils.formatText(VaultPlugin.resolveTwoPlayers(receivedMsg, player, targetPlayer)));
 		}
 
 		return Command.SINGLE_SUCCESS;

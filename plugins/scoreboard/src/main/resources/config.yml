@@ -9,7 +9,7 @@ title:
 
 lines:
   - text: " "
-  - text: "<#F0F8FF>Player: <#1E90FF>##PlayerName##"
+  - text: "<#F0F8FF>Player: <#1E90FF>%player_prefix%%player_altname%%player_suffix%"
   - text: "<#F0F8FF>Balance: <#3DDC97>##PlayerBalance##"
   - text: "<#F0F8FF>Online: <#1E90FF>##CurrentServerOnline##"
   - text: " "

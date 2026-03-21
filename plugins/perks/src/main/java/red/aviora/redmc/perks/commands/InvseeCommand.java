@@ -5,7 +5,6 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -13,6 +12,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.perks.PerksPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 import red.aviora.redmc.perks.inventory.InvseeHolder;
 import red.aviora.redmc.perks.util.OfflinePlayerDataUtil;
 
@@ -29,11 +29,10 @@ public class InvseeCommand implements Command<CommandSourceStack> {
 
 		if (onlineTarget != null) {
 			player.openInventory(onlineTarget.getInventory());
-			ApiUtils.sendCommandSenderMessageArgs(player,
-				plugin.getLocaleManager().getMessage(player, "admin.invsee.opened"),
-				"%prefix%", prefix,
-				"%player%", onlineTarget.getName()
-			);
+			player.sendMessage(ApiUtils.formatText(VaultPlugin.resolvePlayer(
+				ApiUtils.formatTextString(plugin.getLocaleManager().getMessage(player, "admin.invsee.opened"),
+					"%prefix%", prefix),
+				onlineTarget)));
 			return SINGLE_SUCCESS;
 		}
 
@@ -57,10 +56,10 @@ public class InvseeCommand implements Command<CommandSourceStack> {
 
 		String displayName = offlineTarget.getName() != null ? offlineTarget.getName() : targetName;
 		String titleRaw = plugin.getLocaleManager().getMessage(player, "admin.invsee.title")
-			.replace("%player%", displayName);
+			.replace("%player_altname%", displayName).replace("%player_prefix%", "").replace("%player_suffix%", "");
 
 		InvseeHolder holder = new InvseeHolder(offlineTarget.getUniqueId());
-		Inventory inv = Bukkit.createInventory(holder, 36, MiniMessage.miniMessage().deserialize(titleRaw));
+		Inventory inv = Bukkit.createInventory(holder, 36, ApiUtils.getMM().deserialize(titleRaw));
 		holder.setInventory(inv);
 
 		for (int i = 0; i < contents.length; i++) {
@@ -69,11 +68,12 @@ public class InvseeCommand implements Command<CommandSourceStack> {
 
 		player.openInventory(inv);
 
-		ApiUtils.sendCommandSenderMessageArgs(player,
+		player.sendMessage(ApiUtils.formatText(ApiUtils.formatTextString(
 			plugin.getLocaleManager().getMessage(player, "admin.invsee.opened"),
 			"%prefix%", prefix,
-			"%player%", displayName
-		);
+			"%player_altname%", displayName,
+			"%player_prefix%", "",
+			"%player_suffix%", "")));
 		return SINGLE_SUCCESS;
 	}
 }

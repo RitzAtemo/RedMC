@@ -12,6 +12,10 @@ dependencies:
       load: BEFORE
       required: true
       join-classpath: true
+    RedMC-Vault:
+      load: BEFORE
+      required: false
+      join-classpath: true
 permissions:
   redmc.tracker:
     default: op

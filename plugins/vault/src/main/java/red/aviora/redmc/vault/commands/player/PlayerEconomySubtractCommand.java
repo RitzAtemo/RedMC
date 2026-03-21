@@ -13,7 +13,9 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.MessageComponentSerializer;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PlayerEconomySubtractCommand implements Command<CommandSourceStack> {
@@ -69,12 +71,15 @@ public class PlayerEconomySubtractCommand implements Command<CommandSourceStack>
 		playerData.subtractBalance(currency.getId(), amount);
 		vaultManager.reloadAll();
 
-		ApiUtils.sendCommandSenderMessageArgs(sender,
-			localeManager.getMessage(sender, "economy-subtract"),
+		String msg = ApiUtils.formatTextString(localeManager.getMessage(sender, "economy-subtract"),
 			"%prefix%", localeManager.getMessage(sender, "prefix"),
-			"%name%", playerData.getName(),
 			"%amount%", String.valueOf(amount),
 			"%symbol%", currency.getSymbol());
+		Player onlinePlayer = Bukkit.getPlayerExact(playerName);
+		msg = onlinePlayer != null
+			? VaultPlugin.resolvePlayer(msg, onlinePlayer)
+			: VaultPlugin.resolvePlayerByUuid(msg, playerData.getUuid());
+		sender.sendMessage(ApiUtils.formatText(msg));
 
 		return Command.SINGLE_SUCCESS;
 	}

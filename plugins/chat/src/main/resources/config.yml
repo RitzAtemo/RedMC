@@ -4,10 +4,10 @@ chat:
   global:
     enabled: true
     prefix: "!"
-    format: "##PlayerPrefix## <#1E90FF>[G]<#F0F8FF> %player% <#9b94a6>»<#F0F8FF> %message%"
+    format: "<#1E90FF>[G]<#F0F8FF> %sender_prefix%%sender_altname%%sender_suffix% <#9b94a6>»<#F0F8FF> %message%"
   local:
     enabled: true
-    format: "##PlayerPrefix## <#F0F8FF>%player% <#9b94a6>»<#F0F8FF> %message%"
+    format: "<#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix% <#9b94a6>»<#F0F8FF> %message%"
     default-radius: 100
     worlds:
       world:

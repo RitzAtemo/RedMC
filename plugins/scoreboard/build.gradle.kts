@@ -16,6 +16,7 @@ dependencies {
 	implementation("fr.mrmicky:fastboard:2.1.5")
 	implementation(project(":plugins:api"))
 	implementation(project(":plugins:placeholders"))
+	implementation(project(":plugins:vault"))
 }
 
 java {

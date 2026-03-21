@@ -8,50 +8,50 @@ error:
   ticket-not-found: "%prefix%<#FF6B6B>Тикет не найден."
 
 warn:
-  success: "%prefix%<#3DDC97>%player% получил предупреждение. Причина: <#F0F8FF>%reason%"
+  success: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% получил предупреждение. Причина: <#F0F8FF>%reason%"
   received: "%prefix%<#FFB800>Вы получили предупреждение. Причина: <#F0F8FF>%reason%"
-  notify: "<#9b94a6>[Модерация] <#FFB800>%player% <#9b94a6>предупреждён администратором <#F0F8FF>%staff%<#9b94a6>. Причина: <#F0F8FF>%reason%"
+  notify: "<#9b94a6>[Модерация] <#FFB800>%sender_prefix%%sender_altname%%sender_suffix% <#9b94a6>предупреждён администратором <#F0F8FF>%sender_altname%<#9b94a6>. Причина: <#F0F8FF>%reason%"
 
 mute:
-  success: "%prefix%<#3DDC97>%player% заглушен на <#F0F8FF>%duration%<#3DDC97>. Причина: <#F0F8FF>%reason%"
-  success-perm: "%prefix%<#3DDC97>%player% заглушен навсегда. Причина: <#F0F8FF>%reason%"
+  success: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% заглушен на <#F0F8FF>%duration%<#3DDC97>. Причина: <#F0F8FF>%reason%"
+  success-perm: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% заглушен навсегда. Причина: <#F0F8FF>%reason%"
   received: "%prefix%<#FF6B6B>Вы заглушены на <#F0F8FF>%duration%<#FF6B6B>. Причина: <#F0F8FF>%reason%"
   received-perm: "%prefix%<#FF6B6B>Вы заглушены навсегда. Причина: <#F0F8FF>%reason%"
   blocked: "%prefix%<#FF6B6B>Вы заглушены. Осталось: <#F0F8FF>%remaining%"
   blocked-perm: "%prefix%<#FF6B6B>Вы заглушены навсегда."
-  unmute-success: "%prefix%<#3DDC97>%player% разглушён."
-  not-muted: "%prefix%<#FF6B6B>%player% не заглушён."
+  unmute-success: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% разглушён."
+  not-muted: "%prefix%<#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix% не заглушён."
 
 ban:
-  success: "%prefix%<#3DDC97>%player% забанен на <#F0F8FF>%duration%<#3DDC97>. Причина: <#F0F8FF>%reason%"
-  success-perm: "%prefix%<#3DDC97>%player% забанен навсегда. Причина: <#F0F8FF>%reason%"
+  success: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% забанен на <#F0F8FF>%duration%<#3DDC97>. Причина: <#F0F8FF>%reason%"
+  success-perm: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% забанен навсегда. Причина: <#F0F8FF>%reason%"
   screen: "<red><bold>Вы забанены!\n\n<white>Причина: <yellow>%reason%\n<white>Истекает: <yellow>%expiry%\n\n<gray>Апелляция: <white>discord.gg/server"
   screen-perm: "<red><bold>Вы забанены навсегда!\n\n<white>Причина: <yellow>%reason%\n\n<gray>Апелляция: <white>discord.gg/server"
-  unban-success: "%prefix%<#3DDC97>%player% разбанен."
-  not-banned: "%prefix%<#FF6B6B>%player% не забанен."
+  unban-success: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% разбанен."
+  not-banned: "%prefix%<#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix% не забанен."
 
 history:
-  no-history: "%prefix%<#9b94a6>У <#F0F8FF>%player%<#9b94a6> нет истории нарушений."
+  no-history: "%prefix%<#9b94a6>У <#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> нет истории нарушений."
 
 ticket:
   created: "%prefix%<#3DDC97>Тикет создан. ID: <#F0F8FF>%id%"
   closed: "%prefix%<#3DDC97>Тикет <#F0F8FF>%id%<#3DDC97> закрыт."
   already-closed: "%prefix%<#FF6B6B>Тикет <#F0F8FF>%id%<#FF6B6B> уже закрыт."
   reply-sent: "%prefix%<#3DDC97>Ответ на тикет <#F0F8FF>%id%<#3DDC97> отправлен."
-  notify-staff: "<#1E90FF>[Тикет] <#F0F8FF>%player% <#9b94a6>открыл тикет <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%"
-  notify-reply: "<#1E90FF>[Тикет] <#F0F8FF>%staff% <#9b94a6>ответил на тикет <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%"
+  notify-staff: "<#1E90FF>[Тикет] <#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix% <#9b94a6>открыл тикет <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%"
+  notify-reply: "<#1E90FF>[Тикет] <#F0F8FF>%sender_altname% <#9b94a6>ответил на тикет <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%"
   list-header: "%prefix%<#1E90FF>Ваши тикеты:"
   list-entry: "<#9b94a6> - [<#F0F8FF>%id%<#9b94a6>] <#F0F8FF>%status% <#9b94a6>- %message%"
   no-tickets: "%prefix%<#9b94a6>У вас нет тикетов."
 
 gui:
   history:
-    title: "<#1E90FF>История: <#F0F8FF>%player%"
+    title: "<#1E90FF>История: <#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix%"
     prev-page: "<#9b94a6>← Предыдущая страница"
     next-page: "<#9b94a6>Следующая страница →"
     close: "<#FF6B6B>Закрыть"
     empty: "<#9b94a6>На этой странице нет записей."
-    info-name: "<#1E90FF>История %player%"
+    info-name: "<#1E90FF>История %sender_prefix%%sender_altname%%sender_suffix%"
     info-lore: "<#9b94a6>Всего записей: <#F0F8FF>%total%"
     warn-name: "<#FFB800>⚠ Предупреждение"
     mute-name: "<#FF6B6B>Мут"

@@ -8,50 +8,50 @@ error:
   ticket-not-found: "%prefix%<#FF6B6B>Ticket not found."
 
 warn:
-  success: "%prefix%<#3DDC97>%player% has been warned. Reason: <#F0F8FF>%reason%"
+  success: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% has been warned. Reason: <#F0F8FF>%reason%"
   received: "%prefix%<#FFB800>You have been warned. Reason: <#F0F8FF>%reason%"
-  notify: "<#9b94a6>[Moderation] <#FFB800>%player% <#9b94a6>was warned by <#F0F8FF>%staff%<#9b94a6>. Reason: <#F0F8FF>%reason%"
+  notify: "<#9b94a6>[Moderation] <#FFB800>%sender_prefix%%sender_altname%%sender_suffix% <#9b94a6>was warned by <#F0F8FF>%sender_altname%<#9b94a6>. Reason: <#F0F8FF>%reason%"
 
 mute:
-  success: "%prefix%<#3DDC97>%player% has been muted for <#F0F8FF>%duration%<#3DDC97>. Reason: <#F0F8FF>%reason%"
-  success-perm: "%prefix%<#3DDC97>%player% has been permanently muted. Reason: <#F0F8FF>%reason%"
+  success: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% has been muted for <#F0F8FF>%duration%<#3DDC97>. Reason: <#F0F8FF>%reason%"
+  success-perm: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% has been permanently muted. Reason: <#F0F8FF>%reason%"
   received: "%prefix%<#FF6B6B>You have been muted for <#F0F8FF>%duration%<#FF6B6B>. Reason: <#F0F8FF>%reason%"
   received-perm: "%prefix%<#FF6B6B>You have been permanently muted. Reason: <#F0F8FF>%reason%"
   blocked: "%prefix%<#FF6B6B>You are muted. Remaining: <#F0F8FF>%remaining%"
   blocked-perm: "%prefix%<#FF6B6B>You are permanently muted."
-  unmute-success: "%prefix%<#3DDC97>%player% has been unmuted."
-  not-muted: "%prefix%<#FF6B6B>%player% is not muted."
+  unmute-success: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% has been unmuted."
+  not-muted: "%prefix%<#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix% is not muted."
 
 ban:
-  success: "%prefix%<#3DDC97>%player% has been banned for <#F0F8FF>%duration%<#3DDC97>. Reason: <#F0F8FF>%reason%"
-  success-perm: "%prefix%<#3DDC97>%player% has been permanently banned. Reason: <#F0F8FF>%reason%"
+  success: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% has been banned for <#F0F8FF>%duration%<#3DDC97>. Reason: <#F0F8FF>%reason%"
+  success-perm: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% has been permanently banned. Reason: <#F0F8FF>%reason%"
   screen: "<red><bold>You are banned!\n\n<white>Reason: <yellow>%reason%\n<white>Expires: <yellow>%expiry%\n\n<gray>Appeal at <white>discord.gg/server"
   screen-perm: "<red><bold>You are permanently banned!\n\n<white>Reason: <yellow>%reason%\n\n<gray>Appeal at <white>discord.gg/server"
-  unban-success: "%prefix%<#3DDC97>%player% has been unbanned."
-  not-banned: "%prefix%<#FF6B6B>%player% is not banned."
+  unban-success: "%prefix%<#3DDC97>%sender_prefix%%sender_altname%%sender_suffix% has been unbanned."
+  not-banned: "%prefix%<#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix% is not banned."
 
 history:
-  no-history: "%prefix%<#9b94a6>No moderation history for <#F0F8FF>%player%<#9b94a6>."
+  no-history: "%prefix%<#9b94a6>No moderation history for <#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6>."
 
 ticket:
   created: "%prefix%<#3DDC97>Ticket created. ID: <#F0F8FF>%id%"
   closed: "%prefix%<#3DDC97>Ticket <#F0F8FF>%id%<#3DDC97> has been closed."
   already-closed: "%prefix%<#FF6B6B>Ticket <#F0F8FF>%id%<#FF6B6B> is already closed."
   reply-sent: "%prefix%<#3DDC97>Reply sent to ticket <#F0F8FF>%id%<#3DDC97>."
-  notify-staff: "<#1E90FF>[Ticket] <#F0F8FF>%player% <#9b94a6>opened ticket <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%"
-  notify-reply: "<#1E90FF>[Ticket] <#F0F8FF>%staff% <#9b94a6>replied to ticket <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%"
+  notify-staff: "<#1E90FF>[Ticket] <#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix% <#9b94a6>opened ticket <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%"
+  notify-reply: "<#1E90FF>[Ticket] <#F0F8FF>%sender_altname% <#9b94a6>replied to ticket <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%"
   list-header: "%prefix%<#1E90FF>Your tickets:"
   list-entry: "<#9b94a6> - [<#F0F8FF>%id%<#9b94a6>] <#F0F8FF>%status% <#9b94a6>- %message%"
   no-tickets: "%prefix%<#9b94a6>You have no tickets."
 
 gui:
   history:
-    title: "<#1E90FF>History: <#F0F8FF>%player%"
+    title: "<#1E90FF>History: <#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix%"
     prev-page: "<#9b94a6>← Previous Page"
     next-page: "<#9b94a6>Next Page →"
     close: "<#FF6B6B>Close"
     empty: "<#9b94a6>No actions on this page."
-    info-name: "<#1E90FF>%player% History"
+    info-name: "<#1E90FF>%sender_prefix%%sender_altname%%sender_suffix% History"
     info-lore: "<#9b94a6>Total actions: <#F0F8FF>%total%"
     warn-name: "<#FFB800>⚠ Warning"
     mute-name: "<#FF6B6B>Mute"

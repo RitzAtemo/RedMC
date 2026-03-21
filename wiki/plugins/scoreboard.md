@@ -29,7 +29,7 @@ Per-player sidebar scoreboard with frame-based title animations and placeholder 
 | `title.animation` | `true` | Enable animated title cycling |
 | `title.interval` | `100` | Ticks between title frame changes |
 | `title.frames` | `[...]` | List of MiniMessage title frames |
-| `lines` | `[...]` | Ordered list of sidebar line objects; each entry has a `text` field (MiniMessage + `##Placeholder##`) |
+| `lines` | `[...]` | Ordered list of sidebar line objects; each entry has a `text` field (MiniMessage + `##Placeholder##` + `%player_prefix%`/`%player_altname%`/`%player_suffix%`) |
 
 ## Locale Keys
 

@@ -4,7 +4,6 @@ import io.papermc.paper.advancement.AdvancementDisplay;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.HoverEvent;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.kyori.adventure.translation.GlobalTranslator;
 import org.bukkit.Bukkit;
@@ -12,7 +11,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
+import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.chat.ChatPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 
 public class AdvancementListener implements Listener {
 
@@ -51,11 +52,11 @@ public class AdvancementListener implements Listener {
 				.build();
 
 			String format = ChatPlugin.getInstance().getLocaleManager().getMessage(online, frameKey);
-			format = format.replace("%player%", player.getName());
+			format = VaultPlugin.resolvePlayer(format, player);
 
 			String[] parts = format.split("%title%", 2);
-			Component before = MiniMessage.miniMessage().deserialize(parts[0]);
-			Component after = parts.length > 1 ? MiniMessage.miniMessage().deserialize(parts[1]) : Component.empty();
+			Component before = ApiUtils.getMM().deserialize(parts[0]);
+			Component after = parts.length > 1 ? ApiUtils.getMM().deserialize(parts[1]) : Component.empty();
 
 			online.sendMessage(Component.empty().append(before).append(titleWithHover).append(after));
 		}

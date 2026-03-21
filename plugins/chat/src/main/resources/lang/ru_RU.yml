@@ -12,90 +12,90 @@ reload:
 
 chat:
   no-reply-target: "%prefix%<#FF6B6B>Некому ответить."
-  msg-sent: "<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message%"
-  msg-received: "<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message%"
-  reply-sent: "<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ \"%quoted%\")"
-  reply-received: "<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ \"%quoted%\")"
+  msg-sent: "<#9b94a6>[<#F0F8FF>→ %target_prefix%%target_altname%%target_suffix%<#9b94a6>]<#F0F8FF> %message%"
+  msg-received: "<#9b94a6>[<#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix% →<#9b94a6>]<#F0F8FF> %message%"
+  reply-sent: "<#9b94a6>[<#F0F8FF>→ %target_prefix%%target_altname%%target_suffix%<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ \"%quoted%\")"
+  reply-received: "<#9b94a6>[<#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix% →<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ \"%quoted%\")"
 
 welcome:
-  returning: "<#1E90FF>С возвращением, <#F0F8FF>%player%<#1E90FF>!"
-  newbie: "<#FFB800>Добро пожаловать на сервер, <#F0F8FF>%player%<#FFB800>! Используй <#3DDC97>/help<#FFB800> для начала."
+  returning: "<#1E90FF>С возвращением, <#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix%<#1E90FF>!"
+  newbie: "<#FFB800>Добро пожаловать на сервер, <#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix%<#FFB800>! Используй <#3DDC97>/help<#FFB800> для начала."
 
 join-leave:
-  join: "<#3DDC97>+<#F0F8FF> %player% <#9b94a6>зашёл на сервер"
-  newbie: "<#FFB800>★<#F0F8FF> %player% <#9b94a6>впервые зашёл на сервер!"
-  leave: "<#FF6B6B>-<#F0F8FF> %player% <#9b94a6>вышел с сервера"
+  join: "<#3DDC97>+<#F0F8FF> %sender_prefix%%sender_altname%%sender_suffix% <#9b94a6>зашёл на сервер"
+  newbie: "<#FFB800>★<#F0F8FF> %sender_prefix%%sender_altname%%sender_suffix% <#9b94a6>впервые зашёл на сервер!"
+  leave: "<#FF6B6B>-<#F0F8FF> %sender_prefix%%sender_altname%%sender_suffix% <#9b94a6>вышел с сервера"
 
 death:
   groups:
     default:
       messages:
-        - "<#9b94a6>%player% умер"
-        - "<#9b94a6>%player% пал"
-        - "<#9b94a6>%player% встретил свою судьбу"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% умер"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% пал"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% встретил свою судьбу"
     by_player:
       messages:
-        - "<#FF6B6B>%player%<#9b94a6> был убит игроком <#FFB800>%killer%"
-        - "<#FFB800>%killer%<#9b94a6> победил <#FF6B6B>%player%"
-        - "<#FF6B6B>%player%<#9b94a6> не выжил против <#FFB800>%killer%"
+        - "<#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> был убит игроком <#FFB800>%killer%"
+        - "<#FFB800>%killer%<#9b94a6> победил <#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix%"
+        - "<#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> не выжил против <#FFB800>%killer%"
     by_player_weapon:
       messages:
-        - "<#FF6B6B>%player%<#9b94a6> был убит игроком <#FFB800>%killer%<#9b94a6> с помощью <#F0F8FF>%weapon%"
-        - "<#FFB800>%killer%<#9b94a6> победил <#FF6B6B>%player%<#9b94a6>, используя <#F0F8FF>%weapon%"
-        - "<#FF6B6B>%player%<#9b94a6> не выжил против <#FFB800>%killer%<#9b94a6> с <#F0F8FF>%weapon%"
+        - "<#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> был убит игроком <#FFB800>%killer%<#9b94a6> с помощью <#F0F8FF>%weapon%"
+        - "<#FFB800>%killer%<#9b94a6> победил <#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6>, используя <#F0F8FF>%weapon%"
+        - "<#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> не выжил против <#FFB800>%killer%<#9b94a6> с <#F0F8FF>%weapon%"
     by_fall:
       messages:
-        - "<#9b94a6>%player% упал с высоты"
-        - "<#9b94a6>%player% не выдержал урона от падения"
-        - "<#9b94a6>%player% забыл, что не умеет летать"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% упал с высоты"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% не выдержал урона от падения"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% забыл, что не умеет летать"
     by_fire:
       messages:
-        - "<#FF6B6B>%player%<#9b94a6> сгорел заживо"
-        - "<#9b94a6>%player% был поглощён пламенем"
-        - "<#FF6B6B>%player%<#9b94a6> почувствовал жар"
+        - "<#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> сгорел заживо"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% был поглощён пламенем"
+        - "<#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> почувствовал жар"
     by_lava:
       messages:
-        - "<#FF6B6B>%player%<#9b94a6> попытался поплавать в лаве"
-        - "<#9b94a6>%player% узнал, что лава — это не вода"
-        - "<#FF6B6B>%player%<#9b94a6> принял лавовую ванну"
+        - "<#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> попытался поплавать в лаве"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% узнал, что лава — это не вода"
+        - "<#FF6B6B>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> принял лавовую ванну"
     by_drowning:
       messages:
-        - "<#1E90FF>%player%<#9b94a6> утонул"
-        - "<#9b94a6>%player% забыл, как дышать"
-        - "<#1E90FF>%player%<#9b94a6> закончился воздух"
+        - "<#1E90FF>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> утонул"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% забыл, как дышать"
+        - "<#1E90FF>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> закончился воздух"
     by_explosion:
       messages:
-        - "<#9b94a6>%player% взорвался"
-        - "<#9b94a6>%player% был разнесён на куски"
-        - "<#9b94a6>%player% не оценил радиус взрыва"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% взорвался"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% был разнесён на куски"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% не оценил радиус взрыва"
     by_void:
       messages:
-        - "<#9b94a6>%player% упал в пустоту"
-        - "<#888888>%player% исчез в бездне"
-        - "<#9b94a6>%player% попрощался с миром"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% упал в пустоту"
+        - "<#888888>%sender_prefix%%sender_altname%%sender_suffix% исчез в бездне"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% попрощался с миром"
     by_entity:
       messages:
-        - "<#9b94a6>%player% был убит <#FF6B6B>%killer%"
-        - "<#FF6B6B>%killer%<#9b94a6> прервал путь %player%"
-        - "<#9b94a6>%player% был не готов к <#FF6B6B>%killer%"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% был убит <#FF6B6B>%killer%"
+        - "<#FF6B6B>%killer%<#9b94a6> прервал путь %sender_prefix%%sender_altname%%sender_suffix%"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% был не готов к <#FF6B6B>%killer%"
     by_magic:
       messages:
-        - "<#C780FA>%player%<#9b94a6> был убит магией"
-        - "<#9b94a6>%player% стал жертвой колдовства"
+        - "<#C780FA>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> был убит магией"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% стал жертвой колдовства"
     by_wither:
       messages:
-        - "<#9b94a6>%player% иссох"
-        - "<#888888>%player%<#9b94a6> поддался иссушению"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% иссох"
+        - "<#888888>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> поддался иссушению"
     by_starve:
       messages:
-        - "<#9b94a6>%player% умер от голода"
-        - "<#9b94a6>%player% забыл поесть"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% умер от голода"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% забыл поесть"
     by_lightning:
       messages:
-        - "<#FFB800>%player%<#9b94a6> был поражён молнией"
-        - "<#9b94a6>%player% получил незабываемый опыт"
+        - "<#FFB800>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> был поражён молнией"
+        - "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% получил незабываемый опыт"
 
 advancement:
-  task: "<#9b94a6>[<#3DDC97>Достижение<#9b94a6>]<#F0F8FF> %player%<#9b94a6> получил достижение <#F0F8FF>[<#3DDC97>%title%<#F0F8FF>]"
-  goal: "<#9b94a6>[<#1E90FF>Достижение<#9b94a6>]<#F0F8FF> %player%<#9b94a6> достиг цели <#1E90FF>[<#F0F8FF>%title%<#1E90FF>]"
-  challenge: "<#9b94a6>[<#FFB800>Достижение<#9b94a6>]<#F0F8FF> %player%<#9b94a6> выполнил испытание <#FFB800>[<#F0F8FF>%title%<#FFB800>]"
+  task: "<#9b94a6>[<#3DDC97>Достижение<#9b94a6>]<#F0F8FF> %sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> получил достижение <#F0F8FF>[<#3DDC97>%title%<#F0F8FF>]"
+  goal: "<#9b94a6>[<#1E90FF>Достижение<#9b94a6>]<#F0F8FF> %sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> достиг цели <#1E90FF>[<#F0F8FF>%title%<#1E90FF>]"
+  challenge: "<#9b94a6>[<#FFB800>Достижение<#9b94a6>]<#F0F8FF> %sender_prefix%%sender_altname%%sender_suffix%<#9b94a6> выполнил испытание <#FFB800>[<#F0F8FF>%title%<#FFB800>]"

@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.moderation.ModerationPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 
 import java.util.UUID;
 
@@ -46,11 +47,12 @@ public class WarnCommand implements Command<CommandSourceStack> {
 
         plugin.getWarnManager().warn(target.getUniqueId(), staffUuid, staffName, reason);
 
-        ApiUtils.sendCommandSenderMessageArgs(sender,
-            locale.getMessage(sender, "warn.success"),
-            "%prefix%", locale.getMessage(sender, "prefix"),
-            "%player%", target.getName(),
-            "%reason%", reason);
+        String successMsg = VaultPlugin.resolvePlayer(
+            ApiUtils.formatTextString(locale.getMessage(sender, "warn.success"),
+                "%prefix%", locale.getMessage(sender, "prefix"),
+                "%reason%", reason),
+            target);
+        sender.sendMessage(ApiUtils.formatText(successMsg));
 
         ApiUtils.sendPlayerMessageArgs(target,
             locale.getMessage(target, "warn.received"),
@@ -58,11 +60,13 @@ public class WarnCommand implements Command<CommandSourceStack> {
             "%reason%", reason);
 
         if (plugin.getConfigManager().getBoolean("config.yml", "moderation.broadcast-warns", true)) {
-            ApiUtils.broadcastMessageArgs(
-                locale.getMessage(sender, "warn.notify"),
-                "%player%", target.getName(),
-                "%staff%", staffName,
-                "%reason%", reason);
+            Player staffPlayer = sender instanceof Player p2 ? p2 : null;
+            String notify = VaultPlugin.resolvePlayer(
+                VaultPlugin.resolveTwoPlayers(
+                    ApiUtils.formatTextString(locale.getMessage(sender, "warn.notify"), "%reason%", reason),
+                    staffPlayer, target),
+                target);
+            ApiUtils.broadcastMessage(notify);
         }
 
         return Command.SINGLE_SUCCESS;

@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.moderation.ModerationPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 import red.aviora.redmc.moderation.managers.TicketManager;
 import red.aviora.redmc.moderation.models.Ticket;
 
@@ -50,11 +51,12 @@ public class TicketCommand {
             // Notify online staff
             for (Player online : plugin.getServer().getOnlinePlayers()) {
                 if (online.hasPermission("redmc.tickets")) {
-                    ApiUtils.sendPlayerMessageArgs(online,
-                        locale.getMessage(online, "ticket.notify-staff"),
-                        "%player%", player.getName(),
-                        "%id%", ticket.getShortId(),
-                        "%message%", message);
+                    String notify = VaultPlugin.resolvePlayer(
+                        ApiUtils.formatTextString(locale.getMessage(online, "ticket.notify-staff"),
+                            "%id%", ticket.getShortId(),
+                            "%message%", message),
+                        player);
+                    online.sendMessage(ApiUtils.formatText(notify));
                 }
             }
 

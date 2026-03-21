@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.perks.PerksPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 
 public class SudoCommand implements Command<CommandSourceStack> {
 
@@ -33,12 +34,11 @@ public class SudoCommand implements Command<CommandSourceStack> {
 			target.performCommand(command);
 		});
 
-		ApiUtils.sendCommandSenderMessageArgs(player,
-			plugin.getLocaleManager().getMessage(player, "admin.sudo.executed"),
-			"%prefix%", plugin.getLocaleManager().getMessage(player, "prefix"),
-			"%player%", target.getName(),
-			"%command%", command
-		);
+		player.sendMessage(ApiUtils.formatText(VaultPlugin.resolvePlayer(
+			ApiUtils.formatTextString(plugin.getLocaleManager().getMessage(player, "admin.sudo.executed"),
+				"%prefix%", plugin.getLocaleManager().getMessage(player, "prefix"),
+				"%command%", command),
+			target)));
 		return SINGLE_SUCCESS;
 	}
 }

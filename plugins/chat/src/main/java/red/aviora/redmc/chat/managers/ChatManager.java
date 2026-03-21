@@ -1,7 +1,6 @@
 package red.aviora.redmc.chat.managers;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -13,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.chat.ChatPlugin;
 import red.aviora.redmc.placeholders.PlaceholdersPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 
 import java.util.LinkedHashMap;
 import java.util.regex.Pattern;
@@ -79,7 +79,7 @@ public class ChatManager {
 			}
 			String cleanMsg = message.substring(globalPrefix.length()).trim();
 			String formatted = formatChatMessage(globalFormat, player, cleanMsg);
-			Component component = ApiUtils.formatText(formatted);
+			Component component = ApiUtils.formatText(VaultPlugin.resolvePlayer(formatted, player));
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				p.sendMessage(component);
 			}
@@ -98,7 +98,7 @@ public class ChatManager {
 
 	private void sendToLocal(Player player, String message) {
 		String formatted = formatChatMessage(localFormat, player, message);
-		Component component = ApiUtils.formatText(formatted);
+		Component component = ApiUtils.formatText(VaultPlugin.resolvePlayer(formatted, player));
 		for (Player target : getLocalReceivers(player)) {
 			target.sendMessage(component);
 		}
@@ -108,26 +108,28 @@ public class ChatManager {
 		if (!privateEnabled) return;
 
 		boolean isReply = quotedMessage != null;
-		String escaped = MiniMessage.miniMessage().escapeTags(message);
-		String escapedQuote = isReply ? MiniMessage.miniMessage().escapeTags(truncate(quotedMessage, 40)) : "";
+		String escaped = ApiUtils.getMM().escapeTags(message);
+		String escapedQuote = isReply ? ApiUtils.getMM().escapeTags(truncate(quotedMessage, 40)) : "";
 
 		String senderKey = isReply ? "chat.reply-sent" : "chat.msg-sent";
 		String receiverKey = isReply ? "chat.reply-received" : "chat.msg-received";
 
-		String senderFormat = ChatPlugin.getInstance().getLocaleManager().getMessage(sender, senderKey);
-		senderFormat = senderFormat
-			.replace("%target%", receiver.getName())
-			.replace("%sender%", sender.getName())
-			.replace("%message%", escaped)
-			.replace("%quoted%", escapedQuote);
+		var locale = ChatPlugin.getInstance().getLocaleManager();
+
+		String senderFormat = locale.getMessage(sender, senderKey);
+		senderFormat = resolvePlaceholders(
+			VaultPlugin.resolveTwoPlayers(senderFormat, sender, receiver)
+				.replace("%prefix%", locale.getMessage(sender, "prefix"))
+				.replace("%message%", escaped)
+				.replace("%quoted%", escapedQuote), sender);
 		sender.sendMessage(ApiUtils.formatText(senderFormat));
 
-		String receiverFormat = ChatPlugin.getInstance().getLocaleManager().getMessage(receiver, receiverKey);
-		receiverFormat = receiverFormat
-			.replace("%target%", receiver.getName())
-			.replace("%sender%", sender.getName())
-			.replace("%message%", escaped)
-			.replace("%quoted%", escapedQuote);
+		String receiverFormat = locale.getMessage(receiver, receiverKey);
+		receiverFormat = resolvePlaceholders(
+			VaultPlugin.resolveTwoPlayers(receiverFormat, sender, receiver)
+				.replace("%prefix%", locale.getMessage(receiver, "prefix"))
+				.replace("%message%", escaped)
+				.replace("%quoted%", escapedQuote), receiver);
 		receiver.sendMessage(ApiUtils.formatText(receiverFormat));
 
 		ChatPlugin.getInstance().getSessionManager().recordReceived(receiver.getUniqueId(), sender.getUniqueId(), message);
@@ -138,7 +140,7 @@ public class ChatManager {
 
 		Component killerComponent;
 		if (killer != null) {
-			killerComponent = Component.text(killer.getName());
+			killerComponent = ApiUtils.getMM().deserialize(resolvePlaceholders("##PlayerAltName##", killer));
 		} else if (lastDamager instanceof LivingEntity le) {
 			Component customName = le.customName();
 			killerComponent = customName != null ? customName : Component.translatable(le.getType().translationKey());
@@ -157,8 +159,7 @@ public class ChatManager {
 		for (Player receiver : getLocalReceivers(victim)) {
 			String template = getLocalizedDeathMessage(receiver, groupId);
 			if (template == null) continue;
-			String withPlayer = template.replace("%player%", MiniMessage.miniMessage().escapeTags(victim.getName()));
-			withPlayer = resolvePlaceholders(withPlayer, victim);
+			String withPlayer = resolvePlaceholders(template, victim);
 
 			var replacements = new LinkedHashMap<String, Component>();
 			replacements.put("%killer%", killerComponent);
@@ -188,7 +189,7 @@ public class ChatManager {
 		}
 		Component result = Component.empty();
 		for (Object part : parts) {
-			if (part instanceof String s) result = result.append(MiniMessage.miniMessage().deserialize(s));
+			if (part instanceof String s) result = result.append(ApiUtils.getMM().deserialize(s));
 			else if (part instanceof Component c) result = result.append(c);
 		}
 		return result;
@@ -239,9 +240,8 @@ public class ChatManager {
 	}
 
 	private String formatChatMessage(String template, Player player, String message) {
-		String escaped = MiniMessage.miniMessage().escapeTags(message);
+		String escaped = ApiUtils.getMM().escapeTags(message);
 		String result = template
-			.replace("%player%", player.getName())
 			.replace("%message%", escaped)
 			.replace("%world%", player.getWorld().getName());
 		return resolvePlaceholders(result, player);

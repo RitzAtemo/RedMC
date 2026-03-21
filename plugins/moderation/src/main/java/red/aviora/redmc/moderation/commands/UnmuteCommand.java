@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.moderation.ModerationPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 
 @SuppressWarnings("UnstableApiUsage")
 public class UnmuteCommand implements Command<CommandSourceStack> {
@@ -39,17 +40,12 @@ public class UnmuteCommand implements Command<CommandSourceStack> {
 
         boolean unmuted = plugin.getMuteManager().unmute(target.getUniqueId());
 
-        if (unmuted) {
-            ApiUtils.sendCommandSenderMessageArgs(sender,
-                locale.getMessage(sender, "mute.unmute-success"),
-                "%prefix%", locale.getMessage(sender, "prefix"),
-                "%player%", target.getName());
-        } else {
-            ApiUtils.sendCommandSenderMessageArgs(sender,
-                locale.getMessage(sender, "mute.not-muted"),
-                "%prefix%", locale.getMessage(sender, "prefix"),
-                "%player%", target.getName());
-        }
+        String key = unmuted ? "mute.unmute-success" : "mute.not-muted";
+        String msg = VaultPlugin.resolvePlayer(
+            ApiUtils.formatTextString(locale.getMessage(sender, key),
+                "%prefix%", locale.getMessage(sender, "prefix")),
+            target);
+        sender.sendMessage(ApiUtils.formatText(msg));
 
         return Command.SINGLE_SUCCESS;
     }

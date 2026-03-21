@@ -10,6 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.moderation.ModerationPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 import red.aviora.redmc.moderation.models.ModerationAction;
 import red.aviora.redmc.moderation.models.ModerationActionType;
 import red.aviora.redmc.moderation.utils.DurationParser;
@@ -25,6 +26,10 @@ public class HistoryGui {
     private static final int PAGE_SIZE = 45;
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
+    public static void open(Player viewer, UUID targetUuid, int page) {
+        open(viewer, targetUuid, null, page);
+    }
+
     public static void open(Player viewer, UUID targetUuid, String targetName, int page) {
         ModerationPlugin plugin = ModerationPlugin.getInstance();
         LocaleManager locale = plugin.getLocaleManager();
@@ -37,8 +42,10 @@ public class HistoryGui {
         if (page < 0) page = 0;
         if (page >= totalPages) page = totalPages - 1;
 
+        Player target = Bukkit.getPlayer(targetUuid);
         String titleRaw = locale.getMessage(viewer, "gui.history.title");
-        titleRaw = titleRaw.replace("%player%", targetName);
+        titleRaw = target != null ? VaultPlugin.resolvePlayer(titleRaw, target)
+                : (targetName != null ? titleRaw.replace("##PlayerAltName##", targetName) : titleRaw);
         Component title = ApiUtils.getMM().deserialize(titleRaw);
 
         HistoryHolder holder = new HistoryHolder(targetUuid, targetName, page);
@@ -64,7 +71,8 @@ public class HistoryGui {
         // Info item slot 48
         ItemStack infoItem = new ItemStack(Material.BOOK);
         ItemMeta infoMeta = infoItem.getItemMeta();
-        String infoNameRaw = locale.getMessage(viewer, "gui.history.info-name").replace("%player%", targetName);
+        String infoNameRaw = target != null ? VaultPlugin.resolvePlayer(locale.getMessage(viewer, "gui.history.info-name"), target)
+                : locale.getMessage(viewer, "gui.history.info-name").replace("##PlayerAltName##", targetName != null ? targetName : "");
         infoMeta.displayName(ApiUtils.getMM().deserialize(infoNameRaw));
         String infoLoreRaw = locale.getMessage(viewer, "gui.history.info-lore").replace("%total%", String.valueOf(history.size()));
         infoMeta.lore(List.of(ApiUtils.getMM().deserialize(infoLoreRaw)));

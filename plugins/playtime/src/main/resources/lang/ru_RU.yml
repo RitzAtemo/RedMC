@@ -7,11 +7,11 @@ error:
 
 playtime:
   own: "%prefix%<#9b94a6>Ваше время в игре: <#F0F8FF>%playtime%"
-  other: "%prefix%<#9b94a6>Время игры %player%: <#F0F8FF>%playtime%"
+  other: "%prefix%<#9b94a6>Время игры %sender_prefix%%sender_altname%%sender_suffix%: <#F0F8FF>%playtime%"
 
 afk:
-  now-afk: "<#9b94a6>%player% <#888888>теперь AFK."
-  returned: "<#9b94a6>%player% <#888888>вернулся из AFK."
+  now-afk: "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% <#888888>теперь AFK."
+  returned: "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% <#888888>вернулся из AFK."
   self-afk: "%prefix%<#9b94a6>Вы теперь AFK."
   self-returned: "%prefix%<#3DDC97>С возвращением!"
 

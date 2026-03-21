@@ -12,7 +12,9 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.MessageComponentSerializer;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class PlayerEconomyBalanceCommand implements Command<CommandSourceStack> {
@@ -52,13 +54,16 @@ public class PlayerEconomyBalanceCommand implements Command<CommandSourceStack> 
 
 		double balance = playerData.getBalance(currency.getId());
 
-		ApiUtils.sendCommandSenderMessageArgs(sender,
-			localeManager.getMessage(sender, "economy-balance"),
+		String msg = ApiUtils.formatTextString(localeManager.getMessage(sender, "economy-balance"),
 			"%prefix%", localeManager.getMessage(sender, "prefix"),
-			"%name%", playerData.getName(),
 			"%balance%", String.valueOf(balance),
 			"%currency%", currency.getDisplayName(),
 			"%symbol%", currency.getSymbol());
+		Player onlinePlayer = Bukkit.getPlayerExact(playerName);
+		msg = onlinePlayer != null
+			? VaultPlugin.resolvePlayer(msg, onlinePlayer)
+			: VaultPlugin.resolvePlayerByUuid(msg, playerData.getUuid());
+		sender.sendMessage(ApiUtils.formatText(msg));
 
 		return Command.SINGLE_SUCCESS;
 	}

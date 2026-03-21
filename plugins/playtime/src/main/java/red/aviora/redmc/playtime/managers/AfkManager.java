@@ -1,12 +1,12 @@
 package red.aviora.redmc.playtime.managers;
 
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.ConfigManager;
 import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.playtime.PlaytimePlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 
 import java.util.Map;
 import java.util.UUID;
@@ -131,7 +131,7 @@ public class AfkManager {
                     String reason = configManager.getString("config.yml", "afk.kick.reason",
                             "<red>You were kicked for being AFK.");
                     player.getScheduler().run(PlaytimePlugin.getInstance(), t ->
-                            player.kick(MiniMessage.miniMessage().deserialize(reason)), null);
+                            player.kick(ApiUtils.getMM().deserialize(reason)), null);
                 }
             }
         }
@@ -145,9 +145,8 @@ public class AfkManager {
             afkSince.put(uuid, System.currentTimeMillis() / 1000L);
 
             if (configManager.getBoolean("config.yml", "afk.broadcast.on-afk", true)) {
-                ApiUtils.broadcastMessageArgs(
-                        localeManager.getMessage(player, "afk.now-afk"),
-                        "%player%", player.getName());
+                ApiUtils.broadcastMessage(VaultPlugin.resolvePlayer(
+                        localeManager.getMessage(player, "afk.now-afk"), player));
             }
             ApiUtils.sendPlayerMessageArgs(player,
                     localeManager.getMessage(player, "afk.self-afk"),
@@ -160,9 +159,8 @@ public class AfkManager {
             }
 
             if (configManager.getBoolean("config.yml", "afk.broadcast.on-return", true)) {
-                ApiUtils.broadcastMessageArgs(
-                        localeManager.getMessage(player, "afk.returned"),
-                        "%player%", player.getName());
+                ApiUtils.broadcastMessage(VaultPlugin.resolvePlayer(
+                        localeManager.getMessage(player, "afk.returned"), player));
             }
             ApiUtils.sendPlayerMessageArgs(player,
                     localeManager.getMessage(player, "afk.self-returned"),

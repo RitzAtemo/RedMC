@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.persistence.PersistentDataType;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.chat.ChatPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 
 public class JoinLeaveListener implements Listener {
 
@@ -28,21 +29,19 @@ public class JoinLeaveListener implements Listener {
 			return;
 		}
 
-		String playerName = player.getName();
-
 		boolean joinEnabled = plugin.getConfigManager().getBoolean("config.yml", "join-leave.join.enabled", true);
 		if (joinEnabled) {
 			for (Player online : Bukkit.getOnlinePlayers()) {
-				String format = plugin.getLocaleManager().getMessage(online, "join-leave.join");
-				online.sendMessage(ApiUtils.formatText(format.replace("%player%", playerName)));
+				online.sendMessage(ApiUtils.formatText(VaultPlugin.resolvePlayer(
+						plugin.getLocaleManager().getMessage(online, "join-leave.join"), player)));
 			}
 		}
 
 		boolean newbieEnabled = plugin.getConfigManager().getBoolean("config.yml", "join-leave.newbie.enabled", true);
 		if (newbieEnabled && !player.hasPlayedBefore()) {
 			for (Player online : Bukkit.getOnlinePlayers()) {
-				String format = plugin.getLocaleManager().getMessage(online, "join-leave.newbie");
-				online.sendMessage(ApiUtils.formatText(format.replace("%player%", playerName)));
+				online.sendMessage(ApiUtils.formatText(VaultPlugin.resolvePlayer(
+						plugin.getLocaleManager().getMessage(online, "join-leave.newbie"), player)));
 			}
 		}
 
@@ -51,17 +50,17 @@ public class JoinLeaveListener implements Listener {
 		boolean welcomeNewbieEnabled = plugin.getConfigManager().getBoolean("config.yml", "welcome.newbie.enabled", true);
 		boolean newbieFirst = plugin.getConfigManager().getBoolean("config.yml", "welcome.newbie.priority-first", false);
 
-		String welcomeMsg = plugin.getLocaleManager().getMessage(player, "welcome.returning");
-		String welcomeNewbieMsg = plugin.getLocaleManager().getMessage(player, "welcome.newbie");
-
 		if (isNewbie && welcomeNewbieEnabled && newbieFirst) {
-			player.sendMessage(ApiUtils.formatText(welcomeNewbieMsg.replace("%player%", playerName)));
+			player.sendMessage(ApiUtils.formatText(VaultPlugin.resolvePlayer(
+					plugin.getLocaleManager().getMessage(player, "welcome.newbie"), player)));
 		}
 		if (welcomeEnabled) {
-			player.sendMessage(ApiUtils.formatText(welcomeMsg.replace("%player%", playerName)));
+			player.sendMessage(ApiUtils.formatText(VaultPlugin.resolvePlayer(
+					plugin.getLocaleManager().getMessage(player, "welcome.returning"), player)));
 		}
 		if (isNewbie && welcomeNewbieEnabled && !newbieFirst) {
-			player.sendMessage(ApiUtils.formatText(welcomeNewbieMsg.replace("%player%", playerName)));
+			player.sendMessage(ApiUtils.formatText(VaultPlugin.resolvePlayer(
+					plugin.getLocaleManager().getMessage(player, "welcome.newbie"), player)));
 		}
 	}
 
@@ -78,11 +77,10 @@ public class JoinLeaveListener implements Listener {
 
 		boolean enabled = plugin.getConfigManager().getBoolean("config.yml", "join-leave.leave.enabled", true);
 		if (enabled) {
-			String playerName = quitter.getName();
 			for (Player online : Bukkit.getOnlinePlayers()) {
 				if (online.equals(quitter)) continue;
-				String format = plugin.getLocaleManager().getMessage(online, "join-leave.leave");
-				online.sendMessage(ApiUtils.formatText(format.replace("%player%", playerName)));
+				online.sendMessage(ApiUtils.formatText(VaultPlugin.resolvePlayer(
+						plugin.getLocaleManager().getMessage(online, "join-leave.leave"), quitter)));
 			}
 		}
 

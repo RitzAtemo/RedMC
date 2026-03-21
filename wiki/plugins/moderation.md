@@ -183,7 +183,7 @@ tickets:
 | `error.ticket-not-found` | `%prefix%<#FF6B6B>Ticket not found.` |
 | `warn.success` | `%prefix%<#3DDC97>%player% has been warned. Reason: <#F0F8FF>%reason%` |
 | `warn.received` | `%prefix%<#FFB800>You have been warned. Reason: <#F0F8FF>%reason%` |
-| `warn.notify` | `<#9b94a6>[Moderation] <#FFB800>%player% <#9b94a6>was warned by <#F0F8FF>%staff%<#9b94a6>. Reason: <#F0F8FF>%reason%` |
+| `warn.notify` | `<#9b94a6>[Moderation] <#FFB800>%target_prefix%%target_altname%%target_suffix% <#9b94a6>was warned by <#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix%<#9b94a6>. Reason: <#F0F8FF>%reason%` |
 | `mute.success` | `%prefix%<#3DDC97>%player% has been muted for <#F0F8FF>%duration%<#3DDC97>. Reason: <#F0F8FF>%reason%` |
 | `mute.success-perm` | `%prefix%<#3DDC97>%player% has been permanently muted. Reason: <#F0F8FF>%reason%` |
 | `mute.received` | `%prefix%<#FF6B6B>You have been muted for <#F0F8FF>%duration%<#FF6B6B>. Reason: <#F0F8FF>%reason%` |
@@ -204,7 +204,7 @@ tickets:
 | `ticket.already-closed` | `%prefix%<#FF6B6B>Ticket <#F0F8FF>%id%<#FF6B6B> is already closed.` |
 | `ticket.reply-sent` | `%prefix%<#3DDC97>Reply sent to ticket <#F0F8FF>%id%<#3DDC97>.` |
 | `ticket.notify-staff` | `<#1E90FF>[Ticket] <#F0F8FF>%player% <#9b94a6>opened ticket <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%` |
-| `ticket.notify-reply` | `<#1E90FF>[Ticket] <#F0F8FF>%staff% <#9b94a6>replied to ticket <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%` |
+| `ticket.notify-reply` | `<#1E90FF>[Ticket] <#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix% <#9b94a6>replied to ticket <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%` |
 | `ticket.list-header` | `%prefix%<#1E90FF>Your tickets:` |
 | `ticket.list-entry` | `<#9b94a6> - [<#F0F8FF>%id%<#9b94a6>] <#F0F8FF>%status% <#9b94a6>- %message%` |
 | `ticket.no-tickets` | `%prefix%<#9b94a6>You have no tickets.` |

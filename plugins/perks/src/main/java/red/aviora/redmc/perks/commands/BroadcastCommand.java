@@ -8,6 +8,7 @@ import io.papermc.paper.command.brigadier.CommandSourceStack;
 import org.bukkit.entity.Player;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.perks.PerksPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 
 public class BroadcastCommand implements Command<CommandSourceStack> {
 
@@ -20,7 +21,8 @@ public class BroadcastCommand implements Command<CommandSourceStack> {
 
 		String message = StringArgumentType.getString(ctx, "message");
 		String format = plugin.getLocaleManager().getMessage(player, "broadcast.format");
-		ApiUtils.broadcastMessageArgs(format, "%player%", player.getName(), "%message%", message);
+		ApiUtils.broadcastMessage(VaultPlugin.resolvePlayer(
+			ApiUtils.formatTextString(format, "%message%", message), player));
 		PerksCommandHelper.applyCooldown(player, "broadcast");
 
 		ApiUtils.sendCommandSenderMessageArgs(player,

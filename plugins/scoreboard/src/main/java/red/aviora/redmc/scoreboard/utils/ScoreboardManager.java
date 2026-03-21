@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.ConfigManager;
 import red.aviora.redmc.scoreboard.ScoreboardPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 import red.aviora.redmc.scoreboard.models.ScoreboardAnimation;
 
 import java.util.ArrayList;
@@ -151,6 +152,7 @@ public class ScoreboardManager {
 	}
 
 	private String resolvePlaceholders(String text, Player player) {
+		text = VaultPlugin.resolvePlayer(text, player);
 		try {
 			var placeholdersPlugin = JavaPlugin.getPlugin(
 				red.aviora.redmc.placeholders.PlaceholdersPlugin.class

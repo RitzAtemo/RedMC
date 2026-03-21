@@ -163,3 +163,35 @@ Placeholders use `##Key##` syntax. Registered via `PlaceholdersPlugin.getRegistr
 Each registry maps keys to `PlaceholderContext` (a `Function<Player, String>`). Dynamic keys use a `patternHandler` (`BiFunction<String, Player, String>`).
 
 `PlaceholderParser.parse(text, player)` resolves all `##Key##` tokens.
+
+## Player Display Tokens
+
+Locale strings must not reference `##PlayerName##`, `%player%`, or `%name%` directly for player display. Instead, use the Vault token families resolved by `VaultPlugin`:
+
+| Token | Context |
+|---|---|
+| `%player_prefix%%player_altname%%player_suffix%` | Single-player (self or one target) |
+| `%sender_prefix%%sender_altname%%sender_suffix%` | Acting player in two-player messages |
+| `%target_prefix%%target_altname%%target_suffix%` | Receiving player in two-player messages |
+
+Resolution in Java:
+
+```java
+// Single online player
+msg = VaultPlugin.resolvePlayer(msg, player);
+
+// Two online players
+msg = VaultPlugin.resolveTwoPlayers(msg, sender, target);
+
+// Sender online, target offline (by UUID)
+msg = VaultPlugin.resolveTwoPlayers(msg, sender, targetUuid);
+
+// Any player by UUID only (offline-safe)
+msg = VaultPlugin.resolvePlayerByUuid(msg, uuid);
+```
+
+Offline players are resolved via `VaultMetaResolver` which reads stored `vault.prefix.*` / `vault.altname.*` / `vault.suffix.*` permission entries — no online `Player` required. The `%player_altname%` falls back to `VaultPlayerData.getName()` when no altname permission is set.
+
+## MiniMessage
+
+Always use `ApiUtils.getMM()` to obtain the `MiniMessage` instance. Never use `MiniMessage.miniMessage()` directly.

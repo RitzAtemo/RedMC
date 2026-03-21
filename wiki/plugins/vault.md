@@ -19,17 +19,18 @@ Economy system, player/group prefixes, suffixes, and alt names. Integrates with 
 │       ├── set <weight> <suffix>
 │       ├── get
 │       └── remove
+├── player search <prefix|altname|suffix> <query>
 └── player <player>
     ├── prefix
-    │   ├── set <prefix> <weight>
+    │   ├── set <weight> <prefix>
     │   ├── get
     │   └── remove
     ├── suffix
-    │   ├── set <suffix> <weight>
+    │   ├── set <weight> <suffix>
     │   ├── get
     │   └── remove
     ├── altname
-    │   ├── set <name> <weight>
+    │   ├── set <weight> <name>
     │   ├── get
     │   └── remove
     └── economy
@@ -55,9 +56,43 @@ Economy system, player/group prefixes, suffixes, and alt names. Integrates with 
 | `redmc.vault.player.suffix.set/get/remove` | op |
 | `redmc.vault.player.altname.set/get/remove` | op |
 | `redmc.vault.player.economy.balance/set/add/subtract` | op |
+| `redmc.vault.player.search` | op |
 | `redmc.vault.balance` | true |
 | `redmc.vault.baltop` | true |
 | `redmc.vault.pay` | true |
+
+## Player Display Tokens
+
+Vault registers a static API (`VaultPlugin`) used by other plugins to resolve player display tokens in locale strings. Three token families are supported:
+
+| Token family | Context |
+|---|---|
+| `%player_prefix%` / `%player_altname%` / `%player_suffix%` | Single-player context (self, generic target) |
+| `%sender_prefix%` / `%sender_altname%` / `%sender_suffix%` | The acting/sending player in two-player context |
+| `%target_prefix%` / `%target_altname%` / `%target_suffix%` | The receiving/target player in two-player context |
+
+Resolution for online players goes through `PlaceholderResolver` (`##PlayerPrefix##`, `##PlayerAltName##`, `##PlayerSuffix##`). For offline players, `VaultMetaResolver` reads the stored `vault.prefix.*`, `vault.altname.*`, `vault.suffix.*` permission entries directly by UUID — no online `Player` required.
+
+### Static methods
+
+| Method | Description |
+|---|---|
+| `resolvePlayer(text, Player)` | Replaces all three families with the same player's values |
+| `resolveTwoPlayers(text, Player, Player)` | Sender tokens from `sender`, target tokens from `target` |
+| `resolveTwoPlayers(text, Player, UUID)` | Sender from online `Player`, target from UUID (offline-safe) |
+| `resolvePlayerByUuid(text, UUID)` | All three families via `VaultMetaResolver` (offline-safe) |
+
+## Player Search
+
+`/vault player search <field> <query>` performs a case-insensitive substring search over all known players by the chosen field (`prefix`, `altname`, or `suffix`). Iterates `PermissionManager.getPlayers()` and resolves the field value via `VaultMetaResolver`.
+
+Each result line shows the real Minecraft name and the full formatted display in parentheses:
+
+```
+Steve (§prefix§Steve§suffix§)
+```
+
+The display combination (`%player_prefix%%player_altname%%player_suffix%`) is resolved via `resolvePlayerByUuid` so offline players show their stored meta.
 
 ## Currency System
 
@@ -98,15 +133,18 @@ The default currency is specified in `currencies.default`.
 | `player-prefix-value` | `%prefix%<#9b94a6>Player prefix: <#F0F8FF>%value%` |
 | `player-suffix-value` | `%prefix%<#9b94a6>Player suffix: <#F0F8FF>%value%` |
 | `player-altname-value` | `%prefix%<#9b94a6>Alt name: <#F0F8FF>%value%` |
-| `economy-balance` | `%prefix%<#9b94a6>Balance of <#F0F8FF>%name%<#9b94a6>: <#FFB800>%balance% %symbol%` |
-| `economy-set` | `%prefix%<#3DDC97>Balance of <#F0F8FF>%name% <#3DDC97>set to <#FFB800>%amount% %symbol%<#3DDC97>.` |
-| `economy-add` | `%prefix%<#3DDC97>Added <#FFB800>%amount% %symbol% <#3DDC97>to <#F0F8FF>%name%<#3DDC97>.` |
-| `economy-subtract` | `%prefix%<#3DDC97>Subtracted <#FFB800>%amount% %symbol% <#3DDC97>from <#F0F8FF>%name%<#3DDC97>.` |
-| `pay-success` | `%prefix%<#3DDC97>Sent <#FFB800>%amount% %symbol% <#3DDC97>to <#F0F8FF>%target%<#3DDC97>.` |
-| `pay-received` | `%prefix%<#3DDC97>Received <#FFB800>%amount% %symbol% <#3DDC97>from <#F0F8FF>%sender%<#3DDC97>.` |
+| `economy-balance` | `%prefix%<#9b94a6>Balance of <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#9b94a6>: <#FFB800>%balance% %symbol%` |
+| `economy-set` | `%prefix%<#3DDC97>Balance of <#F0F8FF>%player_prefix%%player_altname%%player_suffix% <#3DDC97>set to <#FFB800>%amount% %symbol%<#3DDC97>.` |
+| `economy-add` | `%prefix%<#3DDC97>Added <#FFB800>%amount% %symbol% <#3DDC97>to <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97>.` |
+| `economy-subtract` | `%prefix%<#3DDC97>Subtracted <#FFB800>%amount% %symbol% <#3DDC97>from <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97>.` |
+| `pay-success` | `%prefix%<#3DDC97>Sent <#FFB800>%amount% %symbol% <#3DDC97>to <#F0F8FF>%target_prefix%%target_altname%%target_suffix%<#3DDC97>.` |
+| `pay-received` | `%prefix%<#3DDC97>Received <#FFB800>%amount% %symbol% <#3DDC97>from <#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix%<#3DDC97>.` |
 | `my-balance` | `%prefix%<#9b94a6>Your balance: <#FFB800>%balance% %symbol%%rank%` |
 | `baltop-header` | `%prefix%<#9b94a6>===== <#F0F8FF>Top 10 Richest<#9b94a6> =====` |
-| `baltop-entry` | `%prefix%<#9b94a6>#<#FFB800>%rank% <#F0F8FF>%name%<#9b94a6>: <#FFB800>%balance% %symbol%` |
+| `baltop-entry` | `%prefix%<#9b94a6>#<#FFB800>%rank% <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#9b94a6>: <#FFB800>%balance% %symbol%` |
+| `search-header` | `%prefix%<#9b94a6>Search by <#F0F8FF>%field%<#9b94a6>: <#F0F8FF>%query% <#9b94a6>(<#FFB800>%count%<#9b94a6> found)` |
+| `search-entry` | `%prefix%<#F0F8FF>%realname% <#9b94a6>(<white>%player_prefix%%player_altname%%player_suffix%<#9b94a6>)` |
+| `search-empty` | `%prefix%<#FF6B6B>No players found for <#9b94a6>%query%<#FF6B6B>.` |
 | `reload.config-success` | `%prefix%<#3DDC97>Configuration reloaded.` |
 | `reload.data-success` | `%prefix%<#3DDC97>Data reloaded.` |
 | `reload.all-success` | `%prefix%<#3DDC97>Configuration and data reloaded.` |

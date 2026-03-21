@@ -5,7 +5,6 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -14,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.perks.PerksPlugin;
 import red.aviora.redmc.perks.inventory.InvseeHolder;
+import red.aviora.redmc.vault.VaultPlugin;
 import red.aviora.redmc.perks.util.OfflinePlayerDataUtil;
 
 import java.util.UUID;
@@ -57,11 +57,13 @@ public class InvseeAsOfflineCommand implements Command<CommandSourceStack> {
 			return SINGLE_SUCCESS;
 		}
 
-		String titleRaw = plugin.getLocaleManager().getMessage(player, "admin.invsee.title")
-			.replace("%player%", displayName);
+		String titleRaw = onlineTarget != null
+			? VaultPlugin.resolvePlayer(plugin.getLocaleManager().getMessage(player, "admin.invsee.title"), onlineTarget)
+			: plugin.getLocaleManager().getMessage(player, "admin.invsee.title")
+				.replace("%player_altname%", displayName).replace("%player_prefix%", "").replace("%player_suffix%", "");
 
 		InvseeHolder holder = new InvseeHolder(targetUuid);
-		Inventory inv = Bukkit.createInventory(holder, 36, MiniMessage.miniMessage().deserialize(titleRaw));
+		Inventory inv = Bukkit.createInventory(holder, 36, ApiUtils.getMM().deserialize(titleRaw));
 		holder.setInventory(inv);
 
 		for (int i = 0; i < contents.length; i++) {
@@ -70,11 +72,12 @@ public class InvseeAsOfflineCommand implements Command<CommandSourceStack> {
 
 		player.openInventory(inv);
 
-		ApiUtils.sendCommandSenderMessageArgs(player,
-			plugin.getLocaleManager().getMessage(player, "admin.invsee.opened"),
-			"%prefix%", prefix,
-			"%player%", displayName
-		);
+		String openedMsg = ApiUtils.formatTextString(plugin.getLocaleManager().getMessage(player, "admin.invsee.opened"),
+			"%prefix%", prefix);
+		player.sendMessage(ApiUtils.formatText(onlineTarget != null
+			? VaultPlugin.resolvePlayer(openedMsg, onlineTarget)
+			: ApiUtils.formatTextString(openedMsg,
+				"%player_altname%", displayName, "%player_prefix%", "", "%player_suffix%", "")));
 		return SINGLE_SUCCESS;
 	}
 }

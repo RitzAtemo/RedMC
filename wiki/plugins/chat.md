@@ -31,7 +31,7 @@ Chat formatting (local/global), private messaging, death messages, advancement a
 
 - **Local chat** — default, visible within a configurable radius per world (`chat.local.worlds.<world>.radius`). A radius of `-1` means the entire world.
 - **Global chat** — player prefixes the message with the global prefix character (default `!`) to broadcast server-wide.
-- Format strings support `##Placeholder##` tokens and `%player%` / `%message%` variables.
+- Format strings support `##Placeholder##` tokens and `%player_prefix%` / `%player_altname%` / `%player_suffix%` / `%message%` variables, resolved via `VaultPlugin.resolvePlayer`.
 - `ChatListener` runs at `HIGHEST` priority, cancels `AsyncChatEvent`, and delegates to `ChatManager.processChat()` via sync scheduler.
 
 ## Private Messages
@@ -61,20 +61,20 @@ When both apply (first-time player), order is controlled by `welcome.newbie.prio
 
 | Group | Trigger | Placeholders |
 |---|---|---|
-| `default` | Generic death | `%player%` |
-| `by_player` | Killed by a player (bare hands) | `%player%`, `%killer%` |
-| `by_player_weapon` | Killed by a player holding an item | `%player%`, `%killer%`, `%weapon%` |
-| `by_fall` | Fall damage | `%player%` |
-| `by_fire` | Fire / burning | `%player%` |
-| `by_lava` | Lava | `%player%` |
-| `by_drowning` | Drowning | `%player%` |
-| `by_explosion` | Explosion | `%player%` |
-| `by_void` | Void | `%player%` |
-| `by_entity` | Killed by a mob | `%player%`, `%killer%` |
-| `by_magic` | Magic damage | `%player%` |
-| `by_wither` | Wither effect | `%player%` |
-| `by_starve` | Starvation | `%player%` |
-| `by_lightning` | Lightning strike | `%player%` |
+| `default` | Generic death | `%player_prefix%%player_altname%%player_suffix%` |
+| `by_player` | Killed by a player (bare hands) | `%player_prefix%%player_altname%%player_suffix%`, `%sender_prefix%%sender_altname%%sender_suffix%` |
+| `by_player_weapon` | Killed by a player holding an item | `%player_prefix%%player_altname%%player_suffix%`, `%sender_prefix%%sender_altname%%sender_suffix%`, `%weapon%` |
+| `by_fall` | Fall damage | `%player_prefix%%player_altname%%player_suffix%` |
+| `by_fire` | Fire / burning | `%player_prefix%%player_altname%%player_suffix%` |
+| `by_lava` | Lava | `%player_prefix%%player_altname%%player_suffix%` |
+| `by_drowning` | Drowning | `%player_prefix%%player_altname%%player_suffix%` |
+| `by_explosion` | Explosion | `%player_prefix%%player_altname%%player_suffix%` |
+| `by_void` | Void | `%player_prefix%%player_altname%%player_suffix%` |
+| `by_entity` | Killed by a mob | `%player_prefix%%player_altname%%player_suffix%`, `%sender_prefix%%sender_altname%%sender_suffix%` |
+| `by_magic` | Magic damage | `%player_prefix%%player_altname%%player_suffix%` |
+| `by_wither` | Wither effect | `%player_prefix%%player_altname%%player_suffix%` |
+| `by_starve` | Starvation | `%player_prefix%%player_altname%%player_suffix%` |
+| `by_lightning` | Lightning strike | `%player_prefix%%player_altname%%player_suffix%` |
 
 Death messages are broadcast to all players within local chat radius. `DeathListener` determines the group by inspecting `EntityDamageEvent.getCause()` and the last damage cause stored on the player.
 
@@ -124,19 +124,19 @@ Replaces vanilla advancement broadcasts with formatted per-player locale message
 | `reload.alerts-success` | `%prefix%<#3DDC97>Alerts reloaded.` |
 | `reload.all-success` | `%prefix%<#3DDC97>Configuration and data reloaded.` |
 | `chat.no-reply-target` | `%prefix%<#FF6B6B>No one to reply to.` |
-| `chat.msg-sent` | `<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message%` |
-| `chat.msg-received` | `<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message%` |
-| `chat.reply-sent` | `<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ "%quoted%")` |
-| `chat.reply-received` | `<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ "%quoted%")` |
-| `welcome.returning` | `<#1E90FF>Welcome back, <#F0F8FF>%player%<#1E90FF>!` |
-| `welcome.newbie` | `<#FFB800>Welcome to the server, <#F0F8FF>%player%<#FFB800>! Use <#3DDC97>/help<#FFB800> to get started.` |
-| `join-leave.join` | `<#3DDC97>+<#F0F8FF> %player% <#9b94a6>joined the server` |
-| `join-leave.newbie` | `<#FFB800>★<#F0F8FF> %player% <#9b94a6>joined the server for the first time!` |
-| `join-leave.leave` | `<#FF6B6B>-<#F0F8FF> %player% <#9b94a6>left the server` |
+| `chat.msg-sent` | `<#9b94a6>[<#F0F8FF>→ %target_prefix%%target_altname%%target_suffix%<#9b94a6>]<#F0F8FF> %message%` |
+| `chat.msg-received` | `<#9b94a6>[<#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix% →<#9b94a6>]<#F0F8FF> %message%` |
+| `chat.reply-sent` | `<#9b94a6>[<#F0F8FF>→ %target_prefix%%target_altname%%target_suffix%<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ "%quoted%")` |
+| `chat.reply-received` | `<#9b94a6>[<#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix% →<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ "%quoted%")` |
+| `welcome.returning` | `<#1E90FF>Welcome back, <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#1E90FF>!` |
+| `welcome.newbie` | `<#FFB800>Welcome to the server, <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#FFB800>! Use <#3DDC97>/help<#FFB800> to get started.` |
+| `join-leave.join` | `<#3DDC97>+<#F0F8FF> %player_prefix%%player_altname%%player_suffix% <#9b94a6>joined the server` |
+| `join-leave.newbie` | `<#FFB800>★<#F0F8FF> %player_prefix%%player_altname%%player_suffix% <#9b94a6>joined the server for the first time!` |
+| `join-leave.leave` | `<#FF6B6B>-<#F0F8FF> %player_prefix%%player_altname%%player_suffix% <#9b94a6>left the server` |
 | `death.groups.<group>.messages` | List of MiniMessage strings; one is chosen randomly at death. See death groups table above. |
-| `advancement.task` | `<#9b94a6>[<#3DDC97>Advancement<#9b94a6>]<#F0F8FF> %player%<#9b94a6> has made the advancement <#F0F8FF>[<#3DDC97>%title%<#F0F8FF>]` |
-| `advancement.goal` | `<#9b94a6>[<#1E90FF>Advancement<#9b94a6>]<#F0F8FF> %player%<#9b94a6> has reached the goal <#1E90FF>[<#F0F8FF>%title%<#1E90FF>]` |
-| `advancement.challenge` | `<#9b94a6>[<#FFB800>Advancement<#9b94a6>]<#F0F8FF> %player%<#9b94a6> has completed the challenge <#FFB800>[<#F0F8FF>%title%<#FFB800>]` |
+| `advancement.task` | `<#9b94a6>[<#3DDC97>Advancement<#9b94a6>]<#F0F8FF> %player_prefix%%player_altname%%player_suffix%<#9b94a6> has made the advancement <#F0F8FF>[<#3DDC97>%title%<#F0F8FF>]` |
+| `advancement.goal` | `<#9b94a6>[<#1E90FF>Advancement<#9b94a6>]<#F0F8FF> %player_prefix%%player_altname%%player_suffix%<#9b94a6> has reached the goal <#1E90FF>[<#F0F8FF>%title%<#1E90FF>]` |
+| `advancement.challenge` | `<#9b94a6>[<#FFB800>Advancement<#9b94a6>]<#F0F8FF> %player_prefix%%player_altname%%player_suffix%<#9b94a6> has completed the challenge <#FFB800>[<#F0F8FF>%title%<#FFB800>]` |
 
 ## Mute Integration
 

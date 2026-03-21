@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.moderation.ModerationPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 import red.aviora.redmc.moderation.utils.DurationParser;
 
 import java.util.UUID;
@@ -60,12 +61,13 @@ public class BanCommand implements Command<CommandSourceStack> {
         String successKey = permanent ? "ban.success-perm" : "ban.success";
         String durationFormatted = DurationParser.format(duration);
 
-        ApiUtils.sendCommandSenderMessageArgs(sender,
-            locale.getMessage(sender, successKey),
-            "%prefix%", locale.getMessage(sender, "prefix"),
-            "%player%", target.getName(),
-            "%duration%", durationFormatted,
-            "%reason%", reason);
+        String successMsg = VaultPlugin.resolvePlayer(
+            ApiUtils.formatTextString(locale.getMessage(sender, successKey),
+                "%prefix%", locale.getMessage(sender, "prefix"),
+                "%duration%", durationFormatted,
+                "%reason%", reason),
+            target);
+        sender.sendMessage(ApiUtils.formatText(successMsg));
 
         // Kick the player
         final String finalReason = reason;

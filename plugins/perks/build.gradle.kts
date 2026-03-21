@@ -14,6 +14,7 @@ repositories {
 dependencies {
 	paperweight.foliaDevBundle("1.21.11-R0.1-SNAPSHOT")
 	implementation(project(":plugins:api"))
+	implementation(project(":plugins:vault"))
 }
 
 java {

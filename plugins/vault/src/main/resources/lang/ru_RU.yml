@@ -17,17 +17,21 @@ player-prefix-value: "%prefix%<#9b94a6>Префикс игрока: <#F0F8FF>%va
 player-suffix-value: "%prefix%<#9b94a6>Суффикс игрока: <#F0F8FF>%value%"
 player-altname-value: "%prefix%<#9b94a6>Альт имя: <#F0F8FF>%value%"
 
-economy-balance: "%prefix%<#9b94a6>Баланс <#F0F8FF>%name%<#9b94a6>: <#FFB800>%balance% %symbol%"
-economy-set: "%prefix%<#3DDC97>Баланс <#F0F8FF>%name% <#3DDC97>установлен на <#FFB800>%amount% %symbol%<#3DDC97>."
-economy-add: "%prefix%<#3DDC97>Добавлено <#FFB800>%amount% %symbol% <#3DDC97>к <#F0F8FF>%name%<#3DDC97>."
-economy-subtract: "%prefix%<#3DDC97>Вычтено <#FFB800>%amount% %symbol% <#3DDC97>из <#F0F8FF>%name%<#3DDC97>."
+economy-balance: "%prefix%<#9b94a6>Баланс <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#9b94a6>: <#FFB800>%balance% %symbol%"
+economy-set: "%prefix%<#3DDC97>Баланс <#F0F8FF>%player_prefix%%player_altname%%player_suffix% <#3DDC97>установлен на <#FFB800>%amount% %symbol%<#3DDC97>."
+economy-add: "%prefix%<#3DDC97>Добавлено <#FFB800>%amount% %symbol% <#3DDC97>к <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97>."
+economy-subtract: "%prefix%<#3DDC97>Вычтено <#FFB800>%amount% %symbol% <#3DDC97>из <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97>."
 
-pay-success: "%prefix%<#3DDC97>Отправлено <#FFB800>%amount% %symbol% <#3DDC97>игроку <#F0F8FF>%target%<#3DDC97>."
-pay-received: "%prefix%<#3DDC97>Получено <#FFB800>%amount% %symbol% <#3DDC97>от игрока <#F0F8FF>%sender%<#3DDC97>."
+pay-success: "%prefix%<#3DDC97>Отправлено <#FFB800>%amount% %symbol% <#3DDC97>игроку <#F0F8FF>%target_prefix%%target_altname%%target_suffix%<#3DDC97>."
+pay-received: "%prefix%<#3DDC97>Получено <#FFB800>%amount% %symbol% <#3DDC97>от игрока <#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix%<#3DDC97>."
 
 my-balance: "%prefix%<#9b94a6>Ваш баланс: <#FFB800>%balance% %symbol%%rank%"
 baltop-header: "%prefix%<#9b94a6>===== <#F0F8FF>Топ 10 богатых<#9b94a6> ====="
-baltop-entry: "%prefix%<#9b94a6>#<#FFB800>%rank% <#F0F8FF>%name%<#9b94a6>: <#FFB800>%balance% %symbol%"
+baltop-entry: "%prefix%<#9b94a6>#<#FFB800>%rank% <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#9b94a6>: <#FFB800>%balance% %symbol%"
+
+search-header: "%prefix%<#9b94a6>Поиск по <#F0F8FF>%field%<#9b94a6>: <#F0F8FF>%query% <#9b94a6>(<#FFB800>%count%<#9b94a6> найдено)"
+search-entry: "%prefix%<#F0F8FF>%realname% <#9b94a6>(<white>%player_prefix%%player_altname%%player_suffix%<#9b94a6>)"
+search-empty: "%prefix%<#FF6B6B>Игроки не найдены по запросу <#9b94a6>%query%<#FF6B6B>."
 
 reload:
   config-success: "%prefix%<#3DDC97>Конфигурация перезагружена."

@@ -1,13 +1,13 @@
 package red.aviora.redmc.tracker.managers;
 
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.ConfigManager;
 import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.tracker.TrackerPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 import red.aviora.redmc.tracker.models.PlayerData;
 import red.aviora.redmc.tracker.utils.TrackerDataStorage;
 
@@ -57,13 +57,12 @@ public class TrackerManager {
                     }
                     String format = configManager.getString("config.yml", "tracker-format",
                             "<gray>X: <white>%x% <gray>Y: <white>%y% <gray>Z: <white>%z%");
-                    String text = format
-                            .replace("%player%", t.getName())
+                    String text = VaultPlugin.resolvePlayer(format
                             .replace("%x%", String.valueOf((int) t.getX()))
                             .replace("%y%", String.valueOf((int) t.getY()))
                             .replace("%z%", String.valueOf((int) t.getZ()))
-                            .replace("%world%", t.getWorld().getName());
-                    admin.sendActionBar(MiniMessage.miniMessage().deserialize(text));
+                            .replace("%world%", t.getWorld().getName()), t);
+                    admin.sendActionBar(ApiUtils.getMM().deserialize(text));
                 },
                 null,
                 1L,

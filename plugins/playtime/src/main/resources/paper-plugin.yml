@@ -16,6 +16,10 @@ dependencies:
       load: BEFORE
       required: false
       join-classpath: true
+    RedMC-Vault:
+      load: BEFORE
+      required: false
+      join-classpath: true
 permissions:
   redmc.playtime:
     default: true

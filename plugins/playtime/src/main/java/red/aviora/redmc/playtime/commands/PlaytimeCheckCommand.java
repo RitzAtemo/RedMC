@@ -11,6 +11,7 @@ import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.playtime.PlaytimePlugin;
 import red.aviora.redmc.playtime.utils.PlaytimeFormatter;
+import red.aviora.redmc.vault.VaultPlugin;
 
 @SuppressWarnings("UnstableApiUsage")
 public class PlaytimeCheckCommand implements Command<CommandSourceStack> {
@@ -44,11 +45,12 @@ public class PlaytimeCheckCommand implements Command<CommandSourceStack> {
 
             long seconds = PlaytimePlugin.getInstance().getPlaytimeManager()
                     .getTotalPlaytimeSeconds(target.getUniqueId());
-            ApiUtils.sendCommandSenderMessageArgs(sender,
-                    locale.getMessage(sender, "playtime.other"),
-                    "%prefix%", locale.getMessage(sender, "prefix"),
-                    "%player%", target.getName(),
-                    "%playtime%", PlaytimeFormatter.format(seconds));
+            String msg = VaultPlugin.resolvePlayer(
+                    ApiUtils.formatTextString(locale.getMessage(sender, "playtime.other"),
+                        "%prefix%", locale.getMessage(sender, "prefix"),
+                        "%playtime%", PlaytimeFormatter.format(seconds)),
+                    target);
+            sender.sendMessage(ApiUtils.formatText(msg));
         } else {
             if (!(sender instanceof Player player)) {
                 throw ApiUtils.noPermissionException(locale, sender);

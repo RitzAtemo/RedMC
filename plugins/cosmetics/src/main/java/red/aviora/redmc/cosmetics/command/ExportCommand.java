@@ -6,7 +6,6 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -44,7 +43,7 @@ public class ExportCommand implements Command<CommandSourceStack> {
                 "%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix"),
                 "%name%", name);
             String buttonText = plugin.getLocaleManager().getMessage(sender, "cosmetics.export-copy-button");
-            Component button = MiniMessage.miniMessage().deserialize(buttonText)
+            Component button = ApiUtils.getMM().deserialize(buttonText)
                 .clickEvent(ClickEvent.copyToClipboard(signature));
             sender.sendMessage(button);
         } catch (Exception e) {

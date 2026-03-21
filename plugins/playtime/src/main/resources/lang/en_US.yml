@@ -7,11 +7,11 @@ error:
 
 playtime:
   own: "%prefix%<#9b94a6>Your playtime: <#F0F8FF>%playtime%"
-  other: "%prefix%<#9b94a6>%player%'s playtime: <#F0F8FF>%playtime%"
+  other: "%prefix%<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix%'s playtime: <#F0F8FF>%playtime%"
 
 afk:
-  now-afk: "<#9b94a6>%player% <#888888>is now AFK."
-  returned: "<#9b94a6>%player% <#888888>is no longer AFK."
+  now-afk: "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% <#888888>is now AFK."
+  returned: "<#9b94a6>%sender_prefix%%sender_altname%%sender_suffix% <#888888>is no longer AFK."
   self-afk: "%prefix%<#9b94a6>You are now AFK."
   self-returned: "%prefix%<#3DDC97>Welcome back!"
 

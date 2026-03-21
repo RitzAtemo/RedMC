@@ -9,7 +9,9 @@ import com.mojang.brigadier.Command;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
@@ -49,15 +51,18 @@ public class BaltopCommand implements Command<CommandSourceStack> {
 
 		int count = Math.min(10, players.size());
 		for (int i = 0; i < count; i++) {
-			VaultPlayerData player = players.get(i);
-			double balance = player.getBalance(finalCurrency.getId());
-			ApiUtils.sendCommandSenderMessageArgs(sender,
-				localeManager.getMessage(sender, "baltop-entry"),
+			VaultPlayerData playerData = players.get(i);
+			double balance = playerData.getBalance(finalCurrency.getId());
+			String entry = ApiUtils.formatTextString(localeManager.getMessage(sender, "baltop-entry"),
 				"%prefix%", localeManager.getMessage(sender, "prefix"),
 				"%rank%", String.valueOf(i + 1),
-				"%name%", player.getName(),
 				"%balance%", String.valueOf(balance),
 				"%symbol%", finalCurrency.getSymbol());
+			Player onlinePlayer = Bukkit.getPlayerExact(playerData.getName());
+			entry = onlinePlayer != null
+				? VaultPlugin.resolvePlayer(entry, onlinePlayer)
+				: VaultPlugin.resolvePlayerByUuid(entry, playerData.getUuid());
+			sender.sendMessage(ApiUtils.formatText(entry));
 		}
 
 		return Command.SINGLE_SUCCESS;

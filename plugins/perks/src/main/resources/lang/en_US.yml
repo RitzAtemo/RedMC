@@ -45,7 +45,7 @@ nofall:
   disabled: "%prefix%<#FF6B6B>Fall damage protection disabled."
 
 broadcast:
-  format: "<#FFB800>[!]<#F0F8FF> %player%<#9b94a6>: <#F0F8FF>%message%"
+  format: "<#FFB800>[!]<#F0F8FF> %player_prefix%%player_altname%%player_suffix%<#9b94a6>: <#F0F8FF>%message%"
   sent: "%prefix%<#3DDC97>Message broadcasted."
 
 perks:
@@ -63,13 +63,13 @@ reload:
 
 admin:
   invsee:
-    title: "<#1E90FF>Inventory of <#F0F8FF>%player%"
-    opened: "%prefix%<#3DDC97>Viewing inventory of <#F0F8FF>%player%<#3DDC97>."
+    title: "<#1E90FF>Inventory of <#F0F8FF>%player_prefix%%player_altname%%player_suffix%"
+    opened: "%prefix%<#3DDC97>Viewing inventory of <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97>."
     not-found: "%prefix%<#FF6B6B>Player not found."
     no-data: "%prefix%<#FF6B6B>No player data found."
   ecsee:
-    title: "<#1E90FF>Ender Chest of <#F0F8FF>%player%"
-    opened: "%prefix%<#3DDC97>Viewing ender chest of <#F0F8FF>%player%<#3DDC97>."
+    title: "<#1E90FF>Ender Chest of <#F0F8FF>%player_prefix%%player_altname%%player_suffix%"
+    opened: "%prefix%<#3DDC97>Viewing ender chest of <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97>."
     not-found: "%prefix%<#FF6B6B>Player not found."
     no-data: "%prefix%<#FF6B6B>No player data found."
   vanish:
@@ -79,18 +79,18 @@ admin:
     enabled: "%prefix%<#3DDC97>God mode enabled."
     disabled: "%prefix%<#FF6B6B>God mode disabled."
   freeze:
-    frozen: "%prefix%<#3DDC97>Player <#F0F8FF>%player%<#3DDC97> has been frozen."
-    unfrozen: "%prefix%<#3DDC97>Player <#F0F8FF>%player%<#3DDC97> has been unfrozen."
+    frozen: "%prefix%<#3DDC97>Player <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97> has been frozen."
+    unfrozen: "%prefix%<#3DDC97>Player <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97> has been unfrozen."
     not-found: "%prefix%<#FF6B6B>Player not found."
     message: "%prefix%<#FFB800>You have been frozen."
     unmessage: "%prefix%<#3DDC97>You have been unfrozen."
   tpo:
-    teleported: "%prefix%<#3DDC97>Teleported to <#F0F8FF>%player%<#3DDC97>."
+    teleported: "%prefix%<#3DDC97>Teleported to <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97>."
     not-found: "%prefix%<#FF6B6B>Player not found."
   tpohere:
-    teleported: "%prefix%<#3DDC97>Teleported <#F0F8FF>%player%<#3DDC97> to you."
+    teleported: "%prefix%<#3DDC97>Teleported <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97> to you."
     not-found: "%prefix%<#FF6B6B>Player not found."
     message: "%prefix%<#FFB800>You have been teleported."
   sudo:
-    executed: "%prefix%<#3DDC97>Executed <#F0F8FF>/%command%<#3DDC97> as <#F0F8FF>%player%<#3DDC97>."
+    executed: "%prefix%<#3DDC97>Executed <#F0F8FF>/%command%<#3DDC97> as <#F0F8FF>%player_prefix%%player_altname%%player_suffix%<#3DDC97>."
     not-found: "%prefix%<#FF6B6B>Player not found."

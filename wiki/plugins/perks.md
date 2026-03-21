@@ -177,13 +177,13 @@ Toggles fall damage immunity. Tracked in `NoFallManager`. `EntityDamageEvent` wi
 
 ### `/broadcast <message>`
 
-Broadcasts a formatted message to all online players. Format is defined by `broadcast.format` in the locale file using `%player%` and `%message%` placeholders. Subject to `cooldowns.broadcast` (default 300 seconds).
+Broadcasts a formatted message to all online players. Format is defined by `broadcast.format` in the locale file using `%player_prefix%%player_altname%%player_suffix%` and `%message%` placeholders, resolved via `VaultPlugin.resolvePlayer`. Subject to `cooldowns.broadcast` (default 300 seconds).
 
 ## Custom Join / Quit Messages
 
 Players with `redmc.perks.setjoin` / `redmc.perks.setquit` can set their own join and quit messages.
 
-- `/perks setjoin <message>` — sets a custom join message supporting MiniMessage and `%player%`
+- `/perks setjoin <message>` — sets a custom join message supporting MiniMessage and `%player_prefix%%player_altname%%player_suffix%`
 - `/perks setjoin reset` — reverts to the default message set by the Chat plugin
 - `/perks setquit <message>` / `reset` — same for quit
 
@@ -295,7 +295,7 @@ Makes the target player execute a command. The command string is passed to `play
 | `heal.success` | `%prefix%<#3DDC97>Health and armor restored.` |
 | `nofall.enabled` | `%prefix%<#3DDC97>Fall damage protection enabled.` |
 | `nofall.disabled` | `%prefix%<#FF6B6B>Fall damage protection disabled.` |
-| `broadcast.format` | `<#FFB800>[!]<#F0F8FF> %player%<#9b94a6>: <#F0F8FF>%message%` |
+| `broadcast.format` | `<#FFB800>[!]<#F0F8FF> %player_prefix%%player_altname%%player_suffix%<#9b94a6>: <#F0F8FF>%message%` |
 | `broadcast.sent` | `%prefix%<#3DDC97>Message broadcasted.` |
 | `perks.setjoin.success` | `%prefix%<#3DDC97>Join message set.` |
 | `perks.setjoin.reset` | `%prefix%<#3DDC97>Join message reset to default.` |

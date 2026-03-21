@@ -13,6 +13,7 @@ import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.tracker.TrackerPlugin;
 import red.aviora.redmc.tracker.managers.TrackerManager;
+import red.aviora.redmc.vault.VaultPlugin;
 
 @SuppressWarnings("UnstableApiUsage")
 public class TrackerStartCommand implements Command<CommandSourceStack> {
@@ -42,18 +43,20 @@ public class TrackerStartCommand implements Command<CommandSourceStack> {
 
         if (manager.isTracking(admin) && target.getUniqueId().equals(manager.getTrackedUuid(admin))) {
             throw new SimpleCommandExceptionType(MessageComponentSerializer.message().serialize(
-                    ApiUtils.formatText(locale.getMessage(sender, "already-tracking"),
-                            "%prefix%", locale.getMessage(sender, "prefix"),
-                            "%player%", target.getName())
+                    ApiUtils.formatText(VaultPlugin.resolvePlayer(
+                            ApiUtils.formatTextString(locale.getMessage(sender, "already-tracking"),
+                                "%prefix%", locale.getMessage(sender, "prefix")),
+                            target))
             )).create();
         }
 
         manager.startTracking(admin, target);
 
-        ApiUtils.sendPlayerMessageArgs(admin,
-                locale.getMessage(admin, "tracking-started"),
-                "%prefix%", locale.getMessage(admin, "prefix"),
-                "%player%", target.getName());
+        String msg = VaultPlugin.resolvePlayer(
+                ApiUtils.formatTextString(locale.getMessage(admin, "tracking-started"),
+                    "%prefix%", locale.getMessage(admin, "prefix")),
+                target);
+        admin.sendMessage(ApiUtils.formatText(msg));
 
         return Command.SINGLE_SUCCESS;
     }

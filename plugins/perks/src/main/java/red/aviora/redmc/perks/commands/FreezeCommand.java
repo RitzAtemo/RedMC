@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.perks.PerksPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 
 public class FreezeCommand implements Command<CommandSourceStack> {
 
@@ -31,11 +32,10 @@ public class FreezeCommand implements Command<CommandSourceStack> {
 		boolean frozen = plugin.getFreezeManager().toggle(target.getUniqueId());
 
 		String senderKey = frozen ? "admin.freeze.frozen" : "admin.freeze.unfrozen";
-		ApiUtils.sendCommandSenderMessageArgs(player,
-			plugin.getLocaleManager().getMessage(player, senderKey),
-			"%prefix%", plugin.getLocaleManager().getMessage(player, "prefix"),
-			"%player%", target.getName()
-		);
+		player.sendMessage(ApiUtils.formatText(VaultPlugin.resolvePlayer(
+			ApiUtils.formatTextString(plugin.getLocaleManager().getMessage(player, senderKey),
+				"%prefix%", plugin.getLocaleManager().getMessage(player, "prefix")),
+			target)));
 
 		String targetKey = frozen ? "admin.freeze.message" : "admin.freeze.unmessage";
 		ApiUtils.sendCommandSenderMessageArgs(target,

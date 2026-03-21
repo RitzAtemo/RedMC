@@ -30,7 +30,7 @@ Tab list header/footer customization with frame-based animations and placeholder
 | `footer.animation` | `false` | Enable animated footer cycling |
 | `footer.interval` | `20` | Ticks between footer frame changes |
 | `footer.frames` | `[...]` | List of MiniMessage footer frames |
-| `player-row.format` | `<#1E90FF>##PlayerPrefix## ##PlayerName##` | MiniMessage format for each player row |
+| `player-row.format` | `<#1E90FF>%player_prefix%%player_altname%%player_suffix%` | MiniMessage format for each player row; supports `%player_prefix%`, `%player_altname%`, `%player_suffix%` resolved via `VaultPlugin.resolvePlayer` |
 | `player-row.interval` | `20` | Ticks between player-row refresh passes |
 
 ## Locale Keys

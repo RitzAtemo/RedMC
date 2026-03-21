@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.perks.PerksPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 
 public class TpoCommand implements Command<CommandSourceStack> {
 
@@ -30,11 +31,10 @@ public class TpoCommand implements Command<CommandSourceStack> {
 
 		player.teleportAsync(target.getLocation()).thenAccept(success -> {
 			if (success) {
-				ApiUtils.sendCommandSenderMessageArgs(player,
-					plugin.getLocaleManager().getMessage(player, "admin.tpo.teleported"),
-					"%prefix%", plugin.getLocaleManager().getMessage(player, "prefix"),
-					"%player%", target.getName()
-				);
+				player.sendMessage(ApiUtils.formatText(VaultPlugin.resolvePlayer(
+					ApiUtils.formatTextString(plugin.getLocaleManager().getMessage(player, "admin.tpo.teleported"),
+						"%prefix%", plugin.getLocaleManager().getMessage(player, "prefix")),
+					target)));
 			}
 		});
 		return SINGLE_SUCCESS;

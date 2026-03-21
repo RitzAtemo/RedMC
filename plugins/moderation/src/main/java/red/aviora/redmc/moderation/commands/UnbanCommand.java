@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.api.utils.LocaleManager;
 import red.aviora.redmc.moderation.ModerationPlugin;
+import red.aviora.redmc.vault.VaultPlugin;
 
 @SuppressWarnings("UnstableApiUsage")
 public class UnbanCommand implements Command<CommandSourceStack> {
@@ -39,17 +40,12 @@ public class UnbanCommand implements Command<CommandSourceStack> {
 
         boolean unbanned = plugin.getBanManager().unban(target.getUniqueId());
 
-        if (unbanned) {
-            ApiUtils.sendCommandSenderMessageArgs(sender,
-                locale.getMessage(sender, "ban.unban-success"),
-                "%prefix%", locale.getMessage(sender, "prefix"),
-                "%player%", target.getName());
-        } else {
-            ApiUtils.sendCommandSenderMessageArgs(sender,
-                locale.getMessage(sender, "ban.not-banned"),
-                "%prefix%", locale.getMessage(sender, "prefix"),
-                "%player%", target.getName());
-        }
+        String key = unbanned ? "ban.unban-success" : "ban.not-banned";
+        String msg = VaultPlugin.resolvePlayer(
+            ApiUtils.formatTextString(locale.getMessage(sender, key),
+                "%prefix%", locale.getMessage(sender, "prefix")),
+            target);
+        sender.sendMessage(ApiUtils.formatText(msg));
 
         return Command.SINGLE_SUCCESS;
     }

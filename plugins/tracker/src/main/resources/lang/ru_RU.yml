@@ -5,9 +5,9 @@ error:
   only-players: "%prefix%<#FF6B6B>Эта команда доступна только игрокам."
   player-not-found: "%prefix%<#FF6B6B>Игрок '<#F0F8FF>%player%<#FF6B6B>' не найден."
 
-tracking-started: "%prefix%<#3DDC97>Теперь отслеживаете '<#F0F8FF>%player%<#3DDC97>'."
+tracking-started: "%prefix%<#3DDC97>Теперь отслеживаете '<#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix%<#3DDC97>'."
 tracking-stopped: "%prefix%<#3DDC97>Отслеживание остановлено."
-already-tracking: "%prefix%<#FF6B6B>Вы уже отслеживаете '<#F0F8FF>%player%<#FF6B6B>'."
+already-tracking: "%prefix%<#FF6B6B>Вы уже отслеживаете '<#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix%<#FF6B6B>'."
 not-tracking: "%prefix%<#FF6B6B>Вы никого не отслеживаете."
 position-restored: "<#3DDC97>Ваша последняя позиция была восстановлена."
 

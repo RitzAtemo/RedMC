@@ -2,7 +2,7 @@ config-version: "0.0.1-alpha"
 
 update-interval: 20
 
-tracker-format: "<#F0F8FF>%player% <#888888>| <#AAAAAA>X: <#FFFFFF>%x% <#AAAAAA>Y: <#FFFFFF>%y% <#AAAAAA>Z: <#FFFFFF>%z% <#888888>(<#AAAAAA>%world%<#888888>)"
+tracker-format: "<#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix% <#888888>| <#AAAAAA>X: <#FFFFFF>%x% <#AAAAAA>Y: <#FFFFFF>%y% <#AAAAAA>Z: <#FFFFFF>%z% <#888888>(<#AAAAAA>%world%<#888888>)"
 
 save-on-quit: true
 restore-on-join: true
