@@ -237,3 +237,5 @@ plugins/test/run
 CLAUDE.md
 .vs/
 run/
+
+release/
