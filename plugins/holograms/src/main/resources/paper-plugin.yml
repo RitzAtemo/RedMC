@@ -1,6 +1,6 @@
 name: RedMC-Holograms
 description: RedMC-Holograms
-version: '0.0.1-alpha'
+version: '0.1.0-beta'
 api-version: '1.21.11'
 prefix: RedMC
 folia-supported: true

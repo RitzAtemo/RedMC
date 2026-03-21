@@ -3,7 +3,7 @@ Plugin infrastructure for Minecraft servers in the Vanilla Survival Multiplayer 
 
 ![Java 21](https://img.shields.io/badge/Java-21-1E90FF.svg)
 ![Folia 1.21.11](https://img.shields.io/badge/Folia-1.21.11-FF1493.svg)
-![RedMC: 0.0.1-alpha](https://img.shields.io/badge/RedMC-0.0.1--alpha-C780FA.svg)
+![RedMC: 0.1.0-beta](https://img.shields.io/badge/RedMC-0.1.0--beta-C780FA.svg)
 ![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-3DDC97.svg)
 
 ## Documentation

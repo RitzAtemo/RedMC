@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "red.aviora.redmc"
-version = "0.0.1-alpha"
+version = "0.1.0-beta"
 
 dependencies {
     compileOnly("dev.folia:folia-api:1.21.11-R0.1-SNAPSHOT")
