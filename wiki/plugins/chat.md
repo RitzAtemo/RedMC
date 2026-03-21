@@ -92,9 +92,9 @@ Replaces vanilla advancement broadcasts with formatted per-player locale message
 |---|---|---|
 | `chat.global.enabled` | `true` | Enable global chat |
 | `chat.global.prefix` | `!` | Character prefix that switches a message to global chat |
-| `chat.global.format` | `##PlayerPrefix## <#1E90FF>[G]<#F0F8FF> %player% <#9b94a6>»<#F0F8FF> %message%` | MiniMessage format for global messages |
+| `chat.global.format` | `#1E90FF>[G]<#F0F8FF> %sender_prefix%%sender_altname%%sender_suffix% <#9b94a6>»<#F0F8FF> %message%` | MiniMessage format for global messages |
 | `chat.local.enabled` | `true` | Enable local chat |
-| `chat.local.format` | `##PlayerPrefix## <#F0F8FF>%player% <#9b94a6>»<#F0F8FF> %message%` | MiniMessage format for local messages |
+| `chat.local.format` | `<#F0F8FF>%sender_prefix%%sender_altname%%sender_suffix% <#9b94a6>»<#F0F8FF> %message%` | MiniMessage format for local messages |
 | `chat.local.default-radius` | `100` | Default radius in blocks for worlds not listed explicitly |
 | `chat.local.worlds.<world>.radius` | — | Per-world radius override; `-1` means entire world |
 | `chat.private.enabled` | `true` | Enable `/msg` and `/reply` |
