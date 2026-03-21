@@ -1,14 +1,17 @@
-prefix: "<#DC143C>[<#FF4500>Tracker<#DC143C>]<#F0F8FF> "
+prefix: "<#1E90FF>[<#FF1493>Tracker<#1E90FF>]<#F0F8FF> "
 
-error.no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+error:
+  no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+  only-players: "%prefix%<#FF6B6B>This command can only be used by players."
+  player-not-found: "%prefix%<#FF6B6B>Player '<#F0F8FF>%player%<#FF6B6B>' not found."
 
-players-only: "%prefix%<#FF6B6B>This command can only be used by players."
-player-not-found: "%prefix%<#FF6B6B>Player '<#FFFFFF>%player%<#FF6B6B>' not found."
-tracking-started: "%prefix%<#3DDC97>Now tracking '<#FFFFFF>%player%<#3DDC97>'."
+tracking-started: "%prefix%<#3DDC97>Now tracking '<#F0F8FF>%player%<#3DDC97>'."
 tracking-stopped: "%prefix%<#3DDC97>Tracking stopped."
-already-tracking: "%prefix%<#FF6B6B>You are already tracking '<#FFFFFF>%player%<#FF6B6B>'."
+already-tracking: "%prefix%<#FF6B6B>You are already tracking '<#F0F8FF>%player%<#FF6B6B>'."
 not-tracking: "%prefix%<#FF6B6B>You are not tracking anyone."
 position-restored: "<#3DDC97>Your last position has been restored."
-reload-config-success: "%prefix%<#3DDC97>Tracker configuration reloaded."
-reload-data-success: "%prefix%<#3DDC97>Tracker data reloaded."
-reload-all-success: "%prefix%<#3DDC97>Tracker configuration and data reloaded."
+
+reload:
+  config-success: "%prefix%<#3DDC97>Configuration reloaded."
+  data-success: "%prefix%<#3DDC97>Data reloaded."
+  all-success: "%prefix%<#3DDC97>Configuration and data reloaded."

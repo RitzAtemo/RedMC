@@ -19,7 +19,7 @@ public class PerksReloadDataCommand implements Command<CommandSourceStack> {
 		plugin.getDataStorage().loadAll();
 
 		ApiUtils.sendCommandSenderMessageArgs(sender,
-			plugin.getLocaleManager().getMessage(sender, "perks.reload.data"),
+			plugin.getLocaleManager().getMessage(sender, "reload.data-success"),
 			"%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix")
 		);
 		return SINGLE_SUCCESS;

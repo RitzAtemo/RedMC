@@ -1,7 +1,10 @@
 prefix: "<#1E90FF>[<#FF1493>Таб<#1E90FF>]<#F0F8FF> "
 
-error.no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
+error:
+  no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
 
-success: "%prefix%<#3DDC97>Операция выполнена успешно!"
-reload-config: "%prefix%<#3DDC97>Конфигурация таба перезагружена."
-reload-all: "%prefix%<#3DDC97>Конфигурация таба перезагружена, анимации перезапущены."
+success: "%prefix%<#3DDC97>Готово."
+
+reload:
+  config-success: "%prefix%<#3DDC97>Конфигурация перезагружена."
+  all-success: "%prefix%<#3DDC97>Конфигурация и данные перезагружены."

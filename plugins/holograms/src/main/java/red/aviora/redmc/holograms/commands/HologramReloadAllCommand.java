@@ -20,7 +20,7 @@ public class HologramReloadAllCommand implements Command<CommandSourceStack> {
 		plugin.getConfigManager().reload();
 		plugin.getHologramManager().reloadAll();
 
-		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload-all-success"),
+		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload.all-success"),
 			"%prefix%", locale.getMessage(sender, "prefix"));
 
 		return Command.SINGLE_SUCCESS;

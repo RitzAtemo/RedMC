@@ -1,14 +1,17 @@
-prefix: "<#1E90FF>[<#FF4500>Чат<#1E90FF>]<#F0F8FF> "
+prefix: "<#1E90FF>[<#FF1493>Чат<#1E90FF>]<#F0F8FF> "
 
-error.no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
+error:
+  no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
+  only-players: "%prefix%<#FF6B6B>Эта команда доступна только игрокам."
+  player-not-found: "%prefix%<#FF6B6B>Игрок не найден."
+
+reload:
+  config-success: "%prefix%<#3DDC97>Конфигурация перезагружена."
+  alerts-success: "%prefix%<#3DDC97>Оповещения перезагружены."
+  all-success: "%prefix%<#3DDC97>Конфигурация и данные перезагружены."
 
 chat:
-  no-target: "%prefix%<#FF6B6B>Игрок не найден."
   no-reply-target: "%prefix%<#FF6B6B>Некому ответить."
-  only-players: "%prefix%<#FF6B6B>Только игроки могут использовать эту команду."
-  reload-config-success: "%prefix%<#3DDC97>Конфигурация чата перезагружена."
-  reload-alerts-success: "%prefix%<#3DDC97>Оповещения чата перезагружены."
-  reload-all-success: "%prefix%<#3DDC97>Конфигурация и оповещения чата перезагружены."
   msg-sent: "<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message%"
   msg-received: "<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message%"
   reply-sent: "<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ \"%quoted%\")"

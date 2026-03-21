@@ -23,7 +23,7 @@ public class ReloadConfigCommand implements Command<CommandSourceStack> {
 		vaultPlugin.getVaultManager().getCurrencyManager().reload();
 
 		ApiUtils.sendCommandSenderMessageArgs(sender,
-			localeManager.getMessage(sender, "success"),
+			localeManager.getMessage(sender, "reload.config-success"),
 			"%prefix%", localeManager.getMessage(sender, "prefix"));
 
 		return Command.SINGLE_SUCCESS;

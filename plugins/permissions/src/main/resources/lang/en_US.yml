@@ -1,13 +1,19 @@
 prefix: "<#1E90FF>[<#FF1493>Permissions<#1E90FF>]<#F0F8FF> "
 
-error.no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+error:
+  no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
 
-success: "%prefix%<#3DDC97>Operation completed successfully!"
-already-exists: "%prefix%<#FF4D6D>Element <#9b94a6>%name% <#FF4D6D>already exists."
-not-found: "%prefix%<#FF4D6D>Element <#9b94a6>%name% <#FF4D6D>not found."
+success: "%prefix%<#3DDC97>Done."
+already-exists: "%prefix%<#FF6B6B>Element <#9b94a6>%name% <#FF6B6B>already exists."
+not-found: "%prefix%<#FF6B6B>Element <#9b94a6>%name% <#FF6B6B>not found."
 ensure-default-group: "%prefix%<#FFB800>Default group not found. A new default group has been created."
-empty-list: "%prefix%<#FF4D6D>No elements found."
+empty-list: "%prefix%<#FF6B6B>No elements found."
 group-list-header: "%prefix%<#9b94a6>Groups:"
 group-list-item: "<#FFB800> - <#9b94a6>ID: <#F0F8FF>%id% <#9b94a6>| Name: <#F0F8FF>%name%"
 permissions-list-header: "%prefix%<#9b94a6>Permissions:"
 permissions-list-item: "<#FFB800> - <#F0F8FF>%permission% <#9b94a6>[allowed: %allowed%, weight: %weight%]"
+
+reload:
+  config-success: "%prefix%<#3DDC97>Configuration reloaded."
+  data-success: "%prefix%<#3DDC97>Data reloaded."
+  all-success: "%prefix%<#3DDC97>Configuration and data reloaded."

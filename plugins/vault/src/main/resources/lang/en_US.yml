@@ -1,13 +1,14 @@
 prefix: "<#1E90FF>[<#FF1493>Vault<#1E90FF>]<#F0F8FF> "
 
-error.no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+error:
+  no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+  generic: "%prefix%<#FF6B6B>An error occurred. Please try again."
+  only-players: "%prefix%<#FF6B6B>This command can only be used by players."
+  player-not-found: "%prefix%<#FF6B6B>Player <#9b94a6>%name% <#FF6B6B>not found."
 
-success: "%prefix%<#3DDC97>Operation completed successfully!"
-not-found: "%prefix%<#FF4D6D>Element <#9b94a6>%name% <#FF4D6D>not found."
-player-not-found: "%prefix%<#FF4D6D>Player <#9b94a6>%name% <#FF4D6D>not found."
-player-only: "%prefix%<#FF4D6D>This command can only be used by players."
-insufficient-funds: "%prefix%<#FF4D6D>Insufficient funds. Your balance: <#9b94a6>%balance%<#FF4D6D>."
-error: "%prefix%<#FF4D6D>An error occurred. Please try again."
+success: "%prefix%<#3DDC97>Done."
+not-found: "%prefix%<#FF6B6B>Element <#9b94a6>%name% <#FF6B6B>not found."
+insufficient-funds: "%prefix%<#FF6B6B>Insufficient funds. Your balance: <#9b94a6>%balance%<#FF6B6B>."
 
 group-prefix-value: "%prefix%<#9b94a6>Group prefix: <#F0F8FF>%value%"
 group-suffix-value: "%prefix%<#9b94a6>Group suffix: <#F0F8FF>%value%"
@@ -27,3 +28,8 @@ pay-received: "%prefix%<#3DDC97>Received <#FFB800>%amount% %symbol% <#3DDC97>fro
 my-balance: "%prefix%<#9b94a6>Your balance: <#FFB800>%balance% %symbol%%rank%"
 baltop-header: "%prefix%<#9b94a6>===== <#F0F8FF>Top 10 Richest<#9b94a6> ====="
 baltop-entry: "%prefix%<#9b94a6>#<#FFB800>%rank% <#F0F8FF>%name%<#9b94a6>: <#FFB800>%balance% %symbol%"
+
+reload:
+  config-success: "%prefix%<#3DDC97>Configuration reloaded."
+  data-success: "%prefix%<#3DDC97>Data reloaded."
+  all-success: "%prefix%<#3DDC97>Configuration and data reloaded."

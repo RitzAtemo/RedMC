@@ -21,7 +21,7 @@ public class ReloadDataSourceCommand implements Command<CommandSourceStack> {
 		permissionManager.reloadAll();
 
 		ApiUtils.sendCommandSenderMessageArgs(sender,
-			localeManager.getMessage(sender, "success"),
+			localeManager.getMessage(sender, "reload.data-success"),
 			"%prefix%", localeManager.getMessage(sender, "prefix")
 		);
 

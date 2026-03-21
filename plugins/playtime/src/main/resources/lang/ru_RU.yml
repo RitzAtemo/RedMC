@@ -1,0 +1,21 @@
+prefix: "<#1E90FF>[<#FF1493>Время в игре<#1E90FF>]<#F0F8FF> "
+
+error:
+  no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
+  player-not-found: "%prefix%<#FF6B6B>Игрок '<#F0F8FF>%player%<#FF6B6B>' не найден."
+  players-only: "%prefix%<#FF6B6B>Эту команду могут использовать только игроки."
+
+playtime:
+  own: "%prefix%<#9b94a6>Ваше время в игре: <#F0F8FF>%playtime%"
+  other: "%prefix%<#9b94a6>Время игры %player%: <#F0F8FF>%playtime%"
+
+afk:
+  now-afk: "<#9b94a6>%player% <#888888>теперь AFK."
+  returned: "<#9b94a6>%player% <#888888>вернулся из AFK."
+  self-afk: "%prefix%<#9b94a6>Вы теперь AFK."
+  self-returned: "%prefix%<#3DDC97>С возвращением!"
+
+reload:
+  config-success: "%prefix%<#3DDC97>Конфигурация перезагружена."
+  data-success: "%prefix%<#3DDC97>Данные перезагружены."
+  all-success: "%prefix%<#3DDC97>Конфигурация и данные перезагружены."

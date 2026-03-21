@@ -1,4 +1,4 @@
-prefix: "<#1E90FF>[<#FF4500>Teleport<#1E90FF>]<#F0F8FF> "
+prefix: "<#1E90FF>[<#FF1493>Teleport<#1E90FF>]<#F0F8FF> "
 
 spawn:
   set-success: "%prefix%<#3DDC97>Spawn has been set."
@@ -61,6 +61,6 @@ error:
   player-not-found: "%prefix%<#FF6B6B>Player not found."
 
 reload:
-  config-success: "%prefix%<#3DDC97>Teleport configuration reloaded."
-  data-success: "%prefix%<#3DDC97>Teleport data reloaded."
-  all-success: "%prefix%<#3DDC97>Teleport configuration and data reloaded."
+  config-success: "%prefix%<#3DDC97>Configuration reloaded."
+  data-success: "%prefix%<#3DDC97>Data reloaded."
+  all-success: "%prefix%<#3DDC97>Configuration and data reloaded."

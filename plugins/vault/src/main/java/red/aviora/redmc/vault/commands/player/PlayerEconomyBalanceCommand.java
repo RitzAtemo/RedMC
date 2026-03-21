@@ -30,7 +30,7 @@ public class PlayerEconomyBalanceCommand implements Command<CommandSourceStack> 
 			throw new SimpleCommandExceptionType(
 				MessageComponentSerializer.message().serialize(
 					ApiUtils.formatText(
-						localeManager.getMessage(sender, "player-not-found"),
+						localeManager.getMessage(sender, "error.player-not-found"),
 						"%name%", playerName,
 						"%prefix%", localeManager.getMessage(sender, "prefix")
 					)

@@ -19,6 +19,7 @@ Documentation for the RedMC plugin infrastructure.
 - [Cosmetics Plugin](plugins/cosmetics.md) — layered particle cosmetics with 11 slots, 10 shapes, template system, import/export
 - [Holograms Plugin](plugins/holograms.md) — multi-line text display holograms with placeholder support
 - [Tracker Plugin](plugins/tracker.md) — admin player coordinate tracking, position save/restore
+- [Playtime Plugin](plugins/playtime.md) — playtime tracking and AFK detection
 
 ## Features
 
@@ -119,7 +120,6 @@ Documentation for the RedMC plugin infrastructure.
 - Skills
 - Moderation tools (warn, mute, ban, history, tickets)
 - Anti-cheat
-- Playtime tracking and AFK detection
 - Leaderboards and player statistics
 - Announcements (scheduled auto-broadcast)
 - CI/CD.

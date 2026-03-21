@@ -26,7 +26,7 @@ public class MsgCommand implements Command<CommandSourceStack> {
 		if (!(sender instanceof Player player)) {
 			throw new SimpleCommandExceptionType(
 				MessageComponentSerializer.message().serialize(
-					ApiUtils.formatText(locale.getMessage(sender, "chat.only-players"),
+					ApiUtils.formatText(locale.getMessage(sender, "error.only-players"),
 						"%prefix%", locale.getMessage(sender, "prefix"))
 				)
 			).create();
@@ -39,7 +39,7 @@ public class MsgCommand implements Command<CommandSourceStack> {
 		if (target == null) {
 			throw new SimpleCommandExceptionType(
 				MessageComponentSerializer.message().serialize(
-					ApiUtils.formatText(locale.getMessage(player, "chat.no-target"),
+					ApiUtils.formatText(locale.getMessage(player, "error.player-not-found"),
 						"%prefix%", locale.getMessage(player, "prefix"))
 				)
 			).create();

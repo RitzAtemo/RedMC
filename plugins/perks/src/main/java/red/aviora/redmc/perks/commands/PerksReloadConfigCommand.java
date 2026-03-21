@@ -18,7 +18,7 @@ public class PerksReloadConfigCommand implements Command<CommandSourceStack> {
 		plugin.getConfigManager().reload();
 
 		ApiUtils.sendCommandSenderMessageArgs(sender,
-			plugin.getLocaleManager().getMessage(sender, "perks.reload.config"),
+			plugin.getLocaleManager().getMessage(sender, "reload.config-success"),
 			"%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix")
 		);
 		return SINGLE_SUCCESS;

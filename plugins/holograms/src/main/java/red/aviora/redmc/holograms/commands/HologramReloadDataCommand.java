@@ -19,7 +19,7 @@ public class HologramReloadDataCommand implements Command<CommandSourceStack> {
 
 		plugin.getHologramManager().reloadAll();
 
-		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload-data-success"),
+		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload.data-success"),
 			"%prefix%", locale.getMessage(sender, "prefix"));
 
 		return Command.SINGLE_SUCCESS;

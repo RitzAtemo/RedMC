@@ -18,7 +18,7 @@ public class NpcReloadConfigCommand implements Command<CommandSourceStack> {
 
 		JavaPlugin.getPlugin(NpcPlugin.class).getConfigManager().reload();
 
-		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload-config-success"),
+		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload.config-success"),
 			"%prefix%", locale.getMessage(sender, "prefix"));
 
 		return Command.SINGLE_SUCCESS;

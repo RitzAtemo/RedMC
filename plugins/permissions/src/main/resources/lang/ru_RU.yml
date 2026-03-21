@@ -1,13 +1,19 @@
 prefix: "<#1E90FF>[<#FF1493>Права<#1E90FF>]<#F0F8FF> "
 
-error.no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
+error:
+  no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
 
-success: "%prefix%<#3DDC97>Операция завершена успешно!"
-already-exists: "%prefix%<#FF4D6D>Элемент <#9b94a6>%name% <#FF4D6D>уже существует."
-not-found: "%prefix%<#FF4D6D>Элемент <#9b94a6>%name% <#FF4D6D>не найден."
+success: "%prefix%<#3DDC97>Готово."
+already-exists: "%prefix%<#FF6B6B>Элемент <#9b94a6>%name% <#FF6B6B>уже существует."
+not-found: "%prefix%<#FF6B6B>Элемент <#9b94a6>%name% <#FF6B6B>не найден."
 ensure-default-group: "%prefix%<#FFB800>Группа по умолчанию не найдена. Новая группа по умолчанию была создана."
-empty-list: "%prefix%<#FF4D6D>Пусто."
+empty-list: "%prefix%<#FF6B6B>Пусто."
 group-list-header: "%prefix%<#9b94a6>Группы:"
 group-list-item: "<#FFB800> - <#9b94a6>ИД: <#F0F8FF>%id% <#9b94a6>| Имя: <#F0F8FF>%name%"
 permissions-list-header: "%prefix%<#9b94a6>Права:"
 permissions-list-item: "<#FFB800> - <#F0F8FF>%permission% <#9b94a6>[разрешено: %allowed%, вес: %weight%]"
+
+reload:
+  config-success: "%prefix%<#3DDC97>Конфигурация перезагружена."
+  data-success: "%prefix%<#3DDC97>Данные перезагружены."
+  all-success: "%prefix%<#3DDC97>Конфигурация и данные перезагружены."

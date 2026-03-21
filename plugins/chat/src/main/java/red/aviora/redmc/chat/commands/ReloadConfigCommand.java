@@ -19,7 +19,7 @@ public class ReloadConfigCommand implements Command<CommandSourceStack> {
 		JavaPlugin.getPlugin(ChatPlugin.class).getConfigManager().reload();
 		JavaPlugin.getPlugin(ChatPlugin.class).getChatManager().loadAll();
 
-		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "chat.reload-config-success"),
+		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload.config-success"),
 			"%prefix%", locale.getMessage(sender, "prefix"));
 
 		return Command.SINGLE_SUCCESS;

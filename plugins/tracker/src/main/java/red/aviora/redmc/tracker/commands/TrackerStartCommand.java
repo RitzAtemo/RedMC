@@ -25,7 +25,7 @@ public class TrackerStartCommand implements Command<CommandSourceStack> {
 
         if (!(sender instanceof Player admin)) {
             throw new SimpleCommandExceptionType(MessageComponentSerializer.message().serialize(
-                    ApiUtils.formatText(locale.getMessage(sender, "players-only"),
+                    ApiUtils.formatText(locale.getMessage(sender, "error.only-players"),
                             "%prefix%", locale.getMessage(sender, "prefix"))
             )).create();
         }
@@ -35,7 +35,7 @@ public class TrackerStartCommand implements Command<CommandSourceStack> {
 
         if (target == null) {
             throw new SimpleCommandExceptionType(MessageComponentSerializer.message().serialize(
-                    ApiUtils.formatText(locale.getMessage(sender, "player-not-found"),
+                    ApiUtils.formatText(locale.getMessage(sender, "error.player-not-found"),
                             "%prefix%", locale.getMessage(sender, "prefix"))
             )).create();
         }

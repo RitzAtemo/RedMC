@@ -19,7 +19,7 @@ public class ReloadAllCommand implements Command<CommandSourceStack> {
 		plugin.getConfigManager().reload();
 		plugin.getMotdManager().loadTemplates();
 		plugin.getMotdManager().loadIcons();
-		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload-all"),
+		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload.all-success"),
 			"%prefix%", locale.getMessage(sender, "prefix"));
 		return SINGLE_SUCCESS;
 	}

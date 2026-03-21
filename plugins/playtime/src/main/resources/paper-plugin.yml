@@ -1,0 +1,33 @@
+name: RedMC-Playtime
+description: RedMC - Playtime Tracking and AFK Detection
+version: '0.0.1-alpha'
+api-version: '1.21.11'
+prefix: RedMC
+folia-supported: true
+main: red.aviora.redmc.playtime.PlaytimePlugin
+bootstrapper: red.aviora.redmc.playtime.PlaytimeBootstrap
+dependencies:
+  server:
+    RedMC-API:
+      load: BEFORE
+      required: true
+      join-classpath: true
+    RedMC-Placeholders:
+      load: BEFORE
+      required: false
+      join-classpath: true
+permissions:
+  redmc.playtime:
+    default: true
+  redmc.playtime.others:
+    default: op
+  redmc.playtime.reload:
+    default: op
+  redmc.playtime.reload.config:
+    default: op
+  redmc.playtime.reload.data:
+    default: op
+  redmc.playtime.reload.all:
+    default: op
+  redmc.playtime.afk.bypass:
+    default: false

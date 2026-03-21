@@ -1,76 +1,96 @@
-prefix: "<#1E90FF>[<#C780FA>Perks<#1E90FF>]<#F0F8FF> "
+prefix: "<#1E90FF>[<#FF1493>Perks<#1E90FF>]<#F0F8FF> "
 
-error.no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
-error.only-players: "%prefix%<#FF6B6B>Only players can use this command."
-error.cooldown: "%prefix%<#FFB800>You must wait <#F0F8FF>%seconds%s<#FFB800> before using this again."
+error:
+  no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+  only-players: "%prefix%<#FF6B6B>This command can only be used by players."
+  cooldown: "%prefix%<#FFB800>You must wait <#F0F8FF>%seconds%s<#FFB800> before using this again."
 
-repair.success: "%prefix%<#3DDC97>Item repaired."
-repair.nothing: "%prefix%<#FF6B6B>No damageable item in hand."
-repair.all.success: "%prefix%<#3DDC97>Repaired <#F0F8FF>%count%<#3DDC97> item(s)."
-repair.all.nothing: "%prefix%<#FF6B6B>No damageable items to repair."
+repair:
+  success: "%prefix%<#3DDC97>Item repaired."
+  nothing: "%prefix%<#FF6B6B>No damageable item in hand."
+  all:
+    success: "%prefix%<#3DDC97>Repaired <#F0F8FF>%count%<#3DDC97> item(s)."
+    nothing: "%prefix%<#FF6B6B>No damageable items to repair."
 
-hat.success: "%prefix%<#3DDC97>Hat equipped."
-hat.empty: "%prefix%<#FF6B6B>You must be holding an item."
+hat:
+  success: "%prefix%<#3DDC97>Hat equipped."
+  empty: "%prefix%<#FF6B6B>You must be holding an item."
 
-backpack.title: "<#1E90FF>Backpack"
+backpack:
+  title: "<#1E90FF>Backpack"
 
-dispose.title: "<#888888>Trash"
+dispose:
+  title: "<#888888>Trash"
 
-rename.success: "%prefix%<#3DDC97>Item renamed."
-rename.empty: "%prefix%<#FF6B6B>You must be holding an item."
+rename:
+  success: "%prefix%<#3DDC97>Item renamed."
+  empty: "%prefix%<#FF6B6B>You must be holding an item."
 
-fly.enabled: "%prefix%<#3DDC97>Flight enabled."
-fly.disabled: "%prefix%<#FF6B6B>Flight disabled."
+fly:
+  enabled: "%prefix%<#3DDC97>Flight enabled."
+  disabled: "%prefix%<#FF6B6B>Flight disabled."
 
-speed.set: "%prefix%<#3DDC97>Speed set to level <#F0F8FF>%level%<#3DDC97>."
-speed.invalid: "%prefix%<#FF6B6B>Speed must be between <#F0F8FF>1<#FF6B6B> and <#F0F8FF>5<#FF6B6B>."
+speed:
+  set: "%prefix%<#3DDC97>Speed set to level <#F0F8FF>%level%<#3DDC97>."
+  invalid: "%prefix%<#FF6B6B>Speed must be between <#F0F8FF>1<#FF6B6B> and <#F0F8FF>5<#FF6B6B>."
 
-feed.success: "%prefix%<#3DDC97>Hunger restored."
+feed:
+  success: "%prefix%<#3DDC97>Hunger restored."
 
-heal.success: "%prefix%<#3DDC97>Health and armor restored."
+heal:
+  success: "%prefix%<#3DDC97>Health and armor restored."
 
-nofall.enabled: "%prefix%<#3DDC97>Fall damage protection enabled."
-nofall.disabled: "%prefix%<#FF6B6B>Fall damage protection disabled."
+nofall:
+  enabled: "%prefix%<#3DDC97>Fall damage protection enabled."
+  disabled: "%prefix%<#FF6B6B>Fall damage protection disabled."
 
-broadcast.format: "<#FFB800>[!]<#F0F8FF> %player%<#9b94a6>: <#F0F8FF>%message%"
-broadcast.sent: "%prefix%<#3DDC97>Message broadcasted."
+broadcast:
+  format: "<#FFB800>[!]<#F0F8FF> %player%<#9b94a6>: <#F0F8FF>%message%"
+  sent: "%prefix%<#3DDC97>Message broadcasted."
 
-perks.setjoin.success: "%prefix%<#3DDC97>Join message set."
-perks.setjoin.reset: "%prefix%<#3DDC97>Join message reset to default."
-perks.setquit.success: "%prefix%<#3DDC97>Quit message set."
-perks.setquit.reset: "%prefix%<#3DDC97>Quit message reset to default."
-perks.reload.config: "%prefix%<#3DDC97>Configuration reloaded."
-perks.reload.data: "%prefix%<#3DDC97>Player data reloaded."
-perks.reload.all: "%prefix%<#3DDC97>Configuration and player data reloaded."
+perks:
+  setjoin:
+    success: "%prefix%<#3DDC97>Join message set."
+    reset: "%prefix%<#3DDC97>Join message reset to default."
+  setquit:
+    success: "%prefix%<#3DDC97>Quit message set."
+    reset: "%prefix%<#3DDC97>Quit message reset to default."
 
-admin.invsee.title: "<#1E90FF>Inventory of <#F0F8FF>%player%"
-admin.invsee.opened: "%prefix%<#3DDC97>Viewing inventory of <#F0F8FF>%player%<#3DDC97>."
-admin.invsee.not-found: "%prefix%<#FF6B6B>Player not found."
-admin.invsee.no-data: "%prefix%<#FF6B6B>No player data found."
+reload:
+  config-success: "%prefix%<#3DDC97>Configuration reloaded."
+  data-success: "%prefix%<#3DDC97>Data reloaded."
+  all-success: "%prefix%<#3DDC97>Configuration and data reloaded."
 
-admin.ecsee.title: "<#1E90FF>Ender Chest of <#F0F8FF>%player%"
-admin.ecsee.opened: "%prefix%<#3DDC97>Viewing ender chest of <#F0F8FF>%player%<#3DDC97>."
-admin.ecsee.not-found: "%prefix%<#FF6B6B>Player not found."
-admin.ecsee.no-data: "%prefix%<#FF6B6B>No player data found."
-
-admin.vanish.enabled: "%prefix%<#3DDC97>You are now invisible."
-admin.vanish.disabled: "%prefix%<#FF6B6B>You are now visible."
-
-admin.god.enabled: "%prefix%<#3DDC97>God mode enabled."
-admin.god.disabled: "%prefix%<#FF6B6B>God mode disabled."
-
-admin.freeze.frozen: "%prefix%<#3DDC97>Player <#F0F8FF>%player%<#3DDC97> has been frozen."
-admin.freeze.unfrozen: "%prefix%<#3DDC97>Player <#F0F8FF>%player%<#3DDC97> has been unfrozen."
-admin.freeze.not-found: "%prefix%<#FF6B6B>Player not found."
-admin.freeze.message: "%prefix%<#FFB800>You have been frozen."
-admin.freeze.unmessage: "%prefix%<#3DDC97>You have been unfrozen."
-
-admin.tpo.teleported: "%prefix%<#3DDC97>Teleported to <#F0F8FF>%player%<#3DDC97>."
-admin.tpo.not-found: "%prefix%<#FF6B6B>Player not found."
-
-admin.tpohere.teleported: "%prefix%<#3DDC97>Teleported <#F0F8FF>%player%<#3DDC97> to you."
-admin.tpohere.not-found: "%prefix%<#FF6B6B>Player not found."
-admin.tpohere.message: "%prefix%<#FFB800>You have been teleported."
-
-admin.sudo.executed: "%prefix%<#3DDC97>Executed <#F0F8FF>/%command%<#3DDC97> as <#F0F8FF>%player%<#3DDC97>."
-admin.sudo.not-found: "%prefix%<#FF6B6B>Player not found."
+admin:
+  invsee:
+    title: "<#1E90FF>Inventory of <#F0F8FF>%player%"
+    opened: "%prefix%<#3DDC97>Viewing inventory of <#F0F8FF>%player%<#3DDC97>."
+    not-found: "%prefix%<#FF6B6B>Player not found."
+    no-data: "%prefix%<#FF6B6B>No player data found."
+  ecsee:
+    title: "<#1E90FF>Ender Chest of <#F0F8FF>%player%"
+    opened: "%prefix%<#3DDC97>Viewing ender chest of <#F0F8FF>%player%<#3DDC97>."
+    not-found: "%prefix%<#FF6B6B>Player not found."
+    no-data: "%prefix%<#FF6B6B>No player data found."
+  vanish:
+    enabled: "%prefix%<#3DDC97>You are now invisible."
+    disabled: "%prefix%<#FF6B6B>You are now visible."
+  god:
+    enabled: "%prefix%<#3DDC97>God mode enabled."
+    disabled: "%prefix%<#FF6B6B>God mode disabled."
+  freeze:
+    frozen: "%prefix%<#3DDC97>Player <#F0F8FF>%player%<#3DDC97> has been frozen."
+    unfrozen: "%prefix%<#3DDC97>Player <#F0F8FF>%player%<#3DDC97> has been unfrozen."
+    not-found: "%prefix%<#FF6B6B>Player not found."
+    message: "%prefix%<#FFB800>You have been frozen."
+    unmessage: "%prefix%<#3DDC97>You have been unfrozen."
+  tpo:
+    teleported: "%prefix%<#3DDC97>Teleported to <#F0F8FF>%player%<#3DDC97>."
+    not-found: "%prefix%<#FF6B6B>Player not found."
+  tpohere:
+    teleported: "%prefix%<#3DDC97>Teleported <#F0F8FF>%player%<#3DDC97> to you."
+    not-found: "%prefix%<#FF6B6B>Player not found."
+    message: "%prefix%<#FFB800>You have been teleported."
+  sudo:
+    executed: "%prefix%<#3DDC97>Executed <#F0F8FF>/%command%<#3DDC97> as <#F0F8FF>%player%<#3DDC97>."
+    not-found: "%prefix%<#FF6B6B>Player not found."

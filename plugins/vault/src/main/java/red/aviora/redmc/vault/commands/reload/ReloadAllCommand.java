@@ -25,7 +25,7 @@ public class ReloadAllCommand implements Command<CommandSourceStack> {
 		vaultManager.reloadAll();
 
 		ApiUtils.sendCommandSenderMessageArgs(sender,
-			localeManager.getMessage(sender, "success"),
+			localeManager.getMessage(sender, "reload.all-success"),
 			"%prefix%", localeManager.getMessage(sender, "prefix"));
 
 		return Command.SINGLE_SUCCESS;

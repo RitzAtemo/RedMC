@@ -26,7 +26,7 @@ public class MyBalanceCommand implements Command<CommandSourceStack> {
 			throw new SimpleCommandExceptionType(
 				MessageComponentSerializer.message().serialize(
 					ApiUtils.formatText(
-						localeManager.getMessage(sender, "player-only"),
+						localeManager.getMessage(sender, "error.only-players"),
 						"%prefix%", localeManager.getMessage(sender, "prefix")
 					)
 				)
@@ -42,7 +42,7 @@ public class MyBalanceCommand implements Command<CommandSourceStack> {
 			throw new SimpleCommandExceptionType(
 				MessageComponentSerializer.message().serialize(
 					ApiUtils.formatText(
-						localeManager.getMessage(sender, "player-not-found"),
+						localeManager.getMessage(sender, "error.player-not-found"),
 						"%name%", player.getName(),
 						"%prefix%", localeManager.getMessage(sender, "prefix")
 					)

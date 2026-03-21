@@ -21,7 +21,7 @@ public class TrackerReloadAllCommand implements Command<CommandSourceStack> {
         plugin.getConfigManager().reload();
         plugin.getTrackerManager().reloadData();
 
-        ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload-all-success"),
+        ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload.all-success"),
                 "%prefix%", locale.getMessage(sender, "prefix"));
 
         return Command.SINGLE_SUCCESS;

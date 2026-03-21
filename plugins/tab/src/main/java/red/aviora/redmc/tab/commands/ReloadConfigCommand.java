@@ -19,7 +19,7 @@ public class ReloadConfigCommand implements Command<CommandSourceStack> {
 		JavaPlugin.getPlugin(TabPlugin.class).getConfigManager().reload();
 
 		ApiUtils.sendCommandSenderMessageArgs(sender,
-			localeManager.getMessage(sender, "reload-config"),
+			localeManager.getMessage(sender, "reload.config-success"),
 			"%prefix%", localeManager.getMessage(sender, "prefix"));
 
 		return Command.SINGLE_SUCCESS;

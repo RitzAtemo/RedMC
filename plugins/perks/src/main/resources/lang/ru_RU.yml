@@ -1,76 +1,96 @@
-prefix: "<#1E90FF>[<#C780FA>Функции<#1E90FF>]<#F0F8FF> "
+prefix: "<#1E90FF>[<#FF1493>Функции<#1E90FF>]<#F0F8FF> "
 
-error.no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
-error.only-players: "%prefix%<#FF6B6B>Только игроки могут использовать эту команду."
-error.cooldown: "%prefix%<#FFB800>Подождите ещё <#F0F8FF>%seconds%с<#FFB800> перед повторным использованием."
+error:
+  no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
+  only-players: "%prefix%<#FF6B6B>Эта команда доступна только игрокам."
+  cooldown: "%prefix%<#FFB800>Подождите ещё <#F0F8FF>%seconds%с<#FFB800> перед повторным использованием."
 
-repair.success: "%prefix%<#3DDC97>Предмет починен."
-repair.nothing: "%prefix%<#FF6B6B>В руке нет предмета, который можно починить."
-repair.all.success: "%prefix%<#3DDC97>Починено <#F0F8FF>%count%<#3DDC97> предмет(ов)."
-repair.all.nothing: "%prefix%<#FF6B6B>Нет предметов для починки."
+repair:
+  success: "%prefix%<#3DDC97>Предмет починен."
+  nothing: "%prefix%<#FF6B6B>В руке нет предмета, который можно починить."
+  all:
+    success: "%prefix%<#3DDC97>Починено <#F0F8FF>%count%<#3DDC97> предмет(ов)."
+    nothing: "%prefix%<#FF6B6B>Нет предметов для починки."
 
-hat.success: "%prefix%<#3DDC97>Шляпа надета."
-hat.empty: "%prefix%<#FF6B6B>Возьмите предмет в руку."
+hat:
+  success: "%prefix%<#3DDC97>Шляпа надета."
+  empty: "%prefix%<#FF6B6B>Возьмите предмет в руку."
 
-backpack.title: "<#1E90FF>Рюкзак"
+backpack:
+  title: "<#1E90FF>Рюкзак"
 
-dispose.title: "<#888888>Корзина"
+dispose:
+  title: "<#888888>Корзина"
 
-rename.success: "%prefix%<#3DDC97>Предмет переименован."
-rename.empty: "%prefix%<#FF6B6B>Возьмите предмет в руку."
+rename:
+  success: "%prefix%<#3DDC97>Предмет переименован."
+  empty: "%prefix%<#FF6B6B>Возьмите предмет в руку."
 
-fly.enabled: "%prefix%<#3DDC97>Полёт включён."
-fly.disabled: "%prefix%<#FF6B6B>Полёт выключен."
+fly:
+  enabled: "%prefix%<#3DDC97>Полёт включён."
+  disabled: "%prefix%<#FF6B6B>Полёт выключен."
 
-speed.set: "%prefix%<#3DDC97>Скорость установлена на уровень <#F0F8FF>%level%<#3DDC97>."
-speed.invalid: "%prefix%<#FF6B6B>Скорость должна быть от <#F0F8FF>1<#FF6B6B> до <#F0F8FF>5<#FF6B6B>."
+speed:
+  set: "%prefix%<#3DDC97>Скорость установлена на уровень <#F0F8FF>%level%<#3DDC97>."
+  invalid: "%prefix%<#FF6B6B>Скорость должна быть от <#F0F8FF>1<#FF6B6B> до <#F0F8FF>5<#FF6B6B>."
 
-feed.success: "%prefix%<#3DDC97>Голод восполнен."
+feed:
+  success: "%prefix%<#3DDC97>Голод восполнен."
 
-heal.success: "%prefix%<#3DDC97>Здоровье и броня восстановлены."
+heal:
+  success: "%prefix%<#3DDC97>Здоровье и броня восстановлены."
 
-nofall.enabled: "%prefix%<#3DDC97>Защита от урона падения включена."
-nofall.disabled: "%prefix%<#FF6B6B>Защита от урона падения выключена."
+nofall:
+  enabled: "%prefix%<#3DDC97>Защита от урона падения включена."
+  disabled: "%prefix%<#FF6B6B>Защита от урона падения выключена."
 
-broadcast.format: "<#FFB800>[!]<#F0F8FF> %player%<#9b94a6>: <#F0F8FF>%message%"
-broadcast.sent: "%prefix%<#3DDC97>Сообщение отправлено."
+broadcast:
+  format: "<#FFB800>[!]<#F0F8FF> %player%<#9b94a6>: <#F0F8FF>%message%"
+  sent: "%prefix%<#3DDC97>Сообщение отправлено."
 
-perks.setjoin.success: "%prefix%<#3DDC97>Сообщение о входе установлено."
-perks.setjoin.reset: "%prefix%<#3DDC97>Сообщение о входе сброшено."
-perks.setquit.success: "%prefix%<#3DDC97>Сообщение о выходе установлено."
-perks.setquit.reset: "%prefix%<#3DDC97>Сообщение о выходе сброшено."
-perks.reload.config: "%prefix%<#3DDC97>Конфигурация перезагружена."
-perks.reload.data: "%prefix%<#3DDC97>Данные игроков перезагружены."
-perks.reload.all: "%prefix%<#3DDC97>Конфигурация и данные игроков перезагружены."
+perks:
+  setjoin:
+    success: "%prefix%<#3DDC97>Сообщение о входе установлено."
+    reset: "%prefix%<#3DDC97>Сообщение о входе сброшено."
+  setquit:
+    success: "%prefix%<#3DDC97>Сообщение о выходе установлено."
+    reset: "%prefix%<#3DDC97>Сообщение о выходе сброшено."
 
-admin.invsee.title: "<#1E90FF>Инвентарь <#F0F8FF>%player%"
-admin.invsee.opened: "%prefix%<#3DDC97>Просмотр инвентаря <#F0F8FF>%player%<#3DDC97>."
-admin.invsee.not-found: "%prefix%<#FF6B6B>Игрок не найден."
-admin.invsee.no-data: "%prefix%<#FF6B6B>Данные игрока не найдены."
+reload:
+  config-success: "%prefix%<#3DDC97>Конфигурация перезагружена."
+  data-success: "%prefix%<#3DDC97>Данные перезагружены."
+  all-success: "%prefix%<#3DDC97>Конфигурация и данные перезагружены."
 
-admin.ecsee.title: "<#1E90FF>Эндер сундук <#F0F8FF>%player%"
-admin.ecsee.opened: "%prefix%<#3DDC97>Просмотр эндер сундука <#F0F8FF>%player%<#3DDC97>."
-admin.ecsee.not-found: "%prefix%<#FF6B6B>Игрок не найден."
-admin.ecsee.no-data: "%prefix%<#FF6B6B>Данные игрока не найдены."
-
-admin.vanish.enabled: "%prefix%<#3DDC97>Вы стали невидимы."
-admin.vanish.disabled: "%prefix%<#FF6B6B>Вы снова видимы."
-
-admin.god.enabled: "%prefix%<#3DDC97>Режим бога включён."
-admin.god.disabled: "%prefix%<#FF6B6B>Режим бога выключен."
-
-admin.freeze.frozen: "%prefix%<#3DDC97>Игрок <#F0F8FF>%player%<#3DDC97> заморожен."
-admin.freeze.unfrozen: "%prefix%<#3DDC97>Игрок <#F0F8FF>%player%<#3DDC97> разморожен."
-admin.freeze.not-found: "%prefix%<#FF6B6B>Игрок не найден."
-admin.freeze.message: "%prefix%<#FFB800>Вы были заморожены."
-admin.freeze.unmessage: "%prefix%<#3DDC97>Вы были разморожены."
-
-admin.tpo.teleported: "%prefix%<#3DDC97>Телепортация к <#F0F8FF>%player%<#3DDC97>."
-admin.tpo.not-found: "%prefix%<#FF6B6B>Игрок не найден."
-
-admin.tpohere.teleported: "%prefix%<#3DDC97>Игрок <#F0F8FF>%player%<#3DDC97> телепортирован к вам."
-admin.tpohere.not-found: "%prefix%<#FF6B6B>Игрок не найден."
-admin.tpohere.message: "%prefix%<#FFB800>Вас телепортировали."
-
-admin.sudo.executed: "%prefix%<#3DDC97>Команда <#F0F8FF>/%command%<#3DDC97> выполнена от имени <#F0F8FF>%player%<#3DDC97>."
-admin.sudo.not-found: "%prefix%<#FF6B6B>Игрок не найден."
+admin:
+  invsee:
+    title: "<#1E90FF>Инвентарь <#F0F8FF>%player%"
+    opened: "%prefix%<#3DDC97>Просмотр инвентаря <#F0F8FF>%player%<#3DDC97>."
+    not-found: "%prefix%<#FF6B6B>Игрок не найден."
+    no-data: "%prefix%<#FF6B6B>Данные игрока не найдены."
+  ecsee:
+    title: "<#1E90FF>Эндер сундук <#F0F8FF>%player%"
+    opened: "%prefix%<#3DDC97>Просмотр эндер сундука <#F0F8FF>%player%<#3DDC97>."
+    not-found: "%prefix%<#FF6B6B>Игрок не найден."
+    no-data: "%prefix%<#FF6B6B>Данные игрока не найдены."
+  vanish:
+    enabled: "%prefix%<#3DDC97>Вы стали невидимы."
+    disabled: "%prefix%<#FF6B6B>Вы снова видимы."
+  god:
+    enabled: "%prefix%<#3DDC97>Режим бога включён."
+    disabled: "%prefix%<#FF6B6B>Режим бога выключен."
+  freeze:
+    frozen: "%prefix%<#3DDC97>Игрок <#F0F8FF>%player%<#3DDC97> заморожен."
+    unfrozen: "%prefix%<#3DDC97>Игрок <#F0F8FF>%player%<#3DDC97> разморожен."
+    not-found: "%prefix%<#FF6B6B>Игрок не найден."
+    message: "%prefix%<#FFB800>Вы были заморожены."
+    unmessage: "%prefix%<#3DDC97>Вы были разморожены."
+  tpo:
+    teleported: "%prefix%<#3DDC97>Телепортация к <#F0F8FF>%player%<#3DDC97>."
+    not-found: "%prefix%<#FF6B6B>Игрок не найден."
+  tpohere:
+    teleported: "%prefix%<#3DDC97>Игрок <#F0F8FF>%player%<#3DDC97> телепортирован к вам."
+    not-found: "%prefix%<#FF6B6B>Игрок не найден."
+    message: "%prefix%<#FFB800>Вас телепортировали."
+  sudo:
+    executed: "%prefix%<#3DDC97>Команда <#F0F8FF>/%command%<#3DDC97> выполнена от имени <#F0F8FF>%player%<#3DDC97>."
+    not-found: "%prefix%<#FF6B6B>Игрок не найден."

@@ -24,7 +24,7 @@ public class TrackerStopCommand implements Command<CommandSourceStack> {
 
         if (!(sender instanceof Player admin)) {
             throw new SimpleCommandExceptionType(MessageComponentSerializer.message().serialize(
-                    ApiUtils.formatText(locale.getMessage(sender, "players-only"),
+                    ApiUtils.formatText(locale.getMessage(sender, "error.only-players"),
                             "%prefix%", locale.getMessage(sender, "prefix"))
             )).create();
         }

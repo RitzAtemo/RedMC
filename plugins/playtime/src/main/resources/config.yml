@@ -1,0 +1,16 @@
+config-version: "0.0.1-alpha"
+
+afk:
+  enabled: true
+  timeout: 300
+  movement-threshold: 2.0
+  broadcast:
+    on-afk: true
+    on-return: true
+  kick:
+    enabled: false
+    delay: 600
+    reason: "<red>You were kicked for being AFK."
+
+playtime:
+  save-interval: 6000

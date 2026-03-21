@@ -21,7 +21,7 @@ public class ReloadConfigCommand implements Command<CommandSourceStack> {
 		configManager.reload();
 
 		ApiUtils.sendCommandSenderMessageArgs(sender,
-			localeManager.getMessage(sender, "success"),
+			localeManager.getMessage(sender, "reload.config-success"),
 			"%prefix%", localeManager.getMessage(sender, "prefix")
 		);
 

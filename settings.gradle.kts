@@ -30,5 +30,6 @@ include(
 	"plugins:teleport",
 	"plugins:perks",
 	"plugins:cosmetics",
-	"plugins:tracker"
+	"plugins:tracker",
+	"plugins:playtime"
 )

@@ -54,7 +54,7 @@ public class PermissionsBootstrap implements PluginBootstrap {
 			.requires(context -> context.getSender().hasPermission("redmc.permissions.reload"))
 			.then(Commands.literal("config")
 				.executes(new ReloadConfigCommand()))
-			.then(Commands.literal("datasource")
+			.then(Commands.literal("data")
 				.executes(new ReloadDataSourceCommand()))
 			.then(Commands.literal("all")
 				.executes(new ReloadAllCommand()));

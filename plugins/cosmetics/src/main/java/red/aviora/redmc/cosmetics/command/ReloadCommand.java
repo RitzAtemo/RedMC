@@ -29,20 +29,20 @@ public class ReloadCommand implements Command<CommandSourceStack> {
             case CONFIG -> {
                 plugin.getConfigManager().reload();
                 ApiUtils.sendCommandSenderMessageArgs(sender,
-                    plugin.getLocaleManager().getMessage(sender, "cosmetics.reload-config-success"),
+                    plugin.getLocaleManager().getMessage(sender, "reload.config-success"),
                     "%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix"));
             }
             case DATA -> {
                 plugin.getTemplateManager().reloadAllOnline(plugin.getServer().getOnlinePlayers().stream().map(Player::getUniqueId).toList());
                 ApiUtils.sendCommandSenderMessageArgs(sender,
-                    plugin.getLocaleManager().getMessage(sender, "cosmetics.reload-data-success"),
+                    plugin.getLocaleManager().getMessage(sender, "reload.data-success"),
                     "%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix"));
             }
             case ALL -> {
                 plugin.getConfigManager().reload();
                 plugin.getTemplateManager().reloadAllOnline(plugin.getServer().getOnlinePlayers().stream().map(Player::getUniqueId).toList());
                 ApiUtils.sendCommandSenderMessageArgs(sender,
-                    plugin.getLocaleManager().getMessage(sender, "cosmetics.reload-all-success"),
+                    plugin.getLocaleManager().getMessage(sender, "reload.all-success"),
                     "%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix"));
             }
         }

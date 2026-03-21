@@ -1,14 +1,17 @@
-prefix: "<#1E90FF>[<#FF4500>Chat<#1E90FF>]<#F0F8FF> "
+prefix: "<#1E90FF>[<#FF1493>Chat<#1E90FF>]<#F0F8FF> "
 
-error.no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+error:
+  no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+  only-players: "%prefix%<#FF6B6B>This command can only be used by players."
+  player-not-found: "%prefix%<#FF6B6B>Player not found."
+
+reload:
+  config-success: "%prefix%<#3DDC97>Configuration reloaded."
+  alerts-success: "%prefix%<#3DDC97>Alerts reloaded."
+  all-success: "%prefix%<#3DDC97>Configuration and data reloaded."
 
 chat:
-  no-target: "%prefix%<#FF6B6B>Player not found."
   no-reply-target: "%prefix%<#FF6B6B>No one to reply to."
-  only-players: "%prefix%<#FF6B6B>Only players can use this command."
-  reload-config-success: "%prefix%<#3DDC97>Chat configuration reloaded."
-  reload-alerts-success: "%prefix%<#3DDC97>Chat alerts reloaded."
-  reload-all-success: "%prefix%<#3DDC97>Chat configuration and alerts reloaded."
   msg-sent: "<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message%"
   msg-received: "<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message%"
   reply-sent: "<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ \"%quoted%\")"

@@ -1,14 +1,17 @@
-prefix: "<#DC143C>[<#FF4500>Трекер<#DC143C>]<#F0F8FF> "
+prefix: "<#1E90FF>[<#FF1493>Трекер<#1E90FF>]<#F0F8FF> "
 
-error.no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
+error:
+  no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
+  only-players: "%prefix%<#FF6B6B>Эта команда доступна только игрокам."
+  player-not-found: "%prefix%<#FF6B6B>Игрок '<#F0F8FF>%player%<#FF6B6B>' не найден."
 
-players-only: "%prefix%<#FF6B6B>Эта команда только для игроков."
-player-not-found: "%prefix%<#FF6B6B>Игрок '<#FFFFFF>%player%<#FF6B6B>' не найден."
-tracking-started: "%prefix%<#3DDC97>Теперь отслеживаете '<#FFFFFF>%player%<#3DDC97>'."
+tracking-started: "%prefix%<#3DDC97>Теперь отслеживаете '<#F0F8FF>%player%<#3DDC97>'."
 tracking-stopped: "%prefix%<#3DDC97>Отслеживание остановлено."
-already-tracking: "%prefix%<#FF6B6B>Вы уже отслеживаете '<#FFFFFF>%player%<#FF6B6B>'."
+already-tracking: "%prefix%<#FF6B6B>Вы уже отслеживаете '<#F0F8FF>%player%<#FF6B6B>'."
 not-tracking: "%prefix%<#FF6B6B>Вы никого не отслеживаете."
 position-restored: "<#3DDC97>Ваша последняя позиция была восстановлена."
-reload-config-success: "%prefix%<#3DDC97>Конфигурация трекера перезагружена."
-reload-data-success: "%prefix%<#3DDC97>Данные трекера перезагружены."
-reload-all-success: "%prefix%<#3DDC97>Конфигурация и данные трекера перезагружены."
+
+reload:
+  config-success: "%prefix%<#3DDC97>Конфигурация перезагружена."
+  data-success: "%prefix%<#3DDC97>Данные перезагружены."
+  all-success: "%prefix%<#3DDC97>Конфигурация и данные перезагружены."

@@ -20,7 +20,7 @@ public class ToggleCommand implements Command<CommandSourceStack> {
 		if (!(sender instanceof Player player)) {
 			LocaleManager localeManager = JavaPlugin.getPlugin(ScoreboardPlugin.class).getLocaleManager();
 			ApiUtils.sendCommandSenderMessageArgs(sender,
-				localeManager.getMessage(sender, "players-only"),
+				localeManager.getMessage(sender, "error.only-players"),
 				"%prefix%", localeManager.getMessage(sender, "prefix"));
 			return Command.SINGLE_SUCCESS;
 		}

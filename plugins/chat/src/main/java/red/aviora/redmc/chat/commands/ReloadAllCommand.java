@@ -21,7 +21,7 @@ public class ReloadAllCommand implements Command<CommandSourceStack> {
 		plugin.getChatManager().loadAll();
 		plugin.getAlertManager().reload();
 
-		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "chat.reload-all-success"),
+		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload.all-success"),
 			"%prefix%", locale.getMessage(sender, "prefix"));
 
 		return Command.SINGLE_SUCCESS;

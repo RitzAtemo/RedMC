@@ -20,7 +20,7 @@ public class PerksReloadAllCommand implements Command<CommandSourceStack> {
 		plugin.getDataStorage().loadAll();
 
 		ApiUtils.sendCommandSenderMessageArgs(sender,
-			plugin.getLocaleManager().getMessage(sender, "perks.reload.all"),
+			plugin.getLocaleManager().getMessage(sender, "reload.all-success"),
 			"%prefix%", plugin.getLocaleManager().getMessage(sender, "prefix")
 		);
 		return SINGLE_SUCCESS;

@@ -21,7 +21,7 @@ public class ReloadDataCommand implements Command<CommandSourceStack> {
 		vaultManager.loadAll();
 
 		ApiUtils.sendCommandSenderMessageArgs(sender,
-			localeManager.getMessage(sender, "success"),
+			localeManager.getMessage(sender, "reload.data-success"),
 			"%prefix%", localeManager.getMessage(sender, "prefix"));
 
 		return Command.SINGLE_SUCCESS;

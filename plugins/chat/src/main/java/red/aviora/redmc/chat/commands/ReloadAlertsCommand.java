@@ -18,7 +18,7 @@ public class ReloadAlertsCommand implements Command<CommandSourceStack> {
 
 		JavaPlugin.getPlugin(ChatPlugin.class).getAlertManager().reload();
 
-		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "chat.reload-alerts-success"),
+		ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload.alerts-success"),
 			"%prefix%", locale.getMessage(sender, "prefix"));
 
 		return Command.SINGLE_SUCCESS;

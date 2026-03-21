@@ -1,4 +1,4 @@
-prefix: "<#1E90FF>[<#FF4500>Телепорт<#1E90FF>]<#F0F8FF> "
+prefix: "<#1E90FF>[<#FF1493>Телепорт<#1E90FF>]<#F0F8FF> "
 
 spawn:
   set-success: "%prefix%<#3DDC97>Спавн установлен."
@@ -61,6 +61,6 @@ error:
   player-not-found: "%prefix%<#FF6B6B>Игрок не найден."
 
 reload:
-  config-success: "%prefix%<#3DDC97>Конфигурация телепортации перезагружена."
-  data-success: "%prefix%<#3DDC97>Данные телепортации перезагружены."
-  all-success: "%prefix%<#3DDC97>Конфигурация и данные телепортации перезагружены."
+  config-success: "%prefix%<#3DDC97>Конфигурация перезагружена."
+  data-success: "%prefix%<#3DDC97>Данные перезагружены."
+  all-success: "%prefix%<#3DDC97>Конфигурация и данные перезагружены."

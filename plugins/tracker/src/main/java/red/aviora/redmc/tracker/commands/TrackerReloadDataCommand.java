@@ -20,7 +20,7 @@ public class TrackerReloadDataCommand implements Command<CommandSourceStack> {
 
         plugin.getTrackerManager().reloadData();
 
-        ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload-data-success"),
+        ApiUtils.sendCommandSenderMessageArgs(sender, locale.getMessage(sender, "reload.data-success"),
                 "%prefix%", locale.getMessage(sender, "prefix"));
 
         return Command.SINGLE_SUCCESS;

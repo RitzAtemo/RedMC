@@ -38,7 +38,7 @@ public class NpcTeleportCommand implements Command<CommandSourceStack> {
 		Player target = Bukkit.getPlayerExact(playerName);
 		if (target == null) {
 			throw new SimpleCommandExceptionType(MessageComponentSerializer.message().serialize(
-				ApiUtils.formatText(locale.getMessage(sender, "player-not-found"),
+				ApiUtils.formatText(locale.getMessage(sender, "error.player-not-found"),
 					"%prefix%", locale.getMessage(sender, "prefix"),
 					"%name%", playerName)
 			)).create();

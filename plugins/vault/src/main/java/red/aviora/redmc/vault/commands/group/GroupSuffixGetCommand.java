@@ -30,7 +30,7 @@ public class GroupSuffixGetCommand implements Command<CommandSourceStack> {
 			throw new SimpleCommandExceptionType(
 				MessageComponentSerializer.message().serialize(
 					ApiUtils.formatText(
-						localeManager.getMessage(sender, "error"),
+						localeManager.getMessage(sender, "error.generic"),
 						"%prefix%", localeManager.getMessage(sender, "prefix")
 					)
 				)

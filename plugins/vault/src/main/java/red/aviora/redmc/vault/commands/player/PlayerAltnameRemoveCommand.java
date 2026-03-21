@@ -32,7 +32,7 @@ public class PlayerAltnameRemoveCommand implements Command<CommandSourceStack> {
 			throw new SimpleCommandExceptionType(
 				MessageComponentSerializer.message().serialize(
 					ApiUtils.formatText(
-						localeManager.getMessage(sender, "player-not-found"),
+						localeManager.getMessage(sender, "error.player-not-found"),
 						"%name%", playerName,
 						"%prefix%", localeManager.getMessage(sender, "prefix")
 					)
@@ -45,7 +45,7 @@ public class PlayerAltnameRemoveCommand implements Command<CommandSourceStack> {
 			throw new SimpleCommandExceptionType(
 				MessageComponentSerializer.message().serialize(
 					ApiUtils.formatText(
-						localeManager.getMessage(sender, "error"),
+						localeManager.getMessage(sender, "error.generic"),
 						"%prefix%", localeManager.getMessage(sender, "prefix")
 					)
 				)

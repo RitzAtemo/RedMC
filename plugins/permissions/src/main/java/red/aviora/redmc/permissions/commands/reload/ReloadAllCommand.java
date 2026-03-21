@@ -24,7 +24,7 @@ public class ReloadAllCommand implements Command<CommandSourceStack> {
 		permissionManager.reloadAll();
 
 		ApiUtils.sendCommandSenderMessageArgs(sender,
-			localeManager.getMessage(sender, "success"),
+			localeManager.getMessage(sender, "reload.all-success"),
 			"%prefix%", localeManager.getMessage(sender, "prefix")
 		);
 

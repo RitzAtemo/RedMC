@@ -27,7 +27,7 @@ public class ReloadAllCommand implements Command<CommandSourceStack> {
 		scoreboardManager.startAnimations();
 
 		ApiUtils.sendCommandSenderMessageArgs(sender,
-			localeManager.getMessage(sender, "reload-all"),
+			localeManager.getMessage(sender, "reload.all-success"),
 			"%prefix%", localeManager.getMessage(sender, "prefix"));
 
 		return Command.SINGLE_SUCCESS;
