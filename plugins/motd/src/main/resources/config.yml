@@ -3,12 +3,12 @@ config-version: "0.0.1-alpha"
 motd:
   mode: random
   templates:
-    - - "<#1E90FF>━━━ <#F0F8FF>RedMC SMP <#1E90FF>━━━ <#FF1493>● Online"
-      - "<#9b94a6>Players: <#F0F8FF>%online%<#9b94a6>/<#F0F8FF>%max% <#888888>● <#F0F8FF>play.redmc.example.com"
-    - - "<#FF1493>✦ <#F0F8FF>RedMC SMP <#FF1493>✦ <#1E90FF>Vanilla Survival"
-      - "<#FFB800>Join us! <#9b94a6>play.redmc.example.com"
-    - - "<#3DDC97>⬡ <#F0F8FF>RedMC SMP <#3DDC97>⬡ <#9b94a6>Est. 2024"
-      - "<#F0F8FF>Folia 1.21.11 <#888888>● <#1E90FF>play.redmc.example.com"
+    - - "<#1E90FF>━━━ <#F0F8FF>AvioraRed SMP <#1E90FF>━━━ <#FF1493>● Online"
+      - "<#9b94a6>Players: <#F0F8FF>%online%<#9b94a6>/<#F0F8FF>%max% <#888888>● <#F0F8FF>play.aviora.red"
+    - - "<#FF1493>✦ <#F0F8FF>AvioraRed SMP <#FF1493>✦ <#1E90FF>Vanilla Survival"
+      - "<#FFB800>Join us! <#9b94a6>play.aviora.red"
+    - - "<#3DDC97>⬡ <#F0F8FF>AvioraRed SMP <#3DDC97>⬡ <#9b94a6>Est. 2026"
+      - "<#F0F8FF>Minecraft 1.21.11 <#888888>● <#1E90FF>play.aviora.red"
 
 icons:
   enabled: true
@@ -23,7 +23,7 @@ players:
   sample:
     enabled: true
     lines:
-      - "<#1E90FF>━━━ RedMC SMP ━━━"
+      - "<#1E90FF>━━━ AvioraRed SMP ━━━"
       - "<#9b94a6>Vanilla Survival"
 
 version:

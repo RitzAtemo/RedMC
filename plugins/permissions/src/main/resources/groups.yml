@@ -1,0 +1,701 @@
+groups:
+  default:
+    displayName: "Странник"
+    permissions:
+      - name: "*"
+        weight: 0
+        allowed: false
+      - name: redmc.chat
+        weight: 1
+        allowed: true
+      - name: redmc.chat.global
+        weight: 1
+        allowed: true
+      - name: redmc.chat.msg
+        weight: 1
+        allowed: true
+      - name: redmc.playtime
+        weight: 1
+        allowed: true
+      - name: redmc.scoreboard
+        weight: 1
+        allowed: true
+      - name: redmc.scoreboard.toggle
+        weight: 1
+        allowed: true
+      - name: redmc.teleport
+        weight: 1
+        allowed: true
+      - name: redmc.teleport.homes.1
+        weight: 10
+        allowed: true
+      - name: redmc.teleport.rtp.1
+        weight: 10
+        allowed: true
+      - name: redmc.teleport.home
+        weight: 1
+        allowed: true
+      - name: redmc.teleport.home.delete
+        weight: 1
+        allowed: true
+      - name: redmc.teleport.home.set
+        weight: 1
+        allowed: true
+      - name: redmc.teleport.rtp
+        weight: 1
+        allowed: true
+      - name: redmc.teleport.spawn
+        weight: 1
+        allowed: true
+      - name: redmc.teleport.tpa
+        weight: 1
+        allowed: true
+      - name: redmc.teleport.tpa.accept
+        weight: 1
+        allowed: true
+      - name: redmc.teleport.tpa.cancel
+        weight: 1
+        allowed: true
+      - name: redmc.teleport.tpa.deny
+        weight: 1
+        allowed: true
+      - name: redmc.teleport.tpa.here
+        weight: 1
+        allowed: true
+      - name: redmc.ticket
+        weight: 1
+        allowed: true
+      - name: redmc.vault
+        weight: 1
+        allowed: true
+      - name: redmc.vault.balance
+        weight: 1
+        allowed: true
+      - name: redmc.vault.baltop
+        weight: 1
+        allowed: true
+      - name: redmc.vault.pay
+        weight: 1
+        allowed: true
+      - name: bukkit.command.help
+        weight: 1
+        allowed: true
+      - name: minecraft.command.help
+        weight: 1
+        allowed: true
+      - name: bukkit.command.plugins
+        weight: 1
+        allowed: false
+      - name: bukkit.command.version
+        weight: 1
+        allowed: false
+      - name: vault.prefix.<#9b94a6>[Странник] <reset>
+        weight: 1
+        allowed: true
+
+  adventurer:
+    displayName: "Авантюрист"
+    inherits:
+      - default
+    permissions:
+      - name: vault.prefix.<#3DDC97>[Авантюрист] <reset>
+        weight: 10
+        allowed: true
+      - name: redmc.cosmetics
+        weight: 10
+        allowed: true
+      - name: redmc.cosmetics.equip
+        weight: 10
+        allowed: true
+      - name: redmc.cosmetics.list
+        weight: 10
+        allowed: true
+      - name: redmc.cosmetics.toggle
+        weight: 10
+        allowed: true
+      - name: redmc.perks
+        weight: 10
+        allowed: true
+      - name: redmc.perks.feed
+        weight: 10
+        allowed: true
+      - name: redmc.perks.hat
+        weight: 10
+        allowed: true
+      - name: redmc.perks.heal
+        weight: 10
+        allowed: true
+      - name: redmc.perks.rename
+        weight: 10
+        allowed: true
+      - name: redmc.perks.repair
+        weight: 10
+        allowed: true
+      - name: redmc.perks.setjoin
+        weight: 10
+        allowed: true
+      - name: redmc.perks.setquit
+        weight: 10
+        allowed: true
+      - name: redmc.perks.workbench
+        weight: 10
+        allowed: true
+      - name: redmc.perks.enderchest
+        weight: 10
+        allowed: true
+      - name: redmc.teleport.homes
+        weight: 10
+        allowed: true
+      - name: redmc.teleport.homes.3
+        weight: 10
+        allowed: true
+      - name: redmc.teleport.back
+        weight: 10
+        allowed: true
+      - name: redmc.teleport.back.3
+        weight: 10
+        allowed: true
+      - name: redmc.teleport.rtp.3
+        weight: 10
+        allowed: true
+
+  knight:
+    displayName: "Рыцарь"
+    inherits:
+      - adventurer
+    permissions:
+      - name: vault.prefix.<#FFB800>[Рыцарь] <reset>
+        weight: 20
+        allowed: true
+      - name: redmc.perks.anvil
+        weight: 20
+        allowed: true
+      - name: redmc.perks.backpack
+        weight: 20
+        allowed: true
+      - name: redmc.perks.cartography
+        weight: 20
+        allowed: true
+      - name: redmc.perks.dispose
+        weight: 20
+        allowed: true
+      - name: redmc.perks.enchant
+        weight: 20
+        allowed: true
+      - name: redmc.perks.fly
+        weight: 20
+        allowed: true
+      - name: redmc.perks.grindstone
+        weight: 20
+        allowed: true
+      - name: redmc.perks.loom
+        weight: 20
+        allowed: true
+      - name: redmc.perks.nofall
+        weight: 20
+        allowed: true
+      - name: redmc.perks.repair.all
+        weight: 20
+        allowed: true
+      - name: redmc.perks.smithing
+        weight: 20
+        allowed: true
+      - name: redmc.perks.speed
+        weight: 20
+        allowed: true
+      - name: redmc.perks.stonecutter
+        weight: 20
+        allowed: true
+      - name: redmc.teleport.back.bypass
+        weight: 20
+        allowed: true
+      - name: redmc.teleport.back.bypass.cooldown
+        weight: 20
+        allowed: true
+      - name: redmc.teleport.homes.bypass
+        weight: 20
+        allowed: true
+      - name: redmc.teleport.homes.bypass.limit
+        weight: 20
+        allowed: true
+      - name: redmc.teleport.rtp.bypass
+        weight: 20
+        allowed: true
+      - name: redmc.teleport.rtp.bypass.cooldown
+        weight: 20
+        allowed: true
+
+  guardian:
+    displayName: "Страж"
+    inherits:
+      - knight
+    permissions:
+      - name: redmc.playtime.others
+        weight: 50
+        allowed: true
+      - name: vault.prefix.<#FF6B6B>[Страж] <reset>
+        weight: 50
+        allowed: true
+      - name: redmc.chat.reload
+        weight: 50
+        allowed: true
+      - name: redmc.chat.reload.alerts
+        weight: 50
+        allowed: true
+      - name: redmc.chat.reload.all
+        weight: 50
+        allowed: true
+      - name: redmc.chat.reload.config
+        weight: 50
+        allowed: true
+      - name: redmc.cosmetics.admin
+        weight: 50
+        allowed: true
+      - name: redmc.cosmetics.create
+        weight: 50
+        allowed: true
+      - name: redmc.cosmetics.delete
+        weight: 50
+        allowed: true
+      - name: redmc.cosmetics.edit
+        weight: 50
+        allowed: true
+      - name: redmc.cosmetics.export
+        weight: 50
+        allowed: true
+      - name: redmc.cosmetics.import
+        weight: 50
+        allowed: true
+      - name: redmc.cosmetics.reload
+        weight: 50
+        allowed: true
+      - name: redmc.cosmetics.reload.all
+        weight: 50
+        allowed: true
+      - name: redmc.cosmetics.reload.config
+        weight: 50
+        allowed: true
+      - name: redmc.cosmetics.reload.data
+        weight: 50
+        allowed: true
+      - name: redmc.holograms
+        weight: 50
+        allowed: true
+      - name: redmc.holograms.create
+        weight: 50
+        allowed: true
+      - name: redmc.holograms.delete
+        weight: 50
+        allowed: true
+      - name: redmc.holograms.read
+        weight: 50
+        allowed: true
+      - name: redmc.holograms.reload
+        weight: 50
+        allowed: true
+      - name: redmc.holograms.reload.all
+        weight: 50
+        allowed: true
+      - name: redmc.holograms.reload.config
+        weight: 50
+        allowed: true
+      - name: redmc.holograms.reload.data
+        weight: 50
+        allowed: true
+      - name: redmc.holograms.update
+        weight: 50
+        allowed: true
+      - name: redmc.holograms.update.lines
+        weight: 50
+        allowed: true
+      - name: redmc.holograms.update.location
+        weight: 50
+        allowed: true
+      - name: redmc.holograms.update.name
+        weight: 50
+        allowed: true
+      - name: redmc.moderation
+        weight: 50
+        allowed: true
+      - name: redmc.moderation.ban
+        weight: 50
+        allowed: true
+      - name: redmc.moderation.history
+        weight: 50
+        allowed: true
+      - name: redmc.moderation.mute
+        weight: 50
+        allowed: true
+      - name: redmc.moderation.reload
+        weight: 50
+        allowed: true
+      - name: redmc.moderation.reload.all
+        weight: 50
+        allowed: true
+      - name: redmc.moderation.reload.config
+        weight: 50
+        allowed: true
+      - name: redmc.moderation.reload.data
+        weight: 50
+        allowed: true
+      - name: redmc.moderation.unban
+        weight: 50
+        allowed: true
+      - name: redmc.moderation.unmute
+        weight: 50
+        allowed: true
+      - name: redmc.moderation.warn
+        weight: 50
+        allowed: true
+      - name: redmc.motd
+        weight: 50
+        allowed: true
+      - name: redmc.motd.reload
+        weight: 50
+        allowed: true
+      - name: redmc.motd.reload.all
+        weight: 50
+        allowed: true
+      - name: redmc.npc
+        weight: 50
+        allowed: true
+      - name: redmc.npc.create
+        weight: 50
+        allowed: true
+      - name: redmc.npc.delete
+        weight: 50
+        allowed: true
+      - name: redmc.npc.read
+        weight: 50
+        allowed: true
+      - name: redmc.npc.reload
+        weight: 50
+        allowed: true
+      - name: redmc.npc.reload.all
+        weight: 50
+        allowed: true
+      - name: redmc.npc.reload.config
+        weight: 50
+        allowed: true
+      - name: redmc.npc.reload.data
+        weight: 50
+        allowed: true
+      - name: redmc.npc.update
+        weight: 50
+        allowed: true
+      - name: redmc.npc.update.commands
+        weight: 50
+        allowed: true
+      - name: redmc.npc.update.equipment
+        weight: 50
+        allowed: true
+      - name: redmc.npc.update.name
+        weight: 50
+        allowed: true
+      - name: redmc.npc.update.skin
+        weight: 50
+        allowed: true
+      - name: redmc.npc.update.teleport
+        weight: 50
+        allowed: true
+      - name: redmc.perks.admin
+        weight: 50
+        allowed: true
+      - name: redmc.perks.admin.ecsee
+        weight: 50
+        allowed: true
+      - name: redmc.perks.admin.god
+        weight: 50
+        allowed: true
+      - name: redmc.perks.admin.vanish
+        weight: 50
+        allowed: true
+      - name: redmc.perks.admin.freeze
+        weight: 50
+        allowed: true
+      - name: redmc.perks.admin.invsee
+        weight: 50
+        allowed: true
+      - name: redmc.perks.admin.sudo
+        weight: 50
+        allowed: true
+      - name: redmc.perks.admin.tpo
+        weight: 50
+        allowed: true
+      - name: redmc.perks.admin.tpohere
+        weight: 50
+        allowed: true
+      - name: redmc.perks.broadcast
+        weight: 50
+        allowed: true
+      - name: redmc.perks.reload
+        weight: 50
+        allowed: true
+      - name: redmc.perks.reload.all
+        weight: 50
+        allowed: true
+      - name: redmc.perks.reload.config
+        weight: 50
+        allowed: true
+      - name: redmc.perks.reload.data
+        weight: 50
+        allowed: true
+      - name: redmc.permissions
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.create
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.delete
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.read
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.update
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.update.inherits
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.update.inherits.create
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.update.inherits.delete
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.update.inherits.read
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.update.name
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.update.permissions
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.update.permissions.create
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.update.permissions.delete
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.group.update.permissions.read
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.player
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.player.groups.create
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.player.groups.delete
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.player.groups.read
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.player.groups
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.player.permissions
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.player.permissions.create
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.player.permissions.delete
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.player.permissions.read
+        weight: 50
+        allowed: true
+      - name: redmc.permissions.reload
+        weight: 50
+        allowed: true
+      - name: redmc.playtime.afk.bypass
+        weight: 50
+        allowed: true
+      - name: redmc.playtime.reload
+        weight: 50
+        allowed: true
+      - name: redmc.playtime.reload.all
+        weight: 50
+        allowed: true
+      - name: redmc.playtime.reload.config
+        weight: 50
+        allowed: true
+      - name: redmc.playtime.reload.data
+        weight: 50
+        allowed: true
+      - name: redmc.scoreboard.reload
+        weight: 50
+        allowed: true
+      - name: redmc.scoreboard.reload.all
+        weight: 50
+        allowed: true
+      - name: redmc.scoreboard.reload.config
+        weight: 50
+        allowed: true
+      - name: redmc.tab
+        weight: 50
+        allowed: true
+      - name: redmc.tab.reload
+        weight: 50
+        allowed: true
+      - name: redmc.tab.reload.all
+        weight: 50
+        allowed: true
+      - name: redmc.tab.reload.config
+        weight: 50
+        allowed: true
+      - name: redmc.teleport.back.bypass.limit
+        weight: 50
+        allowed: true
+      - name: redmc.teleport.reload
+        weight: 50
+        allowed: true
+      - name: redmc.teleport.reload.all
+        weight: 50
+        allowed: true
+      - name: redmc.teleport.reload.config
+        weight: 50
+        allowed: true
+      - name: redmc.teleport.reload.data
+        weight: 50
+        allowed: true
+      - name: redmc.teleport.rtp.bypass.limit
+        weight: 50
+        allowed: true
+      - name: redmc.teleport.spawn.set
+        weight: 50
+        allowed: true
+      - name: redmc.teleport.spawn.set.newbie
+        weight: 50
+        allowed: true
+      - name: redmc.teleport.warp
+        weight: 50
+        allowed: true
+      - name: redmc.teleport.warp.create
+        weight: 50
+        allowed: true
+      - name: redmc.teleport.warp.delete
+        weight: 50
+        allowed: true
+      - name: redmc.tickets
+        weight: 50
+        allowed: true
+      - name: redmc.tracker
+        weight: 50
+        allowed: true
+      - name: redmc.tracker.bypass
+        weight: 50
+        allowed: true
+      - name: redmc.tracker.reload
+        weight: 50
+        allowed: true
+      - name: redmc.tracker.reload.all
+        weight: 50
+        allowed: true
+      - name: redmc.tracker.reload.config
+        weight: 50
+        allowed: true
+      - name: redmc.tracker.reload.data
+        weight: 50
+        allowed: true
+      - name: redmc.vault.group
+        weight: 50
+        allowed: true
+      - name: redmc.vault.group.prefix
+        weight: 50
+        allowed: true
+      - name: redmc.vault.group.prefix.get
+        weight: 50
+        allowed: true
+      - name: redmc.vault.group.prefix.remove
+        weight: 50
+        allowed: true
+      - name: redmc.vault.group.prefix.set
+        weight: 50
+        allowed: true
+      - name: redmc.vault.group.suffix
+        weight: 50
+        allowed: true
+      - name: redmc.vault.group.suffix.get
+        weight: 50
+        allowed: true
+      - name: redmc.vault.group.suffix.remove
+        weight: 50
+        allowed: true
+      - name: redmc.vault.group.suffix.set
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.altname
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.altname.get
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.altname.remove
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.altname.set
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.economy
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.economy.add
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.economy.balance
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.economy.set
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.economy.subtract
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.prefix
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.prefix.get
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.prefix.remove
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.prefix.set
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.search
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.suffix
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.suffix.get
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.suffix.remove
+        weight: 50
+        allowed: true
+      - name: redmc.vault.player.suffix.set
+        weight: 50
+        allowed: true
+      - name: redmc.vault.reload
+        weight: 50
+        allowed: true
+
+  archon:
+    displayName: "Архонт"
+    permissions:
+      - name: vault.prefix.<#C780FA>[Архонт] <reset>
+        weight: 100
+        allowed: true

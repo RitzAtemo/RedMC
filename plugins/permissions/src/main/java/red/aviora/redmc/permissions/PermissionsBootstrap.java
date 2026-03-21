@@ -114,6 +114,43 @@ public class PermissionsBootstrap implements PluginBootstrap {
 							)
 						)
 					)
+					.then(Commands.literal("inherits")
+						.then(Commands.literal("create")
+							.requires(context -> context.getSender().hasPermission("redmc.permissions.group.update.inherits.create"))
+							.then(Commands.argument("<parent>", StringArgumentType.word())
+								.suggests((context, builder) -> {
+									String groupId = StringArgumentType.getString(context, "<group>").toLowerCase();
+									Group current = PermissionsPlugin.getInstance().getPermissionManager().getGroups().get(groupId);
+									PermissionsPlugin.getInstance().getPermissionManager().getGroups().keySet().stream()
+										.filter(id -> !id.equals(groupId))
+										.filter(id -> current == null || !current.getInherits().contains(id))
+										.filter(name -> name.toLowerCase(Locale.ROOT).startsWith(builder.getRemainingLowerCase()))
+										.forEach(builder::suggest);
+									return builder.buildFuture();
+								})
+								.executes(new GroupInheritCreateCommand())
+							)
+						)
+						.then(Commands.literal("read")
+							.requires(context -> context.getSender().hasPermission("redmc.permissions.group.update.inherits.read"))
+							.executes(new GroupInheritsReadCommand()))
+						.then(Commands.literal("delete")
+							.requires(context -> context.getSender().hasPermission("redmc.permissions.group.update.inherits.delete"))
+							.then(Commands.argument("<parent>", StringArgumentType.word())
+								.suggests((context, builder) -> {
+									Group group = PermissionsPlugin.getInstance().getPermissionManager()
+										.getGroups().get(StringArgumentType.getString(context, "<group>").toLowerCase());
+									if (group != null) {
+										group.getInherits().stream()
+											.filter(name -> name.toLowerCase(Locale.ROOT).startsWith(builder.getRemainingLowerCase()))
+											.forEach(builder::suggest);
+									}
+									return builder.buildFuture();
+								})
+								.executes(new GroupInheritDeleteCommand())
+							)
+						)
+					)
 					.then(Commands.literal("name")
 						.requires(context -> context.getSender().hasPermission("redmc.permissions.group.update.name"))
 						.then(Commands.argument("<name>", StringArgumentType.word())

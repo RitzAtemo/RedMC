@@ -90,7 +90,7 @@ public class ChatManager {
 
 	public void broadcastGlobal(Player player, String message) {
 		String formatted = formatChatMessage(globalFormat, player, message);
-		Component component = ApiUtils.formatText(formatted);
+		Component component = ApiUtils.formatText(VaultPlugin.resolvePlayer(formatted, player));
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			p.sendMessage(component);
 		}
@@ -159,7 +159,7 @@ public class ChatManager {
 		for (Player receiver : getLocalReceivers(victim)) {
 			String template = getLocalizedDeathMessage(receiver, groupId);
 			if (template == null) continue;
-			String withPlayer = resolvePlaceholders(template, victim);
+			String withPlayer = resolvePlaceholders(VaultPlugin.resolvePlayer(template, victim), victim);
 
 			var replacements = new LinkedHashMap<String, Component>();
 			replacements.put("%killer%", killerComponent);
@@ -264,6 +264,4 @@ public class ChatManager {
 	}
 
 	public boolean isDeathEnabled() { return deathEnabled; }
-	public Map<String, Integer> getWorldRadii() { return worldRadii; }
-	public int getLocalDefaultRadius() { return localDefaultRadius; }
 }

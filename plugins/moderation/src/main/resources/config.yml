@@ -3,7 +3,7 @@ config-version: "0.0.1-alpha"
 moderation:
   broadcast-warns: true
   ban-screen:
-    appeal-url: "discord.gg/server"
+    appeal-url: "aviora.red"
   mute:
     blocked-commands:
       - say

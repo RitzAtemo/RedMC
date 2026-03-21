@@ -15,6 +15,7 @@ public class BanManager {
     private final ModerationDataStorage storage;
     private Map<UUID, List<ModerationAction>> actionsMap;
     private final Map<UUID, ModerationAction> activeBans = new HashMap<>();
+    private final Map<UUID, String> targetNames = new HashMap<>();
 
     public BanManager(ModerationDataStorage storage, Map<UUID, List<ModerationAction>> actionsMap) {
         this.storage = storage;
@@ -23,16 +24,34 @@ public class BanManager {
 
     public void load() {
         activeBans.clear();
+        targetNames.clear();
         for (Map.Entry<UUID, List<ModerationAction>> entry : actionsMap.entrySet()) {
             for (ModerationAction action : entry.getValue()) {
                 if (action.getType() == ModerationActionType.BAN && action.isActive() && !action.isExpired()) {
                     activeBans.put(entry.getKey(), action);
+                    if (!action.getTargetName().isEmpty()) {
+                        targetNames.put(entry.getKey(), action.getTargetName());
+                    }
                 }
             }
         }
     }
 
-    public void ban(UUID target, UUID staffUuid, String staffName, String reason, long durationSeconds) {
+    public Map<UUID, String> getBannedNames() {
+        return targetNames;
+    }
+
+    public UUID findBannedByName(String name) {
+        for (Map.Entry<UUID, String> entry : targetNames.entrySet()) {
+            if (entry.getValue().equalsIgnoreCase(name)) return entry.getKey();
+        }
+        for (Map.Entry<UUID, ModerationAction> entry : activeBans.entrySet()) {
+            if (entry.getValue().getTargetName().equalsIgnoreCase(name)) return entry.getKey();
+        }
+        return null;
+    }
+
+    public void ban(UUID target, String targetName, UUID staffUuid, String staffName, String reason, long durationSeconds) {
         List<ModerationAction> actions = actionsMap.computeIfAbsent(target, k -> new ArrayList<>());
         for (ModerationAction action : actions) {
             if (action.getType() == ModerationActionType.BAN && action.isActive()) {
@@ -43,9 +62,10 @@ public class BanManager {
 
         String id = UUID.randomUUID().toString();
         long now = System.currentTimeMillis();
-        ModerationAction action = new ModerationAction(id, ModerationActionType.BAN, staffUuid, staffName, reason, now, durationSeconds, true);
+        ModerationAction action = new ModerationAction(id, ModerationActionType.BAN, staffUuid, staffName, targetName, reason, now, durationSeconds, true);
         actions.add(action);
         activeBans.put(target, action);
+        targetNames.put(target, targetName);
         storage.saveActions(actionsMap);
     }
 
@@ -60,6 +80,7 @@ public class BanManager {
             }
         }
         activeBans.remove(target);
+        targetNames.remove(target);
         if (found) storage.saveActions(actionsMap);
         return found;
     }

@@ -19,6 +19,7 @@ public class MuteManager {
     private final ModerationDataStorage storage;
     private Map<UUID, List<ModerationAction>> actionsMap;
     private final Map<UUID, ModerationAction> activeMutes = new HashMap<>();
+    private final Map<UUID, String> targetNames = new HashMap<>();
 
     public MuteManager(ModerationDataStorage storage, Map<UUID, List<ModerationAction>> actionsMap) {
         this.storage = storage;
@@ -27,16 +28,34 @@ public class MuteManager {
 
     public void load() {
         activeMutes.clear();
+        targetNames.clear();
         for (Map.Entry<UUID, List<ModerationAction>> entry : actionsMap.entrySet()) {
             for (ModerationAction action : entry.getValue()) {
                 if (action.getType() == ModerationActionType.MUTE && action.isActive() && !action.isExpired()) {
                     activeMutes.put(entry.getKey(), action);
+                    if (!action.getTargetName().isEmpty()) {
+                        targetNames.put(entry.getKey(), action.getTargetName());
+                    }
                 }
             }
         }
     }
 
-    public void mute(UUID target, UUID staffUuid, String staffName, String reason, long durationSeconds) {
+    public Map<UUID, String> getMutedNames() {
+        return targetNames;
+    }
+
+    public UUID findMutedByName(String name) {
+        for (Map.Entry<UUID, String> entry : targetNames.entrySet()) {
+            if (entry.getValue().equalsIgnoreCase(name)) return entry.getKey();
+        }
+        for (Map.Entry<UUID, ModerationAction> entry : activeMutes.entrySet()) {
+            if (entry.getValue().getTargetName().equalsIgnoreCase(name)) return entry.getKey();
+        }
+        return null;
+    }
+
+    public void mute(UUID target, String targetName, UUID staffUuid, String staffName, String reason, long durationSeconds) {
         // Deactivate existing mutes
         List<ModerationAction> actions = actionsMap.computeIfAbsent(target, k -> new ArrayList<>());
         for (ModerationAction action : actions) {
@@ -48,9 +67,10 @@ public class MuteManager {
 
         String id = UUID.randomUUID().toString();
         long now = System.currentTimeMillis();
-        ModerationAction action = new ModerationAction(id, ModerationActionType.MUTE, staffUuid, staffName, reason, now, durationSeconds, true);
+        ModerationAction action = new ModerationAction(id, ModerationActionType.MUTE, staffUuid, staffName, targetName, reason, now, durationSeconds, true);
         actions.add(action);
         activeMutes.put(target, action);
+        targetNames.put(target, targetName);
         storage.saveActions(actionsMap);
         applyMeta(target);
     }
@@ -66,6 +86,7 @@ public class MuteManager {
             }
         }
         activeMutes.remove(target);
+        targetNames.remove(target);
         clearMeta(target);
         if (found) storage.saveActions(actionsMap);
         return found;

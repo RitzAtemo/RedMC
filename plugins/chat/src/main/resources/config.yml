@@ -45,6 +45,6 @@ alerts:
   interval: 300
   no-repeat-count: 3
   messages:
-    - "<#FFB800>[!]<#F0F8FF> Welcome to the server! Use <#3DDC97>/help<#F0F8FF> for commands."
-    - "<#FFB800>[!]<#F0F8FF> Enjoy your stay and follow the rules!"
-    - "<#FFB800>[!]<#F0F8FF> Have fun and play fair!"
+    - "<#FFB800>[!]<#F0F8FF> Добро пожаловать на сервер! Используй <#3DDC97>/help<#F0F8FF> для поиска команд."
+    - "<#FFB800>[!]<#F0F8FF> Соблюдайте правила и будьте дружелюбны!"
+    - "<#FFB800>[!]<#F0F8FF> Веселитесь и получайте удовольствие!"

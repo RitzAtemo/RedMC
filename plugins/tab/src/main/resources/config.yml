@@ -4,14 +4,14 @@ header:
   animation: true
   interval: 100
   frames:
-    - "<#1E90FF>═══ RedMC SMP ═══\n<#F0F8FF>Players: ##CurrentServerOnline##/##ServerOnlineMaximum##"
-    - "<#FF1493>═══ RedMC SMP ═══\n<#F0F8FF>Players: ##CurrentServerOnline##/##ServerOnlineMaximum##"
+    - "<#1E90FF>═══ AvioraRed SMP ═══\n<#F0F8FF>Players: ##CurrentServerOnline##/##ServerOnlineMaximum##"
+    - "<#FF1493>═══ AvioraRed SMP ═══\n<#F0F8FF>Players: ##CurrentServerOnline##/##ServerOnlineMaximum##"
 
 footer:
   animation: false
   interval: 20
   frames:
-    - "<#9b94a6>play.redmc.example.com"
+    - "<#9b94a6>play.aviora.red"
 
 player-row:
   format: "<#1E90FF>%player_prefix%%player_altname%%player_suffix%"

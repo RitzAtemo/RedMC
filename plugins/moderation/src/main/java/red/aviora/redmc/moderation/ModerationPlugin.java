@@ -10,7 +10,6 @@ import red.aviora.redmc.moderation.listeners.PlayerChatListener;
 import red.aviora.redmc.moderation.listeners.PlayerLoginListener;
 import red.aviora.redmc.moderation.managers.BanManager;
 import red.aviora.redmc.moderation.managers.MuteManager;
-import red.aviora.redmc.moderation.managers.TicketManager;
 import red.aviora.redmc.moderation.managers.WarnManager;
 import red.aviora.redmc.moderation.models.ModerationAction;
 import red.aviora.redmc.moderation.utils.ModerationDataStorage;
@@ -29,13 +28,11 @@ public class ModerationPlugin extends JavaPlugin {
     private WarnManager warnManager;
     private MuteManager muteManager;
     private BanManager banManager;
-    private TicketManager ticketManager;
-
     @Override
     public void onEnable() {
         instance = this;
 
-        configManager = new ConfigManager(this, "config.yml", "actions.yml", "tickets.yml", "lang/en_US.yml", "lang/ru_RU.yml");
+        configManager = new ConfigManager(this, "config.yml", "actions.yml", "lang/en_US.yml", "lang/ru_RU.yml");
         localeManager = new LocaleManager(configManager, "en_US", "en_US", "ru_RU");
 
         dataStorage = new ModerationDataStorage(configManager);
@@ -50,9 +47,6 @@ public class ModerationPlugin extends JavaPlugin {
 
         banManager = new BanManager(dataStorage, actionsMap);
         banManager.load();
-
-        ticketManager = new TicketManager(dataStorage);
-        ticketManager.load();
 
         getServer().getPluginManager().registerEvents(new PlayerChatListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerLoginListener(), this);
@@ -73,7 +67,6 @@ public class ModerationPlugin extends JavaPlugin {
         warnManager.setActionsMap(actionsMap);
         muteManager.setActionsMap(actionsMap);
         banManager.setActionsMap(actionsMap);
-        ticketManager.load();
     }
 
     public static ModerationPlugin getInstance() { return instance; }
@@ -83,5 +76,4 @@ public class ModerationPlugin extends JavaPlugin {
     public WarnManager getWarnManager() { return warnManager; }
     public MuteManager getMuteManager() { return muteManager; }
     public BanManager getBanManager() { return banManager; }
-    public TicketManager getTicketManager() { return ticketManager; }
 }

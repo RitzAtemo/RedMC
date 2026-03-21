@@ -11,9 +11,12 @@ public class ModerationPlayerJoinListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onJoin(PlayerJoinEvent event) {
         ModerationPlugin plugin = ModerationPlugin.getInstance();
-        var uuid = event.getPlayer().getUniqueId();
+        var player = event.getPlayer();
+        var uuid = player.getUniqueId();
         if (plugin.getMuteManager().isMuted(uuid)) {
             plugin.getMuteManager().applyMeta(uuid);
+        } else {
+            player.removeMetadata("redmc:muted", plugin);
         }
     }
 }

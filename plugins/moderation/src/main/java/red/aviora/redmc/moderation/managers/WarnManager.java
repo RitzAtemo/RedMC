@@ -26,7 +26,7 @@ public class WarnManager {
     public void warn(UUID target, UUID staffUuid, String staffName, String reason) {
         String id = UUID.randomUUID().toString();
         long now = System.currentTimeMillis();
-        ModerationAction action = new ModerationAction(id, ModerationActionType.WARN, staffUuid, staffName, reason, now, 0, true);
+        ModerationAction action = new ModerationAction(id, ModerationActionType.WARN, staffUuid, staffName, "", reason, now, 0, true);
         actionsMap.computeIfAbsent(target, k -> new ArrayList<>()).add(action);
         storage.saveActions(actionsMap);
     }

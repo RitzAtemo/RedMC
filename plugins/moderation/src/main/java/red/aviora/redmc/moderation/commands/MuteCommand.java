@@ -55,7 +55,7 @@ public class MuteCommand implements Command<CommandSourceStack> {
         UUID staffUuid = sender instanceof Player p ? p.getUniqueId() : new UUID(0, 0);
         String staffName = sender.getName();
 
-        plugin.getMuteManager().mute(target.getUniqueId(), staffUuid, staffName, reason, duration);
+        plugin.getMuteManager().mute(target.getUniqueId(), target.getName(), staffUuid, staffName, reason, duration);
 
         boolean permanent = duration == -1;
         String successKey = permanent ? "mute.success-perm" : "mute.success";

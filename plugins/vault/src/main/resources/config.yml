@@ -11,32 +11,9 @@ currencies:
       symbol: "$"
       starting-balance: 0.0
       ranks:
-        enabled: true
+        enabled: false
         tiers:
           0: "<#FF6B6B>Unemployed"
           500: "<#FFD93D>Worker"
           5000: "<#6BCB77>Rich"
           1000000: "<#4D96FF>Millionaire"
-
-    gems:
-      display-name: "Gems"
-      symbol: "◆"
-      starting-balance: 0.0
-      ranks:
-        enabled: true
-        tiers:
-          0: "<#9D84B7>Novice"
-          100: "<#C780FA>Collector"
-          1000: "<#FFD700>Master"
-
-    tokens:
-      display-name: "Tokens"
-      symbol: "⬥"
-      starting-balance: 0.0
-      ranks:
-        enabled: true
-        tiers:
-          0: "<#808080>None"
-          50: "<#C0C0C0>Bronze"
-          500: "<#FFD700>Silver"
-          5000: "<#FFD700>Gold"

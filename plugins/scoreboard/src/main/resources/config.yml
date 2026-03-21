@@ -4,13 +4,13 @@ title:
   animation: true
   interval: 100
   frames:
-    - "<#1E90FF>═══ RedMC SMP ═══"
-    - "<#FF1493>═══ RedMC SMP ═══"
+    - "<#1E90FF>═══ AvioraRed SMP ═══"
+    - "<#FF1493>═══ AvioraRed SMP ═══"
 
 lines:
   - text: " "
-  - text: "<#F0F8FF>Player: <#1E90FF>%player_prefix%%player_altname%%player_suffix%"
+  - text: "<#F0F8FF>Player: <#1E90FF>%player_altname%"
+  - text: "<#F0F8FF>Prefix: <#1E90FF>%player_prefix%"
   - text: "<#F0F8FF>Balance: <#3DDC97>##PlayerBalance##"
-  - text: "<#F0F8FF>Online: <#1E90FF>##CurrentServerOnline##"
   - text: " "
-  - text: "<#9b94a6>play.redmc.example.com"
+  - text: "<#9b94a6>play.aviora.red"

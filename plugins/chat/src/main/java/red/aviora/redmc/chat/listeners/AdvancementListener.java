@@ -11,8 +11,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
+import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.chat.ChatPlugin;
+import red.aviora.redmc.placeholders.PlaceholdersPlugin;
 import red.aviora.redmc.vault.VaultPlugin;
 
 public class AdvancementListener implements Listener {
@@ -53,6 +55,8 @@ public class AdvancementListener implements Listener {
 
 			String format = ChatPlugin.getInstance().getLocaleManager().getMessage(online, frameKey);
 			format = VaultPlugin.resolvePlayer(format, player);
+			PlaceholdersPlugin placeholders = JavaPlugin.getPlugin(PlaceholdersPlugin.class);
+			if (placeholders != null) format = placeholders.getPlaceholderResolver().parseString(format, player);
 
 			String[] parts = format.split("%title%", 2);
 			Component before = ApiUtils.getMM().deserialize(parts[0]);

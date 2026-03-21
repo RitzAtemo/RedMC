@@ -1,1 +1,11 @@
-groups: {}
+groups:
+  default:
+    prefix: "<#9b94a6>[Странник]<reset>"
+  adventurer:
+    prefix: "<#3DDC97>[Авантюрист]<reset>"
+  knight:
+    prefix: "<#FFB800>[Рыцарь]<reset>"
+  guardian:
+    prefix: "<#FF6B6B>[Страж]<reset>"
+  archon:
+    prefix: "<#C780FA>[Архонт]<reset>"

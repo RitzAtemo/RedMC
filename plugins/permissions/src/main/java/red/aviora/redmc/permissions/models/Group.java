@@ -6,7 +6,8 @@ import java.util.List;
 public class Group {
 
 	private final String id;
-	private final String displayName;
+	private String displayName;
+	private final List<String> inherits = new ArrayList<>();
 	private final List<PermissionEntry> permissions = new ArrayList<>();
 
 	public Group(String id, String displayName) {
@@ -23,7 +24,22 @@ public class Group {
 	}
 
 	public void setDisplayName(String displayName) {
-		displayName = displayName;
+		this.displayName = displayName;
+	}
+
+	public List<String> getInherits() {
+		return inherits;
+	}
+
+	public void addInherit(String groupId) {
+		String lower = groupId.toLowerCase();
+		if (!inherits.contains(lower)) {
+			inherits.add(lower);
+		}
+	}
+
+	public void removeInherit(String groupId) {
+		inherits.remove(groupId.toLowerCase());
 	}
 
 	public List<PermissionEntry> getPermissions() {

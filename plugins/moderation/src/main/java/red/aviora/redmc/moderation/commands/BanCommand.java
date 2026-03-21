@@ -55,7 +55,7 @@ public class BanCommand implements Command<CommandSourceStack> {
         UUID staffUuid = sender instanceof Player p ? p.getUniqueId() : new UUID(0, 0);
         String staffName = sender.getName();
 
-        plugin.getBanManager().ban(target.getUniqueId(), staffUuid, staffName, reason, duration);
+        plugin.getBanManager().ban(target.getUniqueId(), target.getName(), staffUuid, staffName, reason, duration);
 
         boolean permanent = duration == -1;
         String successKey = permanent ? "ban.success-perm" : "ban.success";

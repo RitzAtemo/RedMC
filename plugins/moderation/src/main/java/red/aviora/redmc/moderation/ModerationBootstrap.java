@@ -9,11 +9,10 @@ import io.papermc.paper.plugin.bootstrap.BootstrapContext;
 import io.papermc.paper.plugin.bootstrap.PluginBootstrap;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
 import red.aviora.redmc.moderation.commands.BanCommand;
 import red.aviora.redmc.moderation.commands.HistoryCommand;
 import red.aviora.redmc.moderation.commands.MuteCommand;
-import red.aviora.redmc.moderation.commands.TicketCommand;
-import red.aviora.redmc.moderation.commands.TicketsCommand;
 import red.aviora.redmc.moderation.commands.UnbanCommand;
 import red.aviora.redmc.moderation.commands.UnmuteCommand;
 import red.aviora.redmc.moderation.commands.WarnCommand;
@@ -37,8 +36,6 @@ public class ModerationBootstrap implements PluginBootstrap {
                 commands.register(buildBanCommand());
                 commands.register(buildUnbanCommand());
                 commands.register(buildHistoryCommand());
-                commands.register(buildTicketCommand());
-                commands.register(buildTicketsCommand());
                 commands.register(buildModerationCommand().build());
             }
         );
@@ -86,8 +83,8 @@ public class ModerationBootstrap implements PluginBootstrap {
             .requires(ctx -> ctx.getSender().hasPermission("redmc.moderation.unmute"))
             .then(Commands.argument("player", StringArgumentType.word())
                 .suggests((ctx, builder) -> {
-                    for (var player : Bukkit.getOnlinePlayers()) {
-                        String name = player.getName();
+                    ModerationPlugin plugin = JavaPlugin.getPlugin(ModerationPlugin.class);
+                    for (String name : plugin.getMuteManager().getMutedNames().values()) {
                         if (name.toLowerCase().startsWith(builder.getRemainingLowerCase())) {
                             builder.suggest(name);
                         }
@@ -122,8 +119,8 @@ public class ModerationBootstrap implements PluginBootstrap {
             .requires(ctx -> ctx.getSender().hasPermission("redmc.moderation.unban"))
             .then(Commands.argument("player", StringArgumentType.word())
                 .suggests((ctx, builder) -> {
-                    for (var player : Bukkit.getOnlinePlayers()) {
-                        String name = player.getName();
+                    ModerationPlugin plugin = JavaPlugin.getPlugin(ModerationPlugin.class);
+                    for (String name : plugin.getBanManager().getBannedNames().values()) {
                         if (name.toLowerCase().startsWith(builder.getRemainingLowerCase())) {
                             builder.suggest(name);
                         }
@@ -148,38 +145,6 @@ public class ModerationBootstrap implements PluginBootstrap {
                     return builder.buildFuture();
                 })
                 .executes(new HistoryCommand()))
-            .build();
-    }
-
-    private LiteralCommandNode<CommandSourceStack> buildTicketCommand() {
-        return Commands.literal("ticket")
-            .requires(ctx -> ctx.getSender().hasPermission("redmc.ticket"))
-            .then(Commands.literal("create")
-                .then(Commands.argument("message", StringArgumentType.greedyString())
-                    .executes(new TicketCommand.CreateCommand())))
-            .then(Commands.literal("list")
-                .executes(new TicketCommand.ListCommand()))
-            .then(Commands.literal("close")
-                .then(Commands.argument("id", StringArgumentType.word())
-                    .executes(new TicketCommand.CloseCommand())))
-            .build();
-    }
-
-    private LiteralCommandNode<CommandSourceStack> buildTicketsCommand() {
-        return Commands.literal("tickets")
-            .requires(ctx -> ctx.getSender().hasPermission("redmc.tickets"))
-            .then(Commands.literal("list")
-                .executes(new TicketsCommand.ListCommand()))
-            .then(Commands.literal("view")
-                .then(Commands.argument("id", StringArgumentType.word())
-                    .executes(new TicketsCommand.ViewCommand())))
-            .then(Commands.literal("close")
-                .then(Commands.argument("id", StringArgumentType.word())
-                    .executes(new TicketsCommand.CloseCommand())))
-            .then(Commands.literal("reply")
-                .then(Commands.argument("id", StringArgumentType.word())
-                    .then(Commands.argument("message", StringArgumentType.greedyString())
-                        .executes(new TicketsCommand.ReplyCommand()))))
             .build();
     }
 

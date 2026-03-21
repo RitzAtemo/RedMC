@@ -1,5 +1,5 @@
 name: RedMC-MOTD
-description: RedMC - Server List MOTD Customization
+description: RedMC-MOTD
 version: '0.0.1-alpha'
 api-version: '1.21.11'
 prefix: RedMC

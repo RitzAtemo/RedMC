@@ -42,12 +42,15 @@ public class PermissionDataStorage {
 			String displayName = sec.getString("displayName", id);
 			Group group = new Group(id, displayName);
 
-			ConfigurationSection perms = sec.getConfigurationSection("permissions");
-			if (perms != null) {
-				for (String permId : perms.getKeys(false)) {
-					String name = perms.getString(permId + ".name", "");
-					int weight = perms.getInt(permId + ".weight", 0);
-					boolean allowed = perms.getBoolean(permId + ".allowed", true);
+			for (String parent : sec.getStringList("inherits")) {
+				group.addInherit(parent);
+			}
+
+			for (Map<?, ?> map : sec.getMapList("permissions")) {
+				String name = (String) map.get("name");
+				int weight = map.containsKey("weight") ? ((Number) map.get("weight")).intValue() : 0;
+				boolean allowed = map.containsKey("allowed") ? (Boolean) map.get("allowed") : true;
+				if (name != null && !name.isEmpty()) {
 					group.addPermission(new PermissionEntry(name, weight, allowed));
 				}
 			}
@@ -66,16 +69,19 @@ public class PermissionDataStorage {
 			ConfigurationSection sec = root.createSection(group.getId());
 			sec.set("displayName", group.getDisplayName());
 
-			ConfigurationSection perms = sec.createSection("permissions");
-			List<PermissionEntry> permissions = group.getPermissions();
-
-			for (int i = 0; i < permissions.size(); i++) {
-				PermissionEntry entry = permissions.get(i);
-				ConfigurationSection pSec = perms.createSection("perm" + i);
-				pSec.set("name", entry.getName());
-				pSec.set("weight", entry.getWeight());
-				pSec.set("allowed", entry.isAllowed());
+			if (!group.getInherits().isEmpty()) {
+				sec.set("inherits", group.getInherits());
 			}
+
+			List<Map<String, Object>> permList = new ArrayList<>();
+			for (PermissionEntry entry : group.getPermissions()) {
+				Map<String, Object> map = new LinkedHashMap<>();
+				map.put("name", entry.getName());
+				map.put("weight", entry.getWeight());
+				map.put("allowed", entry.isAllowed());
+				permList.add(map);
+			}
+			sec.set("permissions", permList);
 		}
 
 		try {
@@ -105,17 +111,15 @@ public class PermissionDataStorage {
 
 			PlayerData player = new PlayerData(uuid, name);
 
-			List<String> groupIds = sec.getStringList("groups");
-			for (String gid : groupIds) {
+			for (String gid : sec.getStringList("groups")) {
 				player.addGroup(gid);
 			}
 
-			ConfigurationSection perms = sec.getConfigurationSection("permissions");
-			if (perms != null) {
-				for (String pid : perms.getKeys(false)) {
-					String permName = perms.getString(pid + ".name", "");
-					int weight = perms.getInt(pid + ".weight", 0);
-					boolean allowed = perms.getBoolean(pid + ".allowed", true);
+			for (Map<?, ?> map : sec.getMapList("permissions")) {
+				String permName = (String) map.get("name");
+				int weight = map.containsKey("weight") ? ((Number) map.get("weight")).intValue() : 0;
+				boolean allowed = map.containsKey("allowed") ? (Boolean) map.get("allowed") : true;
+				if (permName != null && !permName.isEmpty()) {
 					player.addPermission(new PermissionEntry(permName, weight, allowed));
 				}
 			}
@@ -135,16 +139,15 @@ public class PermissionDataStorage {
 			sec.set("name", player.getName());
 			sec.set("groups", player.getGroupIds());
 
-			ConfigurationSection perms = sec.createSection("permissions");
-			List<PermissionEntry> permissions = player.getPermissions();
-
-			for (int i = 0; i < permissions.size(); i++) {
-				PermissionEntry entry = permissions.get(i);
-				ConfigurationSection pSec = perms.createSection("perm" + i);
-				pSec.set("name", entry.getName());
-				pSec.set("weight", entry.getWeight());
-				pSec.set("allowed", entry.isAllowed());
+			List<Map<String, Object>> permList = new ArrayList<>();
+			for (PermissionEntry entry : player.getPermissions()) {
+				Map<String, Object> map = new LinkedHashMap<>();
+				map.put("name", entry.getName());
+				map.put("weight", entry.getWeight());
+				map.put("allowed", entry.isAllowed());
+				permList.add(map);
 			}
+			sec.set("permissions", permList);
 		}
 
 		try {
