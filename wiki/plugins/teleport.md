@@ -83,7 +83,7 @@ Without any `.N` permission and without `.bypass.limit`, a player who has the ba
 
 ## Spawn
 
-`/setspawn` and `/setspawn newbie` save locations to `spawns.yml`. On `PlayerRespawnEvent`, `SpawnManager` overrides the respawn location when `spawn.override-original: true`. The newbie spawn is applied once on first join (`hasPlayedBefore() == false`) via `player.teleportAsync()`.
+`/setspawn` and `/setspawn newbie` save locations to `spawns.yml`. On `PlayerRespawnEvent`, `SpawnManager` overrides the respawn location when `spawn.override-original: true`. The newbie spawn is applied once on first join (`hasPlayedBefore() == false`). The teleport is scheduled via `getGlobalRegionScheduler().runDelayed()` with a 1-tick delay to avoid a Folia `Player is already removed from player chunk loader` error that occurs when `teleportAsync` is called directly inside `PlayerJoinEvent`.
 
 ## Warps
 

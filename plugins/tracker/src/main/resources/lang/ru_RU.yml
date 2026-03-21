@@ -1,0 +1,14 @@
+prefix: "<#DC143C>[<#FF4500>Трекер<#DC143C>]<#F0F8FF> "
+
+error.no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
+
+players-only: "%prefix%<#FF6B6B>Эта команда только для игроков."
+player-not-found: "%prefix%<#FF6B6B>Игрок '<#FFFFFF>%player%<#FF6B6B>' не найден."
+tracking-started: "%prefix%<#3DDC97>Теперь отслеживаете '<#FFFFFF>%player%<#3DDC97>'."
+tracking-stopped: "%prefix%<#3DDC97>Отслеживание остановлено."
+already-tracking: "%prefix%<#FF6B6B>Вы уже отслеживаете '<#FFFFFF>%player%<#FF6B6B>'."
+not-tracking: "%prefix%<#FF6B6B>Вы никого не отслеживаете."
+position-restored: "<#3DDC97>Ваша последняя позиция была восстановлена."
+reload-config-success: "%prefix%<#3DDC97>Конфигурация трекера перезагружена."
+reload-data-success: "%prefix%<#3DDC97>Данные трекера перезагружены."
+reload-all-success: "%prefix%<#3DDC97>Конфигурация и данные трекера перезагружены."

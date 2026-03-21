@@ -22,7 +22,10 @@ public class PlayerJoinListener implements Listener {
                 if (newbieSpawn != null) {
                     Location loc = newbieSpawn.toBukkitLocation();
                     if (loc != null) {
-                        event.getPlayer().teleportAsync(loc);
+                        plugin.getServer().getGlobalRegionScheduler().runDelayed(plugin, task -> {
+                            if (!event.getPlayer().isOnline()) return;
+                            event.getPlayer().teleportAsync(loc);
+                        }, 1L);
                     }
                 }
             }

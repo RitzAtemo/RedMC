@@ -29,5 +29,6 @@ include(
 	"plugins:motd",
 	"plugins:teleport",
 	"plugins:perks",
-	"plugins:cosmetics"
+	"plugins:cosmetics",
+	"plugins:tracker"
 )

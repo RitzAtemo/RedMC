@@ -14,8 +14,13 @@ chat:
   reply-sent: "<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ \"%quoted%\")"
   reply-received: "<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ \"%quoted%\")"
 
+welcome:
+  returning: "<#1E90FF>С возвращением, <#F0F8FF>%player%<#1E90FF>!"
+  newbie: "<#FFB800>Добро пожаловать на сервер, <#F0F8FF>%player%<#FFB800>! Используй <#3DDC97>/help<#FFB800> для начала."
+
 join-leave:
   join: "<#3DDC97>+<#F0F8FF> %player% <#9b94a6>зашёл на сервер"
+  newbie: "<#FFB800>★<#F0F8FF> %player% <#9b94a6>впервые зашёл на сервер!"
   leave: "<#FF6B6B>-<#F0F8FF> %player% <#9b94a6>вышел с сервера"
 
 death:

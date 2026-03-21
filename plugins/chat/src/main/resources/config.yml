@@ -22,8 +22,16 @@ chat:
 join-leave:
   join:
     enabled: true
+  newbie:
+    enabled: true
   leave:
     enabled: true
+
+welcome:
+  enabled: true
+  newbie:
+    enabled: true
+    priority-first: false
 
 death:
   enabled: true

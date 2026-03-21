@@ -1,0 +1,27 @@
+name: RedMC-Tracker
+description: RedMC - Player Position Tracker
+version: '0.0.1-alpha'
+api-version: '1.21.11'
+prefix: RedMC
+folia-supported: true
+main: red.aviora.redmc.tracker.TrackerPlugin
+bootstrapper: red.aviora.redmc.tracker.TrackerBootstrap
+dependencies:
+  server:
+    RedMC-API:
+      load: BEFORE
+      required: true
+      join-classpath: true
+permissions:
+  redmc.tracker:
+    default: op
+  redmc.tracker.reload:
+    default: op
+  redmc.tracker.reload.config:
+    default: op
+  redmc.tracker.reload.data:
+    default: op
+  redmc.tracker.reload.all:
+    default: op
+  redmc.tracker.bypass:
+    default: false

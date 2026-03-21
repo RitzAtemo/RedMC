@@ -1,5 +1,6 @@
 package red.aviora.redmc.perks.listeners;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -8,20 +9,24 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.persistence.PersistentDataType;
 import red.aviora.redmc.api.utils.ApiUtils;
 import red.aviora.redmc.perks.PerksPlugin;
 import red.aviora.redmc.perks.storage.PlayerData;
 
 public class PerksPlayerListener implements Listener {
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	private static final NamespacedKey JOIN_OVERRIDE = new NamespacedKey("redmc", "join-override");
+	private static final NamespacedKey QUIT_OVERRIDE = new NamespacedKey("redmc", "quit-override");
+
+	@EventHandler(priority = EventPriority.LOW)
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		PerksPlugin plugin = PerksPlugin.getInstance();
 
 		for (Player online : player.getServer().getOnlinePlayers()) {
 			if (plugin.getVanishManager().isVanished(online.getUniqueId()) && !online.equals(player)) {
-				player.hidePlayer(plugin, online);
+				player.hideEntity(plugin, online);
 			}
 		}
 
@@ -33,11 +38,15 @@ public class PerksPlayerListener implements Listener {
 		PlayerData data = plugin.getDataStorage().getPlayerData(player.getUniqueId());
 		String customJoin = data.getJoinMessage();
 		if (customJoin != null && !customJoin.isBlank() && player.hasPermission("redmc.perks.setjoin")) {
-			event.joinMessage(ApiUtils.formatText(customJoin, "%player%", player.getName()));
+			for (Player online : player.getServer().getOnlinePlayers()) {
+				online.sendMessage(ApiUtils.formatText(customJoin, "%player%", player.getName()));
+			}
+			event.joinMessage(null);
+			player.getPersistentDataContainer().set(JOIN_OVERRIDE, PersistentDataType.BOOLEAN, true);
 		}
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
+	@EventHandler(priority = EventPriority.LOW)
 	public void onQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
 		PerksPlugin plugin = PerksPlugin.getInstance();
@@ -49,7 +58,12 @@ public class PerksPlayerListener implements Listener {
 			PlayerData data = plugin.getDataStorage().getPlayerData(player.getUniqueId());
 			String customQuit = data.getQuitMessage();
 			if (customQuit != null && !customQuit.isBlank() && player.hasPermission("redmc.perks.setquit")) {
-				event.quitMessage(ApiUtils.formatText(customQuit, "%player%", player.getName()));
+				for (Player online : player.getServer().getOnlinePlayers()) {
+					if (online.equals(player)) continue;
+					online.sendMessage(ApiUtils.formatText(customQuit, "%player%", player.getName()));
+				}
+				event.quitMessage(null);
+				player.getPersistentDataContainer().set(QUIT_OVERRIDE, PersistentDataType.BOOLEAN, true);
 			}
 		}
 

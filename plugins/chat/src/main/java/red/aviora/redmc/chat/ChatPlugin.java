@@ -39,11 +39,7 @@ public class ChatPlugin extends JavaPlugin {
 		alertManager.start();
 
 		if (configManager.getBoolean("config.yml", "advancement.disable-vanilla", true)) {
-			getServer().getGlobalRegionScheduler().run(this, task -> {
-				for (var world : getServer().getWorlds()) {
-					world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
-				}
-			});
+			getServer().getGlobalRegionScheduler().run(this, task -> disableVanillaAdvancements());
 		}
 
 		getServer().getPluginManager().registerEvents(new ChatListener(), this);
@@ -56,6 +52,13 @@ public class ChatPlugin extends JavaPlugin {
 	public void onDisable() {
 		if (alertManager != null) {
 			alertManager.stop();
+		}
+	}
+
+	@SuppressWarnings("removal")
+	private void disableVanillaAdvancements() {
+		for (var world : getServer().getWorlds()) {
+			world.setGameRule(GameRule.ANNOUNCE_ADVANCEMENTS, false);
 		}
 	}
 

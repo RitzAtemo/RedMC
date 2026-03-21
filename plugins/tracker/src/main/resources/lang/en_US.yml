@@ -1,0 +1,14 @@
+prefix: "<#DC143C>[<#FF4500>Tracker<#DC143C>]<#F0F8FF> "
+
+error.no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+
+players-only: "%prefix%<#FF6B6B>This command can only be used by players."
+player-not-found: "%prefix%<#FF6B6B>Player '<#FFFFFF>%player%<#FF6B6B>' not found."
+tracking-started: "%prefix%<#3DDC97>Now tracking '<#FFFFFF>%player%<#3DDC97>'."
+tracking-stopped: "%prefix%<#3DDC97>Tracking stopped."
+already-tracking: "%prefix%<#FF6B6B>You are already tracking '<#FFFFFF>%player%<#FF6B6B>'."
+not-tracking: "%prefix%<#FF6B6B>You are not tracking anyone."
+position-restored: "<#3DDC97>Your last position has been restored."
+reload-config-success: "%prefix%<#3DDC97>Tracker configuration reloaded."
+reload-data-success: "%prefix%<#3DDC97>Tracker data reloaded."
+reload-all-success: "%prefix%<#3DDC97>Tracker configuration and data reloaded."

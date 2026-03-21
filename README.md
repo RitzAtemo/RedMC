@@ -13,89 +13,75 @@ Full documentation is available in the [Wiki](wiki/README.md), including plugin 
 ## Features
 
 - API
-  - MiniMessage text formatting with hex color and placeholder substitution
-  - Configuration manager with YAML wrapping and automatic config-version backup (ZIP old files, recreate defaults)
-  - Localization manager with per-player locale detection and configurable fallback language
-  - Broadcast, player message, command sender, and console send utilities
 - Placeholders
-  - Priority-sorted registry: multiple plugins register their own `PlaceholderRegistry` with a numeric priority; higher wins on key conflict
-  - Token parsing via configurable regex pattern (default `##Key##`) with per-player context resolution
-  - Built-in general placeholders: player name, world, coordinates
+  - `##Key##` token resolution shared across chat, scoreboard, tab list, holograms, and MOTD
+  - Built-in tokens: player name, prefix, suffix, balance, online count, server max
+  - Currency-specific balance tokens per currency (`##PlayerBalance_credits##`)
+  - Priority-sorted registry: multiple plugins register tokens independently without conflicts
 - Permissions
-  - Named permission groups with display names and weighted `PermissionEntry` lists
-  - Per-player group membership and player-specific permission overrides
-  - Weight-based conflict resolution: higher weight wins; player-level entries always take precedence
-  - Permissions applied via `PermissionAttachment` on join and reloaded on demand
+  - Named groups with per-group permission entries, each carrying a weight and allow/deny flag
+  - Players can belong to multiple groups simultaneously; highest weight wins on conflicts
+  - Per-player permission overrides applied on top of group permissions
+  - Full CRUD management for groups and player assignments via commands
 - Vault
-  - Multi-currency economy: up to any number of currencies, each with display name, symbol, and starting balance
-  - Optional rank tiers per currency (e.g., "Unemployed" at 0, "Millionaire" at 1 000 000)
-  - Per-player balance storage in YAML; balance transfer between players
-  - Leaderboard (`/baltop`) and personal balance check (`/mybalance`)
-  - Prefix, suffix, and alt name management per group and per player
+  - Multi-currency economy with configurable currencies, starting balances, and `/balance` / `/baltop`
+  - Player-to-player transfers with `/pay`
+  - Balance rank tiers: configurable thresholds map balance ranges to cosmetic rank labels
+  - Weight-based prefix and suffix system per player and per group; alt display name support
 - MOTD
-  - Random or sequential MOTD templates with MiniMessage formatting
-  - Favicon rotation from a configurable images folder
-  - Player sample list customization (names shown on server hover)
-  - Version string override (protocol version label)
-  - Ping logging to console
+  - Randomized or sequential MOTD templates with full color and formatting support
+  - Favicon rotation from multiple 64×64 PNG files (random or sequential)
+  - Custom hover text displayed when hovering over the player count in the server browser
+  - Version string and protocol override to show a branded label regardless of client version
 - Tab
-  - Header and footer rendered with full placeholder support
-  - Frame-based animations: each frame has its own text and dwell interval in ticks
-  - Async scheduler ticking every 50 ms; frames advance when their interval is reached
-  - Player row display name formatting with placeholders
+  - Animated tab list header and footer with configurable per-frame interval
+  - Placeholder-filled frames: prefix, player name, online count, and any `##Key##` token
+  - Per-player row format with prefix and name
+  - Header and footer animations are toggled and timed independently
 - Scoreboard
-  - Per-player FastBoard sidebar with configurable static lines and placeholder tokens
-  - Animated title: frame-based with per-frame dwell intervals, same 50 ms async tick loop as tab
-  - Per-player visibility toggle (`/scoreboard toggle`) persisted to YAML across reconnects
+  - Per-player animated sidebar title with configurable frame interval
+  - Placeholder-filled lines: balance, name, online count, and any `##Key##` token
+  - Each player's sidebar renders their own personal data context
+  - Players can toggle their own scoreboard on and off with `/sb toggle`
 - Chat events
-  - Join and leave messages with configurable locale templates
-  - Local chat: message delivered only within a configurable radius (per-world, disable with `-1`)
-  - Global chat: optional prefix (default `!`) broadcasts to all players regardless of distance
-  - Private messages with `/msg`; `/reply` replies to the last player who messaged you
-  - Death messages split into 14 cause groups; entity and weapon names translated per receiver's locale
-  - Advancement announcements with configurable disable flag; custom announcement templates
-  - Scheduled broadcast alerts: configurable interval, random selection with a no-repeat buffer
+  - Radius-based local chat per world and global chat with `!` prefix
+  - Private messages (`/msg`, `/reply`) with quoted reply history in the current session
+  - Broadcast join/leave notifications; first-join newbie announcement sent separately to all players
+  - Personal welcome messages on join: one for returning players and one for first-timers, with configurable display order
+  - Custom death messages by 14 cause types, advancement announcements with hover title, and scheduled rotating alert broadcasts
 - NPC
-  - Packet-based rendering via NMS — no actual entity spawned on the server
-  - Custom display names with full MiniMessage formatting
-  - Skin applied from any online player name (texture + signature fetched and stored)
-  - All 6 equipment slots (helmet, chestplate, leggings, boots, main hand, off hand) configurable per NPC
-  - Left-click and right-click command lists per NPC; commands run as CONSOLE or as the clicking PLAYER; supports `{player}`, `{uuid}`, `{world}`, `{x}`, `{y}`, `{z}` tokens
-  - Optional look-at-player task: rotates NPC head toward the nearest player within a configurable range on a configurable interval
-  - 500 ms interaction cooldown to prevent command spam
+  - Packet-rendered fake players with custom player skins, names, and full equipment (head, chest, legs, feet, both hands)
+  - Left-click and right-click each trigger independent command lists (console-dispatched or player-executed)
+  - Auto-rotation toward the nearest player within a configurable range
+  - Commands support player context placeholders: `{player}`, `{uuid}`, `{world}`, `{x}`, `{y}`, `{z}`
 - Teleport events
-  - Random Teleport — async safe-location finder: configurable min/max radius per world, up to 30 attempts, validates solid ground and non-suffocating space; per-interval use limit and cooldown
-  - Spawns — separate main spawn and newbie spawn locations; optional vanilla respawn override; newbie spawn applied on first join or when configured
-  - Respawns — on death, player can be sent to main spawn or newbie spawn based on config
-  - Warps — admin-managed global destinations; CRUD commands (`create`, `delete`, `list`, `go`); stored in YAML
-  - Homes — per-player named home list with configurable limit; `set`, `delete`, `list`, `go` commands; loaded on join, saved on quit
-  - TPA — `/tpa <player>` and `/tpa here <player>` send teleport requests; `/tpaccept`, `/tpdeny`, `/tpcancel` to respond; configurable request timeout and cooldown
-  - Back — returns to the last location before a teleport or death; configurable history stack depth and per-interval use limit
+  - Named homes per player with permission-based quantity limits; `/back` stack to undo recent teleports and optionally deaths
+  - Named server-wide warps with listing; `/warp list` to browse all available destinations
+  - Random teleport (`/rtp`) into a configurable distance ring with safe-surface landing validation and per-interval use limits
+  - Teleport requests between players (`/tpa`, `/tpahere`) with accept/deny/cancel flow, auto-timeout, and request cooldown
+  - Respawn location override; dedicated newbie first-join spawn separate from the regular spawn point
 - Perks
-  - Virtual crafting table, anvil, enchanting table, grindstone, stonecutter, smithing table, loom, cartography table, ender chest, trash bin
-  - Item repair (single / all inventory)
-  - Hat (wear any item as helmet)
-  - Personal backpack (persistent, configurable size)
-  - Item renaming with MiniMessage formatting
-  - Flight toggle
-  - Walk/fly speed levels (1–5)
-  - Feed and heal
-  - Fall damage protection toggle
-  - Server-wide broadcast with cooldown
-  - Custom join/quit messages per player
+  - Virtual crafting interfaces anywhere: crafting table, anvil, enchanter, grindstone, stonecutter, smithing table, ender chest, loom, cartography table, trash bin — no physical block required
+  - Item utilities: repair held item or full inventory, hat slot swap, personal 54-slot persistent backpack, item rename with full MiniMessage formatting
+  - Movement perks: flight toggle, walk and fly speed levels 1–5, fall damage immunity toggle
+  - Instant feed and heal; server-wide broadcast with cooldown; custom join and quit messages per player
+  - Admin tools: inventory and ender chest inspection for online and offline players (via NBT), vanish, god mode, player freeze, force teleport, sudo command execution
 - Cosmetics
-  - 11 placement slots: trail, head, back, feet, orbit, aura, wings, crown, halo, shoulders
-  - 10 shape patterns: point, ring, sphere, spiral, double helix, star, wings, crown, halo, random
-  - Full Bukkit Particle enum support including colored and gradient dust
-  - Multi-layer templates with per-layer particle type, shape, tick rate, and color
-  - 13 built-in premade templates
-  - Template editor via commands with live tab-completion
-  - Import / export via encrypted chat signature (GZIP + Base64)
+  - 11 independent cosmetic slots — trail, head, back, feet, orbit, aura, wings, crown, halo, left and right shoulders
+  - 10 particle shape patterns: point, ring, sphere, spiral, double helix, star, wings, crown, halo, and random sphere
+  - Multi-layer templates: each layer has independent particle type, color and gradient, shape, count, speed, and tick rate
+  - 13 premade templates — fire/frost/void trails, portal/spiral orbits, angel/devil wings, golden crown, soul halo, rainbow feet, nature head, smoke back
+  - Export and import templates via encrypted signature strings; admin commands to give templates to players and reset their cosmetics
 - Holograms
-  - Multi-line text display entities
-  - MiniMessage formatting per line
-  - Placeholder registry support with configurable refresh rate
-  - CRUD management via commands
+  - Floating multi-line text displays anchored to fixed world coordinates; line spacing is configurable
+  - Full MiniMessage formatting per line including colors, gradients, and decorations
+  - Real-time placeholder refresh: `##Key##` tokens update at a configurable tick interval
+  - Lines can be added, edited by index, or removed in-game; changes persist to YAML
+- Tracker
+  - Admin real-time coordinate display: target player's X, Y, Z, and world shown in the action bar at a configurable tick interval
+  - One active session per admin; starting a new session automatically replaces the previous target
+  - Session ends automatically when the tracked player goes offline
+  - Position saved on logout and restored on next login; bypass permission to opt out of restore
 
 ## Installation
 
@@ -132,10 +118,16 @@ This will start a local Folia server instance with your plugins loaded, allowing
 
 ## Roadmap
 
+- Bot filter
 - Custom menus
 - Friends
+- Mail (send items and messages to offline players)
+- Party system
+- Marriage
 - Auctions
 - Shops (dynamic price, stock auction slots)
+- Chest shops (player-owned sign shops)
+- Crates / keys (loot boxes)
 - Regions (rent chunk)
 - Custom enchants
 - Entity frames
@@ -148,6 +140,11 @@ This will start a local Folia server instance with your plugins loaded, allowing
 - Season system (with battlepass and roadmap system)
 - Quests (with npc, events and season linking)
 - Skills
+- Moderation tools (warn, mute, ban, history, tickets)
+- Anti-cheat
+- Playtime tracking and AFK detection
+- Leaderboards and player statistics
+- Announcements (scheduled auto-broadcast)
 
 And of course - CI/CD.
 

@@ -30,7 +30,7 @@ public class VanishManager {
 		PerksPlugin plugin = PerksPlugin.getInstance();
 		for (Player online : player.getServer().getOnlinePlayers()) {
 			if (!online.equals(player)) {
-				online.hidePlayer(plugin, player);
+				online.hideEntity(plugin, player);
 			}
 		}
 	}
@@ -39,7 +39,7 @@ public class VanishManager {
 		vanished.remove(player.getUniqueId());
 		PerksPlugin plugin = PerksPlugin.getInstance();
 		for (Player online : player.getServer().getOnlinePlayers()) {
-			online.showPlayer(plugin, player);
+			online.showEntity(plugin, player);
 		}
 	}
 
