@@ -8,7 +8,7 @@ Manages group and player permissions with weight-based resolution.
 /permissions (alias: /pm)
 ├── reload
 │   ├── config
-│   ├── datasource
+│   ├── data
 │   └── all
 ├── group
 │   ├── create <group>
@@ -51,6 +51,31 @@ Manages group and player permissions with weight-based resolution.
 | `redmc.permissions.player.groups.create` | op |
 | `redmc.permissions.player.groups.delete` | op |
 | `redmc.permissions.reload` | op |
+
+## Configuration
+
+| Key | Default | Description |
+|---|---|---|
+| `default-group` | `default` | ID of the group automatically assigned to new players |
+
+## Locale Keys
+
+| Key | Value |
+|---|---|
+| `prefix` | `<#1E90FF>[<#FF1493>Permissions<#1E90FF>]<#F0F8FF> ` |
+| `error.no-permission` | `%prefix%<#FF6B6B>You don't have permission to use this.` |
+| `success` | `%prefix%<#3DDC97>Done.` |
+| `already-exists` | `%prefix%<#FF6B6B>Element <#9b94a6>%name% <#FF6B6B>already exists.` |
+| `not-found` | `%prefix%<#FF6B6B>Element <#9b94a6>%name% <#FF6B6B>not found.` |
+| `ensure-default-group` | `%prefix%<#FFB800>Default group not found. A new default group has been created.` |
+| `empty-list` | `%prefix%<#FF6B6B>No elements found.` |
+| `group-list-header` | `%prefix%<#9b94a6>Groups:` |
+| `group-list-item` | `<#FFB800> - <#9b94a6>ID: <#F0F8FF>%id% <#9b94a6>\| Name: <#F0F8FF>%name%` |
+| `permissions-list-header` | `%prefix%<#9b94a6>Permissions:` |
+| `permissions-list-item` | `<#FFB800> - <#F0F8FF>%permission% <#9b94a6>[allowed: %allowed%, weight: %weight%]` |
+| `reload.config-success` | `%prefix%<#3DDC97>Configuration reloaded.` |
+| `reload.data-success` | `%prefix%<#3DDC97>Data reloaded.` |
+| `reload.all-success` | `%prefix%<#3DDC97>Configuration and data reloaded.` |
 
 ## Resolution Logic
 

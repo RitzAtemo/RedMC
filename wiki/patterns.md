@@ -50,6 +50,34 @@ ApiUtils.sendCommandSenderMessageArgs(sender, raw, "%prefix%", localeManager.get
 
 All locale keys that appear in commands must exist in **every** locale file.
 
+### Standard Locale File Structure
+
+Every plugin's `lang/en_US.yml` (and `ru_RU.yml`) follows this standardized nested layout:
+
+```yaml
+prefix: "<#1E90FF>[<#FF1493>PluginName<#1E90FF>]<#F0F8FF> "
+
+error:
+  no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+  only-players:  "%prefix%<#FF6B6B>This command can only be used by players."
+  player-not-found: "%prefix%<#FF6B6B>Player not found."
+
+# Plugin-specific keys (nested by feature)
+featureName:
+  some-key: "..."
+
+reload:
+  config-success: "%prefix%<#3DDC97>Configuration reloaded."
+  data-success:   "%prefix%<#3DDC97>Data reloaded."
+  all-success:    "%prefix%<#3DDC97>Configuration and data reloaded."
+```
+
+Key naming rules:
+- Keys are **nested by section** (YAML map), never flat dot-notation strings.
+- The `reload` section uses `config-success` / `data-success` / `all-success`; only the subcommands that exist are included (e.g. MOTD only has `reload.all-success`).
+- Plugin-specific sections use the feature name as the top-level key (e.g. `afk`, `playtime`, `chat`, `cosmetics`).
+- `getMessage(sender, "section.key")` — the dotted path matches the YAML nesting.
+
 ## ApiUtils
 
 - `formatText(raw, args...)` — applies placeholder substitution and parses MiniMessage → `Component`
@@ -91,7 +119,7 @@ All management plugins follow this structure:
 /plugin delete <id>
 /plugin reload
   config
-  data / alerts / datasource
+  data / alerts
   all
 /plugin update <id>
   <property> [value]

@@ -93,6 +93,12 @@ Documentation for the RedMC plugin infrastructure.
     - One active session per admin; starting a new session automatically replaces the previous target
     - Session ends automatically when the tracked player goes offline
     - Position saved on logout and restored on next login; bypass permission to opt out of restore
+- Playtime
+    - Per-player session playtime accumulation; AFK time is excluded from the counted total
+    - AFK detection via movement threshold, interactions, chat, and commands; configurable inactivity timeout
+    - Optional server-wide broadcast when a player goes AFK or returns; optional AFK kick with configurable delay
+    - `/playtime` for own total; `/playtime <player>` for others; formatted as `Xd Xh Xm Xs`
+    - Placeholders: `##PlayerPlaytime##`, `##PlayerPlaytimeSeconds##`, `##PlayerAFK##`
 
 ## Roadmap
 

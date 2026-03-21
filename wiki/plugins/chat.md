@@ -86,6 +86,58 @@ Replaces vanilla advancement broadcasts with formatted per-player locale message
 
 `AlertManager` runs an async repeating task that fires every `alerts.interval` seconds. Messages are taken from the `alerts.messages` list in config in round-robin order. The last `alerts.no-repeat-count` indices are tracked to prevent consecutive repeats. The task is stopped and restarted on reload.
 
+## Configuration
+
+| Key | Default | Description |
+|---|---|---|
+| `chat.global.enabled` | `true` | Enable global chat |
+| `chat.global.prefix` | `!` | Character prefix that switches a message to global chat |
+| `chat.global.format` | `##PlayerPrefix## <#1E90FF>[G]<#F0F8FF> %player% <#9b94a6>»<#F0F8FF> %message%` | MiniMessage format for global messages |
+| `chat.local.enabled` | `true` | Enable local chat |
+| `chat.local.format` | `##PlayerPrefix## <#F0F8FF>%player% <#9b94a6>»<#F0F8FF> %message%` | MiniMessage format for local messages |
+| `chat.local.default-radius` | `100` | Default radius in blocks for worlds not listed explicitly |
+| `chat.local.worlds.<world>.radius` | — | Per-world radius override; `-1` means entire world |
+| `chat.private.enabled` | `true` | Enable `/msg` and `/reply` |
+| `join-leave.join.enabled` | `true` | Broadcast join message |
+| `join-leave.newbie.enabled` | `true` | Broadcast first-join message |
+| `join-leave.leave.enabled` | `true` | Broadcast leave message |
+| `welcome.enabled` | `true` | Send returning-player welcome message |
+| `welcome.newbie.enabled` | `true` | Send first-join welcome message |
+| `welcome.newbie.priority-first` | `false` | Send newbie welcome before returning welcome when both apply |
+| `death.enabled` | `true` | Enable custom death messages |
+| `advancement.enabled` | `true` | Enable custom advancement announcements |
+| `advancement.disable-vanilla` | `true` | Suppress vanilla advancement broadcasts |
+| `alerts.enabled` | `true` | Enable scheduled alert broadcasts |
+| `alerts.interval` | `300` | Seconds between alert broadcasts |
+| `alerts.no-repeat-count` | `3` | Number of recent indices tracked to avoid consecutive repeats |
+| `alerts.messages` | `[...]` | List of MiniMessage alert strings cycled in round-robin |
+
+## Locale Keys
+
+| Key | Value |
+|---|---|
+| `prefix` | `<#1E90FF>[<#FF1493>Chat<#1E90FF>]<#F0F8FF> ` |
+| `error.no-permission` | `%prefix%<#FF6B6B>You don't have permission to use this.` |
+| `error.only-players` | `%prefix%<#FF6B6B>This command can only be used by players.` |
+| `error.player-not-found` | `%prefix%<#FF6B6B>Player not found.` |
+| `reload.config-success` | `%prefix%<#3DDC97>Configuration reloaded.` |
+| `reload.alerts-success` | `%prefix%<#3DDC97>Alerts reloaded.` |
+| `reload.all-success` | `%prefix%<#3DDC97>Configuration and data reloaded.` |
+| `chat.no-reply-target` | `%prefix%<#FF6B6B>No one to reply to.` |
+| `chat.msg-sent` | `<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message%` |
+| `chat.msg-received` | `<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message%` |
+| `chat.reply-sent` | `<#9b94a6>[<#F0F8FF>→ %target%<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ "%quoted%")` |
+| `chat.reply-received` | `<#9b94a6>[<#F0F8FF>%sender% →<#9b94a6>]<#F0F8FF> %message% <#888888>(↩ "%quoted%")` |
+| `welcome.returning` | `<#1E90FF>Welcome back, <#F0F8FF>%player%<#1E90FF>!` |
+| `welcome.newbie` | `<#FFB800>Welcome to the server, <#F0F8FF>%player%<#FFB800>! Use <#3DDC97>/help<#FFB800> to get started.` |
+| `join-leave.join` | `<#3DDC97>+<#F0F8FF> %player% <#9b94a6>joined the server` |
+| `join-leave.newbie` | `<#FFB800>★<#F0F8FF> %player% <#9b94a6>joined the server for the first time!` |
+| `join-leave.leave` | `<#FF6B6B>-<#F0F8FF> %player% <#9b94a6>left the server` |
+| `death.groups.<group>.messages` | List of MiniMessage strings; one is chosen randomly at death. See death groups table above. |
+| `advancement.task` | `<#9b94a6>[<#3DDC97>Advancement<#9b94a6>]<#F0F8FF> %player%<#9b94a6> has made the advancement <#F0F8FF>[<#3DDC97>%title%<#F0F8FF>]` |
+| `advancement.goal` | `<#9b94a6>[<#1E90FF>Advancement<#9b94a6>]<#F0F8FF> %player%<#9b94a6> has reached the goal <#1E90FF>[<#F0F8FF>%title%<#1E90FF>]` |
+| `advancement.challenge` | `<#9b94a6>[<#FFB800>Advancement<#9b94a6>]<#F0F8FF> %player%<#9b94a6> has completed the challenge <#FFB800>[<#F0F8FF>%title%<#FFB800>]` |
+
 ## Priority and Override
 
 `JoinLeaveListener` runs at `EventPriority.HIGH`. If the Perks plugin has already handled the join message for the player (signalled via `redmc:join-override` metadata), Chat skips its broadcast and clears the flag. The same mechanism applies to quit messages via `redmc:quit-override`.

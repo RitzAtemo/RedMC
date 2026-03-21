@@ -220,48 +220,178 @@ Click the button in chat to copy the signature to your clipboard. Signatures sta
 ```
 The template name is taken from the signature's embedded YAML. If a template with that name already exists it will be overwritten.
 
-## Config
+## Configuration
 
-```yaml
-config-version: "0.0.1-alpha"
+| Key | Default | Description |
+|---|---|---|
+| `renderer.tick-interval-ms` | `50` | Renderer tick rate in milliseconds |
+| `renderer.trail-history-size` | `12` | Number of trail positions to keep |
+| `renderer.trail-min-distance` | `0.25` | Minimum movement in blocks before recording a trail point |
+| `slots.<name>.enabled` | `true` | Enable or disable a slot |
+| `slots.head.y-offset` | `0.4` | Upward offset in blocks from eye level |
+| `slots.back.distance` | `0.5` | Distance in blocks behind the player |
+| `slots.orbit.y-offset` | `1.0` | Vertical center offset in blocks |
+| `slots.aura.y-offset` | `1.0` | Vertical center offset in blocks |
+| `slots.wings.y-offset` | `0.8` | Vertical center offset in blocks |
+| `slots.crown.y-offset` | `0.3` | Vertical offset above head |
+| `slots.halo.y-offset` | `0.7` | Vertical offset above head |
+| `slots.shoulder-left.y-offset` | `0.3` | Vertical offset from player center |
+| `slots.shoulder-left.side-offset` | `0.45` | Horizontal distance from player center |
+| `slots.shoulder-right.y-offset` | `0.3` | Vertical offset from player center |
+| `slots.shoulder-right.side-offset` | `0.45` | Horizontal distance from player center |
 
-renderer:
-  tick-interval-ms: 50           # renderer tick rate
-  trail-history-size: 12         # how many trail positions to keep
-  trail-min-distance: 0.25       # minimum movement before recording a trail point
+## Locale Keys
 
-slots:
-  trail:
-    enabled: true
-  head:
-    enabled: true
-    y-offset: 0.4                # upward offset from eye level
-  back:
-    enabled: true
-    distance: 0.5                # distance behind the player
-  feet:
-    enabled: true
-  orbit:
-    enabled: true
-    y-offset: 1.0
-  aura:
-    enabled: true
-    y-offset: 1.0
-  wings:
-    enabled: true
-    y-offset: 0.8
-  crown:
-    enabled: true
-    y-offset: 0.3
-  halo:
-    enabled: true
-    y-offset: 0.7
-  shoulder-left:
-    enabled: true
-    y-offset: 0.3
-    side-offset: 0.45            # horizontal distance from player center
-  shoulder-right:
-    enabled: true
-    y-offset: 0.3
-    side-offset: 0.45
-```
+| Key | Value |
+|---|---|
+| `prefix` | `<#1E90FF>[<#FF1493>Cosmetics<#1E90FF>]<#F0F8FF> ` |
+| `error.no-permission` | `%prefix%<#FF6B6B>You don't have permission.` |
+| `error.only-players` | `%prefix%<#FF6B6B>This command can only be used by players.` |
+| `error.template-not-found` | `%prefix%<#FF6B6B>Template <#F0F8FF>%name%<#FF6B6B> not found.` |
+| `error.template-exists` | `%prefix%<#FF6B6B>Template <#F0F8FF>%name%<#FF6B6B> already exists.` |
+| `error.invalid-slot` | `%prefix%<#FF6B6B>Invalid slot. Valid slots: %slots%` |
+| `error.invalid-particle` | `%prefix%<#FF6B6B>Invalid particle type.` |
+| `error.invalid-shape` | `%prefix%<#FF6B6B>Invalid shape. Valid shapes: %shapes%` |
+| `error.invalid-number` | `%prefix%<#FF6B6B>Invalid number: <#F0F8FF>%value%` |
+| `error.invalid-color` | `%prefix%<#FF6B6B>Color values must be 0–255.` |
+| `error.layer-not-found` | `%prefix%<#FF6B6B>Layer <#F0F8FF>%index%<#FF6B6B> not found (template has %count% layers).` |
+| `error.not-equipped` | `%prefix%<#FF6B6B>Nothing equipped in slot <#F0F8FF>%slot%<#FF6B6B>.` |
+| `error.export-failed` | `%prefix%<#FF6B6B>Export failed: %reason%` |
+| `error.import-failed` | `%prefix%<#FF6B6B>Import failed: %reason%` |
+| `error.player-not-found` | `%prefix%<#FF6B6B>Player <#F0F8FF>%name%<#FF6B6B> not found.` |
+| `cosmetics.equip-success` | `%prefix%Equipped <#C780FA>%template%<#F0F8FF> to slot <#1E90FF>%slot%<#F0F8FF>.` |
+| `cosmetics.unequip-success` | `%prefix%Unequipped slot <#1E90FF>%slot%<#F0F8FF>.` |
+| `cosmetics.unequip-all-success` | `%prefix%Unequipped all cosmetics.` |
+| `cosmetics.toggle-on` | `%prefix%<#3DDC97>Cosmetics visible.` |
+| `cosmetics.toggle-off` | `%prefix%<#9b94a6>Cosmetics hidden.` |
+| `cosmetics.create-success` | `%prefix%Created template <#C780FA>%name%<#F0F8FF> for slot <#1E90FF>%slot%<#F0F8FF>.` |
+| `cosmetics.delete-success` | `%prefix%Deleted template <#C780FA>%name%<#F0F8FF>.` |
+| `cosmetics.addlayer-success` | `%prefix%Added layer to <#C780FA>%name%<#F0F8FF>. Now has %count% layers.` |
+| `cosmetics.removelayer-success` | `%prefix%Removed layer %index% from <#C780FA>%name%<#F0F8FF>.` |
+| `cosmetics.setlayer-success` | `%prefix%Updated layer %index% of <#C780FA>%name%<#F0F8FF>: <#9b94a6>%property%<#F0F8FF> → <#3DDC97>%value%<#F0F8FF>.` |
+| `cosmetics.export-success` | `%prefix%Template <#C780FA>%name%<#F0F8FF> exported — copy signature below:` |
+| `cosmetics.import-success` | `%prefix%Imported template <#C780FA>%name%<#F0F8FF>.` |
+| `cosmetics.admin-give-success` | `%prefix%Equipped <#C780FA>%template%<#F0F8FF> to <#1E90FF>%player%<#F0F8FF> slot <#1E90FF>%slot%<#F0F8FF>.` |
+| `cosmetics.admin-reset-success` | `%prefix%Reset all cosmetics for <#1E90FF>%player%<#F0F8FF>.` |
+| `cosmetics.list-header` | `%prefix%Templates%filter%:` |
+| `cosmetics.list-filter-slot` | ` for slot <#1E90FF>%slot%` |
+| `cosmetics.list-entry` | `  <#C780FA>%name% <#9b94a6>[<#1E90FF>%slot%<#9b94a6>] <#888888>%description%` |
+| `cosmetics.list-empty` | `  <#9b94a6>No templates found.` |
+| `cosmetics.equipped-header` | `%prefix%Your equipped cosmetics:` |
+| `cosmetics.equipped-entry` | `  <#1E90FF>%slot%<#9b94a6>: <#C780FA>%template%` |
+| `cosmetics.equipped-none` | `  <#9b94a6>Nothing equipped.` |
+| `cosmetics.template-info-header` | `%prefix%Template <#C780FA>%name%<#F0F8FF> [slot: <#1E90FF>%slot%<#F0F8FF>]:` |
+| `cosmetics.template-info-layer` | `  <#9b94a6>Layer %index%<#F0F8FF>: <#3DDC97>%particle% <#9b94a6>shape=<#F0F8FF>%shape% ...` |
+| `cosmetics.template-info-no-layers` | `  <#9b94a6>No layers defined.` |
+| `cosmetics.slot.trail` | `Trail` |
+| `cosmetics.slot.head` | `Head` |
+| `cosmetics.slot.back` | `Back` |
+| `cosmetics.slot.feet` | `Feet` |
+| `cosmetics.slot.orbit` | `Orbit` |
+| `cosmetics.slot.aura` | `Aura` |
+| `cosmetics.slot.wings` | `Wings` |
+| `cosmetics.slot.crown` | `Crown` |
+| `cosmetics.slot.halo` | `Halo` |
+| `cosmetics.slot.shoulder_left` | `Left Shoulder` |
+| `cosmetics.slot.shoulder_right` | `Right Shoulder` |
+| `cosmetics.gui.main-title` | `<#C780FA>✦ Cosmetics` |
+| `cosmetics.gui.slot-title` | `<#C780FA>✦ %slot%` |
+| `cosmetics.gui.slot-name-equipped` | `<#C780FA>%slot%` |
+| `cosmetics.gui.slot-name-empty` | `<#9b94a6>%slot%` |
+| `cosmetics.gui.slot-lore-equipped` | `<#3DDC97>✔ Equipped: <#C780FA>%template%` |
+| `cosmetics.gui.slot-lore-empty` | `<#9b94a6>Empty` |
+| `cosmetics.gui.slot-lore-click` | `<#888888>Click to browse templates` |
+| `cosmetics.gui.toggle-on-name` | `<#3DDC97>✔ Cosmetics: ON` |
+| `cosmetics.gui.toggle-off-name` | `<#9b94a6>✗ Cosmetics: OFF` |
+| `cosmetics.gui.toggle-lore` | `<#888888>Click to toggle visibility` |
+| `cosmetics.gui.back-name` | `<#9b94a6>← Back` |
+| `cosmetics.gui.back-lore` | `<#888888>Return to main menu` |
+| `cosmetics.gui.unequip-name` | `<#FF6B6B>✗ Unequip` |
+| `cosmetics.gui.unequip-lore` | `<#888888>Remove from this slot` |
+| `cosmetics.gui.prev-page-name` | `<#9b94a6>← Previous` |
+| `cosmetics.gui.next-page-name` | `<#9b94a6>Next →` |
+| `cosmetics.gui.page-lore` | `<#888888>Page %page% of %total%` |
+| `cosmetics.gui.template-name` | `<#F0F8FF>%name%` |
+| `cosmetics.gui.template-name-equipped` | `<#C780FA>%name%` |
+| `cosmetics.gui.template-lore-description` | `<#9b94a6>%description%` |
+| `cosmetics.gui.template-lore-layers` | `<#9b94a6>Layers: <#F0F8FF>%count%` |
+| `cosmetics.gui.template-lore-author` | `<#888888>Author: %author%` |
+| `cosmetics.gui.template-lore-equipped` | `<#3DDC97>✔ Currently equipped` |
+| `cosmetics.gui.template-lore-click-equip` | `<#888888>Click to equip` |
+| `cosmetics.gui.template-lore-click-unequip` | `<#888888>Click to unequip` |
+| `cosmetics.gui.equipped-button-name` | `<#3DDC97>★ Equipped` |
+| `cosmetics.gui.equipped-button-lore` | `<#888888>View your equipped cosmetics` |
+| `cosmetics.gui.manage-button-name` | `<#1E90FF>⚙ Manage Templates` |
+| `cosmetics.gui.manage-button-lore` | `<#888888>Create, edit and delete templates` |
+| `cosmetics.gui.equipped-title` | `<#C780FA>✦ Equipped Cosmetics` |
+| `cosmetics.gui.equipped-slot-equipped-name` | `<#C780FA>%slot%` |
+| `cosmetics.gui.equipped-slot-equipped-lore` | `<#3DDC97>✔ <#C780FA>%template%` |
+| `cosmetics.gui.equipped-slot-empty-name` | `<#9b94a6>%slot%` |
+| `cosmetics.gui.equipped-slot-empty-lore` | `<#9b94a6>Empty` |
+| `cosmetics.gui.equipped-slot-click` | `<#888888>Click to manage this slot` |
+| `cosmetics.gui.template-list-title` | `<#C780FA>✦ Manage Templates` |
+| `cosmetics.gui.template-list-create-name` | `<#3DDC97>+ Create Template` |
+| `cosmetics.gui.template-list-create-lore` | `<#888888>Create a new template` |
+| `cosmetics.gui.template-list-import-name` | `<#FFB800>⬡ Import` |
+| `cosmetics.gui.template-list-import-lore` | `<#888888>Import from a signature` |
+| `cosmetics.gui.template-list-click` | `<#888888>Click to manage` |
+| `cosmetics.gui.template-menu-title` | `<#C780FA>✦ %name%` |
+| `cosmetics.gui.template-menu-info-name` | `<#F0F8FF>ℹ Template Info` |
+| `cosmetics.gui.template-menu-info-lore-slot` | `<#9b94a6>Slot: <#1E90FF>%slot%` |
+| `cosmetics.gui.template-menu-info-lore-author` | `<#9b94a6>Author: <#888888>%author%` |
+| `cosmetics.gui.template-menu-info-lore-layers` | `<#9b94a6>Layers: <#F0F8FF>%count%` |
+| `cosmetics.gui.template-menu-edit-name` | `<#FFB800>✎ Edit Layers` |
+| `cosmetics.gui.template-menu-edit-lore` | `<#888888>Modify particle layers` |
+| `cosmetics.gui.template-menu-delete-name` | `<#FF6B6B>✗ Delete` |
+| `cosmetics.gui.template-menu-delete-lore` | `<#888888>Permanently delete` |
+| `cosmetics.gui.template-menu-export-name` | `<#3DDC97>⬡ Export` |
+| `cosmetics.gui.template-menu-export-lore` | `<#888888>Copy shareable signature` |
+| `cosmetics.gui.edit-title` | `<#C780FA>✦ Edit: %name%` |
+| `cosmetics.gui.edit-add-layer-name` | `<#3DDC97>+ Add Layer` |
+| `cosmetics.gui.edit-add-layer-lore` | `<#888888>Select particle and shape` |
+| `cosmetics.gui.edit-layer-name` | `<#F0F8FF>Layer %index%` |
+| `cosmetics.gui.edit-layer-lore-particle` | `<#9b94a6>Particle: <#3DDC97>%particle%` |
+| `cosmetics.gui.edit-layer-lore-shape` | `<#9b94a6>Shape: <#F0F8FF>%shape%` |
+| `cosmetics.gui.edit-layer-lore-count` | `<#9b94a6>Count: <#F0F8FF>%count%` |
+| `cosmetics.gui.edit-layer-click` | `<#888888>Click to edit  \| Shift-click to remove` |
+| `cosmetics.gui.layer-title` | `<#C780FA>✦ Layer %index%: %name%` |
+| `cosmetics.gui.layer-prop-name` | `<#F0F8FF>%label%` |
+| `cosmetics.gui.layer-prop-lore-value` | `<#9b94a6>Value: <#F0F8FF>%value%` |
+| `cosmetics.gui.layer-prop-lore-click` | `<#888888>Click to change` |
+| `cosmetics.gui.layer-prop-lore-select` | `<#888888>Click to select` |
+| `cosmetics.gui.layer-remove-name` | `<#FF6B6B>✗ Remove Layer` |
+| `cosmetics.gui.layer-remove-lore` | `<#888888>Remove this layer` |
+| `cosmetics.gui.layer-label-particle` | `Particle` |
+| `cosmetics.gui.layer-label-shape` | `Shape` |
+| `cosmetics.gui.layer-label-count` | `Count` |
+| `cosmetics.gui.layer-label-speed` | `Speed` |
+| `cosmetics.gui.layer-label-tickrate` | `Tick Rate` |
+| `cosmetics.gui.layer-label-radius` | `Radius` |
+| `cosmetics.gui.layer-label-points` | `Points` |
+| `cosmetics.gui.layer-label-yoffset` | `Y Offset` |
+| `cosmetics.gui.layer-label-offsetx` | `Offset X` |
+| `cosmetics.gui.layer-label-offsety` | `Offset Y` |
+| `cosmetics.gui.layer-label-offsetz` | `Offset Z` |
+| `cosmetics.gui.layer-label-color` | `Color (from)` |
+| `cosmetics.gui.layer-label-colorto` | `Color (to)` |
+| `cosmetics.gui.layer-label-dustsize` | `Dust Size` |
+| `cosmetics.gui.particle-select-title` | `<#C780FA>✦ Select Particle` |
+| `cosmetics.gui.shape-select-title` | `<#C780FA>✦ Select Shape` |
+| `cosmetics.gui.select-item-name` | `<#3DDC97>%value%` |
+| `cosmetics.gui.select-item-lore` | `<#888888>Click to select` |
+| `cosmetics.gui.delete-confirm-title` | `<#FF6B6B>Delete: %name%?` |
+| `cosmetics.gui.delete-confirm-yes-name` | `<#FF6B6B>✗ Confirm Delete` |
+| `cosmetics.gui.delete-confirm-yes-lore` | `<#FF6B6B>This cannot be undone!` |
+| `cosmetics.gui.delete-confirm-no-name` | `<#3DDC97>✔ Cancel` |
+| `cosmetics.gui.delete-confirm-no-lore` | `<#888888>Keep this template` |
+| `cosmetics.gui.create-slot-title` | `<#C780FA>✦ Create — Select Slot` |
+| `cosmetics.gui.create-slot-item-name` | `<#F0F8FF>%slot%` |
+| `cosmetics.gui.create-slot-item-lore` | `<#888888>Click to use this slot` |
+| `cosmetics.gui.chat-prompt-name` | `%prefix%<#9b94a6>Type the template name in chat (or type cancel):` |
+| `cosmetics.gui.chat-prompt-value` | `%prefix%<#9b94a6>Type new value for <#F0F8FF>%property%<#9b94a6> (or type cancel):` |
+| `cosmetics.gui.chat-prompt-import` | `%prefix%<#9b94a6>Paste the import signature in chat (or type cancel):` |
+| `cosmetics.gui.chat-cancelled` | `%prefix%<#9b94a6>Input cancelled.` |
+| `cosmetics.gui.chat-invalid-name` | `%prefix%<#FF6B6B>Name must be alphanumeric (a-z, 0-9, _).` |
+| `reload.config-success` | `%prefix%<#3DDC97>Configuration reloaded.` |
+| `reload.data-success` | `%prefix%<#3DDC97>Data reloaded.` |
+| `reload.all-success` | `%prefix%<#3DDC97>Configuration and data reloaded.` |

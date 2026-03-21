@@ -44,113 +44,46 @@ These are resolved at ping time without a player context:
 
 If **RedMC-Placeholders** is loaded, all `##Key##` tokens in templates are resolved first via `PlaceholderParser` with a `null` player. Placeholders that require a player instance will silently return unresolved (skipped) — only server-level placeholders will expand.
 
-### Template Config Example
-
-```yaml
-motd:
-  mode: random   # random | sequential
-  templates:
-    - - "<#1E90FF>━━━ <#F0F8FF>RedMC SMP <#1E90FF>━━━ <#FF1493>● Online"
-      - "<#9b94a6>Players: <#F0F8FF>%online%<#9b94a6>/<#F0F8FF>%max% <#888888>● <#F0F8FF>play.redmc.example.com"
-    - - "<#FF1493>✦ <#F0F8FF>RedMC SMP <#FF1493>✦ <#1E90FF>Vanilla Survival"
-      - "<#FFB800>Join us! <#9b94a6>play.redmc.example.com"
-```
-
 ## Favicon
 
-Multiple `.png` files (must be 64×64 px) can be listed under `icons.files`. Paths are relative to the plugin's data folder.
-
-```yaml
-icons:
-  enabled: true
-  mode: random       # random | sequential
-  files:
-    - "server-icon.png"
-    - "icons/holiday.png"
-```
-
-`reload config` picks up new file paths but does **not** reload the image data from disk.
-`reload all` re-reads all icon files from disk and rebuilds the cache.
+Multiple `.png` files (must be 64×64 px) can be listed under `icons.files`. Paths are relative to the plugin's data folder. `reload all` re-reads all icon files from disk and rebuilds the cache.
 
 ## Player List
 
-### Count Override
-
-```yaml
-players:
-  override-count: true
-  online: 42    # -1 = use real value
-  max: 100      # -1 = use real value
-```
-
-### Sample Lines (hover text)
-
 Lines shown when hovering over the player count. MiniMessage formatting is converted to legacy `§` codes for rendering in the vanilla client.
-
-```yaml
-players:
-  sample:
-    enabled: true
-    lines:
-      - "<#1E90FF>━━━ RedMC SMP ━━━"
-      - "<#9b94a6>Vanilla Survival"
-      - "<#3DDC97>%online% players online"
-```
 
 ## Version String
 
-```yaml
-version:
-  override: true
-  text: "<#FF1493>RedMC <#F0F8FF>1.21.11"   # MiniMessage → legacy §
-  protocol: -1   # -1 = keep server default; any value forces a mismatch indicator
-```
-
-Setting `protocol` to a value that doesn't match the client's protocol version causes the client to show "outdated server / client" — useful for displaying a custom version label regardless of client version.
+Setting `version.protocol` to a value that doesn't match the client's protocol version causes the client to show "outdated server / client" — useful for displaying a custom version label regardless of client version.
 
 ## Ping Logging
 
-```yaml
-ping-logging:
-  enabled: true
-  format: "<#9b94a6>Ping from <#F0F8FF>%address%"
-```
+Logs to the server console on every server-list ping. Fires on the Paper async event thread.
 
-Logged to the server console on every server-list ping. Fires on the Paper async event thread.
+## Configuration
 
-## Full Config Reference
+| Key | Default | Description |
+|---|---|---|
+| `motd.mode` | `random` | Template selection mode: `random` or `sequential` |
+| `motd.templates` | `[...]` | List of templates; each template is a two-element list of MiniMessage strings (line 1, line 2) |
+| `icons.enabled` | `false` | Enable favicon rotation |
+| `icons.mode` | `random` | Favicon selection mode: `random` or `sequential` |
+| `icons.files` | `[server-icon.png]` | List of PNG file paths relative to the plugin data folder |
+| `players.override-count` | `false` | Override the displayed player count |
+| `players.online` | `-1` | Displayed online count; `-1` uses the real value |
+| `players.max` | `-1` | Displayed max count; `-1` uses the real value |
+| `players.sample.enabled` | `false` | Enable hover text on the player count |
+| `players.sample.lines` | `[...]` | List of MiniMessage lines shown on hover |
+| `version.override` | `false` | Override the version string shown in the server browser |
+| `version.text` | `<#FF1493>RedMC <#F0F8FF>1.21.11` | MiniMessage version label (converted to legacy `§` codes) |
+| `version.protocol` | `-1` | Protocol number; `-1` keeps server default; any mismatch triggers "outdated" indicator |
+| `ping-logging.enabled` | `false` | Log each ping to console |
+| `ping-logging.format` | `<#9b94a6>Ping from <#F0F8FF>%address%` | MiniMessage format; `%address%` is the client IP |
 
-```yaml
-config-version: "0.0.1-alpha"
+## Locale Keys
 
-motd:
-  mode: random
-  templates:
-    - - "<#1E90FF>━━━ <#F0F8FF>RedMC SMP <#1E90FF>━━━ <#FF1493>● Online"
-      - "<#9b94a6>Players: <#F0F8FF>%online%<#9b94a6>/<#F0F8FF>%max% <#888888>● <#F0F8FF>play.redmc.example.com"
-
-icons:
-  enabled: false
-  mode: random
-  files:
-    - "server-icon.png"
-
-players:
-  override-count: false
-  online: -1
-  max: -1
-  sample:
-    enabled: false
-    lines:
-      - "<#1E90FF>━━━ RedMC SMP ━━━"
-      - "<#9b94a6>Vanilla Survival"
-
-version:
-  override: false
-  text: "<#FF1493>RedMC <#F0F8FF>1.21.11"
-  protocol: -1
-
-ping-logging:
-  enabled: false
-  format: "<#9b94a6>Ping from <#F0F8FF>%address%"
-```
+| Key | Value |
+|---|---|
+| `prefix` | `<#1E90FF>[<#FF1493>MOTD<#1E90FF>]<#F0F8FF> ` |
+| `error.no-permission` | `%prefix%<#FF6B6B>You don't have permission to use this.` |
+| `reload.all-success` | `%prefix%<#3DDC97>Configuration and data reloaded.` |

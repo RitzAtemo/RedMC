@@ -244,35 +244,90 @@ Makes the target player execute a command. The command string is passed to `play
 
 ## Configuration
 
-`config.yml` keys:
+| Key | Default | Description |
+|---|---|---|
+| `cooldowns.workbench` | `0` | Cooldown in seconds; `0` disables |
+| `cooldowns.anvil` | `0` | |
+| `cooldowns.enchant` | `0` | |
+| `cooldowns.grindstone` | `0` | |
+| `cooldowns.stonecutter` | `0` | |
+| `cooldowns.smithing` | `0` | |
+| `cooldowns.loom` | `0` | |
+| `cooldowns.cartography` | `0` | |
+| `cooldowns.enderchest` | `0` | |
+| `cooldowns.dispose` | `0` | |
+| `cooldowns.repair` | `30` | |
+| `cooldowns.repair-all` | `60` | |
+| `cooldowns.hat` | `0` | |
+| `cooldowns.backpack` | `0` | |
+| `cooldowns.rename` | `10` | |
+| `cooldowns.fly` | `0` | |
+| `cooldowns.speed` | `0` | |
+| `cooldowns.feed` | `60` | |
+| `cooldowns.heal` | `120` | |
+| `cooldowns.nofall` | `0` | |
+| `cooldowns.broadcast` | `300` | |
+| `backpack.size` | `54` | Slot count; must be a multiple of 9, max 54 |
 
-```yaml
-cooldowns:
-  workbench: 0        # seconds; 0 = no cooldown
-  anvil: 0
-  enchant: 0
-  grindstone: 0
-  stonecutter: 0
-  smithing: 0
-  loom: 0
-  cartography: 0
-  enderchest: 0
-  dispose: 0
-  repair: 30
-  repair-all: 60
-  hat: 0
-  backpack: 0
-  rename: 10
-  fly: 0
-  speed: 0
-  feed: 60
-  heal: 120
-  nofall: 0
-  broadcast: 300
+## Locale Keys
 
-backpack:
-  size: 54             # must be a multiple of 9, max 54
-```
+| Key | Value |
+|---|---|
+| `prefix` | `<#1E90FF>[<#FF1493>Perks<#1E90FF>]<#F0F8FF> ` |
+| `error.no-permission` | `%prefix%<#FF6B6B>You don't have permission to use this.` |
+| `error.only-players` | `%prefix%<#FF6B6B>This command can only be used by players.` |
+| `error.cooldown` | `%prefix%<#FFB800>You must wait <#F0F8FF>%seconds%s<#FFB800> before using this again.` |
+| `repair.success` | `%prefix%<#3DDC97>Item repaired.` |
+| `repair.nothing` | `%prefix%<#FF6B6B>No damageable item in hand.` |
+| `repair.all.success` | `%prefix%<#3DDC97>Repaired <#F0F8FF>%count%<#3DDC97> item(s).` |
+| `repair.all.nothing` | `%prefix%<#FF6B6B>No damageable items to repair.` |
+| `hat.success` | `%prefix%<#3DDC97>Hat equipped.` |
+| `hat.empty` | `%prefix%<#FF6B6B>You must be holding an item.` |
+| `backpack.title` | `<#1E90FF>Backpack` |
+| `dispose.title` | `<#888888>Trash` |
+| `rename.success` | `%prefix%<#3DDC97>Item renamed.` |
+| `rename.empty` | `%prefix%<#FF6B6B>You must be holding an item.` |
+| `fly.enabled` | `%prefix%<#3DDC97>Flight enabled.` |
+| `fly.disabled` | `%prefix%<#FF6B6B>Flight disabled.` |
+| `speed.set` | `%prefix%<#3DDC97>Speed set to level <#F0F8FF>%level%<#3DDC97>.` |
+| `speed.invalid` | `%prefix%<#FF6B6B>Speed must be between <#F0F8FF>1<#FF6B6B> and <#F0F8FF>5<#FF6B6B>.` |
+| `feed.success` | `%prefix%<#3DDC97>Hunger restored.` |
+| `heal.success` | `%prefix%<#3DDC97>Health and armor restored.` |
+| `nofall.enabled` | `%prefix%<#3DDC97>Fall damage protection enabled.` |
+| `nofall.disabled` | `%prefix%<#FF6B6B>Fall damage protection disabled.` |
+| `broadcast.format` | `<#FFB800>[!]<#F0F8FF> %player%<#9b94a6>: <#F0F8FF>%message%` |
+| `broadcast.sent` | `%prefix%<#3DDC97>Message broadcasted.` |
+| `perks.setjoin.success` | `%prefix%<#3DDC97>Join message set.` |
+| `perks.setjoin.reset` | `%prefix%<#3DDC97>Join message reset to default.` |
+| `perks.setquit.success` | `%prefix%<#3DDC97>Quit message set.` |
+| `perks.setquit.reset` | `%prefix%<#3DDC97>Quit message reset to default.` |
+| `reload.config-success` | `%prefix%<#3DDC97>Configuration reloaded.` |
+| `reload.data-success` | `%prefix%<#3DDC97>Data reloaded.` |
+| `reload.all-success` | `%prefix%<#3DDC97>Configuration and data reloaded.` |
+| `admin.invsee.title` | `<#1E90FF>Inventory of <#F0F8FF>%player%` |
+| `admin.invsee.opened` | `%prefix%<#3DDC97>Viewing inventory of <#F0F8FF>%player%<#3DDC97>.` |
+| `admin.invsee.not-found` | `%prefix%<#FF6B6B>Player not found.` |
+| `admin.invsee.no-data` | `%prefix%<#FF6B6B>No player data found.` |
+| `admin.ecsee.title` | `<#1E90FF>Ender Chest of <#F0F8FF>%player%` |
+| `admin.ecsee.opened` | `%prefix%<#3DDC97>Viewing ender chest of <#F0F8FF>%player%<#3DDC97>.` |
+| `admin.ecsee.not-found` | `%prefix%<#FF6B6B>Player not found.` |
+| `admin.ecsee.no-data` | `%prefix%<#FF6B6B>No player data found.` |
+| `admin.vanish.enabled` | `%prefix%<#3DDC97>You are now invisible.` |
+| `admin.vanish.disabled` | `%prefix%<#FF6B6B>You are now visible.` |
+| `admin.god.enabled` | `%prefix%<#3DDC97>God mode enabled.` |
+| `admin.god.disabled` | `%prefix%<#FF6B6B>God mode disabled.` |
+| `admin.freeze.frozen` | `%prefix%<#3DDC97>Player <#F0F8FF>%player%<#3DDC97> has been frozen.` |
+| `admin.freeze.unfrozen` | `%prefix%<#3DDC97>Player <#F0F8FF>%player%<#3DDC97> has been unfrozen.` |
+| `admin.freeze.not-found` | `%prefix%<#FF6B6B>Player not found.` |
+| `admin.freeze.message` | `%prefix%<#FFB800>You have been frozen.` |
+| `admin.freeze.unmessage` | `%prefix%<#3DDC97>You have been unfrozen.` |
+| `admin.tpo.teleported` | `%prefix%<#3DDC97>Teleported to <#F0F8FF>%player%<#3DDC97>.` |
+| `admin.tpo.not-found` | `%prefix%<#FF6B6B>Player not found.` |
+| `admin.tpohere.teleported` | `%prefix%<#3DDC97>Teleported <#F0F8FF>%player%<#3DDC97> to you.` |
+| `admin.tpohere.not-found` | `%prefix%<#FF6B6B>Player not found.` |
+| `admin.tpohere.message` | `%prefix%<#FFB800>You have been teleported.` |
+| `admin.sudo.executed` | `%prefix%<#3DDC97>Executed <#F0F8FF>/%command%<#3DDC97> as <#F0F8FF>%player%<#3DDC97>.` |
+| `admin.sudo.not-found` | `%prefix%<#FF6B6B>Player not found.` |
 
 ## Data Storage
 

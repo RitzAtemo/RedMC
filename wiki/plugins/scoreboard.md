@@ -22,23 +22,24 @@ Per-player sidebar scoreboard with frame-based title animations and placeholder 
 | `redmc.scoreboard.reload.all` | op |
 | `redmc.scoreboard.toggle` | true |
 
-## Config Example
+## Configuration
 
-```yaml
-config-version: "0.0.1-alpha"
+| Key | Default | Description |
+|---|---|---|
+| `title.animation` | `true` | Enable animated title cycling |
+| `title.interval` | `100` | Ticks between title frame changes |
+| `title.frames` | `[...]` | List of MiniMessage title frames |
+| `lines` | `[...]` | Ordered list of sidebar line objects; each entry has a `text` field (MiniMessage + `##Placeholder##`) |
 
-title:
-  animation: true
-  interval: 100
-  frames:
-    - "<#1E90FF>═══ RedMC SMP ═══"
-    - "<#FF1493>═══ RedMC SMP ═══"
+## Locale Keys
 
-lines:
-  - text: " "
-  - text: "<#F0F8FF>Player: <#1E90FF>##PlayerName##"
-  - text: "<#F0F8FF>Balance: <#3DDC97>##PlayerBalance##"
-  - text: "<#F0F8FF>Online: <#1E90FF>##CurrentServerOnline##"
-  - text: " "
-  - text: "<#9b94a6>play.redmc.example.com"
-```
+| Key | Value |
+|---|---|
+| `prefix` | `<#1E90FF>[<#FF1493>Scoreboard<#1E90FF>]<#F0F8FF> ` |
+| `error.no-permission` | `%prefix%<#FF6B6B>You don't have permission to use this.` |
+| `error.only-players` | `%prefix%<#FF6B6B>This command can only be used by players.` |
+| `success` | `%prefix%<#3DDC97>Done.` |
+| `toggle-shown` | `%prefix%<#3DDC97>Scoreboard is now visible.` |
+| `toggle-hidden` | `%prefix%<#FF6B6B>Scoreboard is now hidden.` |
+| `reload.config-success` | `%prefix%<#3DDC97>Configuration reloaded.` |
+| `reload.all-success` | `%prefix%<#3DDC97>Configuration and data reloaded.` |

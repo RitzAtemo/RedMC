@@ -28,10 +28,9 @@ PlaceholdersPlugin.getRegistryManager().addRegistry(myRegistry, priority);
 | `##CurrentServerOnline##` | API | Online player count |
 | `##ServerOnlineMaximum##` | API | Max player count |
 
-## Config
+## Configuration
 
-```yaml
-config-version: "0.0.1-alpha"
-pattern: "##(.*?)##"
-general-registry-weight: 0
-```
+| Key | Default | Description |
+|---|---|---|
+| `pattern` | `##(.*?)##` | Regex used to find placeholder tokens in text |
+| `general-registry-weight` | `0` | Priority weight of the built-in general registry |

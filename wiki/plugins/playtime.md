@@ -57,6 +57,24 @@ If `afk.kick.enabled` is `true`, a player who has been AFK for longer than `afk.
 | `afk.kick.reason` | `<red>You were kicked for being AFK.` | MiniMessage kick screen |
 | `playtime.save-interval` | `6000` | Ticks between auto-saves |
 
+## Locale Keys
+
+| Key | Value |
+|---|---|
+| `prefix` | `<#1E90FF>[<#FF1493>Playtime<#1E90FF>]<#F0F8FF> ` |
+| `error.no-permission` | `%prefix%<#FF6B6B>You don't have permission to use this.` |
+| `error.player-not-found` | `%prefix%<#FF6B6B>Player '<#F0F8FF>%player%<#FF6B6B>' not found.` |
+| `error.players-only` | `%prefix%<#FF6B6B>This command can only be used by players.` |
+| `playtime.own` | `%prefix%<#9b94a6>Your playtime: <#F0F8FF>%playtime%` |
+| `playtime.other` | `%prefix%<#9b94a6>%player%'s playtime: <#F0F8FF>%playtime%` |
+| `afk.now-afk` | `<#9b94a6>%player% <#888888>is now AFK.` |
+| `afk.returned` | `<#9b94a6>%player% <#888888>is no longer AFK.` |
+| `afk.self-afk` | `%prefix%<#9b94a6>You are now AFK.` |
+| `afk.self-returned` | `%prefix%<#3DDC97>Welcome back!` |
+| `reload.config-success` | `%prefix%<#3DDC97>Configuration reloaded.` |
+| `reload.data-success` | `%prefix%<#3DDC97>Data reloaded.` |
+| `reload.all-success` | `%prefix%<#3DDC97>Configuration and data reloaded.` |
+
 ## Placeholders
 
 Registered into RedMC-Placeholders at priority 5.
