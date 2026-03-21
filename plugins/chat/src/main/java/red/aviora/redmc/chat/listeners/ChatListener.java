@@ -14,6 +14,9 @@ public class ChatListener implements Listener {
 	public void onChat(AsyncChatEvent event) {
 		event.setCancelled(true);
 		Player player = event.getPlayer();
+
+		if (player.hasMetadata("redmc:muted")) return;
+
 		String message = PlainTextComponentSerializer.plainText().serialize(event.message());
 
 		ChatPlugin plugin = ChatPlugin.getInstance();

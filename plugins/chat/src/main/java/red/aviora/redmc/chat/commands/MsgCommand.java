@@ -45,6 +45,8 @@ public class MsgCommand implements Command<CommandSourceStack> {
 			).create();
 		}
 
+		if (player.hasMetadata("redmc:muted")) return Command.SINGLE_SUCCESS;
+
 		plugin.getChatManager().sendPrivateMessage(player, target, message, null);
 		return Command.SINGLE_SUCCESS;
 	}

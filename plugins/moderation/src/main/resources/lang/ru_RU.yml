@@ -1,0 +1,91 @@
+prefix: "<#1E90FF>[<#FF1493>Модерация<#1E90FF>]<#F0F8FF> "
+
+error:
+  no-permission: "%prefix%<#FF6B6B>У вас нет прав для использования этой команды."
+  only-players: "%prefix%<#FF6B6B>Эту команду могут использовать только игроки."
+  player-not-found: "%prefix%<#FF6B6B>Игрок не найден."
+  invalid-duration: "%prefix%<#FF6B6B>Неверный формат времени. Используйте: 1d, 2h, 30m, 60s, perm."
+  ticket-not-found: "%prefix%<#FF6B6B>Тикет не найден."
+
+warn:
+  success: "%prefix%<#3DDC97>%player% получил предупреждение. Причина: <#F0F8FF>%reason%"
+  received: "%prefix%<#FFB800>Вы получили предупреждение. Причина: <#F0F8FF>%reason%"
+  notify: "<#9b94a6>[Модерация] <#FFB800>%player% <#9b94a6>предупреждён администратором <#F0F8FF>%staff%<#9b94a6>. Причина: <#F0F8FF>%reason%"
+
+mute:
+  success: "%prefix%<#3DDC97>%player% заглушен на <#F0F8FF>%duration%<#3DDC97>. Причина: <#F0F8FF>%reason%"
+  success-perm: "%prefix%<#3DDC97>%player% заглушен навсегда. Причина: <#F0F8FF>%reason%"
+  received: "%prefix%<#FF6B6B>Вы заглушены на <#F0F8FF>%duration%<#FF6B6B>. Причина: <#F0F8FF>%reason%"
+  received-perm: "%prefix%<#FF6B6B>Вы заглушены навсегда. Причина: <#F0F8FF>%reason%"
+  blocked: "%prefix%<#FF6B6B>Вы заглушены. Осталось: <#F0F8FF>%remaining%"
+  blocked-perm: "%prefix%<#FF6B6B>Вы заглушены навсегда."
+  unmute-success: "%prefix%<#3DDC97>%player% разглушён."
+  not-muted: "%prefix%<#FF6B6B>%player% не заглушён."
+
+ban:
+  success: "%prefix%<#3DDC97>%player% забанен на <#F0F8FF>%duration%<#3DDC97>. Причина: <#F0F8FF>%reason%"
+  success-perm: "%prefix%<#3DDC97>%player% забанен навсегда. Причина: <#F0F8FF>%reason%"
+  screen: "<red><bold>Вы забанены!\n\n<white>Причина: <yellow>%reason%\n<white>Истекает: <yellow>%expiry%\n\n<gray>Апелляция: <white>discord.gg/server"
+  screen-perm: "<red><bold>Вы забанены навсегда!\n\n<white>Причина: <yellow>%reason%\n\n<gray>Апелляция: <white>discord.gg/server"
+  unban-success: "%prefix%<#3DDC97>%player% разбанен."
+  not-banned: "%prefix%<#FF6B6B>%player% не забанен."
+
+history:
+  no-history: "%prefix%<#9b94a6>У <#F0F8FF>%player%<#9b94a6> нет истории нарушений."
+
+ticket:
+  created: "%prefix%<#3DDC97>Тикет создан. ID: <#F0F8FF>%id%"
+  closed: "%prefix%<#3DDC97>Тикет <#F0F8FF>%id%<#3DDC97> закрыт."
+  already-closed: "%prefix%<#FF6B6B>Тикет <#F0F8FF>%id%<#FF6B6B> уже закрыт."
+  reply-sent: "%prefix%<#3DDC97>Ответ на тикет <#F0F8FF>%id%<#3DDC97> отправлен."
+  notify-staff: "<#1E90FF>[Тикет] <#F0F8FF>%player% <#9b94a6>открыл тикет <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%"
+  notify-reply: "<#1E90FF>[Тикет] <#F0F8FF>%staff% <#9b94a6>ответил на тикет <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%"
+  list-header: "%prefix%<#1E90FF>Ваши тикеты:"
+  list-entry: "<#9b94a6> - [<#F0F8FF>%id%<#9b94a6>] <#F0F8FF>%status% <#9b94a6>- %message%"
+  no-tickets: "%prefix%<#9b94a6>У вас нет тикетов."
+
+gui:
+  history:
+    title: "<#1E90FF>История: <#F0F8FF>%player%"
+    prev-page: "<#9b94a6>← Предыдущая страница"
+    next-page: "<#9b94a6>Следующая страница →"
+    close: "<#FF6B6B>Закрыть"
+    empty: "<#9b94a6>На этой странице нет записей."
+    info-name: "<#1E90FF>История %player%"
+    info-lore: "<#9b94a6>Всего записей: <#F0F8FF>%total%"
+    warn-name: "<#FFB800>⚠ Предупреждение"
+    mute-name: "<#FF6B6B>Мут"
+    ban-name: "<#FF1493>Бан"
+    lore-reason: "<#9b94a6>Причина: <#F0F8FF>%reason%"
+    lore-staff: "<#9b94a6>Администратор: <#F0F8FF>%staff%"
+    lore-date: "<#9b94a6>Дата: <#F0F8FF>%date%"
+    lore-duration: "<#9b94a6>Длительность: <#F0F8FF>%duration%"
+    lore-status-active: "<#FF6B6B>● Активно"
+    lore-status-expired: "<#9b94a6>● Истекло"
+    lore-status-pardoned: "<#3DDC97>● Снято"
+  tickets:
+    title: "<#1E90FF>Тикеты поддержки"
+    title-view: "<#1E90FF>Тикет <#F0F8FF>%id%"
+    prev-page: "<#9b94a6>← Предыдущая страница"
+    next-page: "<#9b94a6>Следующая страница →"
+    filter: "<#9b94a6>Фильтр: <#F0F8FF>%filter%"
+    back: "<#9b94a6>← Назад"
+    close-ticket: "<#FF6B6B>Закрыть тикет"
+    already-closed: "<#9b94a6>Тикет закрыт"
+    reply-hint: "<#9b94a6>Используйте <#F0F8FF>/tickets reply %id% <сообщение><#9b94a6> для ответа."
+    open-name: "<#3DDC97>Тикет #%id%"
+    closed-name: "<#9b94a6>Тикет #%id%"
+    lore-author: "<#9b94a6>Автор: <#F0F8FF>%author%"
+    lore-message: "<#9b94a6>Сообщение: <#F0F8FF>%message%"
+    lore-date: "<#9b94a6>Дата: <#F0F8FF>%date%"
+    lore-status: "<#9b94a6>Статус: <#F0F8FF>%status%"
+    lore-replies: "<#9b94a6>Ответов: <#F0F8FF>%count%"
+    reply-name: "<#1E90FF>Ответ от <#F0F8FF>%staff%"
+    reply-lore-message: "<#9b94a6>%message%"
+    reply-lore-date: "<#9b94a6>Дата: <#F0F8FF>%date%"
+    info-name: "<#1E90FF>Информация о тикете"
+
+reload:
+  config-success: "%prefix%<#3DDC97>Конфигурация перезагружена."
+  data-success: "%prefix%<#3DDC97>Данные перезагружены."
+  all-success: "%prefix%<#3DDC97>Конфигурация и данные перезагружены."

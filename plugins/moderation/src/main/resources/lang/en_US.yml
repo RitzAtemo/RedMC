@@ -1,0 +1,91 @@
+prefix: "<#1E90FF>[<#FF1493>Moderation<#1E90FF>]<#F0F8FF> "
+
+error:
+  no-permission: "%prefix%<#FF6B6B>You don't have permission to use this."
+  only-players: "%prefix%<#FF6B6B>This command can only be used by players."
+  player-not-found: "%prefix%<#FF6B6B>Player not found."
+  invalid-duration: "%prefix%<#FF6B6B>Invalid duration. Use: 1d, 2h, 30m, 60s, perm."
+  ticket-not-found: "%prefix%<#FF6B6B>Ticket not found."
+
+warn:
+  success: "%prefix%<#3DDC97>%player% has been warned. Reason: <#F0F8FF>%reason%"
+  received: "%prefix%<#FFB800>You have been warned. Reason: <#F0F8FF>%reason%"
+  notify: "<#9b94a6>[Moderation] <#FFB800>%player% <#9b94a6>was warned by <#F0F8FF>%staff%<#9b94a6>. Reason: <#F0F8FF>%reason%"
+
+mute:
+  success: "%prefix%<#3DDC97>%player% has been muted for <#F0F8FF>%duration%<#3DDC97>. Reason: <#F0F8FF>%reason%"
+  success-perm: "%prefix%<#3DDC97>%player% has been permanently muted. Reason: <#F0F8FF>%reason%"
+  received: "%prefix%<#FF6B6B>You have been muted for <#F0F8FF>%duration%<#FF6B6B>. Reason: <#F0F8FF>%reason%"
+  received-perm: "%prefix%<#FF6B6B>You have been permanently muted. Reason: <#F0F8FF>%reason%"
+  blocked: "%prefix%<#FF6B6B>You are muted. Remaining: <#F0F8FF>%remaining%"
+  blocked-perm: "%prefix%<#FF6B6B>You are permanently muted."
+  unmute-success: "%prefix%<#3DDC97>%player% has been unmuted."
+  not-muted: "%prefix%<#FF6B6B>%player% is not muted."
+
+ban:
+  success: "%prefix%<#3DDC97>%player% has been banned for <#F0F8FF>%duration%<#3DDC97>. Reason: <#F0F8FF>%reason%"
+  success-perm: "%prefix%<#3DDC97>%player% has been permanently banned. Reason: <#F0F8FF>%reason%"
+  screen: "<red><bold>You are banned!\n\n<white>Reason: <yellow>%reason%\n<white>Expires: <yellow>%expiry%\n\n<gray>Appeal at <white>discord.gg/server"
+  screen-perm: "<red><bold>You are permanently banned!\n\n<white>Reason: <yellow>%reason%\n\n<gray>Appeal at <white>discord.gg/server"
+  unban-success: "%prefix%<#3DDC97>%player% has been unbanned."
+  not-banned: "%prefix%<#FF6B6B>%player% is not banned."
+
+history:
+  no-history: "%prefix%<#9b94a6>No moderation history for <#F0F8FF>%player%<#9b94a6>."
+
+ticket:
+  created: "%prefix%<#3DDC97>Ticket created. ID: <#F0F8FF>%id%"
+  closed: "%prefix%<#3DDC97>Ticket <#F0F8FF>%id%<#3DDC97> has been closed."
+  already-closed: "%prefix%<#FF6B6B>Ticket <#F0F8FF>%id%<#FF6B6B> is already closed."
+  reply-sent: "%prefix%<#3DDC97>Reply sent to ticket <#F0F8FF>%id%<#3DDC97>."
+  notify-staff: "<#1E90FF>[Ticket] <#F0F8FF>%player% <#9b94a6>opened ticket <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%"
+  notify-reply: "<#1E90FF>[Ticket] <#F0F8FF>%staff% <#9b94a6>replied to ticket <#F0F8FF>%id%<#9b94a6>: <#F0F8FF>%message%"
+  list-header: "%prefix%<#1E90FF>Your tickets:"
+  list-entry: "<#9b94a6> - [<#F0F8FF>%id%<#9b94a6>] <#F0F8FF>%status% <#9b94a6>- %message%"
+  no-tickets: "%prefix%<#9b94a6>You have no tickets."
+
+gui:
+  history:
+    title: "<#1E90FF>History: <#F0F8FF>%player%"
+    prev-page: "<#9b94a6>← Previous Page"
+    next-page: "<#9b94a6>Next Page →"
+    close: "<#FF6B6B>Close"
+    empty: "<#9b94a6>No actions on this page."
+    info-name: "<#1E90FF>%player% History"
+    info-lore: "<#9b94a6>Total actions: <#F0F8FF>%total%"
+    warn-name: "<#FFB800>⚠ Warning"
+    mute-name: "<#FF6B6B>Mute"
+    ban-name: "<#FF1493>Ban"
+    lore-reason: "<#9b94a6>Reason: <#F0F8FF>%reason%"
+    lore-staff: "<#9b94a6>By: <#F0F8FF>%staff%"
+    lore-date: "<#9b94a6>Date: <#F0F8FF>%date%"
+    lore-duration: "<#9b94a6>Duration: <#F0F8FF>%duration%"
+    lore-status-active: "<#FF6B6B>● Active"
+    lore-status-expired: "<#9b94a6>● Expired"
+    lore-status-pardoned: "<#3DDC97>● Pardoned"
+  tickets:
+    title: "<#1E90FF>Support Tickets"
+    title-view: "<#1E90FF>Ticket <#F0F8FF>%id%"
+    prev-page: "<#9b94a6>← Previous Page"
+    next-page: "<#9b94a6>Next Page →"
+    filter: "<#9b94a6>Filter: <#F0F8FF>%filter%"
+    back: "<#9b94a6>← Back"
+    close-ticket: "<#FF6B6B>Close Ticket"
+    already-closed: "<#9b94a6>Ticket Closed"
+    reply-hint: "<#9b94a6>Use <#F0F8FF>/tickets reply %id% <message><#9b94a6> to reply."
+    open-name: "<#3DDC97>Ticket #%id%"
+    closed-name: "<#9b94a6>Ticket #%id%"
+    lore-author: "<#9b94a6>Author: <#F0F8FF>%author%"
+    lore-message: "<#9b94a6>Message: <#F0F8FF>%message%"
+    lore-date: "<#9b94a6>Date: <#F0F8FF>%date%"
+    lore-status: "<#9b94a6>Status: <#F0F8FF>%status%"
+    lore-replies: "<#9b94a6>Replies: <#F0F8FF>%count%"
+    reply-name: "<#1E90FF>Reply by <#F0F8FF>%staff%"
+    reply-lore-message: "<#9b94a6>%message%"
+    reply-lore-date: "<#9b94a6>Date: <#F0F8FF>%date%"
+    info-name: "<#1E90FF>Ticket Info"
+
+reload:
+  config-success: "%prefix%<#3DDC97>Configuration reloaded."
+  data-success: "%prefix%<#3DDC97>Data reloaded."
+  all-success: "%prefix%<#3DDC97>Configuration and data reloaded."

@@ -1,0 +1,17 @@
+config-version: "0.0.1-alpha"
+
+moderation:
+  broadcast-warns: true
+  ban-screen:
+    appeal-url: "discord.gg/server"
+  mute:
+    blocked-commands:
+      - say
+      - msg
+      - tell
+      - w
+      - whisper
+      - pm
+      - reply
+      - r
+      - re

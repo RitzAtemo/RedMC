@@ -20,6 +20,7 @@ Documentation for the RedMC plugin infrastructure.
 - [Holograms Plugin](plugins/holograms.md) — multi-line text display holograms with placeholder support
 - [Tracker Plugin](plugins/tracker.md) — admin player coordinate tracking, position save/restore
 - [Playtime Plugin](plugins/playtime.md) — playtime tracking and AFK detection
+- [Moderation Plugin](plugins/moderation.md) — warnings, mutes, bans, history GUI, support tickets
 
 ## Features
 
@@ -99,6 +100,11 @@ Documentation for the RedMC plugin infrastructure.
     - Optional server-wide broadcast when a player goes AFK or returns; optional AFK kick with configurable delay
     - `/playtime` for own total; `/playtime <player>` for others; formatted as `Xd Xh Xm Xs`
     - Placeholders: `##PlayerPlaytime##`, `##PlayerPlaytimeSeconds##`, `##PlayerAFK##`
+- Moderation
+    - Warn, mute, and ban with duration support (`1d`, `2h`, `30m`, `perm`) and automatic expiry on next interaction
+    - Full action history per player browsable via a paginated GUI; each action shows type, reason, staff, date, and status
+    - Support ticket system: players open tickets with `/ticket create`, staff manage via `/tickets` GUI with list, view, reply, and close
+    - Ticket List GUI with ALL / OPEN filter toggle; Ticket View GUI with reply slot items and close button
 
 ## Roadmap
 
@@ -124,7 +130,6 @@ Documentation for the RedMC plugin infrastructure.
 - Season system (with battlepass and roadmap system)
 - Quests (with npc, events and season linking)
 - Skills
-- Moderation tools (warn, mute, ban, history, tickets)
 - Anti-cheat
 - Leaderboards and player statistics
 - Announcements (scheduled auto-broadcast)

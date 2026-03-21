@@ -1,0 +1,41 @@
+name: RedMC-Moderation
+description: RedMC - Moderation
+version: '0.0.1-alpha'
+api-version: '1.21.11'
+prefix: RedMC
+folia-supported: true
+main: red.aviora.redmc.moderation.ModerationPlugin
+bootstrapper: red.aviora.redmc.moderation.ModerationBootstrap
+dependencies:
+  server:
+    RedMC-API:
+      load: BEFORE
+      required: true
+      join-classpath: true
+permissions:
+  redmc.moderation.warn:
+    default: op
+  redmc.moderation.mute:
+    default: op
+  redmc.moderation.unmute:
+    default: op
+  redmc.moderation.ban:
+    default: op
+  redmc.moderation.unban:
+    default: op
+  redmc.moderation.history:
+    default: op
+  redmc.ticket:
+    default: true
+  redmc.ticket.close.own:
+    default: true
+  redmc.tickets:
+    default: op
+  redmc.moderation.reload:
+    default: op
+  redmc.moderation.reload.config:
+    default: op
+  redmc.moderation.reload.data:
+    default: op
+  redmc.moderation.reload.all:
+    default: op

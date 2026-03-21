@@ -20,6 +20,7 @@ val runFolia = runPaper.folia.registerTask {
 		project(":plugins:holograms").tasks.named("jar"),
 		project(":plugins:tracker").tasks.named("jar"),
 		project(":plugins:playtime").tasks.named("jar"),
+		project(":plugins:moderation").tasks.named("jar"),
 	)
 	pluginJars(
 		project(":plugins:api").tasks.named("jar"),
@@ -37,6 +38,7 @@ val runFolia = runPaper.folia.registerTask {
 		project(":plugins:holograms").tasks.named("jar"),
 		project(":plugins:tracker").tasks.named("jar"),
 		project(":plugins:playtime").tasks.named("jar"),
+		project(":plugins:moderation").tasks.named("jar"),
 	)
 	doFirst {
 		val pluginsDir = runDirectory.get().asFile.resolve("plugins")

@@ -31,5 +31,6 @@ include(
 	"plugins:perks",
 	"plugins:cosmetics",
 	"plugins:tracker",
-	"plugins:playtime"
+	"plugins:playtime",
+	"plugins:moderation"
 )

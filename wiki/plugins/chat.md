@@ -138,6 +138,16 @@ Replaces vanilla advancement broadcasts with formatted per-player locale message
 | `advancement.goal` | `<#9b94a6>[<#1E90FF>Advancement<#9b94a6>]<#F0F8FF> %player%<#9b94a6> has reached the goal <#1E90FF>[<#F0F8FF>%title%<#1E90FF>]` |
 | `advancement.challenge` | `<#9b94a6>[<#FFB800>Advancement<#9b94a6>]<#F0F8FF> %player%<#9b94a6> has completed the challenge <#FFB800>[<#F0F8FF>%title%<#FFB800>]` |
 
+## Mute Integration
+
+`ChatListener` checks the `redmc:muted` metadata key on the player before dispatching to `ChatManager.processChat()`. If the key is present, the message is silently dropped — `processChat` is never called. This check is intentionally decoupled: Chat does not depend on the Moderation plugin. Any plugin that wants to block a player from chatting can set the `redmc:muted` metadata; removing it re-enables chat.
+
+The Moderation plugin manages this metadata:
+- Set on `/mute` (if the player is online) and on `PlayerJoinEvent` (if the player has an active mute on join).
+- Removed on `/unmute` and on automatic expiry (checked at the next chat attempt by `PlayerChatListener` in the Moderation plugin, which also sends the "you are muted" message with remaining time).
+
+`MsgCommand` and `ReplyCommand` also check `redmc:muted` before sending a private message. If set, the command returns silently — no message is sent and no feedback is shown. The Moderation plugin's `PlayerChatListener` is responsible for all "you are muted" notifications.
+
 ## Priority and Override
 
 `JoinLeaveListener` runs at `EventPriority.HIGH`. If the Perks plugin has already handled the join message for the player (signalled via `redmc:join-override` metadata), Chat skips its broadcast and clears the flag. The same mechanism applies to quit messages via `redmc:quit-override`.

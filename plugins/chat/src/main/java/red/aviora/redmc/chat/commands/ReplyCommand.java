@@ -56,6 +56,8 @@ public class ReplyCommand implements Command<CommandSourceStack> {
 			).create();
 		}
 
+		if (player.hasMetadata("redmc:muted")) return Command.SINGLE_SUCCESS;
+
 		String quotedMessage = plugin.getSessionManager().getLastReceivedMessage(player.getUniqueId());
 		plugin.getChatManager().sendPrivateMessage(player, target, message, quotedMessage);
 		return Command.SINGLE_SUCCESS;

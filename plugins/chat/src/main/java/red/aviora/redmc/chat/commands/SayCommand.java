@@ -24,6 +24,8 @@ public class SayCommand implements Command<CommandSourceStack> {
 			throw ApiUtils.noPermissionException(plugin.getLocaleManager(), sender);
 		}
 
+		if (player.hasMetadata("redmc:muted")) return Command.SINGLE_SUCCESS;
+
 		String message = StringArgumentType.getString(ctx, "message");
 		plugin.getServer().getGlobalRegionScheduler().run(plugin, task ->
 			plugin.getChatManager().broadcastGlobal(player, message));
